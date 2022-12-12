@@ -23,7 +23,7 @@ public class AlbumController {
 
     @RequestMapping("write")
     public String write() {
-        return "main";
+        return "albumwrite";
     }
 
     @RequestMapping("insert")
@@ -43,18 +43,18 @@ public class AlbumController {
         List<AlbumDTO> list = service.selectAll();
         model.addAttribute("dto", list);
 
-        return "index";
+        return "album";
     }
     @RequestMapping("delete")
     public String delete(int Album_seq) {
         service.delete(Album_seq);
 
-        return "index";
+        return "album";
     }
     @RequestMapping("update")
     public String update(AlbumDTO dto) {
         service.update(dto);
-        return "index";
+        return "album";
 
     }
 }

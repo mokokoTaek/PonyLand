@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+          integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+          crossorigin="anonymous"></script>
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  div {
+    border: 1px solid black;
+  }
+
+  .container {
+    text-align: center;
+    margin: auto;
+    width: 60%;
+    height: 100%;
+  }
+
+  #Album_title {
+    float: left;
+    width: 100%;
+  }
+
+  #text {
+    width: 100%;
+    height: 300px;
+  }
+
+  .btn {
+    float: right;
+  }
+
+  #div1 {
+    height: 25px;
+  }
+  .line-del:hover{
+    cursor:pointer;
+    background-color:red;
+    color:white;
+  }
+  #fileAdd:hover{
+    cursor:pointer;
+  }
+</style>
+<body>
+<form action = "/Album/insert" method = "post"  accept-charset="utf-8">
+  <!--enctype="multipart/form-data"-->
+  <div class=container>
+    <div>자유게시판 글 작성하기</div>
+    <!--        <input type="hidden" name="writer" value="${loginId }">-->
+
+    <!--    <div>-->
+    <!--      <input type="text" placeholder="글 번호을 입력하세요" id="Album_seq" name="Album_seq">-->
+    <!--    </div>-->
+    <div>
+      <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
+    </div>
+    <!--    <input type="file" name="files" multiple>-->
+    <div id="text">
+				<textarea placeholder="글 내용을 입력하세요." name="Album_contents"
+                          style="width: 100%; height: 90%; resize: none;"></textarea>
+    </div>
+    <div id="div1">
+      <button type="button" class="btn" id="back">목록으로</button>
+      <button type="submit" class="btn" id="btn">작성완료</button>
+    </div>
+  </div>
+</form>
+<script>
+  $("#back").on("click", function() {
+    history.back(); // 뒤로가기 버튼
+  })
+</script>
+
+</body>
+</html>

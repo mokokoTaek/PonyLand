@@ -14,7 +14,6 @@ public class GuestbookDTO {
 
     private Integer Guestbook_seq;
     private String Guestbook_writer;
-    private String Guestbook_title;
     private String Guestbook_contents;
     private Timestamp Guestbook_write_date;
 

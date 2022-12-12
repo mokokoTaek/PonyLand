@@ -1,5 +1,6 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.GuestbookDTO;
 import PonyLand.PonyLand.service.GuestbookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +14,16 @@ public class GuestbookController {
     private GuestbookService service;
 
 
-    @RequestMapping("/Write")
-    public String write() { return "guestbookWrite"; }
+    @RequestMapping("insert")
+    public String insert(GuestbookDTO dto) {
+        try {
+            service.insert(dto);
+            System.out.println(dto.getGuestbook_contents());
+        } catch (Exception e) {
+            return "error";
+        }
+        return "redirect:guestbook.html";
 
 
-
-
-
+    }
 }

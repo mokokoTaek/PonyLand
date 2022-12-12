@@ -9,4 +9,6 @@ public class MemberDAO {
 
     @Autowired
     private SpringDataJpaMemberRepository sdjr;
+
+
 }

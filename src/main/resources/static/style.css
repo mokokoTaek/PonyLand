@@ -262,4 +262,91 @@ button:hover {
 }
 
 
+/*--------------------------------guestbook*/
+.bg3in{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.gbtitle{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    height: 25px;
+    margin: auto;
+    /*border: 1px solid black;*/
+    width: 90%;
+    border-radius: 4px;
+}
 
+.gbcontent{
+    display: flex;
+    text-align: center;
+    height: 100px;
+    margin: auto;
+    border: 1px solid black;
+    width: 90%;
+    border-radius: 4px;
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+.gbprofile{
+    border: 1px solid black;
+    height: 90px;
+    width: 90px;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.gbtext{
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gbcmtinput{
+    display: flex;
+    text-align: center;
+    height: 55px;
+    padding-top: 1px;
+    margin: auto;
+    width: 90%;
+    border-radius: 4px;
+}
+
+.gbcmt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gbcmt>input{
+    border-radius: 4px;
+    width:500px;
+    height:40px;
+}
+
+.gbbutton{
+    width: 50px;
+    height: 40px;
+    background: white;
+    font-size: 20px;
+    color: rgba(244, 161, 39, 1);
+    border: 2px solid rgba(90, 61, 43, 1);
+    border-radius: 8px;
+}
+
+
+
+.gbcmtview{
+
+    height: 25px;
+    margin: auto;
+    border: 1px solid black;
+    width: 90%;
+    border-radius: 4px;
+}

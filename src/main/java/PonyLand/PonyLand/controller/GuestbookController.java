@@ -30,8 +30,8 @@ public class GuestbookController {
     @RequestMapping("delete")
     public String delete(int Guestbook_seq){
         service.delect(Guestbook_seq);
-
-        return "guestbook";
+        System.out.println(Guestbook_seq);
+        return "redirect:goGuestbook";
     }
 
     @RequestMapping("update")

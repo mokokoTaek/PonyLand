@@ -10,7 +10,7 @@
         insert into guestbook values (guestbook_seq.nextval,0,#{guestbook_contents},sysdate)
     </insert>
 
-
+    <!--인자값 하나는 value-->
     <delete id="delete">
         delete from guestbook where guestbook_seq = #{value}
     </delete>

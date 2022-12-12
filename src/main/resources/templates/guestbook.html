@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Guestbook</title>
@@ -50,7 +53,7 @@
                                     <button type="button" id="update" name="update">수정</button>
                                 </th>
                                 <th>
-                                    <button type="button" id="delete" name="delete">삭제</button>
+                                    <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제</button>
                                 </th>
                             </tr>
                         </div>
@@ -75,16 +78,6 @@
                 </c:otherwise>
             </c:choose>
         </div>
-
-        <script>
-
-            $(".delete").on("click", function () {
-                $(".delete").attr("action", "/Guestbook/delete");
-                $(".delete").submit();
-            })
-
-        </script>
-
         <div class="gbcmtview">
             <tr>
                 <th>이름</th>
@@ -116,5 +109,16 @@
 </div>
 </body>
 
+
+
+
+<script>
+
+    $("#delete").on("click",function(){
+        let seq = $(this).attr("seq");
+        location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
+    })
+
+</script>
 
 </html>

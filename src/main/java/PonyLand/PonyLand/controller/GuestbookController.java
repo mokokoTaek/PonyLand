@@ -30,6 +30,11 @@ public class GuestbookController {
         return "guestbook";
     }
 
+    @RequestMapping("update")
+    public String update(GuestbookDTO dto){
+        service.update(dto);
+        return "guestbook";
+    }
 
 
 

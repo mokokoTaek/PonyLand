@@ -14,4 +14,8 @@
         delete from guestbook where guestbook_seq = #{value}
     </delete>
 
+    <update id="update">
+        update guestbook set guestbook_contents=#{guestbook_contents} where guestbook_seq=#{guestbook_seq}
+    </update>
+
 </mapper>

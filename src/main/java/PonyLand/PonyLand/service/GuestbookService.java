@@ -16,4 +16,6 @@ public class GuestbookService {
 
 
     public int delect(int Guestbook_Seq) {return dao.delete(Guestbook_Seq); }
+
+    public int update(GuestbookDTO dto) {return dao.update(dto); }
 }

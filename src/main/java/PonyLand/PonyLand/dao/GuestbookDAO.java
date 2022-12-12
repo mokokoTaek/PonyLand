@@ -17,4 +17,6 @@ public class GuestbookDAO {
     }
 
     public int delete(int Guestbook_Seq) {return GuestbookMapper.delete(Guestbook_Seq);}
+
+    public int update(GuestbookDTO dto) {return GuestbookMapper.update(dto); }
 }

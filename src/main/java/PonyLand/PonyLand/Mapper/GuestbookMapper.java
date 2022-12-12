@@ -10,10 +10,12 @@ public interface GuestbookMapper {
 
     int delete (int Guestbook_seq);
 
+    int update(GuestbookDTO dto);
+
 
 /*    List<GuestbookDTO> selectAll();
 
 
 
-    int update(GuestbookDTO dto);*/
+    */
 }

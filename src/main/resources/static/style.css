@@ -1,7 +1,11 @@
+@font-face {
+    font-family: font;
+    src: url("/font/hssaemaulfont.woff") format("woff");
+}
+
 * {
     box-sizing: border-box;
-    font-family: HS새마을체;
-    font-weight: Regular;
+    font-family: font;
 }
 
 body {

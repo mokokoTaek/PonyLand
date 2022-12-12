@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
+import java.util.Random;
 
 @Configuration
 public class SpringConfig {
@@ -21,5 +22,10 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository(){
         return new JpaMemberRepository(em);
+    }
+
+    @Bean
+    public Random random(){
+        return new Random();
     }
 }

@@ -26,6 +26,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
+    font-size: 50px;
 }
 .stall{
     width: 400px;
@@ -40,6 +41,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
+    font-size: 50px;
 }
 .minihome{
     width: 400px;
@@ -54,6 +56,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
+    font-size: 50px;
 }
 .login{
     width: 400px;
@@ -68,6 +71,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
+    font-size: 50px;
 
 }
 .signin{
@@ -83,6 +87,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
+    font-size: 50px;
 
 }
 

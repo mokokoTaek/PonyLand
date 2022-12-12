@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="BoardProject.BoardProject.Mapper.AlbumMapper">
+    <insert id="insert">
+        insert into album values(album_seq.nextval,#{Album_title},#{Album_contents},0,0,sysdate)
+
+    </insert>
+    <select id="selectAll" resultType="BoardProject.BoardProject.dto.AlbumDTO">
+        select * from Album order by 1
+
+
+
+    </select>
+
+    <delete id="delete">
+        delete from Album where Album_seq = #{value}
+
+
+    </delete>
+    <update id="update">
+        update Album set Album_title=#{Album_title},Album_contents=#{Album_contents},Album_write_date=sysdate where Album_seq = #{Album_seq}
+
+    </update>
+</mapper>
+

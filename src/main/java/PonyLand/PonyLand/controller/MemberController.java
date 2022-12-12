@@ -14,13 +14,15 @@ public class MemberController {
     @Autowired
     MemberService service;
 
-    @GetMapping("wave")
+    @RequestMapping("wave")
     public String getWave(){
 
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
-
+        System.out.println(randomNumber);
 
         return "redirect:/toMiniPage";
     }
+
+
 }

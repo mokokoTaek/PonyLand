@@ -1,7 +1,7 @@
 package PonyLand.PonyLand.service;
 
-import PonyLand.PonyLand.Repository.JpaMemberRepository;
-import PonyLand.PonyLand.Repository.MemberRepository;
+import PonyLand.PonyLand.Repository.member.JpaMemberRepository;
+import PonyLand.PonyLand.Repository.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

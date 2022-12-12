@@ -27,4 +27,7 @@ public class MemberService {
         return (int) (Math.random() * intCountMember + 1);
 
     }
+    public void toWave(){
+
+    }
 }

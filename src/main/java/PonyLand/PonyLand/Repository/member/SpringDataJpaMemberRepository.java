@@ -1,4 +1,4 @@
-package PonyLand.PonyLand.Repository;
+package PonyLand.PonyLand.Repository.member;
 
 import PonyLand.PonyLand.dto.MemberDTO;
 import org.springframework.data.jpa.repository.JpaRepository;

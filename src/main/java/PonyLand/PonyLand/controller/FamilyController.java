@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FamilyController {
 
     @Autowired
-    FamilyService service;
+    private FamilyService service;
 
     @RequestMapping("getFamily")
     public String getFamily(FamilyDTO dto){

@@ -30,8 +30,8 @@ public class FamilyDTO {
     private int family_seq;
 
     @Column(name="family_proposer_id")
-    private String family_proposer_id;
+    private String familyProposerId;
 
     @Column(name="family_proposed_id")
-    private String family_proposed_id;
+    private String familyProposedId;
 }

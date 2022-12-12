@@ -4,9 +4,10 @@ import PonyLand.PonyLand.Repository.Family.SpringDataJpaFamilyRepository;
 import PonyLand.PonyLand.dto.FamilyDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Component
+@Repository
 public class FamilyDAO {
 
     @Autowired
@@ -16,12 +17,10 @@ public class FamilyDAO {
         sdjr.save(dto);
     }
 
-    public Long areTheyFamily1(String familyProposerId, String familyProposedId){
-        return sdjr.countByFamily_proposer_idAndFamily_proposed_id(familyProposerId,familyProposedId);
-
-
+    public Long areTheyFamily1(String familyProposerId){
+        return sdjr.countByFamilyProposerId(familyProposerId);
     }
-    public Long areTheyFamily2(String familyProposerId, String familyProposedId) {
-        return sdjr.countByFamily_proposer_idAndFamily_proposed_id(familyProposedId, familyProposerId);
+    public Long areTheyFamily2(String familyProposedId) {
+        return sdjr.countByFamilyProposedId(familyProposedId);
     }
 }

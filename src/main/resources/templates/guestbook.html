@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="../static/style.css"/>
     <title>Guestbook</title>
 </head>
 <body>
@@ -49,12 +49,27 @@
                     프로필이미지
                 </div>
                 <div class="gbtext">
-                  <input type="text">
+                    내용
                 </div>
             </div>
+            <div class="gbcmtinput">
+                <div class="gbcmt">
+                    <input type="text">
+                </div>
 
+                <button class="gbbutton">확인</button>
+
+
+            </div>
+            <div class="gbcmtview">
+                <tr>
+                    <th>이름</th>
+                    <th>내용</th>
+                    <th>삭제</th>
+                </tr>
+            </div>
         </div>
-        <button>글쓰기완료</button>
+        <button class="gbbutton">글쓰기</button>
     </div>
 
 

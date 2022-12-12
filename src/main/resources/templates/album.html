@@ -34,37 +34,34 @@
         </div>
 
     </div>
-    <form id = "form">
-    <div class="bg3">
+    <form id="form">
+        <div class="bg3">
 
-        <!--    <h1 th:text="${dto}">Name</h1>-->
-        <tr th:each="list:${dto}">
-            <input type="hidden" th:value="${list.Album_seq}" name = "Album_seq"/>
-            <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>
-            <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>
-            <div >
-                <!--      <td id = "Album_seq" th:text="${list.Album_seq}" ></td>-->
-                <input type = "text" id="Album_seq" th:text="${list.Album_seq}" >
-
-
-                <!--      <td id = "Album_title"   th:text="${list.Album_title}"  ></td>-->
-                <input type = "text" id="Album_title" th:value="${list.Album_title}" readonly>
+            <!--    <h1 th:text="${dto}">Name</h1>-->
+            <tr th:each="list:${dto}">
+                <input type="hidden" th:value="${list.Album_seq}" name="Album_seq"/>
+                <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
+                <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
+                <div>
+                    <!--      <td id = "Album_seq" th:text="${list.Album_seq}" ></td>-->
+                    <input type="text" id="Album_seq" th:text="${list.Album_seq}">
 
 
-                <!--      <td  id = "Album_contents" th:text="${list.Album_contents}" ></td>-->
-                <input type = "text" id="Album_contents" th:value="${list.Album_contents}" readonly>
-            </div>
-            <!--      <a href = "/Album/view?Album_seq="${list.Album_seq}>삭제하기</a>-->
-            <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>
-            <button class="btn" type="button" id="modifyBtn">수정하기</button>
-
-        </tr>
+                    <!--      <td id = "Album_title"   th:text="${list.Album_title}"  ></td>-->
+                    <input type="text" id="Album_title" th:value="${list.Album_title}" readonly>
 
 
+                    <!--      <td  id = "Album_contents" th:text="${list.Album_contents}" ></td>-->
+                    <input type="text" id="Album_contents" th:value="${list.Album_contents}" readonly>
+                </div>
+                <!--      <a href = "/Album/view?Album_seq="${list.Album_seq}>삭제하기</a>-->
+                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>
+                <button class="btn" type="button" id="modifyBtn">수정하기</button>
+
+            </tr>
 
 
-
-    </div>
+        </div>
     </form>
 
 
@@ -84,14 +81,14 @@
         <div>
             <button id="write">글쓰기</button>
             <div>
-    </div>
-</div>
+            </div>
+        </div>
         <script>
-            $("#write").on("click",function(){
+            $("#write").on("click", function () {
                 location.href = "/Album/write";
             })
 
-            $("#modifyBtn").on("click", function() {
+            $("#modifyBtn").on("click", function () {
                 $("#Album_title").removeAttr("readonly");
                 $("#Album_contents").removeAttr("readonly");
                 $("textarea").removeAttr("readonly")

@@ -15,4 +15,13 @@ public class FamilyDAO {
     public void getFamily(FamilyDTO dto){
         sdjr.save(dto);
     }
+
+    public Long areTheyFamily1(String familyProposerId, String familyProposedId){
+        return sdjr.countByFamily_proposer_idAndFamily_proposed_id(familyProposerId,familyProposedId);
+
+
+    }
+    public Long areTheyFamily2(String familyProposerId, String familyProposedId) {
+        return sdjr.countByFamily_proposer_idAndFamily_proposed_id(familyProposedId, familyProposerId);
+    }
 }

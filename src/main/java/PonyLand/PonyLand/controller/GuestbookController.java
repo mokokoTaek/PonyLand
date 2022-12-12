@@ -4,9 +4,11 @@ import PonyLand.PonyLand.dto.GuestbookDTO;
 import PonyLand.PonyLand.service.GuestbookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.swing.*;
+import java.util.List;
 
 @Controller
 @RequestMapping("/Guestbook/")
@@ -16,11 +18,13 @@ public class GuestbookController {
     private GuestbookService service;
 
 
-    @RequestMapping("insert")
+
+    @GetMapping("insert")
     public String insert(GuestbookDTO dto) throws Exception {
+
         service.insert(dto);
         System.out.println(dto.getGuestbook_contents());
-        return "guestbook";
+        return "redirect:goGuestbook";
     }
 
     @RequestMapping("delete")
@@ -36,7 +40,18 @@ public class GuestbookController {
         return "guestbook";
     }
 
+    //미니홈피에서 방명록으로 가는 코트
+    @RequestMapping("goGuestbook")
+    public String goGuestbook(Model model) {
+        List<GuestbookDTO> list = service.selectAll();
+        model.addAttribute("dto",list);
 
+        return "guestbook";}
+
+
+    //방명록에서 글작성으로 가는 코드
+    @RequestMapping("gowrite")
+    public String gowrite(){return  "guesbookwrite";}
 
 
 }

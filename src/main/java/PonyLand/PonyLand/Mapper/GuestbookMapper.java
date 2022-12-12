@@ -3,6 +3,8 @@ package PonyLand.PonyLand.Mapper;
 import PonyLand.PonyLand.dto.GuestbookDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface GuestbookMapper {
 
@@ -12,10 +14,6 @@ public interface GuestbookMapper {
 
     int update(GuestbookDTO dto);
 
+    List<GuestbookDTO> selectAll();
 
-/*    List<GuestbookDTO> selectAll();
-
-
-
-    */
 }

@@ -7,8 +7,9 @@
 <mapper namespace="PonyLand.PonyLand.Mapper.GuestbookMapper">
 
     <insert id="insert">
-        insert into guestbook values (guestbook_seq.nextval,guestbook_writer,#{guestbook_contents},sysdate}
+        insert into guestbook values (guestbook_seq.nextval,0,#{guestbook_contents},sysdate)
     </insert>
+
 
     <delete id="delete">
         delete from guestbook where guestbook_seq = #{value}
@@ -17,5 +18,9 @@
     <update id="update">
         update guestbook set guestbook_contents=#{guestbook_contents} where guestbook_seq=#{guestbook_seq}
     </update>
+
+    <select id="selectAll" resultType="PonyLand.PonyLand.dto.GuestbookDTO">
+        select * from Guestbook order by 1
+    </select>
 
 </mapper>

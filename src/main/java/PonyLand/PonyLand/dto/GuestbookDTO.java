@@ -12,9 +12,9 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class GuestbookDTO {
 
-    private Integer Guestbook_seq;
-    private String Guestbook_writer;
-    private String Guestbook_contents;
-    private Timestamp Guestbook_write_date;
+    private Integer guestbook_seq;
+    private String guestbook_writer;
+    private String guestbook_contents;
+    private Timestamp guestbook_write_date;
 
 }

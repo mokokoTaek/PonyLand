@@ -21,10 +21,7 @@ public class AlbumService {
         return dao.selectAll();
     }
 
-    public int delete(int Album_seq) {
-        return dao.delete(Album_seq);
-
-    }
+    public int delete(int Album_seq) { return dao.delete(Album_seq); }
 
     public int update(AlbumDTO dto) {
         return dao.update(dto);

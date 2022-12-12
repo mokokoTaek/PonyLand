@@ -7,7 +7,11 @@
 <mapper namespace="PonyLand.PonyLand.Mapper.GuestbookMapper">
 
     <insert id="insert">
-        insert into guestbook values(guestbook_seq,guestbook_writer,#{guestbook_contents},sysdate}
+        insert into guestbook values (guestbook_seq.nextval,guestbook_writer,#{guestbook_contents},sysdate}
     </insert>
+
+    <delete id="delete">
+        delete from guestbook where guestbook_seq = #{value}
+    </delete>
 
 </mapper>

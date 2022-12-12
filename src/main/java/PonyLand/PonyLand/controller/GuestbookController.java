@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.swing.*;
+
 @Controller
 @RequestMapping("/Guestbook/")
 public class GuestbookController {
@@ -15,15 +17,21 @@ public class GuestbookController {
 
 
     @RequestMapping("insert")
-    public String insert(GuestbookDTO dto) {
-        try {
-            service.insert(dto);
-            System.out.println(dto.getGuestbook_contents());
-        } catch (Exception e) {
-            return "error";
-        }
-        return "redirect:guestbook.html";
-
-
+    public String insert(GuestbookDTO dto) throws Exception {
+        service.insert(dto);
+        System.out.println(dto.getGuestbook_contents());
+        return "guestbook";
     }
+
+    @RequestMapping("delete")
+    public String delete(int Guestbook_seq){
+        service.delect(Guestbook_seq);
+
+        return "guestbook";
+    }
+
+
+
+
+
 }

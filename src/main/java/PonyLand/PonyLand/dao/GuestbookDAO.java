@@ -12,13 +12,9 @@ public class GuestbookDAO {
     @Autowired
     GuestbookMapper GuestbookMapper;
 
-
-    @Autowired
-    private SqlSession db;
-
-
     public int insert(GuestbookDTO dto) {
-        return db.insert("Member.insert", dto);
+        return GuestbookMapper.insert(dto);
     }
 
+    public int delete(int Guestbook_Seq) {return GuestbookMapper.delete(Guestbook_Seq);}
 }

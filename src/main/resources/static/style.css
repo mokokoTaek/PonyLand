@@ -16,7 +16,7 @@ body {
     transform: translateX(-50%) translateY(-50%);
 }
 
-/* index------------------------------------------------------------------------------------ */
+/* index*/
 .ponyland {
     width: 400px;
     height: 100px;
@@ -102,7 +102,7 @@ body {
 /* login------------------------------------------------------------------------------------ */
 .logintitle {
     text-align: center;
-    font-size: 50px;
+    font-size: 80px;
     color: rgba(244, 161, 39, 1);
 }
 
@@ -127,7 +127,7 @@ body {
 
 .loginbtn {
     margin-top: 20px;
-    width: 200px;
+    width: 250px;
     height: 30px;
     background: #FFECB4;
     opacity: 1;
@@ -148,14 +148,15 @@ body {
 }
 
 .loginbg {
-    width: 200px;
-    height: 30px;
+    width: 250px;
+    height: 50px;
     background: white;
     border-top: 1px solid rgba(90, 61, 43, 1);
     border-right: 1px solid rgba(90, 61, 43, 1);
     border-left: 3px solid rgba(244, 161, 39, 1);
     border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
+    font-size: 25px;
 }
 
 /* signin------------------------------------------------------------------------------------ */
@@ -163,13 +164,14 @@ body {
     display: flex;
     flex-direction: column;
     color: rgba(244, 161, 39, 1);
+    font-size: 25px;
     margin-top: 10px;
 }
 
 .signinbg{
     display: flex;
-    width: 200px;
-    height: 30px;
+    width: 250px;
+    height: 50px;
     background: white;
     border-top: 1px solid rgba(90, 61, 43, 1);
     border-right: 1px solid rgba(90, 61, 43, 1);
@@ -265,15 +267,8 @@ body {
 .top {
     width: 200px;
     height: 32px;
-    background: url("../images/v131_22.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    /* overflow: hidden; */
+
+
 }
 
 .today {

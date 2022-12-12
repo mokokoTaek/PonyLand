@@ -42,7 +42,7 @@ public class GuestbookController {
 
     //미니홈피에서 방명록으로 가는 코트
     @RequestMapping("goGuestbook")
-    public String goGuestbook(Model model) throws Exception{
+    public String goGuestbook(Model model) {
         List<GuestbookDTO> list = service.selectAll();
         model.addAttribute("dto",list);
 

@@ -1,11 +1,12 @@
-
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Guestbook</title>
 </head>
+
+
 <body>
 <div class="container">
     <div class="top">
@@ -36,29 +37,37 @@
     </div>
     <div class="bg3">
         <div class="bg3in">
-            <div class="gbtitle">
-                <tr>
-                    <th>글번호</th>
-                    <th>시간</th>
-                    <th>비밀</th>
-                    <th>수정</th>
-                    <th>삭제</th>
-                </tr>
-            </div>
+
             <c:choose>
                 <c:when td:test="${not empty dto}">
-                    <c:forEach var="list"  th:items="${dto}">
+                    <c:forEach th:each="list : ${dto}">
+                        <div class="gbtitle">
+                            <tr>
+                                <th th:text="${list.getGuestbook_seq()}"></th>
+                                <th th:text="${list.getGuestbook_write_date()}"></th>
+                                <th>비밀</th>
+                                <th>
+                                    <button type="button" id="update" name="update">수정</button>
+                                </th>
+                                <th>
+                                    <button type="button" id="delete" name="delete">삭제</button>
+                                </th>
+                            </tr>
+                        </div>
                         <div class="gbcontent">
                             <div class="gbprofile">
                                 프로필이미지
                             </div>
-                            <div class="gbtext" th:value="${list.guestbook_contents}"></div>
+                            <div class="gbtext">
+                                <th th:text="${list.getGuestbook_contents()}"></th>
+                            </div>
                         </div>
                         <div class="gbcmtinput">
                             <div class="gbcmt">
                                 <input type="text" placeholder="댓글을 입력하세요">
                             </div>
                             <button class="gbbutton">확인</button>
+
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -66,6 +75,16 @@
                 </c:otherwise>
             </c:choose>
         </div>
+
+        <script>
+
+            $(".delete").on("click", function () {
+                $(".delete").attr("action", "/Guestbook/delete");
+                $(".delete").submit();
+            })
+
+        </script>
+
         <div class="gbcmtview">
             <tr>
                 <th>이름</th>
@@ -96,4 +115,6 @@
 </div>
 </div>
 </body>
+
+
 </html>

@@ -164,7 +164,7 @@ body {
     display: flex;
     flex-direction: column;
     color: rgba(244, 161, 39, 1);
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 10px;
 }
 
@@ -178,6 +178,7 @@ body {
     border-left: 3px solid rgba(244, 161, 39, 1);
     border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
+    font-size: 20px;
 }
 
 .signinform2{
@@ -357,12 +358,13 @@ button:hover {
 .gbtitle {
     display: flex;
     justify-content: space-around;
-    text-align: center;
     height: 25px;
     margin: auto;
-    /*border: 1px solid black;*/
+    border: 1px solid black;
     width: 90%;
     border-radius: 4px;
+    color: #F4A127;
+
 }
 
 .gbcontent {
@@ -397,24 +399,24 @@ button:hover {
 
 .gbcmtinput {
     display: flex;
-    text-align: center;
-    height: 55px;
-    padding-top: 1px;
+    height: 100px;
     margin: auto;
     width: 90%;
     border-radius: 4px;
+
+
 }
 
 .gbcmt {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .gbcmt > input {
-    border-radius: 4px;
-    width: 500px;
+    border-radius: 8px;
+    width: 535px;
     height: 40px;
+    border: 1px solid black;
 }
 
 .gbbutton {
@@ -429,10 +431,44 @@ button:hover {
 
 
 .gbcmtview {
-
+    color: #F4A127;
+    display: flex;
     height: 25px;
     margin: auto;
     border: 1px solid black;
     width: 90%;
     border-radius: 4px;
+
+}
+
+/*--------------------------------album*/
+.alpicture{
+    display: flex;
+    align-items: center;
+    border: 2px solid red;
+}
+
+.alcontent{
+    display: flex;
+    text-align: center;
+    height: 100px;
+    margin: auto;
+    border: 1px solid black;
+    width: 90%;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    color: #F4A127;
+}
+
+.alcontext{
+    display: flex;
+    text-align: center;
+    height: 100px;
+    margin: auto;
+    border: 1px solid black;
+    width: 90%;
+    border-radius: 4px;
+    align-items: center;
+
 }

@@ -9,4 +9,9 @@ public class MemberDAO {
 
     @Autowired
     private SpringDataJpaMemberRepository sdjr;
+
+    public Long countMember(){
+        return sdjr.countBy();
+    }
+
 }

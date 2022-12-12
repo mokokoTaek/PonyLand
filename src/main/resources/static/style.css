@@ -16,8 +16,8 @@ body {
     transform: translateX(-50%) translateY(-50%);
 }
 
-/* login------------------------------------------------------------------------------------ */
-.ponyland{
+/* index------------------------------------------------------------------------------------ */
+.ponyland {
     width: 400px;
     height: 100px;
     background: rgba(90, 61, 43, 1);
@@ -32,7 +32,8 @@ body {
     text-align: center;
     font-size: 50px;
 }
-.stall{
+
+.stall {
     width: 400px;
     height: 100px;
     background: rgba(90, 61, 43, 1);
@@ -47,7 +48,8 @@ body {
     text-align: center;
     font-size: 50px;
 }
-.minihome{
+
+.minihome {
     width: 400px;
     height: 100px;
     background: rgba(90, 61, 43, 1);
@@ -62,7 +64,8 @@ body {
     text-align: center;
     font-size: 50px;
 }
-.login{
+
+.login {
     width: 400px;
     height: 100px;
     background: #FFECB4;
@@ -78,10 +81,11 @@ body {
     font-size: 50px;
 
 }
-.signin{
+
+.signin {
     width: 400px;
     height: 100px;
-    background:#FFECB4;
+    background: #FFECB4;
     opacity: 1;
     position: relative;
     top: 7px;
@@ -92,6 +96,89 @@ body {
     overflow: hidden;
     text-align: center;
     font-size: 50px;
+
+}
+
+/* login------------------------------------------------------------------------------------ */
+.logintitle {
+    text-align: center;
+    font-size: 50px;
+    color: rgba(244, 161, 39, 1);
+}
+
+.loginsection {
+    width: 400px;
+    height: 600px;
+    background: rgba(90, 61, 43, 1);
+    border-left: 4px solid rgba(244, 161, 39, 1);
+    border-bottom: 4px solid rgba(244, 161, 39, 1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.loginbtn {
+    margin-top: 20px;
+    width: 200px;
+    height: 30px;
+    background: #FFECB4;
+    opacity: 1;
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: rgba(90, 61, 43, 1);
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.loginfind {
+    color: rgba(244, 161, 39, 1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.loginbg {
+    width: 200px;
+    height: 30px;
+    background: white;
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    border-radius: 8px;
+}
+
+/* signin------------------------------------------------------------------------------------ */
+.signinform {
+    display: flex;
+    flex-direction: column;
+    color: rgba(244, 161, 39, 1);
+    margin-top: 10px;
+}
+
+.signinbg{
+    display: flex;
+    width: 200px;
+    height: 30px;
+    background: white;
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    border-radius: 8px;
+}
+
+.signinform2{
 
 }
 
@@ -120,7 +207,7 @@ body {
     overflow: hidden;
 }
 
-.profile{
+.profile {
     width: 280px;
     height: 280px;
     background: rgba(255, 255, 255, 1);
@@ -134,7 +221,7 @@ body {
     overflow: hidden;
 }
 
-.profilemsg{
+.profilemsg {
     width: 280px;
     color: rgba(244, 161, 39, 1);
     position: relative;
@@ -145,7 +232,7 @@ body {
     text-align: center;
 }
 
-.profilebtn{
+.profilebtn {
     width: 100px;
     height: 30px;
     left: 50px;
@@ -235,7 +322,6 @@ body {
 }
 
 
-
 .btnmain1 {
     width: 100px;
     height: 60px;
@@ -267,12 +353,13 @@ button:hover {
 
 
 /*--------------------------------guestbook*/
-.bg3in{
+.bg3in {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
 }
-.gbtitle{
+
+.gbtitle {
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -283,7 +370,7 @@ button:hover {
     border-radius: 4px;
 }
 
-.gbcontent{
+.gbcontent {
     display: flex;
     text-align: center;
     height: 100px;
@@ -295,7 +382,7 @@ button:hover {
     /*justify-content: center;*/
 }
 
-.gbprofile{
+.gbprofile {
     border: 1px solid black;
     height: 90px;
     width: 90px;
@@ -306,14 +393,14 @@ button:hover {
     border-radius: 4px;
 }
 
-.gbtext{
+.gbtext {
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.gbcmtinput{
+.gbcmtinput {
     display: flex;
     text-align: center;
     height: 55px;
@@ -323,18 +410,19 @@ button:hover {
     border-radius: 4px;
 }
 
-.gbcmt{
+.gbcmt {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.gbcmt>input{
+
+.gbcmt > input {
     border-radius: 4px;
-    width:500px;
-    height:40px;
+    width: 500px;
+    height: 40px;
 }
 
-.gbbutton{
+.gbbutton {
     width: 50px;
     height: 40px;
     background: white;
@@ -345,8 +433,7 @@ button:hover {
 }
 
 
-
-.gbcmtview{
+.gbcmtview {
 
     height: 25px;
     margin: auto;

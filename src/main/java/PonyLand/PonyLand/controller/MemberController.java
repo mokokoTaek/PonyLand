@@ -1,5 +1,4 @@
 package PonyLand.PonyLand.controller;
 
-public class Member {
-
+public class MemberController {
 }

@@ -49,8 +49,7 @@ public class AlbumController {
 
 
         model.addAttribute("dto", list);
-//        List<AlbumCommentDTO> list1 = albumCommentService.selectComment(Album_Comment_parent_seq);
-//        model.addAttribute("dto1",list1);
+
 
         return "album";
     }
@@ -63,7 +62,7 @@ public class AlbumController {
     }
 
     @RequestMapping("update")
-    public String update(String Album_title, String Album_contents, int Album_seq) {
+    public String update(String Album_title, String Album_contents, int Album_seq, Model model) {
         service.update(Album_title, Album_contents, Album_seq);
         return "redirect:toAlbumPage";
 

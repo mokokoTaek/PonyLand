@@ -17,4 +17,8 @@ public class HomeController {
         return "main";
     }
 
+    @GetMapping("/toAlbumPage")
+    public String AlbumPage(){
+        return "album";
+    }
 }

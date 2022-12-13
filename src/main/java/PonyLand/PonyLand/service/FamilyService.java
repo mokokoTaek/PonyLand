@@ -19,10 +19,11 @@ public class FamilyService {
 
     @RequestMapping
     public void areTheyFamily(String familyProposerId,String familyProposedId){
-        Long check1= dao.areTheyFamily1(familyProposerId);
-        Long check2= dao.areTheyFamily2(familyProposedId);
-
-        if(check1>0 && (check1 == check2)){
+        FamilyDTO dto1 = dao.areTheyFamily(familyProposerId,familyProposedId);
+        FamilyDTO dto2 = dao.areTheyFamily(familyProposedId,familyProposerId);
+        System.out.println(dto1.getFamilyProposerId());
+        System.out.println(dto2.getFamilyProposedId());
+        if(((dto1!=null) && dto1.getFamilyProposerId().equals(dto2.getFamilyProposedId()))){
             System.out.println("두 회원은 일촌관계입니다!");
         }
         else{

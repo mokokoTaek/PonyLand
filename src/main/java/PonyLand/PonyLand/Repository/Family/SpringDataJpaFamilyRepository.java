@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.transaction.Transactional;
 
 public interface SpringDataJpaFamilyRepository extends JpaRepository<FamilyDTO,Integer> {
-    @Transactional
-    Long countByFamilyProposerId(String familyProposerId);
 
     @Transactional
-    Long countByFamilyProposedId(String familyProposedId);
+    FamilyDTO findByFamilyProposerIdAndFamilyProposedId(String FamilyProposerId, String FamilyProposedId);
+
+    @Transactional
+    FamilyDTO findByFamilyProposedIdAndFamilyProposerId(String FamilyProposerId, String FamilyProposedId);
 }

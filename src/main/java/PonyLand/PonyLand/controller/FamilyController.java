@@ -18,6 +18,14 @@ public class FamilyController {
 
         service.getFamily(dto);
 
-        return "";
+        return "redirect:/";
+    }
+
+    @RequestMapping("areTheyFamily")
+    public String areTheyFamily(){
+        String proposer = "aa";
+        String proposed = "bb";
+        service.areTheyFamily(proposer,proposed);
+        return "redirect:/toMiniPage";
     }
 }

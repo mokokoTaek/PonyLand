@@ -33,6 +33,7 @@
 
     <div class="">
       <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+      <a th:href="@{/family/areTheyFamily}"><button class="profilebtn" type="button">일촌확인</button></a>
       <a th:href="@{/member/wave}"><button class="profilebtn" type="button" id="wave">파도타기</button></a>
     </div>
 
@@ -93,12 +94,7 @@
   </div>
 </div>
 
-<script>
-  // $("#wave").click(function(){
-  //   location.href = "/member/wave";
-  // })
 
-</script>
 </body>
 
 </html>

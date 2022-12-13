@@ -148,6 +148,7 @@ body {
 }
 
 .loginbg {
+    display: flex;
     width: 250px;
     height: 50px;
     background: white;
@@ -251,17 +252,18 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-    align-items: center;
+    /*align-items: center;*/
     /*border: 1px solid rgba(90, 61, 43, 1);*/
 }
 
 .profile4-1{
-    display: flex;
+    font-size: 30px;
+    color: #F4A127;
 }
 
 .profile4-2{
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     margin-top: 10px;
     width: 280px;
     height: 35px;
@@ -296,23 +298,67 @@ body {
 
 .bg3-1{
     display: flex;
-    border: 1px solid black;
+    font-size: 25px;
+    width: 600px;
+    margin: auto;
+    /*border: 1px solid black;*/
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
     color: #F4A127;
     height: 30%;
 }
 
+.updatednews{
+    display: flex;
+}
+
+.updatednews2{
+    display: flex;
+    flex-direction: column;
+}
+
+.updatednews2-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #5a3d2b;
+    border-radius: 8px;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+}
+
 
 .bg3-2{
-    border: 1px solid black;
-    height: 80%;
+    font-size: 30px;
+    /*border: 1px solid black;*/
+    height: 70%;
     color: #F4A127;
+
+    /*margin: auto;*/
 }
+
+.bg3-2-1-title{
+    width: 600px;
+    margin: auto;
+}
+
 .bg3-2-1{
-    border: 2px solid #5a3d2b;
-    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #5a3d2b;
+    border-radius: 4px;
+    width: 600px;
     height: 400px;
+    margin: auto;
+}
+
+.bg3-2-2{
+    margin: auto;
+    width: 600px;
+    margin-top: 10px;
 }
 
 

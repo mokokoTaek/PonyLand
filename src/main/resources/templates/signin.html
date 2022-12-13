@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="../static/style.css"/>
 </head>
 <body>
-<form action="/member/insert" id="frm" method="post" enctype="multipart/form-data">
+
 <div class="logintitle">회원가입</div>
 <div class="loginsection">
     <div class="container">
-
+        <form action="/member/insert" id="frm" method="post" enctype="multipart/form-data">
         <div class="signinform">
             <div class="signinform1">
                 이름
@@ -24,7 +24,7 @@
                 아이디
             </div>
             <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="영문,숫자 5~11자" name="member_id"><br>
+                <input type="text" class="loginbg" placeholder="영문,숫자 5~11자" name="memberId"><br>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
             </div>
             <div class="signinform2">
                 <input type="text" class="signinbg" placeholder="숫자, 영문, 특수문자 조합 최소 8자"><br>
-                <input type="text" class="signinbg" placeholder="비밀번호 재입력" name="member_pw">
+                <input type="text" class="signinbg" placeholder="비밀번호 재입력" name="memberPw">
             </div>
         </div>
 
@@ -64,6 +64,9 @@
     </div>
 
 </div>
+
+
+
 
 
 </body>

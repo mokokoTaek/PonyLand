@@ -22,8 +22,12 @@ public class MemberDAO {
     public MemberDTO login(String member_id, String member_pw){
         return sdjr.findByMemberIdAndMemberPw(member_id, member_pw);
     }
+    public MemberDTO loginForKakao(String member_id){
+        return sdjr.findByMemberId(member_id);
+    }
 
-    public String getIdBySeq(int seq){
-        return sdjr.findByMemberSeq(seq).getMemberId();
+
+    public String getIdByRowNum(int rn){
+        return sdjr.getIdByRowNum(rn);
     }
 }

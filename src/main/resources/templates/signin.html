@@ -7,61 +7,64 @@
 </head>
 <body>
 <form action="/member/insert" id="frm" method="post" enctype="multipart/form-data">
-<div class="logintitle">회원가입</div>
-<div class="loginsection">
-    <div class="container">
+    <div class="logintitle">회원가입</div>
+    <div class="loginsection">
+        <div class="signincontainer">
 
-        <div class="signinform">
-            <div class="signinform1">
-                이름
+            <div class="signinform">
+                <div class="signinform1">
+                    이름
+                </div>
+                <div class="signinform2">
+                    <input type="text" class="signinbg" placeholder="이름" name="member_name"><br>
+                </div>
             </div>
-            <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="이름" name="member_name"><br>
+            <div class="signinform">
+                <div class="signinform1">
+                    아이디
+                </div>
+                <div class="signinform2">
+                    <input type="text" class="signinbg" placeholder="영문,숫자 5~11자" name="memberId"><br>
+                </div>
             </div>
+
+            <div class="signinform">
+                <div class="signinform1">
+                    비밀번호
+                </div>
+                <div class="signinform2">
+                    <input type="text" class="signinbg" placeholder="숫자, 영문, 특수문자 조합 최소 8자"><br>
+                    <input type="text" class="signinbg" placeholder="비밀번호 재입력" name="memberPw">
+                </div>
+            </div>
+
+            <div class="signinform">
+                <div class="signinform1">
+                    이메일
+                </div>
+                <div class="signinform2">
+                    <input type="text" class="signinbg" placeholder="exapmle@naver.com" name="member_email"><br>
+                </div>
+            </div>
+
+            <div class="signinform">
+                <div class="signinform1">
+                    전화번호
+                </div>
+                <div class="signinform2">
+                    <input type="text" class="signinbg" placeholder="010-1234-1234" name="member_phone"><br>
+                </div>
+            </div>
+
+
+            <button class="signinbtn">가입하기</button>
+            <button class="signinbtn">메인으로</button>
         </div>
-        <div class="signinform">
-            <div class="signinform1">
-                아이디
-            </div>
-            <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="영문,숫자 5~11자" name="memberId"><br>
-            </div>
-        </div>
-
-        <div class="signinform">
-            <div class="signinform1">
-                비밀번호
-            </div>
-            <div class="signinform2">
-                <input type="text" class="signinbg" placeholder="숫자, 영문, 특수문자 조합 최소 8자"><br>
-                <input type="text" class="signinbg" placeholder="비밀번호 재입력" name="memberPw">
-            </div>
-        </div>
-
-        <div class="signinform">
-            <div class="signinform1">
-                이메일
-            </div>
-            <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="exapmle@naver.com" name="member_email"><br>
-            </div>
-        </div>
-
-        <div class="signinform">
-            <div class="signinform1">
-                전화번호
-            </div>
-            <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="010-1234-1234" name="member_phone"><br>
-            </div>
-        </div>
-
-
-        <button class="loginbtn">가입하기</button>
-        </form>
-            <button class="loginbtn">메인으로</button>
-        </a>
     </div>
+</form>
+
+</a>
+</div>
 
 </div>
 

@@ -9,12 +9,13 @@
     <title>Guestbook</title>
 
     <style>
-        .bg3{overflow: auto}
+        .bg3 {
+            overflow: auto
+        }
     </style>
 
 
 </head>
-
 
 
 <body>
@@ -48,67 +49,70 @@
     <div class="bg3">
         <div class="bg3in">
 
-                    <div th:each="list : ${dto}">
-                        <div class="gbtitle">
-                            <tr>
-                                <th th:text="${list.getGuestbook_seq()}"></th>
-                                <th th:text="${list.getGuestbook_write_date()}"></th>
-                                <th>비밀</th>
-                                <th>
-                                    <button type="button" id="update" name="update">수정</button>
-                                </th>
-                                <th>
-                                    <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제</button>
-                                </th>
-                            </tr>
-                        </div>
-                        <div class="gbcontent">
-                            <div class="gbprofile">
-                                프로필이미지
-                            </div>
-                            <div class="gbtext">
-                                <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
-                            </div>
-                        </div>
-                        <div class="gbcmtinput">
-                            <div class="gbcmt">
-                                <input type="text" placeholder="댓글을 입력하세요">
-                            </div>
-                            <button class="gbbutton">확인</button>
-                        </div>
+            <div th:each="list : ${dto}">
+                <div class="gbtitle">
+                    <tr>
+                        <th th:text="${list.getGuestbook_seq()}"></th>
+                        <th th:text="${list.getGuestbook_write_date()}"></th>
+                        <th>비밀</th>
+                        <th>
+                            <button type="button" id="update" name="update">수정</button>
+                        </th>
+                        <th>
+                            <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
+                            </button>
+                        </th>
+                    </tr>
+                </div>
+                <div class="gbcontent">
+                    <div class="gbprofile">
+                        프로필이미지
                     </div>
-        <div class="gbcmtview">
-            <tr>
-                <th>이름</th>
-                <th>내용</th>
-                <th>삭제</th>
-            </tr>
+                    <div class="gbtext">
+                        <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
+                    </div>
+                </div>
+                <form action="/GuestbookComment/insert">
+                    <div class="gbcmtinput">
+                        <div class="gbcmt">
+                            <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents" name="guestbook_comment_contents">
+                        </div>
+                        <button class="gbbutton">확인</button>
+                    </div>
+                </form>
+            </div>
+            <div class="gbcmtview">
+                <tr>
+                    <th>이름</th>
+                    <th>내용</th>
+                    <th>삭제</th>
+                </tr>
+            </div>
+        </div>
+        <a th:href="@{/Guestbook/gowrite}">
+            <button class="gowrite">글쓰기</button>
+        </a>
+    </div>
+    <div class="side">
+        <div class="side1">
+            <button class="btnmain1">메인</button>
+        </div>
+        <div class="side2">
+            <button class="btnmain2">방명록</button>
+        </div>
+        <div class="side3">
+            <button class="btnmain2">사진첩</button>
+        </div>
+        <div class="side4">
+            <button class="btnmain2">다이어리</button>
         </div>
     </div>
-    <a th:href="@{/Guestbook/gowrite}">
-        <button class="gowrite">글쓰기</button>
-    </a>
-</div>
-<div class="side">
-    <div class="side1">
-        <button class="btnmain1">메인</button>
-    </div>
-    <div class="side2">
-        <button class="btnmain2">방명록</button>
-    </div>
-    <div class="side3">
-        <button class="btnmain2">사진첩</button>
-    </div>
-    <div class="side4">
-        <button class="btnmain2">다이어리</button>
-    </div>
-</div>
 </div>
 </body>
 
 <script>
 
-    $("#delete").on("click",function(){
+    $("#delete").on("click", function () {
         let seq = $(this).attr("seq");
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
     })

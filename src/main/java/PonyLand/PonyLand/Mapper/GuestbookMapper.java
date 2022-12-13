@@ -14,6 +14,6 @@ public interface GuestbookMapper {
 
     int update(GuestbookDTO dto);
 
-    List<GuestbookDTO> selectAll();
+    List<GuestbookDTO> select();
 
 }

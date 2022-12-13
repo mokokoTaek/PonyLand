@@ -14,6 +14,7 @@ public class GuestbookCommentController {
     private GuestbookCommentService service;
 
 
-
+    @RequestMapping("insert")
+    public String
 
 }

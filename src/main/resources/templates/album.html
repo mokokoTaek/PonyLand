@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="alcontent">
-                        내용
+                    내용
                 </div>
 
                 <div class="gbcmtinput">
@@ -61,7 +61,6 @@
                         <input type="text">
                         <button class="gbbutton">확인</button>
                     </div>
-
                 </div>
 
                 <div class="gbcmtview">
@@ -89,25 +88,7 @@
         <div class="side4">
             <button class="btnmain2">다이어리</button>
         </div>
-        <div>
-            <button id="write">글쓰기</button>
-            <div>
-            </div>
-        </div>
-        <script>
-            $("#write").on("click", function () {
-                location.href = "/Album/write";
-            })
-
-            $("#modifyBtn").on("click", function () {
-                $("#Album_title").removeAttr("readonly");
-                $("#Album_contents").removeAttr("readonly");
-                $("textarea").removeAttr("readonly")
-                $("#modifyBtn").css("display", "none");
-
-            })
-
-        </script>
+    </div>
 
 </body>
 </html>

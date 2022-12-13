@@ -26,7 +26,7 @@ public class MemberDTO {
                 , generator = "member_seq_generator"
         )
         @Column(name = "member_seq")
-        private int member_seq;
+        private int memberSeq;
 
 
 //    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ex_seq")
@@ -34,7 +34,7 @@ public class MemberDTO {
 
 
         @Column(name = "member_id")
-        private String member_id;
+        private String memberId;
 
         @Column(name = "member_name")
         private String member_name;
@@ -49,7 +49,7 @@ public class MemberDTO {
         private int member_coin;
 
         @Column(name = "member_pw")
-        private String member_pw;
+        private String memberPw;
 
 
 

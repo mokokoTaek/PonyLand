@@ -19,9 +19,6 @@ public class HomeController {
     @RequestMapping("/toLoginPage")
     public String login(){return "login";}
 
-    @GetMapping("/toAlbumPage")
-    public String AlbumPage(){
-        return "album";
-    }
+
 
 }

@@ -82,6 +82,8 @@
 
                 <div class="gbcmtinput">
                     <div class="gbcmt">
+<!--                        <tr th:each="list1:${dto1}">-->
+
                         <input type="text" name = "Album_Comment_contents">
                         <button class="gbbutton" id = "comment">확인</button>
                         </c:forEach>
@@ -96,14 +98,16 @@
 
                 <div class="gbcmtview">
                     <tr>
-                        <th>이름</th>
-                        <th>내용</th>
+                        <th >이름</th>
+                        <th >내용</th>
                         <th>삭제</th>
                     </tr>
+
                 </div>
             </div>
         </div>
     </form>
+</tr>
 
 
     <div class="side">

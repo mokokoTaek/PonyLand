@@ -1,6 +1,9 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.AlbumCommentDTO;
 import PonyLand.PonyLand.dto.AlbumDTO;
+import PonyLand.PonyLand.dto.GuestbookDTO;
+import PonyLand.PonyLand.service.AlbumCommentService;
 import PonyLand.PonyLand.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,8 @@ public class AlbumController {
 
     @Autowired
     private AlbumService service;
+    @Autowired
+    private AlbumCommentService albumCommentService;
 
 //    @GetMapping("hello")
 //    public String hello() {
@@ -41,7 +46,11 @@ public class AlbumController {
     @RequestMapping("view")
     public String SelectAll(Model model) {
         List<AlbumDTO> list = service.selectAll();
+
+
         model.addAttribute("dto", list);
+//        List<AlbumCommentDTO> list1 = albumCommentService.selectComment(Album_Comment_parent_seq);
+//        model.addAttribute("dto1",list1);
 
         return "album";
     }
@@ -49,7 +58,7 @@ public class AlbumController {
     public String delete(int Album_seq) {
         service.delete(Album_seq);
 
-        return "album";
+        return "redirect:toAlbumPage";
     }
     @RequestMapping("update")
     public String update(AlbumDTO dto) {
@@ -57,4 +66,11 @@ public class AlbumController {
         return "album";
 
     }
+
+    @RequestMapping("toAlbumPage")
+    public String goGuestbook(Model model) {
+        List<AlbumDTO> list = service.selectAll();
+        model.addAttribute("dto",list);
+
+        return "album";}
 }

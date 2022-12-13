@@ -13,8 +13,8 @@
 
     </insert>
 
-    <select id = "selectComment" resultType="BoardProject.BoardProject.dto.AlbumCommentDTO">
-        select * from Album_Comment where Album_comment_parent_seq=#{value}
-    </select>
+<!--    <select id = "selectComment" resultType="PonyLand.PonyLand.dto.AlbumCommentDTO">-->
+<!--        select * from Album_Comment where Album_Comment_parent_seq=#{value}-->
+<!--    </select>-->
 
 </mapper>

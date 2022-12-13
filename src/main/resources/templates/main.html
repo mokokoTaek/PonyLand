@@ -21,8 +21,8 @@
     </div>
     <div class="bg2">
 
-        <div class="profile0">
-            개굴개굴님의 마구간
+        <div th:if="${id} != null" >
+        <div class="profile0" th:text="${id}"></div> 님의 마구간
         </div>
 
         <div class="profile1">

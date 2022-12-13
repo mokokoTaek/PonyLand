@@ -17,7 +17,7 @@
     <div th:text="${id}" ></div> 님 안녕하세요.
     <section>
         <button class="ponyland">포니랜드</button>
-        <a th:href="@{/toMiniPage}">
+        <a th:href="@{/toMiniPage(id = ${id})}" >
             <button class="minihome" type="button">미니홈피</button>
         </a>
         <a th:href="@{/}">

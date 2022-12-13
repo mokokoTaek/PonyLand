@@ -13,9 +13,7 @@ public class HomeController {
     }
 
     @GetMapping("/toMiniPage")
-    public String miniHome(){
-        return "main";
-    }
+    public String miniHome(String id){ return "main?id="+id+""; }
 
     @GetMapping("/toAlbumPage")
     public String AlbumPage(){

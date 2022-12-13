@@ -5,15 +5,17 @@
     <title>Login</title>
     <link rel="stylesheet" href="../static/style.css"/>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 <div class="logintitle">로그인</div>
 <div class="loginsection">
     <div class="container">
         <form action="/member/login" method="post">
-        <input type="text" class="loginbg" placeholder="아이디" name="memberId"><br>
-        <input type="text" class="loginbg" placeholder="비밀번호" name="memberPw">
-        <button class="loginbtn">로그인</button>
+            <input type="text" class="loginbg" placeholder="아이디" name="memberId"><br>
+            <input type="text" class="loginbg" placeholder="비밀번호" name="memberPw">
+            <button class="loginbtn">로그인</button>
         </form>
         <div class="loginfind">
             <span>회원가입 </span>
@@ -23,13 +25,24 @@
 
         <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>
         <button class="loginbtn" onclick="kakaoLogout();" type="button">카카오 로그아웃</button>
-        <button class="loginbtn">네이버 로그인</button>
+        <button class="loginbtn" id="naver_id_login">네이버 로그인</button>
         <a href="main.html">
             <button class="loginbtn">메인으로</button>
         </a>
     </div>
 
 </div>
+
+<!--네이버 로그인-->
+<script type="text/javascript">
+    var naver_id_login = new naver_id_login("4FNXn3NTIyg4Fd8TKvLF", "http://localhost/toMiniPage");
+    var state = naver_id_login.getUniqState();
+    //naver_id_login.setButton("white", 2,40);
+    naver_id_login.setDomain("http://localhost/toLoginPage");
+    naver_id_login.setState(state);
+    naver_id_login.setPopup();
+    naver_id_login.init_naver_id_login();
+</script>
 
 <!--<ul>-->
 <!--    <li onclick="kakaoLogin();">-->
@@ -60,12 +73,11 @@
                     },
                     success: function (response) {
 
-                            let id = response.id;
-                            let stringId = id.toString();
-                            let kakao_account = response.kakao_account;
+                        let id = response.id;
+                        let stringId = id.toString();
+                        let kakao_account = response.kakao_account;
 
-
-                            location.href="/signinForKakao?id="+stringId+"&email="+kakao_account+"";
+                        //location.href="/signinForKakao?id="+stringId+"&email="+kakao_account+"";
 
 
                     },
@@ -79,6 +91,7 @@
             },
         })
     }
+
     //카카오로그아웃
     function kakaoLogout() {
         if (Kakao.Auth.getAccessToken()) {
@@ -95,6 +108,7 @@
         }
     }
 </script>
+
 
 </body>
 </html>

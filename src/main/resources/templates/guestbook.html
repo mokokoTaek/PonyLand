@@ -52,13 +52,11 @@
                 <div th:each="list:${dto}">
                     <div class="gbtitle">
                         <tr>
-                            <th th:text="${list.getGuestbook_seq()}"></th>
                             <input type="hidden" th:value="${list.getGuestbook_seq()}" name="parent_seq">
+                            <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
+                            <th th:text="${list.getGuestbook_writer()}"></th>
                             <th th:text="${list.getGuestbook_write_date()}"></th>
-                            <th>비밀</th>
-                            <th>
-                                <button type="button" id="update" name="update">수정</button>
-                            </th>
+                            <th>비밀로 하기</th>
                             <th>
                                 <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
                                 </button>

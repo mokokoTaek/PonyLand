@@ -37,9 +37,9 @@ public class MemberController {
         int randomNumber = service.getRandom(countMember);
         System.out.println(randomNumber);
 
-        String id = (String) session.getAttribute("loginID");
+        String id = service.toWave(randomNumber);
 
-        return "redirect:/toMiniPage";
+        return "redirect:/toMiniPage?id="+id+"";
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){
@@ -70,8 +70,7 @@ public class MemberController {
     @RequestMapping("signinForKakao")
     public String signinForKakao(String id, String email){
 
-
-        return "";
+        return "singinForKakao";
     }
 
 

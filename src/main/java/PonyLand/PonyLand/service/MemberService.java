@@ -32,8 +32,8 @@ public class MemberService {
         return (int) (Math.random() * intCountMember + 1);
 
     }
-    public void toWave(){
-
+    public String toWave(int seq){
+        return dao.getIdBySeq(seq);
     }
 
     public void insert(MemberDTO dto) {

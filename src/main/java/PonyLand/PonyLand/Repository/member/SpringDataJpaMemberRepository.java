@@ -15,6 +15,6 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<MemberDTO,I
     MemberDTO findByMemberIdAndMemberPw(String memberId, String memberPw);
 
     @Transactional
-    MemberDTO findByMember_seq(int seq);
+    MemberDTO findByMemberSeq(int seq);
 
 }

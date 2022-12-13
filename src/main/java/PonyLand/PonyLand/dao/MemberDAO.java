@@ -24,6 +24,6 @@ public class MemberDAO {
     }
 
     public String getIdBySeq(int seq){
-        return sdjr.findByMember_seq(seq).getMemberId();
+        return sdjr.findByMemberSeq(seq).getMemberId();
     }
 }

@@ -26,7 +26,7 @@ public class MemberDTO {
                 , generator = "member_seq_generator"
         )
         @Column(name = "member_seq")
-        private int member_seq;
+        private int memberSeq;
 
 
 //    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ex_seq")

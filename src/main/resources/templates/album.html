@@ -126,13 +126,17 @@
 
     <div class="side">
         <div class="side1">
-            <button class="btnmain1">메인</button>
+            <a th:href="@{/toMiniPage(id = ${id})}">
+            <button class="btnmain2">메인</button>
+            </a>
         </div>
         <div class="side2">
+            <a th:href="@{/Guestbook/goGuestbook}">
             <button class="btnmain2">방명록</button>
+            </a>
         </div>
         <div class="side3">
-            <button class="btnmain2">사진첩</button>
+            <button class="btnmain1">사진첩</button>
         </div>
         <div class="side4">
             <button class="btnmain2">다이어리</button>

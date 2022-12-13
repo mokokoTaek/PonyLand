@@ -17,87 +17,45 @@ body {
 }
 
 /* index*/
+
+.mainsection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .ponyland {
     width: 400px;
     height: 100px;
     background: rgba(90, 61, 43, 1);
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
     color: rgba(244, 161, 39, 1);
     border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     font-size: 50px;
-}
-
-.stall {
-    width: 400px;
-    height: 100px;
-    background: rgba(90, 61, 43, 1);
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
-    color: rgba(244, 161, 39, 1);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 50px;
-}
-
-.minihome {
-    width: 400px;
-    height: 100px;
-    background: rgba(90, 61, 43, 1);
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
-    color: rgba(244, 161, 39, 1);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 50px;
+    margin-top: 10px;
 }
 
 .login {
     width: 400px;
     height: 100px;
     background: #FFECB4;
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
+    border-top: 1px solid #FFECB4;
+    border-right: 1px solid #FFECB4;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     color: rgba(90, 61, 43, 1);
     border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
     font-size: 50px;
-
+    margin-top: 10px;
 }
 
-.signin {
-    width: 400px;
-    height: 100px;
-    background: #FFECB4;
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
-    color: rgba(90, 61, 43, 1);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 50px;
 
-}
+
 
 /* login------------------------------------------------------------------------------------ */
 .logintitle {
@@ -178,7 +136,7 @@ body {
 .signinbg{
     display: flex;
     width: 250px;
-    height: 50px;
+    height: 40px;
     background: white;
     border-top: 1px solid rgba(90, 61, 43, 1);
     border-right: 1px solid rgba(90, 61, 43, 1);
@@ -186,6 +144,21 @@ body {
     border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     font-size: 20px;
+}
+
+.signinbtn{
+    margin-top: 20px;
+    width: 250px;
+    height: 40px;
+    background: #FFECB4;
+    opacity: 1;
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: rgba(90, 61, 43, 1);
+    border-radius: 8px;
+    font-size: 30px;
 }
 
 .signinform2{
@@ -284,7 +257,10 @@ body {
     background: rgba(90, 61, 43, 1);
     font-size: 20px;
     color: rgba(244, 161, 39, 1);
-    border: 2px solid rgba(244, 161, 39, 1);
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -426,9 +402,12 @@ body {
     font-size: 30px;
     color: rgba(90, 61, 43, 1);
     position: relative;
-    border: 2px solid rgba(90, 61, 43, 1);
     border-radius: 8px;
     overflow: hidden;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 3px solid #5a3d2b;
+    border-bottom: 3px solid #5a3d2b;
 }
 
 .btnmain2 {
@@ -438,9 +417,13 @@ body {
     font-size: 30px;
     color: rgba(244, 161, 39, 1);
     position: relative;
-    border: 2px solid rgba(244, 161, 39, 1);
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     overflow: hidden;
+
 }
 
 button:hover {

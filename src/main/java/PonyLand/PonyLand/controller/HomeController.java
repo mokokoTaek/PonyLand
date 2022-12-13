@@ -1,6 +1,7 @@
 package PonyLand.PonyLand.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,7 +14,12 @@ public class HomeController {
     }
 
     @GetMapping("/toMiniPage")
-    public String miniHome(String id){ return "main?id="+id+""; }
+    public String miniHome(String id, Model model){
+        model.addAttribute("id",id);
+
+        return "main";
+    }
+
 
     @GetMapping("/toAlbumPage")
     public String AlbumPage(){

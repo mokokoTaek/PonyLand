@@ -22,21 +22,40 @@
     </div>
     <div class="bg2">
 
-        <div class="profile">
+        <div th:if="${id} != null" >
+            <div class="profile0" th:text="${id}">님의 마구간</div>
+        </div>
+
+        <div class="profile1">
             테스트입니다.
         </div>
 
-        <div class="profilemsg">
+        <div class="profile2">
             상태메시지<br>
             상태메시지<br>
             상태메시지<br>
         </div>
 
-        <div class="">
-            <button class="profilebtn">일촌</button>
-            <button class="profilebtn">파도타기</button>
+        <div class="profile3">
+            <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+            <a th:href="@{/family/areTheyFamily}">
+                <button class="profilebtn" type="button">일촌확인</button>
+            </a>
+            <a th:href="@{/member/wave}">
+                <button class="profilebtn" type="button" id="wave">파도타기</button>
+            </a>
         </div>
 
+        <div class="profile4">
+            <div class="profile4-1">
+                History
+            </div>
+            <div class="profile4-2">
+                <th>윤성민(개굴개굴)<br>
+                <th>임근혁(시카고)<br>
+                <th>이진혁(물리)
+            </div>
+        </div>
     </div>
     <form id="form">
         <div class="bg3">

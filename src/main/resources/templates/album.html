@@ -7,7 +7,7 @@
     <title>Album</title>
     <style>
 
-        .bg3{overflow: auto}
+        .bg3{overflow: scroll}
     </style>
 </head>
 <body>
@@ -46,7 +46,7 @@
                         <c:forEach th:each="list : ${dto}">
                 <div class="gbtitle">
                     <tr>
-                    <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>
+                    <input type="hidden" th:value="${list.Album_seq}"  name = "Album_Comment_parent_seq"/>
                     <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>
                     <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>
                     <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>
@@ -61,6 +61,7 @@
                     <div class="alpicture">
                         사진
                     </div>
+
                 </div>
 
                 <div class="alcontent">
@@ -81,8 +82,8 @@
 
                 <div class="gbcmtinput">
                     <div class="gbcmt">
-                        <input type="text">
-                        <button class="gbbutton">확인</button>
+                        <input type="text" name = "Album_Comment_contents">
+                        <button class="gbbutton" id = "comment">확인</button>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
@@ -135,6 +136,12 @@
                 $("#modifyBtn").css("display", "none");
 
             })
+
+            $("#comment").on("click",function (){
+                $("#form").attr("action","/Comment/write");
+                $("#form").submit();
+            })
+
 
         </script>
 

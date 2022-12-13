@@ -161,12 +161,18 @@ body {
 }
 
 /* signin------------------------------------------------------------------------------------ */
+.signincontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .signinform {
     display: flex;
     flex-direction: column;
     color: rgba(244, 161, 39, 1);
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 15px;
 }
 
 .signinbg{

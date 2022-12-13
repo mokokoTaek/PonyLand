@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Guestbook</title>
 
+    <style>
+        .bg3{overflow: auto}
+    </style>
+
 
 </head>
 
@@ -44,9 +48,7 @@
     <div class="bg3">
         <div class="bg3in">
 
-            <c:choose>
-                <c:when td:test="${not empty dto}">
-                    <c:forEach th:each="list : ${dto}">
+                    <div th:each="list : ${dto}">
                         <div class="gbtitle">
                             <tr>
                                 <th th:text="${list.getGuestbook_seq()}"></th>
@@ -73,14 +75,8 @@
                                 <input type="text" placeholder="댓글을 입력하세요">
                             </div>
                             <button class="gbbutton">확인</button>
-
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    출력할 내용이 없습니다.
-                </c:otherwise>
-            </c:choose>
-        </div>
+                        </div>
+                    </div>
         <div class="gbcmtview">
             <tr>
                 <th>이름</th>
@@ -93,8 +89,6 @@
         <button class="gowrite">글쓰기</button>
     </a>
 </div>
-
-
 <div class="side">
     <div class="side1">
         <button class="btnmain1">메인</button>
@@ -111,9 +105,6 @@
 </div>
 </div>
 </body>
-
-
-
 
 <script>
 

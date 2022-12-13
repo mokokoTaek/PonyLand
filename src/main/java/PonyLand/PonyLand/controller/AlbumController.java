@@ -33,10 +33,10 @@ public class AlbumController {
 
     @RequestMapping("insert")
     public String insert(AlbumDTO dto) {
-        try{
+        try {
             service.insert(dto);
-            System.out.println(dto.getAlbum_contents()+":"+dto.getAlbum_title());
-        }catch(Exception e) {
+            System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
+        } catch (Exception e) {
             return "error";
         }
 
@@ -54,15 +54,17 @@ public class AlbumController {
 
         return "album";
     }
+
     @RequestMapping("delete")
     public String delete(int Album_seq) {
         service.delete(Album_seq);
 
         return "redirect:toAlbumPage";
     }
+
     @RequestMapping("update")
-    public String update(String Album_title, String Album_contents , int Album_seq) {
-        service.update(Album_title, Album_contents ,Album_seq );
+    public String update(String Album_title, String Album_contents, int Album_seq) {
+        service.update(Album_title, Album_contents, Album_seq);
         return "redirect:toAlbumPage";
 
     }
@@ -70,7 +72,8 @@ public class AlbumController {
     @RequestMapping("toAlbumPage")
     public String goGuestbook(Model model) {
         List<AlbumDTO> list = service.selectAll();
-        model.addAttribute("dto",list);
+        model.addAttribute("dto", list);
 
-        return "album";}
+        return "album";
+    }
 }

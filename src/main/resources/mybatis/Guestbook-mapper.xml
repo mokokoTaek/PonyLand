@@ -19,8 +19,8 @@
         update guestbook set guestbook_contents=#{guestbook_contents} where guestbook_seq=#{guestbook_seq}
     </update>
 
-    <select id="selectAll" resultType="PonyLand.PonyLand.dto.GuestbookDTO">
-        select * from Guestbook order by 1
+    <select id="select" resultType="PonyLand.PonyLand.dto.GuestbookDTO">
+        select * from Guestbook  order by guestbook_seq desc
     </select>
 
 </mapper>

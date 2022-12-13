@@ -11,71 +11,71 @@
 <body>
 
 <div class="container">
-  <div class="top">
-    <div class="today">Today : 245</div>
-    <div class="music">뮤직플레이어 부분</div>
-  </div>
-
-  <div class="bg1">
-
-  </div>
-  <div class="bg2">
-
-    <div class="profile">
-      테스트입니다.
+    <div class="top">
+        <div class="today">Today : 245</div>
+        <div class="music">뮤직플레이어 부분</div>
     </div>
 
-    <div class="profilemsg">
-      상태메시지<br>
-      상태메시지<br>
-      상태메시지<br>
-    </div>
+    <div class="bg1">
 
-    <div class="">
+    </div>
+    <div class="bg2">
+
+        <div class="profile0">
+            개굴개굴님의 마구간
+        </div>
+
+        <div class="profile1">
+            테스트입니다.
+        </div>
+
+        <div class="profile2">
+            상태메시지<br>
+            상태메시지<br>
+            상태메시지<br>
+        </div>
+
+    <div class="profile3">
       <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
       <a th:href="@{/family/areTheyFamily}"><button class="profilebtn" type="button">일촌확인</button></a>
       <a th:href="@{/member/wave}"><button class="profilebtn" type="button" id="wave">파도타기</button></a>
     </div>
 
-  </div>
-  <div class="bg3">
-    <div class="bg3in">
-      <div class="gbtitle">
-        <tr>
-          <th>글번호</th>
-          <th>시간</th>
-          <th>비밀</th>
-          <th>수정</th>
-          <th>삭제</th>
-        </tr>
-      </div>
-      <div class="gbcontent">
-        <div class="gbprofile">
-          프로필이미지
+        <div class="profile4">
+            <div class="profile4-1">
+                History
+            </div>
+            <div class="profile4-2">
+                <th>윤성민(개굴개굴)<br>
+                <th>임근혁(시카고)<br>
+                <th>이진혁(물리)<br>
+            </div>
         </div>
-        <div class="gbtext">
-          내용
-        </div>
-      </div>
-      <div class="gbcmtinput">
-        <div class="gbcmt">
-          <input type="text">
-        </div>
-
-        <button class="gbbutton">확인</button>
-
-
-      </div>
-      <div class="gbcmtview">
-        <tr>
-          <th>이름</th>
-          <th>내용</th>
-          <th>삭제</th>
-        </tr>
-      </div>
     </div>
-    <button class="gbbutton">글쓰기</button>
-  </div>
+    <div class="bg3">
+        <div class="bg3-1">
+            <div class="updatednews">
+                Updated News<br>
+                사진첩: 하......<br>
+                사진첩: 하......<br>
+                사진첩: 하......<br>
+            </div>
+            <div class="updatednews2">
+                방명록 0/64
+            </div>
+        </div>
+        <div class="bg3-2">
+            MiniRoom
+            <div class="bg3-2-1">
+                말
+            </div>
+            <div class="bg3-2-2">
+                >내마구간
+            </div>
+        </div>
+
+
+    </div>
 
 
   <div class="side">
@@ -96,7 +96,12 @@
   </div>
 </div>
 
+<script>
+  // $("#wave").click(function(){
+  //   location.href = "/member/wave";
+  // })
 
+</script>
 </body>
 
 </html>

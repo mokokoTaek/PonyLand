@@ -43,7 +43,7 @@ public class GuestbookController {
     //미니홈피에서 방명록으로 가는 코트
     @RequestMapping("goGuestbook")
     public String goGuestbook(Model model) {
-        List<GuestbookDTO> list = service.selectAll();
+        List<GuestbookDTO> list = service.select();
         model.addAttribute("dto",list);
 
         return "guestbook";}

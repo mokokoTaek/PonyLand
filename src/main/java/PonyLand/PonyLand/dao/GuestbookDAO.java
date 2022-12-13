@@ -21,5 +21,5 @@ public class GuestbookDAO {
 
     public int update(GuestbookDTO dto) {return GuestbookMapper.update(dto); }
 
-    public List<GuestbookDTO> selectAll() {return GuestbookMapper.selectAll(); }
+    public List<GuestbookDTO> select() {return GuestbookMapper.select(); }
 }

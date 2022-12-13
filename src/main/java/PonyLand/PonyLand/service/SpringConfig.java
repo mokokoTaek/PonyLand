@@ -1,7 +1,5 @@
 package PonyLand.PonyLand.service;
 
-import PonyLand.PonyLand.Repository.Family.FamilyRepository;
-import PonyLand.PonyLand.Repository.Family.JpaFamilyRepository;
 import PonyLand.PonyLand.Repository.member.JpaMemberRepository;
 import PonyLand.PonyLand.Repository.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +23,8 @@ public class SpringConfig {
     public MemberRepository memberRepository(){
         return new JpaMemberRepository(em);
     }
-    @Bean
-    public FamilyRepository familyRepository() {return new JpaFamilyRepository(em);}
+   // @Bean
+   // public FamilyRepository familyRepository() {return new JpaFamilyRepository(em);}
 
     @Bean
     public Random random(){

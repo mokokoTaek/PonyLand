@@ -33,29 +33,30 @@
         </div>
 
     </div>
-    <div class="bg3">
-        <div class="bg3in">
-            <div class="gbtitle">
-                <tr>
-                    <th>글번호</th>
-                    <th>시간</th>
-                    <th>비밀</th>
-                    <th>수정</th>
-                    <th>삭제</th>
-                </tr>
-            </div>
-            <div class="gbcontent">
-                <div class="gbprofile">
-                    프로필이미지
+    <form action="/Guestbook/insert">
+        <div class="bg3">
+            <div class="bg3in">
+                <div class="gbtitle">
+                    <tr>
+                        <th>글번호</th>
+                        <th>시간</th>
+                        <th>비밀</th>
+                        <th>수정</th>
+                        <th>삭제</th>
+                    </tr>
                 </div>
-                <div class="gbtext">
-                  <input type="text">
+                <div class="gbcontent">
+                    <div class="gbprofile">
+                        프로필이미지
+                    </div>
+                    <div class="gbtext">
+                        <input type="text" id="guestbook_contents" name="guestbook_contents" placeholder="내용을 입력하세요">
+                    </div>
                 </div>
             </div>
-
+            <button type="submit">글쓰기완료</button>
         </div>
-        <button>글쓰기완료</button>
-    </div>
+    </form>
 
 
     <div class="side">

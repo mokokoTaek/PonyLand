@@ -23,4 +23,7 @@ public class MemberDAO {
         return sdjr.findByMemberIdAndMemberPw(member_id, member_pw);
     }
 
+    public String getIdBySeq(int seq){
+        return sdjr.findByMember_seq(seq).getMemberId();
+    }
 }

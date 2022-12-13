@@ -3,6 +3,7 @@ package PonyLand.PonyLand.Repository.Family;
 import PonyLand.PonyLand.dto.FamilyDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +11,7 @@ public interface SpringDataJpaFamilyRepository extends JpaRepository<FamilyDTO,I
 
     @Transactional
     FamilyDTO findByFamilyProposerIdAndFamilyProposedId(String FamilyProposerId, String FamilyProposedId);
+
 
 
 }

@@ -8,4 +8,7 @@ import javax.transaction.Transactional;
 public interface SpringDataJpaMemberRepository extends JpaRepository<MemberDTO,Integer> {
     @Transactional
     Long countBy();
+
+    @Transactional
+    MemberDTO findByMember_seq(int seq);
 }

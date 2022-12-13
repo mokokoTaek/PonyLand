@@ -14,4 +14,7 @@ public class MemberDAO {
         return sdjr.countBy();
     }
 
+    public String getIdBySeq(int seq){
+        return sdjr.findByMember_seq(seq).getMember_id();
+    }
 }

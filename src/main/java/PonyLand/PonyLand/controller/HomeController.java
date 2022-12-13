@@ -16,6 +16,7 @@ public class HomeController {
     public String miniHome(){
         return "main";
     }
+
     @RequestMapping("/toLoginPage")
     public String login(){return "login";}
 

@@ -17,4 +17,14 @@ public class HomeController {
         return "main";
     }
 
+    @GetMapping("/signin")
+    public String insert(){
+        return "signin";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
 }

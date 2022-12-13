@@ -8,20 +8,42 @@
     <link rel="stylesheet" href="../static/style.css"/>
 </head>
 <body>
-<section>
-    <button class="ponyland">포니랜드</button>
-    <a th:href="@{/toMiniPage}">
-        <button class="minihome" type="button">미니홈피</button>
-    </a>
-    <a th:href="@{/}">
-        <button class="stall">마구간</button>
-    </a>
-    <a th:href="@{/login.html}">
-        <button class="signin">로그인</button>
-    </a>
-    <a th:href="@{/}">
-        <button class="signin">회원가입</button>
-    </a>
-</section>
+
+<div th:value="${id}"></div>
+
+<div th:if="${id} != null" >
+    <div th:text="${id}" ></div> 님 안녕하세요.
+    <section>
+        <button class="ponyland">포니랜드</button>
+        <a th:href="@{/toMiniPage}">
+            <button class="minihome" type="button">미니홈피</button>
+        </a>
+        <a th:href="@{/}">
+            <button class="stall">마구간</button>
+        </a>
+        <a th:href="@{/member/logout}">
+            <button class="loginout">로그아웃</button>
+        </a>
+    </section>
+</div>
+<div th:unless="${id} != null"> 뉘쇼
+    <section>
+        <button class="ponyland">포니랜드</button>
+        <a th:href="@{/toMiniPage}">
+            <button class="minihome" type="button">미니홈피</button>
+        </a>
+        <a th:href="@{/}">
+            <button class="stall">마구간</button>
+        </a>
+        <a th:href="@{/login}">
+            <button class="login">로그인</button>
+        </a>
+        <a th:href="@{/signin}">
+            <button class="signin">회원가입</button>
+        </a>
+    </section>
+
+</div>
+
 </body>
 </html>

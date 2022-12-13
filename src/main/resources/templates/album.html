@@ -46,14 +46,13 @@
                         <c:forEach th:each="list : ${dto}">
                 <div class="gbtitle">
                     <tr>
-                    <input type="hidden" th:value="${list.Album_seq}"  name = "Album_Comment_parent_seq"/>
+                    <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>
                     <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>
                     <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>
-                    <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>
                         <th th:text="${list.Album_seq}">글번호</th>
                         <th th:text="${list.getAlbum_sysdate()}">시간</th>
                         <th>비밀</th>
-                        <th>수정</th>
+                        <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th>
                         <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>>삭제</th>
                     </tr>
                 </div>
@@ -134,17 +133,20 @@
             })
 
             $("#modifyBtn").on("click", function () {
-                $("#Album_title").removeAttr("readonly");
-                $("#Album_contents").removeAttr("readonly");
-                $("textarea").removeAttr("readonly")
-                $("#modifyBtn").css("display", "none");
-
+                if(confirm("수정하시겠습니까?")){
+                    $("#Album_title").removeAttr("readonly");
+                    $("#Album_contents").removeAttr("readonly");
+                    $("textarea").removeAttr("readonly")
+                    $("#modifyBtn").css("display", "none");
+                }
             })
 
             $("#comment").on("click",function (){
                 $("#form").attr("action","/Comment/write");
                 $("#form").submit();
             })
+
+
 
 
         </script>

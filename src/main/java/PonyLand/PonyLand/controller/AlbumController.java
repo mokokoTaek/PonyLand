@@ -61,9 +61,9 @@ public class AlbumController {
         return "redirect:toAlbumPage";
     }
     @RequestMapping("update")
-    public String update(AlbumDTO dto) {
-        service.update(dto);
-        return "album";
+    public String update(String Album_title, String Album_contents , int Album_seq) {
+        service.update(Album_title, Album_contents ,Album_seq );
+        return "redirect:toAlbumPage";
 
     }
 

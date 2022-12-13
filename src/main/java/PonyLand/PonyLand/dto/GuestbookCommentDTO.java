@@ -15,5 +15,6 @@ public class GuestbookCommentDTO {
     private String guestbook_comment_writer;
     private String guestbook_comment_contents;
     private Timestamp guestbook_comment_write_date;
+    private Integer parent_seq;
 
 }

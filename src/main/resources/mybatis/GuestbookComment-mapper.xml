@@ -6,21 +6,21 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.GuestbookCommentMapper">
 
-   <!-- <insert id="">
-
+    <insert id="insert">
+       insert into guestbook_comment values (guestbook_comment_seq.nextval,0,#{guestbook_comment_contents},sysdate,#{parent_seq})
     </insert>
 
+   <!--
+
+       <select id="" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
+
+       </select>
 
 
-    <select id="" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
 
-    </select>
-
+       <delete id="">
 
 
-    <delete id="">
-
-
-    </delete>-->
+       </delete>-->
 
 </mapper>

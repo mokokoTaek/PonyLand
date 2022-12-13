@@ -19,7 +19,7 @@ public class GuestbookCommentController {
     public String insert(GuestbookCommentDTO dto)throws Exception{
         service.insert(dto);
         System.out.println(dto.getGuestbook_comment_contents());
-        return"";
+        return"redirect:/Guestbook/goGuestbook";
     }
 
 }

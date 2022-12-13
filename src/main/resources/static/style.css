@@ -17,87 +17,45 @@ body {
 }
 
 /* index*/
+
+.mainsection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .ponyland {
     width: 400px;
     height: 100px;
     background: rgba(90, 61, 43, 1);
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
     color: rgba(244, 161, 39, 1);
     border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     font-size: 50px;
-}
-
-.stall {
-    width: 400px;
-    height: 100px;
-    background: rgba(90, 61, 43, 1);
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
-    color: rgba(244, 161, 39, 1);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 50px;
-}
-
-.minihome {
-    width: 400px;
-    height: 100px;
-    background: rgba(90, 61, 43, 1);
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
-    color: rgba(244, 161, 39, 1);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 50px;
+    margin-top: 10px;
 }
 
 .login {
     width: 400px;
     height: 100px;
     background: #FFECB4;
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
+    border-top: 1px solid #FFECB4;
+    border-right: 1px solid #FFECB4;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     color: rgba(90, 61, 43, 1);
     border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
     font-size: 50px;
-
+    margin-top: 10px;
 }
 
-.signin {
-    width: 400px;
-    height: 100px;
-    background: #FFECB4;
-    opacity: 1;
-    position: relative;
-    top: 7px;
-    left: 0px;
-    border: 2px solid rgba(244, 161, 39, 1);
-    color: rgba(90, 61, 43, 1);
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    font-size: 50px;
 
-}
+
 
 /* login------------------------------------------------------------------------------------ */
 .logintitle {
@@ -148,6 +106,7 @@ body {
 }
 
 .loginbg {
+    display: flex;
     width: 250px;
     height: 50px;
     background: white;
@@ -160,18 +119,24 @@ body {
 }
 
 /* signin------------------------------------------------------------------------------------ */
+.signincontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .signinform {
     display: flex;
     flex-direction: column;
     color: rgba(244, 161, 39, 1);
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 15px;
 }
 
 .signinbg{
     display: flex;
     width: 250px;
-    height: 50px;
+    height: 40px;
     background: white;
     border-top: 1px solid rgba(90, 61, 43, 1);
     border-right: 1px solid rgba(90, 61, 43, 1);
@@ -179,6 +144,21 @@ body {
     border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     font-size: 20px;
+}
+
+.signinbtn{
+    margin-top: 20px;
+    width: 250px;
+    height: 40px;
+    background: #FFECB4;
+    opacity: 1;
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: rgba(90, 61, 43, 1);
+    border-radius: 8px;
+    font-size: 30px;
 }
 
 .signinform2{
@@ -217,7 +197,7 @@ body {
     display: flex;
     margin-top: 30px;
     font-size: 30px;
-    color: #5a3d2b;
+    color: #F4A127;
 }
 
 .profile1{
@@ -251,17 +231,18 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-    align-items: center;
+    /*align-items: center;*/
     /*border: 1px solid rgba(90, 61, 43, 1);*/
 }
 
 .profile4-1{
-    display: flex;
+    font-size: 30px;
+    color: #F4A127;
 }
 
 .profile4-2{
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     margin-top: 10px;
     width: 280px;
     height: 35px;
@@ -276,7 +257,10 @@ body {
     background: rgba(90, 61, 43, 1);
     font-size: 20px;
     color: rgba(244, 161, 39, 1);
-    border: 2px solid rgba(244, 161, 39, 1);
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -296,23 +280,67 @@ body {
 
 .bg3-1{
     display: flex;
-    border: 1px solid black;
+    font-size: 25px;
+    width: 600px;
+    margin: auto;
+    /*border: 1px solid black;*/
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
     color: #F4A127;
     height: 30%;
 }
 
+.updatednews{
+    display: flex;
+}
+
+.updatednews2{
+    display: flex;
+    flex-direction: column;
+}
+
+.updatednews2-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #5a3d2b;
+    border-radius: 8px;
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+}
+
 
 .bg3-2{
-    border: 1px solid black;
-    height: 80%;
+    font-size: 30px;
+    /*border: 1px solid black;*/
+    height: 70%;
     color: #F4A127;
+
+    /*margin: auto;*/
 }
+
+.bg3-2-1-title{
+    width: 600px;
+    margin: auto;
+}
+
 .bg3-2-1{
-    border: 2px solid #5a3d2b;
-    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #5a3d2b;
+    border-radius: 4px;
+    width: 600px;
     height: 400px;
+    margin: auto;
+}
+
+.bg3-2-2{
+    margin: auto;
+    width: 600px;
+    margin-top: 10px;
 }
 
 
@@ -374,9 +402,12 @@ body {
     font-size: 30px;
     color: rgba(90, 61, 43, 1);
     position: relative;
-    border: 2px solid rgba(90, 61, 43, 1);
     border-radius: 8px;
     overflow: hidden;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 3px solid #5a3d2b;
+    border-bottom: 3px solid #5a3d2b;
 }
 
 .btnmain2 {
@@ -386,9 +417,13 @@ body {
     font-size: 30px;
     color: rgba(244, 161, 39, 1);
     position: relative;
-    border: 2px solid rgba(244, 161, 39, 1);
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     overflow: hidden;
+
 }
 
 button:hover {

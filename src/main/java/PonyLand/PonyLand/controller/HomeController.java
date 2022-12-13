@@ -16,12 +16,20 @@ public class HomeController {
     public String miniHome(){
         return "main";
     }
-    @RequestMapping("/toLoginPage")
-    public String login(){return "login";}
 
     @GetMapping("/toAlbumPage")
     public String AlbumPage(){
         return "album";
+    }
+
+    @GetMapping("/signin")
+    public String insert(){
+        return "signin";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
 }

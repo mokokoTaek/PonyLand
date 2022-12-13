@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Main</title>
-    <link href="https://fonts.googleapis.com/css?family=HS새마을체&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="../static/style.css"/>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Main</title>
+  <link href="https://fonts.googleapis.com/css?family=HS새마을체&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
@@ -35,12 +35,11 @@
             상태메시지<br>
         </div>
 
-        <div class="profile3">
-            <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
-            <a th:href="@{/member/wave}">
-                <button class="profilebtn" type="button" id="wave">파도타기</button>
-            </a>
-        </div>
+    <div class="profile3">
+      <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+      <a th:href="@{/family/areTheyFamily}"><button class="profilebtn" type="button">일촌확인</button></a>
+      <a th:href="@{/member/wave}"><button class="profilebtn" type="button" id="wave">파도타기</button></a>
+    </div>
 
         <div class="profile4">
             <div class="profile4-1">
@@ -79,28 +78,28 @@
     </div>
 
 
-    <div class="side">
-        <div class="side1">
-            <button class="btnmain1">메인</button>
-        </div>
-        <div class="side2">
-            <a th:href="@{/Guestbook/goGuestbook}">
-                <button class="btnmain2">방명록</button>
-            </a>
-        </div>
-        <div class="side3">
-            <button class="btnmain2">사진첩</button>
-        </div>
-        <div class="side4">
-            <button class="btnmain2">다이어리</button>
-        </div>
+  <div class="side">
+    <div class="side1">
+      <button class="btnmain1">메인</button>
     </div>
+    <div class="side2">
+      <a th:href="@{/Guestbook/goGuestbook}"><button class="btnmain2">방명록</button></a>
+    </div>
+    <div class="side3">
+      <a th:href="@{/toAlbumPage}" >
+      <button class="btnmain2">사진첩</button>
+      </a>
+    </div>
+    <div class="side4">
+      <button class="btnmain2">다이어리</button>
+    </div>
+  </div>
 </div>
 
 <script>
-    // $("#wave").click(function(){
-    //   location.href = "/member/wave";
-    // })
+  // $("#wave").click(function(){
+  //   location.href = "/member/wave";
+  // })
 
 </script>
 </body>

@@ -7,9 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/member/")
 public class MemberController {
+
+    @Autowired
+    HttpSession session;
 
     @Autowired
     MemberService service;
@@ -21,7 +26,16 @@ public class MemberController {
         int randomNumber = service.getRandom(countMember);
         System.out.println(randomNumber);
 
+        String id = (String) session.getAttribute("loginID");
+
         return "redirect:/toMiniPage";
+    }
+
+    @RequestMapping("signinForKakao")
+    public String signinForKakao(String id, String email){
+
+
+        return "";
     }
 
 

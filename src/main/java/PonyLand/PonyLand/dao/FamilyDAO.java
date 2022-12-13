@@ -17,10 +17,10 @@ public class FamilyDAO {
         sdjr.save(dto);
     }
 
-    public Long areTheyFamily1(String familyProposerId){
-        return sdjr.countByFamilyProposerId(familyProposerId);
+    public FamilyDTO areTheyFamily(String familyProposerId, String familyProposedId){
+        return sdjr.findByFamilyProposerIdAndFamilyProposedId(familyProposerId,familyProposedId);
     }
-    public Long areTheyFamily2(String familyProposedId) {
-        return sdjr.countByFamilyProposedId(familyProposedId);
-    }
+
+
+
 }

@@ -2,6 +2,7 @@ package PonyLand.PonyLand.dao;
 
 import PonyLand.PonyLand.Repository.SpringDataJpaMemberRepository;
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.Repository.member.SpringDataJpaMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

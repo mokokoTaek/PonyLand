@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/member/")
 public class MemberController {
@@ -27,10 +29,15 @@ public class MemberController {
     @Autowired
     private HttpServletResponse response;
     @GetMapping("wave")
+
+    @RequestMapping("wave")
     public String getWave(){
 
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
+        System.out.println(randomNumber);
+
+        String id = (String) session.getAttribute("loginID");
 
         return "redirect:/toMiniPage";
     }
@@ -59,4 +66,13 @@ public class MemberController {
         response.flushBuffer();
         out.close();
     }
+
+    @RequestMapping("signinForKakao")
+    public String signinForKakao(String id, String email){
+
+
+        return "";
+    }
+
+
 }

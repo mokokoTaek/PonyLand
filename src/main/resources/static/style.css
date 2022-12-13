@@ -1,6 +1,6 @@
 @font-face {
     font-family: font;
-    src: url("/font/hssaemaulfont.woff") format("woff");
+    src: url("/static/hssaemaulfont.woff") format("woff");
 }
 
 * {
@@ -164,7 +164,7 @@ body {
     display: flex;
     flex-direction: column;
     color: rgba(244, 161, 39, 1);
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 10px;
 }
 
@@ -178,6 +178,7 @@ body {
     border-left: 3px solid rgba(244, 161, 39, 1);
     border-bottom: 3px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
+    font-size: 20px;
 }
 
 .signinform2{
@@ -207,56 +208,85 @@ body {
     left: 10px;
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.profile {
+.profile0{
+    display: flex;
+    margin-top: 30px;
+    font-size: 30px;
+    color: #5a3d2b;
+}
+
+.profile1{
+    margin-top: 30px;
+    display: flex;
     width: 280px;
     height: 280px;
     background: rgba(255, 255, 255, 1);
-    opacity: 1;
-    position: relative;
-    top: 20px;
-    margin: auto;
-    text-align: center;
     border: 5px solid rgba(90, 61, 43, 1);
     border-radius: 8px;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
-.profilemsg {
+.profile2 {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
     width: 280px;
     color: rgba(244, 161, 39, 1);
-    position: relative;
-    top: 40px;
-    margin: auto;
     font-size: 20px;
-    opacity: 1;
-    text-align: center;
 }
+
+.profile3{
+    display: flex;
+    margin-top: 30px;
+}
+
+.profile4{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    align-items: center;
+    /*border: 1px solid rgba(90, 61, 43, 1);*/
+}
+
+.profile4-1{
+    display: flex;
+}
+
+.profile4-2{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 280px;
+    height: 35px;
+    color: #F4A127;
+    font-size: 15px;
+}
+
 
 .profilebtn {
     width: 100px;
     height: 30px;
-    left: 50px;
     background: rgba(90, 61, 43, 1);
-    top: 100px;
-
     font-size: 20px;
     color: rgba(244, 161, 39, 1);
-    position: relative;
-
     border: 2px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     overflow: hidden;
-
-
 }
 
 .bg3 {
+    display: flex;
+    flex-direction: column;
     width: 650px;
     height: 730px;
     background: rgba(255, 255, 255, 1);
-    opacity: 1;
     position: absolute;
     top: 40px;
     left: 340px;
@@ -264,11 +294,31 @@ body {
     overflow: hidden;
 }
 
+.bg3-1{
+    display: flex;
+    border: 1px solid black;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #F4A127;
+    height: 30%;
+}
+
+
+.bg3-2{
+    border: 1px solid black;
+    height: 80%;
+    color: #F4A127;
+}
+.bg3-2-1{
+    border: 2px solid #5a3d2b;
+    width: 400px;
+    height: 400px;
+}
+
+
 .top {
     width: 200px;
     height: 32px;
-
-
 }
 
 .today {
@@ -357,12 +407,13 @@ button:hover {
 .gbtitle {
     display: flex;
     justify-content: space-around;
-    text-align: center;
     height: 25px;
     margin: auto;
-    /*border: 1px solid black;*/
+    border: 1px solid black;
     width: 90%;
     border-radius: 4px;
+    color: #F4A127;
+
 }
 
 .gbcontent {
@@ -397,24 +448,24 @@ button:hover {
 
 .gbcmtinput {
     display: flex;
-    text-align: center;
-    height: 55px;
-    padding-top: 1px;
+    height: 100px;
     margin: auto;
     width: 90%;
     border-radius: 4px;
+
+
 }
 
 .gbcmt {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .gbcmt > input {
-    border-radius: 4px;
-    width: 500px;
+    border-radius: 8px;
+    width: 535px;
     height: 40px;
+    border: 1px solid black;
 }
 
 .gbbutton {
@@ -429,10 +480,44 @@ button:hover {
 
 
 .gbcmtview {
-
+    color: #F4A127;
+    display: flex;
     height: 25px;
     margin: auto;
     border: 1px solid black;
     width: 90%;
     border-radius: 4px;
+
+}
+
+/*--------------------------------album*/
+.alpicture{
+    display: flex;
+    align-items: center;
+    border: 2px solid red;
+}
+
+.alcontent{
+    display: flex;
+    text-align: center;
+    height: 100px;
+    margin: auto;
+    border: 1px solid black;
+    width: 90%;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    color: #F4A127;
+}
+
+.alcontext{
+    display: flex;
+    text-align: center;
+    height: 100px;
+    margin: auto;
+    border: 1px solid black;
+    width: 90%;
+    border-radius: 4px;
+    align-items: center;
+
 }

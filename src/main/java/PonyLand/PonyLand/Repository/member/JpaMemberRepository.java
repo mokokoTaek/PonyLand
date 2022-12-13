@@ -1,4 +1,4 @@
-package PonyLand.PonyLand.Repository;
+package PonyLand.PonyLand.Repository.member;
 
 import javax.persistence.EntityManager;
 

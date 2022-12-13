@@ -31,5 +31,12 @@ public class MemberController {
         return "redirect:/toMiniPage";
     }
 
+    @RequestMapping("signinForKakao")
+    public String signinForKakao(String id, String email){
+
+
+        return "";
+    }
+
 
 }

@@ -60,9 +60,11 @@
                     success: function (response) {
 
                             let id = response.id;
+                            let stringId = id.toString();
                             let kakao_account = response.kakao_account;
-                            console.log(id);
-                            console.log(kakao_account.email);
+
+
+                            location.href="/signinForKakao?id="+stringId+"&email="+kakao_account+"";
 
 
                     },

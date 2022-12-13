@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-
-    <link rel="stylesheet"  type="text/css" th:href="@{../static/style.css}" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{../static/style.css}"/>
     <link rel="stylesheet" type="text/css" href="../static/style.css">
 
 </head>
@@ -13,38 +15,41 @@
 
 <div th:value="${id}"></div>
 
-<div th:if="${id} != null" >
-    <div th:text="${id}" ></div> 님 안녕하세요.
-    <section>
+<div th:if="${id} != null">
+    <div th:text="${id}"></div>
+    님 안녕하세요.
+    <div class="mainsection">
         <button class="ponyland">포니랜드</button>
-        <a th:href="@{/toMiniPage(id = ${id})}" >
-            <button class="minihome" type="button">미니홈피</button>
+        <a th:href="@{/toMiniPage(id = ${id})}">
+            <button class="ponyland" type="button">
+                <span th:text="${id}"></span> 입장하기
+            </button>
         </a>
         <a th:href="@{/}">
-            <button class="stall">마구간</button>
+            <button class="ponyland">마구간</button>
         </a>
         <a th:href="@{/member/logout}">
-            <button class="loginout">로그아웃</button>
+            <button class="login">로그아웃</button>
         </a>
-    </section>
+    </div>
 </div>
+
 <div th:unless="${id} != null"> 뉘쇼
-    <section>
+    <div class="mainsection">
         <button class="ponyland">포니랜드</button>
         <a th:href="@{/toMiniPage?(id=${id})}">
-            <button class="minihome" type="button">미니홈피</button>
+            <button class="ponyland" type="button">미니홈피</button>
         </a>
         <a th:href="@{/}">
-            <button class="stall">마구간</button>
+            <button class="ponyland">마구간</button>
         </a>
         <a th:href="@{/login}">
             <button class="login">로그인</button>
         </a>
         <a th:href="@{/signin}">
-            <button class="signin">회원가입</button>
+            <button class="login">회원가입</button>
         </a>
-    </section>
-
+    </div>
 </div>
 
 </body>

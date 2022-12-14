@@ -98,6 +98,10 @@ public class MemberService {
         response.flushBuffer();
         out.close();
     }
+
+    public MemberDTO findById(String id){
+        return dao.findById(id);
+    }
 }
 
 

@@ -70,5 +70,11 @@ public class MemberController {
         return "index";
     }
 
+    @RequestMapping("areYouKakao")
+    public String areYouKakao(String id){
+        System.out.println("!!!!" + id);
+        return service.findById(id).getMemberLoginType();
+    }
+
 
 }

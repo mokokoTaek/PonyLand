@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
@@ -28,9 +29,7 @@
         <a th:href="@{/}">
             <button class="ponyland">마구간</button>
         </a>
-        <a th:href="@{/member/logout}">
-            <button class="login">로그아웃</button>
-        </a>
+            <button class="login" type="button" id="logout" onclick="areYouKakao();">로그아웃</button>
     </div>
 </div>
 
@@ -52,6 +51,47 @@
     </div>
 </div>
 
+<script th:inline="javascript">
+    function areYouKakao(){
+
+        $.ajax({
+            url:"/member/areYouKakao",
+            data:{"id":[[${id}]]}
+        })
+            .done(function(resp){
+                if(resp=="kakao"){
+                    kakaoLogout();
+                    alert("카카오 로그아웃 완료!");
+                    location.href="/member/logout";
+                }else{
+                    location.href="/member/logout";
+                }
+
+            })
+            .fail(function(){
+                console.log("error!");
+            });
+    }
+
+
+    Kakao.init('2644b324a18137f288c55737e196f4ac'); //발급받은 키 중 javascript키를 사용해준다.
+    console.log(Kakao.isInitialized()); // sdk초기화여부판단
+
+    //카카오로그아웃
+    function kakaoLogout() {
+        if (Kakao.Auth.getAccessToken()) {
+            Kakao.API.request({
+                url: '/v1/user/unlink',
+                success: function (response) {
+                },
+                fail: function (error) {
+                    console.log(error)
+                },
+            })
+            Kakao.Auth.setAccessToken(undefined)
+        }
+    }
+</script>
 
 </body>
 </html>

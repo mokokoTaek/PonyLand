@@ -13,5 +13,5 @@ public interface AlbumMapper {
 
     int delete(int Album_seq);
 
-    int update(AlbumDTO dto);
+    int update(String Album_title, String Album_contents, int Album_seq);
 }

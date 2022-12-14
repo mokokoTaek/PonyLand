@@ -6,6 +6,8 @@ import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GuestbookCommentService {
 
@@ -15,4 +17,5 @@ public class GuestbookCommentService {
     public int insert(GuestbookCommentDTO dto) { return dao.insert(dto);}
 
 
+    public List<GuestbookCommentDTO> select(int parent_seq) {return dao.select(parent_seq);}
 }

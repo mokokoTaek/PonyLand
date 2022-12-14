@@ -4,8 +4,6 @@ import PonyLand.PonyLand.dao.MemberDAO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -59,7 +57,7 @@ public class MemberService {
         return "redirect:/";
     }
 
-    public MemberDTO makeIdAndPwByEmail(String email){
+    public MemberDTO makeIdAndPwByEmailForKakao(String name, String email){
 
         int index= email.indexOf("@");
 
@@ -73,6 +71,7 @@ public class MemberService {
         dto.setMemberId(newId);
         dto.setMemberPw(newPw);
         dto.setMember_email(email);
+        dto.setMember_name(name);
         dto.setMemberLoginType("kakao");
 
         if(dao.loginForKakao(newId)==null){
@@ -81,6 +80,33 @@ public class MemberService {
         session.setAttribute("sessionID",dto.getMemberId());
         return dto;
     }
+
+    public MemberDTO makeIdAndPwByEmailForNaver(String name, String email){
+
+        int index= email.indexOf("@");
+
+        String newId = email.substring(0,index);
+
+        UUID uuid = UUID.randomUUID();
+
+        String newPw = uuid.toString() + newId;
+
+        MemberDTO dto = new MemberDTO();
+        dto.setMemberId(newId);
+        dto.setMemberPw(newPw);
+        dto.setMember_email(email);
+        dto.setMember_name(name);
+        dto.setMemberLoginType("naver");
+
+        if(dao.loginForKakao(newId)==null){
+            dao.insert(dto);
+        }
+        session.setAttribute("sessionID",dto.getMemberId());
+        return dto;
+    }
+
+
+
 
     public void logout() throws IOException {
 
@@ -91,12 +117,16 @@ public class MemberService {
         }
 
         session.invalidate();
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("<script>alert('로그아웃 되었습니다.'); location.href='/';</script>");
-        out.flush();
-        response.flushBuffer();
-        out.close();
+//        response.setContentType("text/html; charset=UTF-8");
+//        PrintWriter out = response.getWriter();
+//        out.println("<script>alert('로그아웃 되었습니다.'); location.href='/';</script>");
+//        out.flush();
+//        response.flushBuffer();
+//        out.close();
+    }
+
+    public MemberDTO findById(String id){
+        return dao.findById(id);
     }
 }
 

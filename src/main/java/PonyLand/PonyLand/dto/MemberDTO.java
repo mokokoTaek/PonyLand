@@ -1,9 +1,11 @@
 package PonyLand.PonyLand.dto;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
+@DynamicInsert
 @Setter
 @Getter
 @NoArgsConstructor
@@ -51,6 +53,8 @@ public class MemberDTO {
         @Column(name = "member_pw")
         private String memberPw;
 
+        @Column(name="member_login_type")
+        private String memberLoginType;
 
 
 }

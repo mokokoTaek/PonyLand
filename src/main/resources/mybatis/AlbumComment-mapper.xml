@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="PonyLand.PonyLand.Mapper.AlbumCommentMapper">
+
+    <insert id="insert" >
+
+        insert into album_comment values(Album_Comment_seq.nextval,0,#{Album_Comment_contents},sysdate,#{Album_Comment_parent_seq})
+
+
+    </insert>
+
+<!--    <select id = "selectComment" resultType="PonyLand.PonyLand.dto.AlbumCommentDTO">-->
+<!--        select * from Album_Comment where Album_Comment_parent_seq=#{value}-->
+<!--    </select>-->
+
+</mapper>

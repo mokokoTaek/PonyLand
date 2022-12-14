@@ -1,0 +1,253 @@
+@font-face {
+    font-family: font;
+    src: url("/static/hssaemaulfont.woff") format("woff");
+}
+
+*{
+    box-sizing: border-box;
+    font-family: font;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+
+}
+
+button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.top > div{
+    display: flex;
+    width: 200px;
+    height: 25px;
+    background: #5a3d2b;
+    margin-bottom: 10px;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
+    border-radius: 8px;
+    color: white;
+    justify-content: center;
+}
+
+.side{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.btnmain1{
+    width: 100px;
+    height: 60px;
+    background: #F4A127;
+    font-size: 30px;
+    color: #5a3d2b;
+    border-radius: 8px;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 4px solid #5a3d2b;
+    border-bottom: 4px solid #5a3d2b;
+}
+
+.btnmain2{
+    width: 100px;
+    height: 60px;
+    background: #5a3d2b;
+    font-size: 30px;
+    color: #F4A127;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
+    border-radius: 8px;
+}
+
+
+/*stall--------------------------------------------------------------------------------------*/
+.bg1{
+    display: flex;
+    width: 1000px;
+    height: 750px;
+    background: #5a3d2b;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bg2{
+    width: 980px;
+    height: 730px;
+    background: white;
+    border-radius: 8px;
+}
+
+.bg3{
+    display: flex;
+    width: 388px;
+    height: 730px;
+    background: white;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg4{
+    display: flex;
+    width: 582px;
+    height: 730px;
+    background: white;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bg5{
+    width: 320px;
+    height: 730px;
+    background: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*carrot--------------------------------------------------------------------------------------*/
+.shopbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.shopimage{
+    background: transparent;
+    font-size: 35px;
+    color: #5a3d2b;
+    border: solid transparent;
+}
+
+.shopname{
+    display: flex;
+    font-size: 25px;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #F4A127;
+}
+/*carrot--------------------------------------------------------------------------------------*/
+.carrotbg3{
+    display: flex;
+    width: 388px;
+    height: 730px;
+    background: white;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 100px;
+}
+
+.balancebox{
+    margin-top: 50px;
+}
+
+.carrotboxtitle{
+    font-size: 70px;
+    color: #5a3d2b;
+}
+
+.carrotbox1{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.carrotbox2{
+    width: 150px;
+    height: 150px;
+    color: white;
+    color: #5a3d2b;
+    border: 2px solid #F4A127;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.carrotamount{
+    display: flex;
+    font-size: 25px;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #F4A127;
+}
+
+.carrotprice {
+    display: flex;
+    background: #FFECB4;
+    height: 70%;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrotprice2{
+    /*width: 100px;*/
+    /*height: 60px;*/
+    background: transparent;
+    font-size: 35px;
+    color: #5a3d2b;
+    border: solid transparent;
+}
+
+.coinbalance{
+    color: #5a3d2b;
+    font-size: 50px;
+}
+
+.coinprice{
+    color: #F4A127;
+    font-size: 40px;
+}
+
+.paybutton{
+    width: 250px;
+    height: 40px;
+    background: #FFECB4;
+    font-size: 25px;
+    color: #5a3d2b;
+    border-radius: 8px;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
+}

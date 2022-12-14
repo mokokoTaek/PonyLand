@@ -16,10 +16,11 @@ public class HomeController {
     @GetMapping("/toMiniPage")
     public String miniHome(String id, Model model){
         model.addAttribute("id",id);
-
         return "main";
     }
 
+    @GetMapping("/stable")
+    public String stable(){return "stable";}
 
     @GetMapping("/toAlbumPage")
     public String AlbumPage(){
@@ -35,5 +36,6 @@ public class HomeController {
     public String login(){
         return "login";
     }
+
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class MemberService {
@@ -32,8 +33,8 @@ public class MemberService {
         return (int) (Math.random() * intCountMember + 1);
 
     }
-    public String toWave(int seq){
-        return dao.getIdBySeq(seq);
+    public String toWave(int rn){
+        return dao.getIdByRowNum(rn);
     }
 
     public void insert(MemberDTO dto) {
@@ -53,6 +54,26 @@ public class MemberService {
             return "redirect:/";
         }
         return "redirect:/";
+    }
+
+    public MemberDTO makeIdAndPwByEmail(String email){
+
+        int index= email.indexOf("@");
+
+        String newId = email.substring(0,index);
+
+        UUID uuid = UUID.randomUUID();
+
+        String newPw = uuid.toString() + newId;
+
+        MemberDTO dto = new MemberDTO();
+        dto.setMemberId(newId);
+        dto.setMemberPw(newPw);
+
+        if(dao.loginForKakao(newId)==null){
+            dao.insert(dto);
+        }
+        return dto;
     }
 }
 

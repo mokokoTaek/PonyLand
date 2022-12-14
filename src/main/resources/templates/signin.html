@@ -9,27 +9,27 @@
     <link rel="stylesheet" href="../static/style.css"/>
 </head>
 <body>
+<form action="/member/insert" id="frm" method="post" enctype="multipart/form-data">
+    <div class="logintitle">회원가입</div>
+    <div class="loginsection">
+        <div class="signincontainer">
 
-<div class="logintitle">회원가입</div>
-<div class="loginsection">
-    <div class="container">
-        <form action="/member/insert" id="frm" method="post" enctype="multipart/form-data">
-        <div class="signinform">
-            <div class="signinform1">
-                이름
+            <div class="signinform">
+                <div class="signinform1">
+                    이름
+                </div>
+                <div class="signinform2">
+                    <input type="text" class="signinbg" placeholder="이름" name="member_name"><br>
+                </div>
             </div>
-            <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="이름" name="member_name"><br>
+            <div class="signinform">
+                <div class="signinform1">
+                    아이디
+                </div>
+                <div class="signinform2">
+                    <input type="text" class="signinbg" placeholder="영문,숫자 5~11자" name="memberId"><br>
+                </div>
             </div>
-        </div>
-        <div class="signinform">
-            <div class="signinform1">
-                아이디
-            </div>
-            <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="영문,숫자 5~11자" name="memberId"><br>
-            </div>
-        </div>
 
         <div class="signinform">
             <div class="signinform1">
@@ -55,8 +55,7 @@
                 전화번호
             </div>
             <div class="signinform2" >
-                <input type="text" class="loginbg" placeholder="010-1234-1234" name="member_phone">
-                <br>
+                <input type="text" class="loginbg" placeholder="010-1234-1234" name="member_phone"><br>
             </div>
         </div>
 
@@ -68,6 +67,7 @@
     </div>
 
 </div>
+
 
 
 

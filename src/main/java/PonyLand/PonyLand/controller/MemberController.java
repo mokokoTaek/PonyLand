@@ -31,15 +31,15 @@ public class MemberController {
     @GetMapping("wave")
 
     @RequestMapping("wave")
-    public String getWave(){
+    public String getWave(Model model){
 
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
         System.out.println(randomNumber);
 
         String id = service.toWave(randomNumber);
-
-        return "redirect:/toMiniPage?id="+id+"";
+        model.addAttribute("id",id);
+        return "main";
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){
@@ -68,9 +68,11 @@ public class MemberController {
     }
 
     @RequestMapping("signinForKakao")
-    public String signinForKakao(String id, String email){
+    public String signinForKakao(String email,Model model){
 
-        return "singinForKakao";
+        MemberDTO dto = service.makeIdAndPwByEmail(email);
+        model.addAttribute("id",dto.getMemberId());
+        return "main";
     }
 
 

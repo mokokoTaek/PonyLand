@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>메세지함</title>
+
+
+    <!-- CSS File -->
+    <link href="../static/message.css" rel="stylesheet">
+
+    <!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+          rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<!-- 메뉴바
+   현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->
+
+
+<br/>
+<br/><br/>
+<div class="msg-container">
+
+    <div class="messaging">
+        <div class="inbox_msg">
+            <!-- 메세지 목록 영역 -->
+            <div class="inbox_people">
+                <div class="headind_srch">
+                    <div class="recent_heading">
+                        <h4>쪽지함</h4>
+                    </div>
+                    <!-- 메세지 검색 -->
+                    <div class="srch_bar">
+                        <div class="stylish-input-group">
+                            <input type="text" class="search-bar" placeholder="검색">
+                            <span class="input-group-addon">
+	                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+	                </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 메세지 리스트 -->
+                <div class="inbox_chat">
+
+                </div>
+            </div>
+
+            <!-- 메세지 내용 영역 -->
+            <div class="mesgs">
+                <form action="MessageServiceCon" method="post">
+                    <h3> 쪽지 보내기 </h3>
+                    <div class="field half first">
+                        <input type="text" id="fromName" placeholder="받는 사람" name="sendName"/>
+                        <label>에게</label>
+                    </div>
+
+                    <br>
+                    <div class="field">
+                        <label for="message">내용</label>
+                        <textarea id="message" rows="6" name="message"></textarea></div>
+                    <ul class="actions">
+                       <input type="submit" value="전송" class="special"/>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</script>
+</body>
+</html>

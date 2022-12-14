@@ -25,6 +25,9 @@
         <a th:href="@{/member/logout}">
             <button class="login">로그아웃</button>
         </a>
+        <a th:href="@{/member/message}" onClick="window.open(this.href, '', 'width=1280, height=800'); return false;">
+            <button>dm</button>
+        </a>
     </section>
 </div>
 <div th:unless="${id} != null"> 뉘쇼

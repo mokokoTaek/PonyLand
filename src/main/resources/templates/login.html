@@ -44,19 +44,6 @@
     naver_id_login.init_naver_id_login();
 </script>
 
-<!--<ul>-->
-<!--    <li onclick="kakaoLogin();">-->
-<!--        <a href="javascript:void(0)">-->
-<!--            <span>카카오 로그인</span>-->
-<!--        </a>-->
-<!--    </li>-->
-<!--    <li onclick="kakaoLogout();">-->
-<!--        <a href="javascript:void(0)">-->
-<!--            <span>카카오 로그아웃</span>-->
-<!--        </a>-->
-<!--    </li>-->
-<!--</ul>-->
-
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
@@ -73,11 +60,9 @@
                     },
                     success: function (response) {
 
-                        let id = response.id;
-                        let stringId = id.toString();
-                        let kakao_account = response.kakao_account;
-
-                        //location.href="/signinForKakao?id="+stringId+"&email="+kakao_account+"";
+                        let kakao_account = response.kakao_account.email;
+                        console.log(kakao_account)
+                         location.href="/member/signinForKakao?email="+kakao_account+"";
 
 
                     },

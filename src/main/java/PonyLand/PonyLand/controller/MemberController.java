@@ -51,6 +51,7 @@ public class MemberController {
     public String login(MemberDTO dto, Model model) throws Exception{
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
+        System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", dto.getMemberId());
         System.out.println(dto.getMemberId());
         return "index";
@@ -58,13 +59,7 @@ public class MemberController {
 
     @GetMapping ("logout")
     public void logout() throws Exception{
-        session.invalidate();
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("<script>alert('로그아웃 되었습니다.'); location.href='/';</script>");
-        out.flush();
-        response.flushBuffer();
-        out.close();
+        service.logout();
     }
 
     @RequestMapping("signinForKakao")
@@ -72,7 +67,7 @@ public class MemberController {
 
         MemberDTO dto = service.makeIdAndPwByEmail(email);
         model.addAttribute("id",dto.getMemberId());
-        return "main";
+        return "index";
     }
 
 

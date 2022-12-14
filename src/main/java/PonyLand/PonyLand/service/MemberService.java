@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 import java.util.UUID;
@@ -17,11 +19,12 @@ public class MemberService {
 
     @Autowired
     private MemberDAO dao;
-
     @Autowired
     private Random random;
     @Autowired
     private HttpServletResponse response;
+    @Autowired
+    private HttpSession session;
 
     public Long getWave() {
         return dao.countMember();
@@ -69,11 +72,31 @@ public class MemberService {
         MemberDTO dto = new MemberDTO();
         dto.setMemberId(newId);
         dto.setMemberPw(newPw);
+        dto.setMember_email(email);
+        dto.setMemberLoginType("kakao");
 
         if(dao.loginForKakao(newId)==null){
             dao.insert(dto);
         }
+        session.setAttribute("sessionID",dto.getMemberId());
         return dto;
+    }
+
+    public void logout() throws IOException {
+
+        String id = (String)session.getAttribute("sessionID");
+
+       if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
+            System.out.println("이것은 카카오 아이디!");
+        }
+
+        session.invalidate();
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('로그아웃 되었습니다.'); location.href='/';</script>");
+        out.flush();
+        response.flushBuffer();
+        out.close();
     }
 }
 

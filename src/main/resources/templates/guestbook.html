@@ -67,6 +67,7 @@
     </div>
     <div class="bg3">
         <div class="bg3in">
+<!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
             <form action="/GuestbookComment/insert" id="form">
                 <div th:each="list:${dto}">
                     <div class="gbtitle">
@@ -105,7 +106,7 @@
                             <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
                         </div>
                         <button class="gbbutton">확인</button>
-                        <input type="hidden" th:value="${list.getGuestbook_seq()}">
+                        <input type="hidden" class="parent_seq" th:value="${list.getGuestbook_seq()}">
                     </div>
                 </div>
             </form>
@@ -149,14 +150,25 @@
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
     })
 
-    // 댓글 확인 버튼 클릭시 name에 guestbook_comment_contents 넣고 ,
+    //댓글 확인 버튼 클릭시 name에 guestbook_comment_contents 넣고 ,
     $(".gbbutton").on("click", function () {
         $(this).next().attr("name", "parent_seq");
         $(this).prev().find('input').attr("name", "guestbook_comment_contents");
         $("#form").submit();
     })
-
-
+    // $(".gbbutton").on("click", function () {
+    //     let seq = ${list.getGuestbook_seq()};
+    //     $(".gbbutton").on("click", function () {
+    //         $.ajax({
+    //             url: "/GuestbookComment/insert",
+    //             type: "post",
+    //             data: {"contents": $(this).prev().find('input').val()},
+    //             dataType: "json"
+    //         }).done(function (data) {
+    //             console.log("data")
+    //         })
+    //     })
+    // })
 </script>
 
 </html>

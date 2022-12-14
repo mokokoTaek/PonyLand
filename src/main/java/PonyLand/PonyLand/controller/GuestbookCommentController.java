@@ -34,5 +34,4 @@ public class GuestbookCommentController {
 
         return"redirect:/Guestbook/goGuestbook";
     }
-
 }

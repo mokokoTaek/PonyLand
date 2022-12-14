@@ -24,4 +24,3 @@
         update Album set Album_title=#{Album_title},Album_contents=#{Album_contents},Album_write_date=sysdate where Album_seq = #{Album_seq}
     </update>
 </mapper>
-

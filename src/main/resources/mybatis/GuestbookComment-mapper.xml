@@ -11,16 +11,9 @@
     </insert>
 
    <!--
-
        <select id="" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
-
        </select>
-
-
-
        <delete id="">
-
-
        </delete>-->
 
 </mapper>

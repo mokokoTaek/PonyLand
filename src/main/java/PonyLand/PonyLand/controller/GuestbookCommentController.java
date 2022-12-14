@@ -23,7 +23,7 @@ public class GuestbookCommentController {
         service.insert(dto);
         System.out.println(dto.getGuestbook_comment_contents());
         //return"redirect:/Guestbook/goGuestbook";
-        return"redirect:select";   /* 이게 select 한 다음 해야하는 코드*/
+        return"redirect:/Guestbook/goGuestbook";   /* 이게 select 한 다음 해야하는 코드*/
     }
 
     @RequestMapping("select")

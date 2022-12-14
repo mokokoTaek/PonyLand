@@ -18,6 +18,8 @@ public class GuestbookController {
     @Autowired
     private GuestbookService service;
 
+    @Autowired
+    private GuestbookCommentService service1;
 
 
     @GetMapping("insert")

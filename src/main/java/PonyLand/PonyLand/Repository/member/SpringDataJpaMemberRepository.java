@@ -26,5 +26,4 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<MemberDTO,I
     String getIdByRowNum(@Param("rn") int rn);
 
 
-
 }

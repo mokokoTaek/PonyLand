@@ -1,6 +1,9 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.AlbumCommentDTO;
 import PonyLand.PonyLand.dto.AlbumDTO;
+import PonyLand.PonyLand.dto.GuestbookDTO;
+import PonyLand.PonyLand.service.AlbumCommentService;
 import PonyLand.PonyLand.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,8 @@ public class AlbumController {
 
     @Autowired
     private AlbumService service;
+    @Autowired
+    private AlbumCommentService albumCommentService;
 
 //    @GetMapping("hello")
 //    public String hello() {
@@ -28,10 +33,10 @@ public class AlbumController {
 
     @RequestMapping("insert")
     public String insert(AlbumDTO dto) {
-        try{
+        try {
             service.insert(dto);
-            System.out.println(dto.getAlbum_contents()+":"+dto.getAlbum_title());
-        }catch(Exception e) {
+            System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
+        } catch (Exception e) {
             return "error";
         }
 
@@ -41,20 +46,38 @@ public class AlbumController {
     @RequestMapping("view")
     public String SelectAll(Model model) {
         List<AlbumDTO> list = service.selectAll();
+
+
         model.addAttribute("dto", list);
+
 
         return "album";
     }
+
+
+
     @RequestMapping("delete")
     public String delete(int Album_seq) {
         service.delete(Album_seq);
 
-        return "album";
+        return "redirect:toAlbumPage";
     }
-    @RequestMapping("update")
-    public String update(AlbumDTO dto) {
-        service.update(dto);
-        return "album";
 
+    @RequestMapping("update")
+    public String update(String Album_title, String Album_contents, int Album_seq, Model model) {
+        service.update(Album_title, Album_contents, Album_seq);
+//       수정.
+//        List<AlbumDTO> list= service.selectAll();
+//        model.addAttribute("date",list);
+        return "redirect:toAlbumPage";
+
+    }
+
+    @RequestMapping("toAlbumPage")
+    public String goGuestbook(Model model) {
+        List<AlbumDTO> list = service.selectAll();
+        model.addAttribute("dto", list);
+
+        return "album";
     }
 }

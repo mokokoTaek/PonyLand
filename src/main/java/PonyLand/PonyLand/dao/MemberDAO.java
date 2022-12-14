@@ -27,6 +27,7 @@ public class MemberDAO {
     }
 
 
+
     public String getIdByRowNum(int rn){
         return sdjr.getIdByRowNum(rn);
     }

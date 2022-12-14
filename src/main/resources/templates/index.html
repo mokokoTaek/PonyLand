@@ -34,7 +34,7 @@
         </a>
             <button class="ponyland">마구간</button>
         </a>
-            <button class="login" type="button" id="logout" onclick="areYouKakao();">로그아웃</button>
+            <button class="login" type="button" id="logout" onclick="logoutComplete();areYouKakao();">로그아웃</button>
     </div>
 </div>
 
@@ -66,7 +66,7 @@
             .done(function(resp){
                 if(resp=="kakao"){
                     kakaoLogout();
-                    location.href="/member/logout";
+
                 }else{
                     location.href="/member/logout";
                 }
@@ -87,7 +87,7 @@
             Kakao.API.request({
                 url: '/v1/user/unlink',
                 success: function (response) {
-                    alert("카카오 로그아웃!")
+                    location.href="/member/logout";
                 },
                 fail: function (error) {
                     console.log(error)
@@ -95,6 +95,10 @@
             })
             Kakao.Auth.setAccessToken(undefined)
         }
+    }
+
+    function logoutComplete(){
+        alert("로그아웃이 완료되었습니다.");
     }
 </script>
 

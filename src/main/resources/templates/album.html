@@ -70,7 +70,8 @@
                         <th th:text="${list.getAlbum_sysdate()}">시간</th>
                         <th>비밀</th>
                         <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a>></th>
-                        <button type="button" id = "modify"></button>
+                        <button type="button" id = "modifyBtn">수정</button>
+                        <button type="button" id="updateBtn">저장</button>
                         <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>>삭제</th>
 
                     </tr>
@@ -174,6 +175,14 @@
             $("#comment").on("click",function (){
                 $("#form").attr("action","/Comment/write");
                 $("#form").submit();
+            })
+            $("#modifyBtn").on("click", function() {
+                if (confirm("수정하시겠습니까?")) {
+                    $("#title").removeAttr("readonly");
+                    $("textarea").removeAttr("readonly")
+                    $("#updateBtn").css("display", "inline");
+                    $("#modifyBtn").css("display", "none");
+                }
             })
 
 

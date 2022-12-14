@@ -19,6 +19,7 @@ public class AlbumDTO {
     private String Album_oriname;
     private String Album_sysname;
     private Timestamp Album_sysdate;
+    private String Album_writer;
 
 
 

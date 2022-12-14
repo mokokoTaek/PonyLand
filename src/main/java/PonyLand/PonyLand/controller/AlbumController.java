@@ -54,6 +54,8 @@ public class AlbumController {
         return "album";
     }
 
+
+
     @RequestMapping("delete")
     public String delete(int Album_seq) {
         service.delete(Album_seq);
@@ -64,6 +66,9 @@ public class AlbumController {
     @RequestMapping("update")
     public String update(String Album_title, String Album_contents, int Album_seq, Model model) {
         service.update(Album_title, Album_contents, Album_seq);
+//       수정.
+//        List<AlbumDTO> list= service.selectAll();
+//        model.addAttribute("date",list);
         return "redirect:toAlbumPage";
 
     }

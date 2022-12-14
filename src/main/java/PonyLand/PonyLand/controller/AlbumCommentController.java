@@ -19,15 +19,15 @@ public class AlbumCommentController {
     @RequestMapping("write")
     public String write(AlbumCommentDTO dto) {
         service.insert(dto);
-        return "redirect:select";
-    }
-    @RequestMapping("select")
-    public String select(Model model, int Album_Comment_parent_seq) {
-
-        List<AlbumCommentDTO> list1 = service.selectComment(Album_Comment_parent_seq);
-        model.addAttribute("dto1",list1);
         return "album";
     }
+//    @RequestMapping("select")
+//    public String select(Model model, int Album_Comment_parent_seq) {
+//
+//        List<AlbumCommentDTO> list1 = service.selectComment(Album_Comment_parent_seq);
+//        model.addAttribute("dto1",list1);
+//        return "album";
+//    }
 
 
 

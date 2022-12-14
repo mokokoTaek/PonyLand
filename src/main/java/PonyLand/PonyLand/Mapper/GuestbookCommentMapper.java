@@ -3,6 +3,8 @@ package PonyLand.PonyLand.Mapper;
 import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface GuestbookCommentMapper {
 
@@ -10,4 +12,6 @@ public interface GuestbookCommentMapper {
 
 
     int delete(int guestbook_Comment_Seq);
+
+    List<GuestbookCommentDTO> select(int parent_seq);
 }

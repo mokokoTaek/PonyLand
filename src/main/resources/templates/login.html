@@ -35,14 +35,18 @@
 
 <!--네이버 로그인-->
 <script type="text/javascript">
-    var naver_id_login = new naver_id_login("4FNXn3NTIyg4Fd8TKvLF", "http://localhost/toMiniPage");
+    var naver_id_login = new naver_id_login("4FNXn3NTIyg4Fd8TKvLF", "http://127.0.0.1/");
     var state = naver_id_login.getUniqState();
     //naver_id_login.setButton("white", 2,40);
-    naver_id_login.setDomain("http://localhost/toLoginPage");
+    naver_id_login.setDomain("http://localhost/login");
     naver_id_login.setState(state);
     naver_id_login.setPopup();
     naver_id_login.init_naver_id_login();
 </script>
+
+
+
+
 
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -56,15 +60,15 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     data: {
-                        property_keys: ['kakao_account.email', 'kakao_account.gender'],
+                        property_keys: ['kakao_account.email', 'kakao_account.gender', 'kakao_account.name','kakao_account.profile'],
                     },
                     success: function (response) {
 
                         let kakao_account = response.kakao_account.email;
-                        console.log(kakao_account)
-                         location.href="/member/signinForKakao?email="+kakao_account+"";
-
-
+                        let kakao_name = response.kakao_account.profile.nickname;
+                        console.log(kakao_account);
+                        console.log(kakao_name);
+                        location.href="/member/signinForKakao?email="+kakao_account+"&name="+kakao_name+"";
                     },
                     fail: function (error) {
                         console.log(error)
@@ -83,7 +87,6 @@
             Kakao.API.request({
                 url: '/v1/user/unlink',
                 success: function (response) {
-                    alert("카카오 로그아웃이 완료되었습니다.")
                 },
                 fail: function (error) {
                     console.log(error)

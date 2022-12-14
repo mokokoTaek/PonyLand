@@ -5,6 +5,8 @@ import PonyLand.PonyLand.Repository.member.SpringDataJpaMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Member;
+
 @Repository
 public class MemberDAO {
 
@@ -27,7 +29,10 @@ public class MemberDAO {
     }
 
 
+
     public String getIdByRowNum(int rn){
         return sdjr.getIdByRowNum(rn);
     }
+
+    public MemberDTO findById(String id){return sdjr.findByMemberId(id);}
 }

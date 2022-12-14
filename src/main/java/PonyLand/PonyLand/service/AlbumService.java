@@ -23,7 +23,7 @@ public class AlbumService {
 
     public int delete(int Album_seq) { return dao.delete(Album_seq); }
 
-    public int update(AlbumDTO dto) {
-        return dao.update(dto);
+    public int update(String Album_title, String Album_contents ,int Album_seq) {
+        return dao.update(Album_title,Album_contents,Album_seq);
     }
 }

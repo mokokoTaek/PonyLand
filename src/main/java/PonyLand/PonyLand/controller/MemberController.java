@@ -1,21 +1,16 @@
 package PonyLand.PonyLand.controller;
 
-import PonyLand.PonyLand.dao.MemberDAO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.service.MemberService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -51,29 +46,43 @@ public class MemberController {
     public String login(MemberDTO dto, Model model) throws Exception{
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
+        System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", dto.getMemberId());
         System.out.println(dto.getMemberId());
         return "index";
     }
 
     @GetMapping ("logout")
-    public void logout() throws Exception{
-        session.invalidate();
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("<script>alert('로그아웃 되었습니다.'); location.href='/';</script>");
-        out.flush();
-        response.flushBuffer();
-        out.close();
+    public String logout() throws Exception{
+        service.logout();
+        return "index";
     }
 
     @RequestMapping("signinForKakao")
-    public String signinForKakao(String email,Model model){
+    public String signinForKakao(String name,String email,Model model){
 
-        MemberDTO dto = service.makeIdAndPwByEmail(email);
+        MemberDTO dto = service.makeIdAndPwByEmailForKakao(name,email);
         model.addAttribute("id",dto.getMemberId());
-        return "main";
+        return "index";
     }
+
+    @RequestMapping("areYouKakao")
+    @ResponseBody
+    public String areYouKakao(String id){
+        return service.findById(id).getMemberLoginType();
+    }
+
+
+    @RequestMapping("signinForNaver")
+    public String singForNaver(Model model, String name, String email){
+
+        MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
+       model.addAttribute("id",dto.getMemberId());
+
+
+        return "index";
+    }
+
 
 
 }

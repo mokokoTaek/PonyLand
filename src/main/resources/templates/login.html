@@ -60,13 +60,15 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     data: {
-                        property_keys: ['kakao_account.email', 'kakao_account.gender'],
+                        property_keys: ['kakao_account.email', 'kakao_account.gender', 'kakao_account.name','kakao_account.profile'],
                     },
                     success: function (response) {
 
                         let kakao_account = response.kakao_account.email;
-                        console.log(kakao_account)
-                         location.href="/member/signinForKakao?email="+kakao_account+"";
+                        let kakao_name = response.kakao_account.profile.nickname;
+                        console.log(kakao_account);
+                        console.log(kakao_name);
+                        location.href="/member/signinForKakao?email="+kakao_account+"&name="+kakao_name+"";
                     },
                     fail: function (error) {
                         console.log(error)

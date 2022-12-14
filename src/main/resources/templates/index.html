@@ -25,7 +25,7 @@
                 <span th:text="${id}"></span> 입장하기
             </button>
         </a>
-        <a th:href="@{/}">
+        <a th:href="@{/stable}">
             <button class="ponyland">마구간</button>
         </a>
         <a th:href="@{/member/logout}">
@@ -40,7 +40,9 @@
         <a th:href="@{/toMiniPage?(id=${id})}">
             <button class="ponyland" type="button">미니홈피</button>
         </a>
-        <a th:href="@{/}">
+
+<!--        <a th:href="@{/stable}">-->
+        <a href="stable">
             <button class="ponyland">마구간</button>
         </a>
         <a th:href="@{/login}">

@@ -104,10 +104,14 @@ button:hover {
 }
 
 .bg3{
+    display: flex;
     width: 388px;
     height: 730px;
     background: white;
     border-radius: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .bg4{
@@ -136,6 +140,52 @@ button:hover {
 }
 
 /*carrot--------------------------------------------------------------------------------------*/
+.shopbox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.shopimage{
+    background: transparent;
+    font-size: 35px;
+    color: #5a3d2b;
+    border: solid transparent;
+}
+
+.shopname{
+    display: flex;
+    font-size: 25px;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #F4A127;
+}
+/*carrot--------------------------------------------------------------------------------------*/
+.carrotbg3{
+    display: flex;
+    width: 388px;
+    height: 730px;
+    background: white;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 100px;
+}
+
+.balancebox{
+    margin-top: 50px;
+}
+
+.carrotboxtitle{
+    font-size: 70px;
+    color: #5a3d2b;
+}
+
 .carrotbox1{
     display: flex;
     flex-wrap: wrap;
@@ -150,10 +200,12 @@ button:hover {
     color: #5a3d2b;
     border: 2px solid #F4A127;
     border-radius: 8px;
+    overflow: hidden;
 }
 
 .carrotamount{
     display: flex;
+    font-size: 25px;
     height: 30%;
     align-items: center;
     justify-content: center;
@@ -164,9 +216,38 @@ button:hover {
     display: flex;
     background: #FFECB4;
     height: 70%;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
     align-items: center;
     justify-content: center;
+}
 
+.carrotprice2{
+    /*width: 100px;*/
+    /*height: 60px;*/
+    background: transparent;
+    font-size: 35px;
+    color: #5a3d2b;
+    border: solid transparent;
+}
+
+.coinbalance{
+    color: #5a3d2b;
+    font-size: 50px;
+}
+
+.coinprice{
+    color: #F4A127;
+    font-size: 40px;
+}
+
+.paybutton{
+    width: 250px;
+    height: 40px;
+    background: #FFECB4;
+    font-size: 25px;
+    color: #5a3d2b;
+    border-radius: 8px;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
 }

@@ -36,7 +36,6 @@ public class GuestbookCommentController {
         //System.out.println(list);
 
         String s = g.toJson(list);
-
         return s;
     }
 }

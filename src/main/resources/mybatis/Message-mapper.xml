@@ -10,7 +10,11 @@
     </insert>
 
     <select id="selectAll" resultType="PonyLand.PonyLand.dto.MessageDTO">
-        select * from message order by 1
+        select * from message where recv_nick = #{value}
+    </select>
+
+    <select id="selectBySeq" resultType="PonyLand.PonyLand.dto.MessageDTO">
+        select * from message where no = #{value}
     </select>
 </mapper>
 

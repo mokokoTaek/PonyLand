@@ -109,7 +109,7 @@
                         </div>
 
                             <button class="gbbutton" id = "comment">확인</button>
-                            <input type="hidden" th:value="${list.getAlbum_seq()}">
+                            <input type="hidden" th:value="${list.getAlbum_seq()}"  name="Album_Comment_parent_seq">
                     </div>
                 </div>
 
@@ -187,40 +187,40 @@
     //     }
     // })
     // 댓글 확인 버튼 클릭시 name에 Album_comment_contents 넣고 ,
+    // $(".gbbutton").on("click", function () {
+    //     $(this).next().attr("name", "Album_Comment_parent_seq");
+    //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
+    //     $("#form").submit();
+    // })
+
+
+
     $(".gbbutton").on("click", function () {
-        $(this).next().attr("name", "Album_Comment_parent_seq");
+
         $(this).prev().find('input').attr("name", "Album_Comment_contents");
-        $("#form").submit();
+        let Album_Comment_parent_seq = $(this).next().val();
+        let Album_Comment_contents = $(this).prev().find('input').val();
+
+        $.ajax({
+            url: "/Comment/write",
+            type: "post",
+            data: {"Album_Comment_parent_seq": Album_Comment_parent_seq ,
+                "Album_Comment_contents": Album_Comment_contents
+            }
+        }).done(function (data) {
+            let json = JSON.parse(data);
+
+            console.log(json[0].Album_Comment_parent_seq);
+
+
+
+        }).fail(function (data){
+            console.log("ㅋㅋ 뭘봐")
+        })
+
+
     })
 
-
-
-    // $(document).ready(function(){
-    //     $("#comment").on("click",function (){
-    //         let Album_Comment_contents= $("#Album_Comment_contents").val(); //입력한 댓글
-    //         if(Album_Comment_contents == null || Album_Comment_contents ==""){
-    //             alert("내용을 입력하세요");
-    //             return;
-    //         }
-    //         $.ajax({
-    //             type:"POST",
-    //             url:"/Comment/write",
-    //             data:{"Album_Comment_contents":Album_Comment_contents},
-    //             dataType:"json",
-    //             success:function (data) {
-    //                 if(data.result == "success"){
-    //                     $("#CommentList").removeClass(("d-none"));
-    //                     location.reload();
-    //                 }else {
-    //                     alert("쓰기 실패");
-    //                 }
-    //             },
-    //             error:function (){
-    //                 alert("쓰기 에러");
-    //             }
-    //         })
-    //     })
-    // })
 
 
 

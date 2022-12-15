@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class AlbumDTO {
 
-    private Integer Album_seq;
+    private int Album_seq;
     private String Album_title;
     private String Album_contents;
     private String Album_oriname;

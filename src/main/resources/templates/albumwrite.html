@@ -50,7 +50,7 @@
   }
 </style>
 <body>
-<form action = "/Album/insert" method = "post"  accept-charset="utf-8">
+<form action = "/Album/insert" method = "post"  accept-charset="utf-8" >
   <!--enctype="multipart/form-data"-->
   <div class=container>
     <div>자유게시판 글 작성하기</div>
@@ -63,7 +63,7 @@
       <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
       <input type="hidden" name="Album_writer" th:value="${sessionID}">
     </div>
-    <!--    <input type="file" name="files" multiple>-->
+        <input type="file" name="files" multiple>
     <div id="text">
 				<textarea placeholder="글 내용을 입력하세요." name="Album_contents"
                           style="width: 100%; height: 90%; resize: none;"></textarea>

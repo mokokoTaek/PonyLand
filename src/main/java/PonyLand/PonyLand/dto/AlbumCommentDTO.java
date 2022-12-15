@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class AlbumCommentDTO {
 
-    private Integer Album_Comment_seq;
+    private int Album_Comment_seq;
     private String Album_Comment_writer;
     private String Album_Comment_contents;
     private Timestamp Album_Comment_write_date;

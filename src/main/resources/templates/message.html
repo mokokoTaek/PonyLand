@@ -52,14 +52,20 @@
                 <form action="MessageServiceCon" method="post">
                     <h3> 쪽지 보내기 </h3>
                     <div class="field half first">
-                        <input type="text" id="fromName" placeholder="받는 사람" name="sendName"/>
+                        <div name="recv_nick" th:text="${id}"/>
+                        <label> 가</label>
+                    </div>
+
+                    <div class="field half first">
+                        <input type="text" id="fromName" placeholder="받는 사람" name="send_nick"/>
                         <label>에게</label>
                     </div>
+
 
                     <br>
                     <div class="field">
                         <label for="message">내용</label>
-                        <textarea id="message" rows="6" name="message"></textarea></div>
+                        <textarea id="message" rows="6" name="content"></textarea></div>
                     <ul class="actions">
                        <input type="submit" value="전송" class="special"/>
                     </ul>

@@ -14,8 +14,6 @@
     </div>
 
     <div class="bg1">
-
-
         <div class="bg2">
             <div th:if="${id} != null">
                 <div class="profile0" th:text="${id}">님의 마구간</div>
@@ -88,12 +86,10 @@
                                     <!--                                <div class = "post_seq"  th:text="${list.Album_seq}" ></div>-->
                                     <div class="post_title" id="Album_contents" th:text="${list.Album_contents}"
                                          readonly>
-
                                     </div>
                                     <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="gbcmtinput" id=CommentList>
@@ -109,12 +105,8 @@
                 </div>
             </div>
         </form>
-
     </div>
 </div>
-</tr>
-
-
 <div class="side">
     <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
@@ -124,7 +116,6 @@
     </a>
     <button class="btnmain1">사진첩</button>
     <button class="btnmain2">다이어리</button>
-</div>
 </div>
 </body>
 <script>

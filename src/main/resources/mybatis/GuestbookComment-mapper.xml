@@ -13,7 +13,7 @@
 
 
        <select id="select" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
-           select * from guestbook_comment where guestbook_comment_seq = #{value}
+           select * from guestbook_comment where guestbook_comment_seq = #{parent_seq}
        </select>
 
 

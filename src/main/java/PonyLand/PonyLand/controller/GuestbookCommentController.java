@@ -22,7 +22,7 @@ public class GuestbookCommentController {
     public String insert(GuestbookCommentDTO dto)throws Exception{
         service.insert(dto);
         System.out.println(dto.getGuestbook_comment_contents());
-        return"redirect:/Guestbook/goGuestbook";
+        return"redirect:select?parent_seq="+ dto.getParent_seq()+"";
        /* return"redirect:select";   *//* 이게 select 한 다음 해야하는 코드*/
     }
 
@@ -31,7 +31,7 @@ public class GuestbookCommentController {
         List<GuestbookCommentDTO> list = service.select(parent_seq);
         model.addAttribute("dto1",list);
 
-        return"redirect:/Guestbook/goGuestbook";
+        return"redirect:/Guestbook/goGuestbook?parent_seq="+parent_seq+"";
     }
 
 

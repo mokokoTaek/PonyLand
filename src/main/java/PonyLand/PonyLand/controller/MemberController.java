@@ -66,11 +66,10 @@ public class MemberController {
 
 
     @RequestMapping("signinForNaver")
-    public String singForNaver(Model model, String name, String email){
+    public String singinForNaver(Model model, String name, String email){
 
         MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
        model.addAttribute("id",dto.getMemberId());
-
 
         return "index";
     }

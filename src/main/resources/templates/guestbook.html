@@ -77,6 +77,7 @@
                             <th>비밀로 하기</th>
                             <th>
                             <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
+                            <!--<th><a th:href="@{/GuestbookComment/select?(parent_seq=${list.getGuestbook_seq})}" id="comment">댓글 보기</a>-->
                             </th>
                             <!-- <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
                              </button>-->
@@ -104,7 +105,7 @@
                         <div class="gbcmt">
                             <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
                         </div>
-                        <button class="gbbutton">확인</button>
+                        <button class="gbbutton" type="button">확인</button>
                         <input type="hidden" th:value="${list.getGuestbook_seq()}">
                     </div>
                 </div>
@@ -144,17 +145,44 @@
 
 <script>
 
-    $("#delete").on("click", function () {
-        let seq = $(this).attr("seq");
-        location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
-    })
+    //$("#delete").on("click", function () {
+    //   let seq = $(this).attr("seq");
+    //    location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
+    //})
 
     // 댓글 확인 버튼 클릭시 name에 guestbook_comment_contents 넣고 ,
-    $(".gbbutton").on("click", function () {
+ /*   $(".gbbutton").on("click", function () {
         $(this).next().attr("name", "parent_seq");
         $(this).prev().find('input').attr("name", "guestbook_comment_contents");
         $("#form").submit();
+    })*/
+
+    $(".gbbutton").on("click", function () {
+
+        $(this).prev().find('input').attr("name", "guestbook_comment_contents");
+        let seq = $(this).next().val();
+        let content = $(this).prev().find('input').val();
+
+        $.ajax({
+            url: "/GuestbookComment/select",
+            type: "post",
+            data: {"seq": seq ,
+                "content": content}
+        }).done(function (data) {
+            let json = JSON.parse(data);
+            console.log(json[0].parent_seq);
+
+
+
+        }).fail(function (data){
+            console.log("ㅋㅋ 뭘봐")
+        })
+
+
     })
+
+
+
 
 
 </script>

@@ -14,6 +14,41 @@
         }
     </style>
 
+<script>
+
+    $(function() {
+        // 방명록 댓글 : List와 insert 기능
+        $(".gbbutton").on("click", function () {
+
+            $(this).prev().find('input').attr("name", "guestbook_comment_contents");
+
+            let seq = $(this).next().val();
+            let content = $(this).prev().find('input').val();
+
+            $.ajax({
+                url: "/GuestbookComment/commentFrm",
+                type: "post",
+                data: {"seq": seq , "content": content}
+            }).done(function (data) {
+                let target = JSON.parse(data.list);
+                console.log(target[0].parent_seq);
+
+                for(let i=0; i<target.length; i++){
+                    let div = $("<div>");
+
+                    let span = $("<span>");
+                    span.append(target[i].guestbook_writer)
+                    let span = $("<span>");
+                    span.append(target[i].guestbook_contents)
+                    let span = $("<span>");
+                }
+
+            }).fail(function (data){
+                console.log("ㅋㅋ 뭘봐")
+            })
+        })
+    })
+</script>
 
 </head>
 
@@ -21,123 +56,131 @@
 <body>
 <div class="container">
     <div class="top">
-        <div class="">Today : 245</div>
-        <div class="">뮤직플레이어 부분</div>
+        <div class="today">Today : 245</div>
+        <div class="music">뮤직플레이어 부분</div>
     </div>
 
     <div class="bg1">
 
+    </div>
+    <div class="bg2">
 
-        <div class="bg2">
-            <div th:if="${id} != null">
-                <div class="profile0" th:text="${id}">님의 마구간</div>
-            </div>
-
-            <div class="profile1">
-                테스트입니다.
-            </div>
-
-            <div class="profile2">
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-            </div>
-
-            <div class="profile3">
-                <div>
-                    <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
-                </div>
-                <div>
-                    <a th:href="@{/family/areTheyFamily}">
-                        <button class="profilebtn" type="button">일촌확인</button>
-                    </a>
-                </div>
-                <div>
-                    <a th:href="@{/member/wave}">
-                        <button class="profilebtn" type="button" id="wave">파도타기</button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="profile4">
-                <div class="profile4-1">
-                    History
-                </div>
-                <div class="profile4-2">
-                    <div>윤성민(개굴개굴)</div>
-                    <div>임근혁(개굴개굴)</div>
-                    <div>이진혁(개굴개굴)</div>
-                </div>
-            </div>
+        <div th:if="${id} != null">
+            <div class="profile0" th:text="${id}">님의 마구간</div>
         </div>
-        <div class="bg3">
-            <div class="bg3in">
-                <form action="/GuestbookComment/insert" id="form">
-                    <div th:each="list:${dto}">
-                        <div class="gbtitle">
-                            <tr>
-                                <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
-                                <th th:text="${list.getGuestbook_writer()}"></th>
-                                <th th:text="${list.getGuestbook_write_date()}"></th>
-                                <th>비밀로 하기</th>
-                                <th>
-                                <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
-                                </th>
-                                <!-- <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
-                                 </button>-->
-                                </th>
-                            </tr>
-                        </div>
-                        <div class="gbcontent">
-                            <div class="gbprofile">
-                                프로필이미지
-                            </div>
-                            <div class="gbtext">
-                                <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
-                            </div>
-                        </div>
-                        <div th:each="list1:${dto1}">
-                            <div>
-                                <tr>
-                                    <th th:text="${list1.getGusetbook_comment_writer()}"></th>
-                                    <th th:text="${list1.getGuestbook_comment_write_date()}"></th>
-                                    <th th:text="${list1.getGuestbook_comment_contents()}"></th>
-                                </tr>
-                            </div>
-                        </div>
-                        <div class="gbcmtinput">
-                            <div class="gbcmt">
-                                <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
-                            </div>
-                            <button class="gbbutton">확인</button>
-                            <input type="hidden" th:value="${list.getGuestbook_seq()}">
-                        </div>
-                    </div>
-                </form>
-                <div class="gbcmtview">
-                    <tr>
-                        <th>이름</th>
-                        <th>내용</th>
-                        <th>삭제</th>
-                    </tr>
-                </div>
-            </div>
-            <a th:href="@{/Guestbook/gowrite}">
-                <button class="gowrite">글쓰기</button>
+
+        <div class="profile1">
+            테스트입니다.
+        </div>
+
+        <div class="profile2">
+            상태메시지<br>
+            상태메시지<br>
+            상태메시지<br>
+        </div>
+
+        <div class="profile3">
+            <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+            <a th:href="@{/family/areTheyFamily}">
+                <button class="profilebtn" type="button">일촌확인</button>
+            </a>
+            <a th:href="@{/member/wave}">
+                <button class="profilebtn" type="button" id="wave">파도타기</button>
             </a>
         </div>
-    </div>
 
-</div>
-<div class="side">
-    <a th:href="@{/toMiniPage(id = ${id})}">
-        <button class="btnmain2">메인</button>
-    </a>
-    <button class="btnmain1">방명록</button>
-    <a th:href="@{/toAlbumPage}">
-        <button class="btnmain2">사진첩</button>
-    </a>
-    <button class="btnmain2">다이어리</button>
+        <div class="profile4">
+            <div class="profile4-1">
+                History
+            </div>
+            <div class="profile4-2">
+                <th>윤성민(개굴개굴)<br>
+                <th>임근혁(시카고)<br>
+                <th>이진혁(물리)
+            </div>
+        </div>
+    </div>
+    <div class="bg3">
+        <div class="bg3in">
+
+            <form action="" id="form">
+                <div th:each="list:${dto}">
+                    <div class="gbtitle">
+                        <tr>
+                            <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
+                            <th th:text="${list.getGuestbook_writer()}"></th>
+                            <th th:text="${list.getGuestbook_write_date()}"></th>
+                            <th>비밀로 하기</th>
+                            <th>
+                            <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
+                            <th><a th:href="@{/GuestbookComment/select?(parent_seq=${list.getGuestbook_seq})}">댓글보기</a>
+                            </th>
+                            <!-- <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
+                             </button>-->
+                            </th>
+                        </tr>
+                    </div>
+                    <div class="gbcontent">
+                        <div class="gbprofile">
+                            프로필이미지
+                        </div>
+                        <div class="gbtext">
+                            <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
+                        </div>
+                    </div>
+                    <div>
+                        댓글영역??
+                    </div>
+<!--                    <div th:each="list1:${dto1}">-->
+<!--                        <div>-->
+<!--                            <tr>-->
+<!--                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>-->
+<!--                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>-->
+<!--                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>-->
+<!--                            </tr>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+                    <div class="gbcmtinput">
+                        <div class="gbcmt">
+                            <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
+                        </div>
+                        <button class="gbbutton" type="button">확인</button>
+                        <input type="hidden" name="parent_seq" th:value="${list.getGuestbook_seq()}">
+
+                    </div>
+                </div>
+            </form>
+            <div class="gbcmtview">
+                <tr>
+                    <th>이름</th>
+                    <th>내용</th>
+                    <th>삭제</th>
+                </tr>
+            </div>
+        </div>
+        <a th:href="@{/Guestbook/gowrite}">
+            <button class="gowrite">글쓰기</button>
+        </a>
+    </div>
+    <div class="side">
+        <div class="side1">
+            <a th:href="@{/toMiniPage(id = ${id})}">
+                <button class="btnmain2">메인</button>
+            </a>
+        </div>
+        <div class="side2">
+            <button class="btnmain1">방명록</button>
+        </div>
+        <div class="side3">
+            <a th:href="@{/toAlbumPage}">
+                <button class="btnmain2">사진첩</button>
+            </a>
+        </div>
+        <div class="side4">
+            <button class="btnmain2">다이어리</button>
+        </div>
+    </div>
 </div>
 </body>
 
@@ -148,12 +191,6 @@
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
     })
 
-    // 댓글 확인 버튼 클릭시 name에 guestbook_comment_contents 넣고 ,
-    $(".gbbutton").on("click", function () {
-        $(this).next().attr("name", "parent_seq");
-        $(this).prev().find('input').attr("name", "guestbook_comment_contents");
-        $("#form").submit();
-    })
 
 
 </script>

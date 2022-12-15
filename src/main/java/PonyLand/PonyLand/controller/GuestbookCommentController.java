@@ -21,20 +21,19 @@ public class GuestbookCommentController {
     private GuestbookCommentService service;
 
     @Autowired
-    private HttpSession session;
-
-    @Autowired
     private Gson g;
 
     @ResponseBody
     @RequestMapping("commentFrm")
     public String commentFrm(String seq, String content) { //String 형이야
         GuestbookCommentDTO dto = new GuestbookCommentDTO();
-        dto.setGusetbook_comment_seq(Integer.parseInt(seq));
+        dto.setParent_seq(Integer.parseInt(seq));
         dto.setGuestbook_comment_contents(content);
         service.insert(dto);
 
         List<GuestbookCommentDTO> list = service.select(Integer.parseInt(seq));
+
+        //System.out.println(list);
 
         String s = g.toJson(list);
 

@@ -28,4 +28,3 @@
 <!--        select * from (select Album.*, row_number() over(order by seq desc) as rnum from Album) where rnum between #{start} and #{end}-->
 <!--    </select>-->
 </mapper>
-

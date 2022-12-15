@@ -61,7 +61,7 @@ public class MemberService {
 
         int index= email.indexOf("@");
 
-        String newId = email.substring(0,index);
+        String newId = "[K]"+email.substring(0,index);
 
         UUID uuid = UUID.randomUUID();
 
@@ -85,7 +85,7 @@ public class MemberService {
 
         int index= email.indexOf("@");
 
-        String newId = email.substring(0,index);
+        String newId = "[N]"+email.substring(0,index);
 
         UUID uuid = UUID.randomUUID();
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <meta charset="UTF-8">
@@ -7,9 +7,7 @@
     <title>Album</title>
     <style>
 
-        .bg3 {
-            overflow: scroll
-        }
+        .bg3{overflow: scroll}
     </style>
 </head>
 <body>
@@ -24,7 +22,7 @@
     </div>
     <div class="bg2">
 
-        <div th:if="${id} != null">
+        <div th:if="${id} != null" >
             <div class="profile0" th:text="${id}">님의 마구간</div>
         </div>
 
@@ -66,8 +64,8 @@
                     <div class="gbtitle">
                         <tr>
 
-                            <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
-                            <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
+                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>
+                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>
                             <th th:text="${list.Album_seq}">글번호</th>
                             <th th:text="${list.getAlbum_sysdate()}">시간</th>
                             <th>비밀</th>
@@ -86,41 +84,42 @@
                     </div>
 
                     <div class="alcontent">
-                        <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
-                        <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
-                        <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
-                        <div class="row4">
-                            <div class="post">
-                                <!--                                <div class = "post_seq"  th:text="${list.Album_seq}" ></div>-->
-                                <div class="post_title" id="Album_contents" th:text="${list.Album_contents}" readonly>
+    <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
+    <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
+    <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
+                            <div class="row4">
+                                <div class="post">
+    <!--                                <div class = "post_seq"  th:text="${list.Album_seq}" ></div>-->
+                                    <div class="post_title" id = "Album_contents" th:text="${list.Album_contents}" readonly >
 
+                                    </div>
+    <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
                                 </div>
-                                <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
                             </div>
-                        </div>
 
                     </div>
 
-                    <div class="gbcmtinput" id=CommentList>
+                    <div class="gbcmtinput" id = CommentList>
                         <div class="gbcmt">
-                            <!--                       <tr th:each="list1:${dto1}">-->
+    <!--                       <tr th:each="list1:${dto1}">-->
                             <input type="text" id="Album_Comment_contents">
                         </div>
 
-                        <button class="gbbutton" id="comment">확인</button>
-                        <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
+                            <button class="gbbutton" id = "comment">확인</button>
+                            <input type="hidden" th:value="${list.Album_seq}"  name="Album_Comment_parent_seq" />
                     </div>
                 </div>
+
 
 
                 <div class="gbcmtview">
 
                     <tr>
                     <tr>
-                        <th>글번호</th>
+                    <th>글번호</th>
 
-                        <th>이름</th>
-                        <th>내용</th>
+                        <th >이름</th>
+                        <th >내용</th>
                         <th>삭제</th>
                     </tr>
 
@@ -128,34 +127,34 @@
             </div>
 
         </div>
-</div>
-</form>
+     </div>
+    </form>
 </tr>
 
 
-<div class="side">
-    <div class="side1">
-        <a th:href="@{/toMiniPage(id = ${id})}">
+    <div class="side">
+        <div class="side1">
+            <a th:href="@{/toMiniPage(id = ${id})}">
             <button class="btnmain2">메인</button>
-        </a>
-    </div>
-    <div class="side2">
-        <a th:href="@{/Guestbook/goGuestbook}">
-            <button class="btnmain2">방명록</button>
-        </a>
-    </div>
-    <div class="side3">
-        <button class="btnmain1">사진첩</button>
-    </div>
-    <div class="side4">
-        <button class="btnmain2">다이어리</button>
-    </div>
-    <div>
-        <button id="write">글쓰기</button>
-        <div>
+            </a>
         </div>
-    </div>
-    <div>
+        <div class="side2">
+            <a th:href="@{/Guestbook/goGuestbook}">
+            <button class="btnmain2">방명록</button>
+            </a>
+        </div>
+        <div class="side3">
+            <button class="btnmain1">사진첩</button>
+        </div>
+        <div class="side4">
+            <button class="btnmain2">다이어리</button>
+        </div>
+        <div>
+            <button id="write">글쓰기</button>
+            <div>
+            </div>
+        </div>
+<div>
 </body>
 <script>
     $("#write").on("click", function () {
@@ -172,8 +171,8 @@
     //     }
     // })
 
-    $("#comment").on("click", function () {
-        $("#form").attr("action", "/Comment/write");
+    $("#comment").on("click",function (){
+        $("#form").attr("action","/Comment/write");
         $("#form").submit();
     })
     // $("#modifyBtn").on("click", function() {
@@ -192,6 +191,7 @@
     // })
 
 
+
     $(".gbbutton").on("click", function () {
 
         $(this).prev().find('input').attr("name", "Album_Comment_contents");
@@ -201,27 +201,27 @@
         $.ajax({
             url: "/Comment/write",
             type: "post",
-            data: {
-                "Album_Comment_parent_seq": Album_Comment_parent_seq,
-                "Album_Comment_contents": Album_Comment_contents
-            }
+            data: {"Album_Comment_parent_seq": Album_Comment_parent_seq ,
+                "Album_Comment_contents": Album_Comment_contents}
         }).done(function (data) {
-            let json = JSON.parse(data.list);
-
-            for (let i = 0; i < json.length; i++){
-
-
-
-            }
+            let json = JSON.parse(data);
             console.log(json[0].parent_seq);
 
 
-        }).fail(function (data) {
+
+
+
+        }).fail(function (data){
             console.log("ㅋㅋ 뭘봐")
         })
 
 
     })
+
+
+
+
+
 
 
 </script>

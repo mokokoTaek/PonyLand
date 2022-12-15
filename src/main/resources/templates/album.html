@@ -1,160 +1,122 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Album</title>
-    <style>
-
-        .bg3{overflow: scroll}
-    </style>
 </head>
 <body>
 <div class="container">
     <div class="top">
-        <div class="today">Today : 245</div>
-        <div class="music">뮤직플레이어 부분</div>
+        <div class="">Today : 245</div>
+        <div class="">뮤직플레이어 부분</div>
     </div>
 
     <div class="bg1">
-
-    </div>
-    <div class="bg2">
-
-        <div th:if="${id} != null" >
-            <div class="profile0" th:text="${id}">님의 마구간</div>
-        </div>
-
-        <div class="profile1">
-            테스트입니다.
-        </div>
-
-        <div class="profile2">
-            상태메시지<br>
-            상태메시지<br>
-            상태메시지<br>
-        </div>
-
-        <div class="profile3">
-            <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
-            <a th:href="@{/family/areTheyFamily}">
-                <button class="profilebtn" type="button">일촌확인</button>
-            </a>
-            <a th:href="@{/member/wave}">
-                <button class="profilebtn" type="button" id="wave">파도타기</button>
-            </a>
-        </div>
-
-        <div class="profile4">
-            <div class="profile4-1">
-                History
+        <div class="bg2">
+            <div th:if="${id} != null">
+                <div class="profile0" th:text="${id}">님의 마구간</div>
             </div>
-            <div class="profile4-2">
-                <th>윤성민(개굴개굴)<br>
-                <th>임근혁(시카고)<br>
-                <th>이진혁(물리)
+
+            <div class="profile1">
+                테스트입니다.
+            </div>
+
+            <div class="profile2">
+                <div>상태메시지</div>
+                <div>상태메시지</div>
+                <div>상태메시지</div>
+            </div>
+
+            <div class="profile3">
+                <div>
+                    <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+                </div>
+                <div>
+                    <a th:href="@{/family/areTheyFamily}">
+                        <button class="profilebtn" type="button">일촌확인</button>
+                    </a>
+                </div>
+                <div>
+                    <a th:href="@{/member/wave}">
+                        <button class="profilebtn" type="button" id="wave">파도타기</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="profile4">
+                <div class="profile4-1">
+                    History
+                </div>
+                <div class="profile4-2">
+                    <div>윤성민(개굴개굴)</div>
+                    <div>임근혁(개굴개굴)</div>
+                    <div>이진혁(개굴개굴)</div>
+                </div>
             </div>
         </div>
-    </div>
-    <form id="form">
-        <div class="bg3">
-            <div class="bg3in">
-                <div th:each="list:${dto}">
-                    <div class="gbtitle">
-                        <tr>
-
-                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>
-                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>
-                            <th th:text="${list.Album_seq}">글번호</th>
-                            <th th:text="${list.getAlbum_sysdate()}">시간</th>
-                            <th>비밀</th>
-                            <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a>></th>
-
-                            <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>>삭제</th>
-
-                        </tr>
-                    </div>
-                    <div class="alcontent">
-                        <div class="alpicture">
+        <form id="form">
+            <div class="albg3">
+                <div class="bg3in">
+                    <div th:each="list:${dto}">
+                        <div class="gbtitle">
+                            <tr>
+                                <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
+                                <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
+                                <th th:text="${list.Album_seq}">글번호</th>
+                                <th th:text="${list.getAlbum_sysdate()}">시간</th>
+                                <th>비밀</th>
+                                <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th>
+                                <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th>
+                                <button id="write" class="alwritebtn">글쓰기</button>
+                            </tr>
+                        </div>
+                        <div class="alpic">
                             사진
                         </div>
 
-
-                    </div>
-
-                    <div class="alcontent">
-    <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
-    <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
-    <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
+                        <div class="alcontext">
+                            글
+                            <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
+                            <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
+                            <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
                             <div class="row4">
                                 <div class="post">
-    <!--                                <div class = "post_seq"  th:text="${list.Album_seq}" ></div>-->
-                                    <div class="post_title" id = "Album_contents" th:text="${list.Album_contents}" readonly >
-
+                                    <!--                                <div class = "post_seq"  th:text="${list.Album_seq}" ></div>-->
+                                    <div class="post_title" id="Album_contents" th:text="${list.Album_contents}"
+                                         readonly>
                                     </div>
-    <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
+                                    <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
                                 </div>
                             </div>
-
-                    </div>
-
-                    <div class="gbcmtinput" id = CommentList>
-                        <div class="gbcmt">
-    <!--                       <tr th:each="list1:${dto1}">-->
-                            <input type="text" id="Album_Comment_contents">
                         </div>
 
-                            <button class="gbbutton" id = "comment">확인</button>
-                            <input type="hidden" th:value="${list.Album_seq}" />
+                        <div class="gbcmtinput" id=CommentList>
+                            <div class="gbcmt">
+                                <!--                       <tr th:each="list1:${dto1}">-->
+                                <input class="gbcmt" type="text" id="Album_Comment_contents">
+                            </div>
+
+                            <button class="gbbutton" id="comment">확인</button>
+                            <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
+                        </div>
                     </div>
                 </div>
-
-
-
-                <div class="gbcmtview">
-
-                    <tr>
-                    <tr>
-                    <th>글번호</th>
-
-                        <th >이름</th>
-                        <th >내용</th>
-                        <th>삭제</th>
-                    </tr>
-
-                </div>
             </div>
-
-        </div>
-     </div>
-    </form>
-</tr>
-
-
-    <div class="side">
-        <div class="side1">
-            <a th:href="@{/toMiniPage(id = ${id})}">
-            <button class="btnmain2">메인</button>
-            </a>
-        </div>
-        <div class="side2">
-            <a th:href="@{/Guestbook/goGuestbook}">
-            <button class="btnmain2">방명록</button>
-            </a>
-        </div>
-        <div class="side3">
-            <button class="btnmain1">사진첩</button>
-        </div>
-        <div class="side4">
-            <button class="btnmain2">다이어리</button>
-        </div>
-        <div>
-            <button id="write">글쓰기</button>
-            <div>
-            </div>
-        </div>
-<div>
+        </form>
+    </div>
+</div>
+<div class="side">
+    <a th:href="@{/toMiniPage(id = ${id})}">
+        <button class="btnmain2">메인</button>
+    </a>
+    <a th:href="@{/Guestbook/goGuestbook}">
+        <button class="btnmain2">방명록</button>
+    </a>
+    <button class="btnmain1">사진첩</button>
+    <button class="btnmain2">다이어리</button>
+</div>
 </body>
 <script>
     $("#write").on("click", function () {
@@ -171,8 +133,8 @@
     //     }
     // })
 
-    $("#comment").on("click",function (){
-        $("#form").attr("action","/Comment/write");
+    $("#comment").on("click", function () {
+        $("#form").attr("action", "/Comment/write");
         $("#form").submit();
     })
     // $("#modifyBtn").on("click", function() {
@@ -184,44 +146,37 @@
     //     }
     // })
     // 댓글 확인 버튼 클릭시 name에 Album_comment_contents 넣고 ,
+    // $(".gbbutton").on("click", function () {
+    //     $(this).next().attr("name", "Album_Comment_parent_seq");
+    //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
+    //     $("#form").submit();
+    // })
+
+
     $(".gbbutton").on("click", function () {
-        $(this).next().attr("name", "Album_Comment_parent_seq");
+
         $(this).prev().find('input').attr("name", "Album_Comment_contents");
-        $("#form").submit();
-    })
+        let Album_Comment_parent_seq = $(this).next().val();
+        let Album_Comment_contents = $(this).prev().find('input').val();
 
-
-
-    $(document).ready(function(){
-        $("#comment").on("click",function (){
-            let Album_Comment_contents= $("#Album_Comment_contents").val(); //입력한 댓글
-            if(Album_Comment_contents == null || Album_Comment_contents ==""){
-                alert("내용을 입력하세요");
-                return;
+        $.ajax({
+            url: "/Comment/write",
+            type: "post",
+            data: {
+                "Album_Comment_parent_seq": Album_Comment_parent_seq,
+                "Album_Comment_contents": Album_Comment_contents
             }
-            $.ajax({
-                type:"POST",
-                url:"/Album/view",
-                data:{"Album_Comment_contents":Album_Comment_contents},
-                success:function (data) {
-                    if(data.result == "success"){
-                        $("#CommentList").removeClass(("d-none"));
-                        location.reload();
-                    }else {
-                        alert("쓰기 실패");
-                    }
-                },
-                error:function (){
-                    alert("쓰기 에러");
-                }
-            })
+        }).done(function (data) {
+            let json = JSON.parse(data);
+            console.log(json[0].parent_seq);
+
+
+        }).fail(function (data) {
+            console.log("ㅋㅋ 뭘봐")
         })
+
+
     })
-
-
-
-
-
 
 
 </script>

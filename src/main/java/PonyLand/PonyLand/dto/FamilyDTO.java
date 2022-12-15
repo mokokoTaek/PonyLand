@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
+@DynamicUpdate
 @Setter
 @Getter
 @NoArgsConstructor
@@ -34,4 +36,19 @@ public class FamilyDTO {
 
     @Column(name="family_proposed_id")
     private String familyProposedId;
+
+    @Column(name="family_me")
+    private String familyMe;
+
+    @Column(name = "family_other")
+    private String familyOther;
+
+    @Column(name="family_status")
+    private int familyStatus;
+
+    @Column(name = "family_proposer_name")
+    private String familyProposerName;
+
+    @Column(name = "family_proposed_name")
+    private String familyProposedName;
 }

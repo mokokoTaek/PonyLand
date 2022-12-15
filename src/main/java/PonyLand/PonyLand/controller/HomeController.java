@@ -46,4 +46,7 @@ public class HomeController {
 
     @GetMapping("/toFamilyOpen")
     public String toFamilyOpen(){return "familyOpen";}
+
+    @GetMapping("/toCheckNewFamilyOpen")
+    public String toCheckNewFamilyOpen(){return "checkNewFamilyOpen";}
 }

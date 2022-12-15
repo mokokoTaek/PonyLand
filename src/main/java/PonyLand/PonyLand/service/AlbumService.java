@@ -26,4 +26,5 @@ public class AlbumService {
     public int update(String Album_title, String Album_contents ,int Album_seq) {
         return dao.update(Album_title,Album_contents,Album_seq);
     }
+
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Main</title>
+  <link rel="stylesheet" href="../static/style.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+</head>
+<body>
+<div class="bg3">
+  <div class="bg3in">
+
+      <div th:each="list:${list}">
+
+          <tr>
+            <input type="hidden" class="hiddenSeq" th:value="${list.family_seq}">
+            <th th:text="|${list.familyProposerName} 님을|"></th>
+            <th th:text="|${list.familyProposedName} 님의|"></th>
+            <th th:text="|${list.familyMe} 로 |"></th> <br>
+              <th th:text="|${list.familyProposedName} 님을|"></th>
+              <th th:text="|${list.familyProposerName} 님의|"></th>
+            <th th:text="|${list.familyOther} 로 |"></th> <br><br>
+              일촌 신청합니다! <br><br>
+
+              <button type="button">수락</button>
+              <button type="button">거절</button>
+              <br><br>
+
+
+          </tr>
+
+        </div>
+
+</div>
+</div>
+</body>
+</html>

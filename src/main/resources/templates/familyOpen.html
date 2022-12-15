@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link rel="stylesheet" href="../static/style.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+</head>
+<body>
+    <input type="text" id="me" placeholder="내가 상대방을">
+    <input type="text" id="other" placeholder="상대방이 나를">
+    <button type="button" id="goFamily">일촌 신청</button>
+
+    <script th:inline="javascript">
+
+    $("#goFamily").click(function(){
+        let me = $("#me").val();
+        let other = $("#other").val();
+
+        let familyProposerId = opener.$("#hiddenProposer").val();
+        let familyProposedId = opener.$("#hiddenProposed").val();
+
+        console.log(me);
+        console.log(other);
+        console.log(familyProposerId);
+        console.log(familyProposedId);
+        //(opener.location).attr("href","javascript:getFamily();")
+
+        $.ajax({
+            url:"/family/getFamily",
+            data:{"familyProposerId":familyProposerId,
+                "familyProposedId":familyProposedId,
+                "me":me,
+                "other":other},
+            type:"post"
+        }).done(function(resp){
+                if(resp=="2"){
+                    alert("일촌 신청이 완료되었습니다.")
+
+                }else if(resp=="1"){
+                    alert("이미 일촌 관계입니다.");
+
+                }else{
+                    alert("상대방이 아직 일촌 신청을 수락하지 않았습니다.")
+                }
+            window.close();
+
+            })
+            .fail(function(){
+                console.log("error!");
+            });
+    })
+
+
+    function getFamily(){
+
+
+        }
+
+</script>
+</body>
+</html>

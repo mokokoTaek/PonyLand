@@ -120,7 +120,7 @@
                     <div class="gbcmtview">
 
                         <tr>
-                        <tr>
+                        <tr class = "abc">
                             <th>글번호</th>
 
                             <th>이름</th>
@@ -130,9 +130,10 @@
 
                     </div>
                 </div>
-                <button id="write">글쓰기</button>
+
             </div>
         </form>
+        <button id="write">글쓰기</button>
 
     </div>
 </div>
@@ -192,6 +193,8 @@
         let Album_Comment_parent_seq = $(this).next().val();
         let Album_Comment_contents = $(this).prev().find('input').val();
 
+
+
         $.ajax({
             url: "/Comment/write",
             type: "post",
@@ -200,8 +203,28 @@
                 "Album_Comment_contents": Album_Comment_contents
             }
         }).done(function (data) {
-            let json = JSON.parse(data);
-            console.log(json[0].parent_seq);
+            let json = JSON.parse(data.list);
+            for (let i = 0; i < json.length; i++) {
+
+                let tr = $("<tr>");
+
+                let tdAlbum_Comment_seq = $("<td>");
+                tdAlbum_Comment_seq.append(i+1);
+
+                let tdAlbum_Comment_contents = $("<td>");
+                tdAlbum_Comment_contents.append(i+1);
+
+
+                tr.append(tdAlbum_Comment_seq);
+                tr.append(tdAlbum_Comment_contents);
+
+               $(".abc").append(tr);
+
+
+
+            }
+
+
 
 
         }).fail(function (data) {

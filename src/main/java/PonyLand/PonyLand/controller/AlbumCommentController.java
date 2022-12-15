@@ -35,7 +35,7 @@ public class AlbumCommentController {
         List<AlbumCommentDTO> list  = service.selectComment(Integer.parseInt(Album_Comment_parent_seq));
 
         String s = g.toJson(list);
-        return "s";
+        return s;
     }
 
 

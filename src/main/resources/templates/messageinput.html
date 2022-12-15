@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>쪽지 보내기</title>
+</head>
+<body>
+<div class="mesgs">
+    <form action="/message/insert" method="post">l
+        <h3> 쪽지 보내기 </h3>
+        <div class="field half first">
+            <input type="hidden" name="send_nick" th:text="${id}" th:value="${id}"/>
+            <label> 가</label>
+        </div>
+
+        <div class="field half second">
+            <input type="text" placeholder="받는 사람" name="recv_nick">
+            <label>에게</label>
+        </div>
+        <br/>
+        <div class="title">
+            <input type="text" placeholder="제목" name="title">
+        </div>
+
+        <br>
+        <div class="field">
+            <label>내용</label>
+            <textarea rows="6" name="content"></textarea></div>
+        <ul class="actions">
+            <input type="submit" value="전송">
+        </ul>
+    </form>
+</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

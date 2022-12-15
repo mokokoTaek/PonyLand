@@ -52,6 +52,12 @@ public class MemberController {
         return "index";
     }
 
+    @GetMapping("message")
+    public String message(String id, Model model){
+        model.addAttribute("id",id);
+        return "message";
+    }
+
     @GetMapping ("logout")
     public String logout() throws Exception{
         service.logout();
@@ -82,6 +88,8 @@ public class MemberController {
 
         return "index";
     }
+
+
 
 
 

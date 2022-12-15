@@ -7,7 +7,7 @@
 <mapper namespace="PonyLand.PonyLand.Mapper.GuestbookMapper">
 
     <insert id="insert">
-        insert into guestbook values (guestbook_seq.nextval,0,#{guestbook_contents},sysdate)
+        insert into guestbook values (guestbook_seq.nextval,0,#{guestbook_contents},sysdate,#{guestbook_host})
     </insert>
 
     <!--인자값 하나는 value-->

@@ -10,47 +10,49 @@
 
     <script>
 
-$(function (){
-        // 방명록 댓글 : List와 insert 기능
-        $(".gbbutton, #btnmain1").on("click", function () {
+        $(function () {
+            // 방명록 댓글 : List와 insert 기능
+            $(".gbbutton").on("click", function () {
+                $(this).prev().find('input').attr("name", "guestbook_comment_contents");
+                let parent_seq = $(this).next().val();
+                let guestbook_comment_contents = $(this).prev().find('input').val();
+                $("#guestbook_comment_contents").val("");
 
-            $(this).prev().find('input').attr("name", "guestbook_comment_contents");
+                $.ajax({
+                    url: "/GuestbookComment/commentFrm",
+                    type: "post",
+                    data: {"parent_seq": parent_seq, "guestbook_comment_contents": guestbook_comment_contents}
+                }).done(function (data) {
 
-            let seq = $(this).next().val();
-            let content = $(this).prev().find('input').val();
+                    let target = JSON.parse(data);
 
-            $.ajax({
-                url: "/GuestbookComment/commentFrm",
-                type: "post",
-                data: {"seq": seq , "content": content}
-            }).done(function (data) {
-                let target = JSON.parse(data);
+                    for (let i = 0; i < target.length; i++) {
+                        let div = $("<div>");
 
-                for(let i=0; i<target.length; i++){
-                    let div1 = $("<div>");
+                        let contents = $("<span>");
+                        contents.append(target[i].guestbook_comment_contents);
 
-                    let divWriter = $("<span>");
-                    divWriter.append(target[i].parent_seq);
-                    let divContent = $("<span>");
-                    divContent.append(target[i].guestbook_comment_contents);
+                        div.append(contents);
+                        $(".hano").append(div);
 
-                    div1.append(divWriter)
-                    div1.append(divContent);
-                    $(".abc").append(div1);
-
-                }
-            }).fail(function (data){
-                console.log("")
+                    }
+                }).fail(function (data) {
+                    console.log("ㅋㅋ 실패")
+                })
             })
         })
-});
-</script>
+
+        window.onload = function () {
+        }
+
+
+    </script>
 
 </head>
 
 
 <body>
-<div class="abc"></div>
+
 <div class="container">
     <div class="top">
         <div class="">Today : 245</div>
@@ -101,54 +103,43 @@ $(function (){
             </div>
         </div>
         <div class="albg3">
+            <input type="hidden" th:value="${id}" name="guestbook_host" id="host" >
             <div class="bg3in">
-                <form action="" id="form">
-                    <div th:each="list:${dto}">
-                        <div class="gbtitle">
-                            <tr>
-                                <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
-                                <th th:text="${list.getGuestbook_writer()}"></th>
-                                <th th:text="${list.getGuestbook_write_date()}"></th>
-                                <th>
-                                <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
+                <div th:each="list:${dto}">
+                    <div class="gbtitle">
+                        <tr>
+                            <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
+                            <th th:text="${list.getGuestbook_writer()}"></th>
+                            <th th:text="${list.getGuestbook_write_date()}"></th>
+                            <th>
+                            <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
+                            </th>
+                            <th>
+                                <button class="gowrite" type="button">글쓰기</button>
+                            </th>
+                        </tr>
+                    </div>
+                    <div class="gbcontent">
 
-                                </th>
-                                <th>
-                                    <button class="gowrite" type="button">글쓰기</button>
-                                </th>
-                            </tr>
+                        <div class="gbprofile">
+                            프로필이미지
                         </div>
-                        <div class="gbcontent">
-                            <div class="gbprofile">
-                                프로필이미지
-                            </div>
-                            <div class="gbtext">
-                                <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
-                            </div>
-                        </div>
-                        <!--                    <div th:each="list1:${dto1}">-->
-                        <!--                        <div>-->
-                        <!--                            <tr>-->
-                        <!--                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>-->
-                        <!--                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>-->
-                        <!--                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>-->
-                        <!--                            </tr>-->
-                        <!--                        </div>-->
-                        <!--                    </div>-->
-                        <!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-                        <div class="gbcmtinput">
-                            <div class="gbcmt">
-                                <input class="gbcmt" type="text" placeholder="댓글을 입력하세요"
-                                       id="guestbook_comment_contents">
-                            </div>
-                            <button class="gbbutton" type="button">확인</button>
-                            <input type="hidden" name="parent_seq" th:value="${list.getGuestbook_seq()}">
+                        <div class="gbtext">
+                            <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
                         </div>
                     </div>
-                </form>
 
+                    <div class="hano"></div>
+
+                    <div class="gbcmtinput">
+                        <div class="gbcmt">
+                            <input class="gbcmt" type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
+                        </div>
+                        <button class="gbbutton" type="button">확인</button>
+                        <input type="hidden" name="parent_seq" th:value="${list.getGuestbook_seq()}">
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -156,7 +147,7 @@ $(function (){
     <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
     </a>
-    <button class="btnmain1" id="btnmain1">방명록</button>
+    <button class="btnmain1">방명록</button>
     <a th:href="@{/toAlbumPage}">
         <button class="btnmain2">사진첩</button>
     </a>
@@ -165,17 +156,18 @@ $(function (){
 </body>
 
 <script>
-
+    // 방명록 글 삭제하는 코드
     $("#delete").on("click", function () {
         let seq = $(this).attr("seq");
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
     })
 
-    $(".gowrite").on("click", function (){
-        location.href = "/Guestbook/gowrite";
+    // 방명록에서 글쓰기 페이지로 가는 코드
+    $(".gowrite").on("click", function () {
+        let guestbook_host = $("#host").val();
+        location.href = "/Guestbook/gowrite?guestbook_host="+guestbook_host;
     })
 
 
 </script>
-
 </html>

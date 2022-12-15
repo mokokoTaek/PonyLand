@@ -68,47 +68,55 @@ body {
 .loginsection {
     width: 400px;
     height: 600px;
-    background: rgba(90, 61, 43, 1);
+    background: #5a3d2b;
     border-left: 4px solid rgba(244, 161, 39, 1);
     border-bottom: 4px solid rgba(244, 161, 39, 1);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-
 .container {
     display: flex;
     flex-direction: column;
 }
 
+.logincontainer{
+    display: flex;
+    flex-direction: column;
+    /*flex-wrap: wrap;*/
+    /*gap: 0px;*/
+}
+
 
 .loginbtn {
-    margin-top: 20px;
     width: 250px;
-    height: 30px;
+    height: 40px;
     background: #FFECB4;
-    opacity: 1;
     border-top: 1px solid rgba(90, 61, 43, 1);
     border-right: 1px solid rgba(90, 61, 43, 1);
     border-left: 3px solid rgba(244, 161, 39, 1);
     border-bottom: 3px solid rgba(244, 161, 39, 1);
     color: rgba(90, 61, 43, 1);
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 25px;
+    margin-top: 20px;
 }
 
 .loginfind {
     color: rgba(244, 161, 39, 1);
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
 .loginbg {
     display: flex;
+    margin-top: 20px;
     width: 250px;
-    height: 50px;
+    height: 40px;
     background: white;
     border-top: 1px solid rgba(90, 61, 43, 1);
     border-right: 1px solid rgba(90, 61, 43, 1);
@@ -119,16 +127,11 @@ body {
 }
 
 /* signin------------------------------------------------------------------------------------ */
-.signincontainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .signinform {
-    display: flex;
-    flex-direction: column;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     color: rgba(244, 161, 39, 1);
     font-size: 15px;
 }
@@ -147,11 +150,10 @@ body {
 }
 
 .signinbtn{
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     width: 250px;
     height: 40px;
     background: #FFECB4;
-    opacity: 1;
     border-top: 1px solid rgba(90, 61, 43, 1);
     border-right: 1px solid rgba(90, 61, 43, 1);
     border-left: 3px solid rgba(244, 161, 39, 1);
@@ -160,6 +162,7 @@ body {
     border-radius: 8px;
     font-size: 30px;
 }
+
 
 .signinform2{
 

@@ -29,7 +29,7 @@ public class FamilyDTO {
             , generator = "family_seq_generator"
     )
     @Column(name = "family_seq")
-    private int family_seq;
+    private int familySeq;
 
     @Column(name="family_proposer_id")
     private String familyProposerId;

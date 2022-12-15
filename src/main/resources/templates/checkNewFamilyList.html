@@ -11,10 +11,12 @@
 <div class="bg3">
   <div class="bg3in">
 
+    <form action="" method="post" id="frm">
+      <div th:if="${list}!=null">
       <div th:each="list:${list}">
 
           <tr>
-            <input type="hidden" class="hiddenSeq" th:value="${list.family_seq}">
+
             <th th:text="|${list.familyProposerName} 님을|"></th>
             <th th:text="|${list.familyProposedName} 님의|"></th>
             <th th:text="|${list.familyMe} 로 |"></th> <br>
@@ -22,17 +24,54 @@
               <th th:text="|${list.familyProposerName} 님의|"></th>
             <th th:text="|${list.familyOther} 로 |"></th> <br><br>
               일촌 신청합니다! <br><br>
-
-              <button type="button">수락</button>
-              <button type="button">거절</button>
+              <button type="button" class="agreeBtn">수락</button>
+            <input type="hidden" class="hiddenSeq" th:value="${list.familySeq}">
+              <button type="button" class="refuseBtn">거절</button>
               <br><br>
 
 
           </tr>
 
         </div>
+      </div>
+    </form>
 
+    <div th:if="${list.size()}==0">
+        새로운 일촌 신청이 없습니다!
+    </div>
 </div>
 </div>
+
+<script>
+
+    $(".agreeBtn").click(function(){
+
+      let really = confirm("일촌 신청을 수락하시겠습니까?");
+
+      if(really){
+
+        $("#frm").attr("action","/family/agreeFamily");
+        $(this).next().attr("name","familySeq");
+        $("#frm").submit();
+      }
+      return;
+
+    })
+
+    $(".refuseBtn").click(function(){
+
+      let really = confirm("일촌 신청을 거절하시겠습니까?");
+
+      if(really){
+
+        $("#frm").attr("action","/family/refuseFamily");
+        $(this).prev().attr("name","familySeq");
+        $("#frm").submit();
+      }
+      return;
+
+    })
+
+</script>
 </body>
 </html>

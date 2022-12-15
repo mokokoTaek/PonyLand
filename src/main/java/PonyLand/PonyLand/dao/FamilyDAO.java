@@ -35,6 +35,13 @@ public class FamilyDAO {
         return sdjr.findAllByFamilyProposedIdAndFamilyStatus(familyProposedId,familyStatus);
     }
 
+    public FamilyDTO findByFamilySeq(int familySeq){
+        return sdjr.findByFamilySeq(familySeq);
+    }
+
+    public void deleteByFamilySeq(int familySeq){
+        sdjr.deleteByFamilySeq(familySeq);
+    }
 
 
 

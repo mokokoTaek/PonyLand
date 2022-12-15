@@ -16,5 +16,6 @@ public class GuestbookDTO {
     private String guestbook_writer;
     private String guestbook_contents;
     private Timestamp guestbook_write_date;
+    private String guestbook_host;
 
 }

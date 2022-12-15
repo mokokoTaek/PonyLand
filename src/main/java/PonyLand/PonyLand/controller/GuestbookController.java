@@ -1,5 +1,6 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import PonyLand.PonyLand.dto.GuestbookDTO;
 import PonyLand.PonyLand.service.GuestbookCommentService;
 import PonyLand.PonyLand.service.GuestbookService;
@@ -17,38 +18,33 @@ import java.util.List;
 public class GuestbookController {
 
     @Autowired
-    private GuestbookService service;
-
-    @Autowired
-    private GuestbookCommentService service1;
-
+    private GuestbookService GuestbookService;
 
     @GetMapping("insert")
     public String insert(GuestbookDTO dto) throws Exception {
 
-        service.insert(dto);
+        GuestbookService.insert(dto);
         System.out.println(dto.getGuestbook_contents());
         return "redirect:goGuestbook";
     }
 
     @RequestMapping("delete")
     public String delete(int Guestbook_seq){
-        service.delect(Guestbook_seq);
+        GuestbookService.delect(Guestbook_seq);
         System.out.println(Guestbook_seq);
         return "redirect:goGuestbook";
     }
 
     @RequestMapping("update")
     public String update(GuestbookDTO dto){
-        service.update(dto);
+        GuestbookService.update(dto);
         return "guestbook";
     }
 
     //미니홈피에서 방명록으로 가는 코트
     @RequestMapping("goGuestbook")
     public String goGuestbook(Model model) {
-        List<GuestbookDTO> list = service.select();
-
+        List<GuestbookDTO> list = GuestbookService.select();
         model.addAttribute("dto",list);
 
         return "guestbook";}

@@ -8,9 +8,6 @@
 
     <insert id="insert">
         insert into guestbook_comment values(guestbook_comment_seq.nextval,0,#{guestbook_comment_contents},sysdate,#{parent_seq})
-        <selectKey order="AFTER" keyProperty="seq" resultType="int">
-            select guestbook_seq.currval from dual
-        </selectKey>
     </insert>
 
 

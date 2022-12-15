@@ -12,14 +12,12 @@
 
 $(function (){
         // 방명록 댓글 : List와 insert 기능
-        $(".gbbutton").on("click", function () {
+        $(".gbbutton, #btnmain1").on("click", function () {
 
             $(this).prev().find('input').attr("name", "guestbook_comment_contents");
 
             let seq = $(this).next().val();
             let content = $(this).prev().find('input').val();
-
-            console.log(seq+" : "+content);
 
             $.ajax({
                 url: "/GuestbookComment/commentFrm",
@@ -32,17 +30,15 @@ $(function (){
                     let div1 = $("<div>");
 
                     let divWriter = $("<span>");
-                    divWriter.attr("th", )
                     divWriter.append(target[i].parent_seq);
                     let divContent = $("<span>");
                     divContent.append(target[i].guestbook_comment_contents);
 
                     div1.append(divWriter)
                     div1.append(divContent);
-                    $("#abc").append(div1);
+                    $(".abc").append(div1);
 
                 }
-
             }).fail(function (data){
                 console.log("")
             })
@@ -54,6 +50,7 @@ $(function (){
 
 
 <body>
+<div class="abc"></div>
 <div class="container">
     <div class="top">
         <div class="">Today : 245</div>
@@ -159,7 +156,7 @@ $(function (){
     <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
     </a>
-    <button class="btnmain1">방명록</button>
+    <button class="btnmain1" id="btnmain1">방명록</button>
     <a th:href="@{/toAlbumPage}">
         <button class="btnmain2">사진첩</button>
     </a>

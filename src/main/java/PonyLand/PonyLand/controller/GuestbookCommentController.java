@@ -25,19 +25,25 @@ public class GuestbookCommentController {
     @Autowired
     private Gson g;
 
-    @ResponseBody
-    @RequestMapping("commentFrm")
+//    @ResponseBody
+//    @RequestMapping("commentFrm")
+//    public String commentFrm(String seq, String content) { //String 형이야
+//        GuestbookCommentDTO dto = new GuestbookCommentDTO();
+//        dto.setParent_seq(Integer.parseInt(seq));
+//        dto.setGuestbook_comment_contents(content);
+//        service.insert(dto);
+//        List<GuestbookCommentDTO> list = service.select(Integer.parseInt(seq));
+//
+//        String s = g.toJson(list);
+//
+//        return s;
+//    }
+
+
+    @RequestMapping("gugugu")
     public String commentFrm(String seq, String content) { //String 형이야
-        GuestbookCommentDTO dto = new GuestbookCommentDTO();
-        dto.setParent_seq(Integer.parseInt(seq));
-        //dto.setGusetbook_comment_seq(Integer.parseInt(seq));
-        dto.setGuestbook_comment_contents(content);
-        service.insert(dto);
-
         List<GuestbookCommentDTO> list = service.select(Integer.parseInt(seq));
-
-        String s = g.toJson(list);
-
-        return s;
+        int parent_seq = Integer.parseInt(seq);
+        return "redirect:/Guestbook/goGuestbook?guestbook_seq=" + parent_seq;
     }
 }

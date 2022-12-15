@@ -61,8 +61,6 @@
     </div>
 
     <div class="bg1">
-
-
         <div class="bg2">
             <div th:if="${id} != null">
                 <div class="profile0" th:text="${id}">님의 마구간</div>
@@ -169,7 +167,6 @@
 
                     </div>
                 </div>
-
             </div>
         </form>
         <button id="write1">글쓰기</button>
@@ -188,7 +185,6 @@
     </a>
     <button class="btnmain1">사진첩</button>
     <button class="btnmain2">다이어리</button>
-</div>
 </div>
 </body>
 <script>
@@ -313,7 +309,12 @@
     // })
     //
 
+        }).fail(function (data) {
+            console.log("ㅋㅋ 뭘봐")
+        })
 
+
+    })
 
 
 </script>

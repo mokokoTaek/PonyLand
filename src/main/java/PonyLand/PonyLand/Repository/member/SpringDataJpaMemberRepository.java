@@ -19,7 +19,6 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<MemberDTO,I
     @Transactional
     MemberDTO findByMemberId(String memberId);
 
-
     @Query(value = "select member_id from (select member.*,row_number()over(order by member_seq desc)as rn from member) where rn=:rn", nativeQuery = true)
     String getIdByRowNum(@Param("rn") int rn);
 

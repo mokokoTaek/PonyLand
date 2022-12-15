@@ -34,7 +34,9 @@
 
             <div class="profile3">
                 <div>
-                    <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+                    <div th:if="${id}== ${sessionID}">
+                    <button  class="profilebtn" type="button" onclick="checkNewFamily();">일촌신청알림</button>
+                    </div>
                 </div>
                 <div>
                     <div th:if="${id}!= ${sessionID}">
@@ -135,6 +137,15 @@
  }
 function openChild(){
      let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
+
+}
+
+function test(){
+     console.log("뭐가문제야")
+}
+
+function checkNewFamily(){
+    let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=800px,scrollbars=yes");
 
 }
 </script>

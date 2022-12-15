@@ -27,14 +27,13 @@ public class GuestbookCommentController {
 
     @ResponseBody
     @RequestMapping("commentFrm")
-    public String commentFrm(String seq, String content) { //String 형이야
+    public String commentFrm(String parent_seq, String guestbook_comment_contents) { //String 형이야
         GuestbookCommentDTO dto = new GuestbookCommentDTO();
-        dto.setParent_seq(Integer.parseInt(seq));
-        //dto.setGusetbook_comment_seq(Integer.parseInt(seq));
-        dto.setGuestbook_comment_contents(content);
+        dto.setParent_seq(Integer.parseInt(parent_seq));
+        dto.setGuestbook_comment_contents(guestbook_comment_contents);
         service.insert(dto);
 
-        List<GuestbookCommentDTO> list = service.select(Integer.parseInt(seq));
+        List<GuestbookCommentDTO> list = service.select(Integer.parseInt(parent_seq));
 
         String s = g.toJson(list);
 

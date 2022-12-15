@@ -108,7 +108,7 @@
 </div>
 <div class="side">
     <button class="btnmain1">메인</button>
-    <a th:href="@{/Guestbook/goGuestbook}">
+    <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}">
         <button class="btnmain2">방명록</button>
     </a>
     <a th:href="@{/Album/toAlbumPage}">

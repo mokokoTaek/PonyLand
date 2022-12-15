@@ -123,7 +123,7 @@ public class MemberService {
 //        out.flush();
 //        response.flushBuffer();
 //        out.close();
-    }
+}
 
     public MemberDTO findById(String id){
         return dao.findById(id);

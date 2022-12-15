@@ -13,9 +13,7 @@
         $(function () {
             // 방명록 댓글 : List와 insert 기능
             $(".gbbutton").on("click", function () {
-
                 $(this).prev().find('input').attr("name", "guestbook_comment_contents");
-
                 let seq = $(this).next().val();
                 let content = $(this).prev().find('input').val();
 
@@ -38,12 +36,16 @@
 
                     }
                 }).fail(function (data) {
-                    console.log("ㅋㅋ 뭘봐")
+                    console.log("ㅋㅋ 실패")
                 })
             })
         })
 
         window.onload = function (){
+
+            $(this).prev().find('input').attr("name", "guestbook_comment_contents");
+            let seq = $(this).next().val();
+            let content = $(this).prev().find('input').val();
 
         }
 
@@ -122,6 +124,7 @@
                             </tr>
                         </div>
                         <div class="gbcontent">
+
                             <div class="gbprofile">
                                 프로필이미지
                             </div>
@@ -129,16 +132,9 @@
                                 <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
                             </div>
                         </div>
-                        <!--                    <div th:each="list1:${dto1}">-->
-                        <!--                        <div>-->
-                        <!--                            <tr>-->
-                        <!--                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>-->
-                        <!--                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>-->
-                        <!--                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>-->
-                        <!--                            </tr>-->
-                        <!--                        </div>-->
-                        <!--                    </div>-->
-                        <!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+
+                        <div id="hano"></div>
+
                         <div class="gbcmtinput">
                             <div class="gbcmt">
                                 <input class="gbcmt" type="text" placeholder="댓글을 입력하세요"
@@ -149,9 +145,7 @@
                         </div>
                     </div>
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>

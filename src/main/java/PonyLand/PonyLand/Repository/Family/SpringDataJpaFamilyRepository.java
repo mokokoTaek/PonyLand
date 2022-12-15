@@ -15,4 +15,10 @@ public interface SpringDataJpaFamilyRepository extends JpaRepository<FamilyDTO,I
 
     @Transactional
     List<FamilyDTO> findAllByFamilyProposedIdAndFamilyStatus(String familyProposedId,int familyStatus);
+
+    @Transactional
+    FamilyDTO findByFamilySeq(int familySeq);
+
+    @Transactional
+    void deleteByFamilySeq(int familySeq);
 }

@@ -3,76 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css"/>
-    <title>Guestbook</title>
+    <title>GuestbookWrite</title>
 </head>
 <body>
 <div class="container">
     <div class="top">
-        <div class="today">Today : 245</div>
-        <div class="music">뮤직플레이어 부분</div>
+        <div class="">Today : 245</div>
+        <div class="">뮤직플레이어 부분</div>
     </div>
 
     <div class="bg1">
 
-    </div>
-    <div class="bg2">
 
-        <div class="profile">
-            테스트입니다.
-        </div>
+        <div class="bg2">
+            <div th:if="${id} != null">
+                <div class="profile0" th:text="${id}">님의 마구간</div>
+            </div>
 
-        <div class="profilemsg">
-            상태메시지<br>
-            상태메시지<br>
-            상태메시지<br>
-        </div>
+            <div class="profile1">
+                테스트입니다.
+            </div>
 
-        <div class="">
-            <button class="profilebtn">일촌</button>
-            <button class="profilebtn">파도타기</button>
-        </div>
+            <div class="profile2">
+                상태메시지<br>
+                상태메시지<br>
+                상태메시지<br>
+            </div>
 
-    </div>
-    <form action="/Guestbook/insert">
-        <div class="bg3">
-            <div class="bg3in">
-                <div class="gbtitle">
-                    <tr>
-                        <th>글번호</th>
-                        <th>시간</th>
-                        <th>비밀</th>
-                        <th>수정</th>
-                        <th>삭제</th>
-                    </tr>
+            <div class="profile3">
+                <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+                <a th:href="@{/family/areTheyFamily}">
+                    <button class="profilebtn" type="button">일촌확인</button>
+                </a>
+                <a th:href="@{/member/wave}">
+                    <button class="profilebtn" type="button" id="wave">파도타기</button>
+                </a>
+            </div>
+
+            <div class="profile4">
+                <div class="profile4-1">
+                    History
                 </div>
-                <div class="gbcontent">
-                    <div class="gbprofile">
-                        프로필이미지
-                    </div>
-                    <div class="gbtext">
-                        <input type="text" id="guestbook_contents" name="guestbook_contents" placeholder="내용을 입력하세요">
-                    </div>
+                <div class="profile4-2">
+                    <th>윤성민(개굴개굴)<br>
+                    <th>임근혁(시카고)<br>
+                    <th>이진혁(물리)
                 </div>
             </div>
-            <button type="submit">글쓰기완료</button>
         </div>
-    </form>
-
-
-    <div class="side">
-        <div class="side1">
-            <button class="btnmain1">메인</button>
-        </div>
-        <div class="side2">
-            <a th:href="@{/Guestbook/goGuestbook}"><button class="btnmain2">방명록</button></a>
-        </div>
-        <div class="side3">
-            <button class="btnmain2">사진첩</button>
-        </div>
-        <div class="side4">
-            <button class="btnmain2">다이어리</button>
-        </div>
+        <form action="/Guestbook/insert">
+            <div class="bg3">
+                <div class="bg3in">
+                    <div class="gbtitle">
+                        <tr>
+                            <th>글번호</th>
+                            <th>시간</th>
+                            <th>비밀</th>
+                            <th>수정</th>
+                            <th>삭제</th>
+                        </tr>
+                    </div>
+                    <div class="gbcontent">
+                        <div class="gbprofile">
+                            프로필이미지
+                        </div>
+                        <div class="gbtext">
+                            <input type="text" id="guestbook_contents" name="guestbook_contents"
+                                   placeholder="내용을 입력하세요">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit">글쓰기완료</button>
+            </div>
+        </form>
     </div>
+</div>
+
+<div class="side">
+    <div class="side1">
+        <button class="btnmain1">메인</button>
+    </div>
+    <div class="side2">
+        <a th:href="@{/Guestbook/goGuestbook}">
+            <button class="btnmain2">방명록</button>
+        </a>
+    </div>
+    <div class="side3">
+        <button class="btnmain2">사진첩</button>
+    </div>
+    <div class="side4">
+        <button class="btnmain2">다이어리</button>
+    </div>
+
 </div>
 </body>
 </html>

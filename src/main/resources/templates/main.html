@@ -12,112 +12,101 @@
 
 <div class="container">
     <div class="top">
-        <div class="today">Today : 245</div>
-        <div class="music">뮤직플레이어 부분</div>
+        <div class="">Today : 245</div>
+        <div class="">뮤직플레이어 부분</div>
     </div>
 
     <div class="bg1">
+        <div class="bg2">
+            <div th:if="${id} != null">
+                <div class="profile0" th:text="${id}">님의 마구간</div>
+            </div>
 
-    </div>
-    <div class="bg2">
+            <div class="profile1">
+                테스트입니다.
+            </div>
 
-        <div th:if="${id} != null">
-            <div class="profile0" th:text="${id}">님의 마구간</div>
-        </div>
+            <div class="profile2">
+                <div>상태메시지</div>
+                <div>상태메시지</div>
+                <div>상태메시지</div>
+            </div>
 
-        <div class="profile1">
-            테스트입니다.
-        </div>
-
-        <div class="profile2">
-            상태메시지<br>
-            상태메시지<br>
-            상태메시지<br>
-        </div>
-
-        <div class="profile3">
-            <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
-            <div th:if="${id}!= ${sessionID}">
+            <div class="profile3">
+                <div>
+                    <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+                </div>
+                <div>
+                    <div th:if="${id}!= ${sessionID}">
 
                 <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
                 <input type="hidden" th:value="${id}" id="hiddenProposed">
-                <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
-
-                </form>
+                        <button class="profilebtn" type="button"onclick="openChild()">일촌신청</button>
+                    </form>
             </div>
-            <a th:href="@{/member/wave}">
-                <button class="profilebtn" type="button" id="wave">파도타기</button>
-            </a>
-        </div>
-
-        <div class="profile4">
-            <div class="profile4-1">
-                History
-            </div>
-            <div class="profile4-2">
-                <th>윤성민(개굴개굴)<br>
-                <th>임근혁(시카고)<br>
-                <th>이진혁(물리)
-            </div>
-        </div>
-    </div>
-    <div class="bg3">
-        <div class="bg3-1">
-            <div class="updatednews">
-                Updated News<br>
-                사진첩: 하......<br>
-                게시판: 하......<br>
-                방명록: 하......<br>
-            </div>
-            <div class="updatednews2">
-                <div class="updatednews2-1">
-                    방명록 0/64
                 </div>
-                <div class="updatednews2-1">
-                    사진첩 0/64
+                <div>
+                    <a th:href="@{/member/wave}">
+                        <button class="profilebtn" type="button" id="wave">파도타기</button>
+                    </a>
                 </div>
-                <div class="updatednews2-1">
-                    다이어리 0/64
+            </div>
+
+            <div class="profile4">
+                <div class="profile4-1">
+                    History
+                </div>
+                <div class="profile4-2">
+                    <div>윤성민(개굴개굴)</div>
+                    <div>임근혁(개굴개굴)</div>
+                    <div>이진혁(개굴개굴)</div>
                 </div>
             </div>
         </div>
-        <div class="bg3-2">
-            <div class="bg3-2-1-title">
-                MiniRoom
+        <div class="bg3">
+            <div class="bg3-1">
+                <div class="updatednews">
+                    <div>Updated News</div>
+                    <div>사진첩: 하......</div>
+                    <div>게시판: 하......</div>
+                    <div>방명록: 하......</div>
+                </div>
+                <div class="updatednews2">
+                    <div class="updatednews2-1">
+                        방명록 0/64
+                    </div>
+                    <div class="updatednews2-1">
+                        사진첩 0/64
+                    </div>
+                    <div class="updatednews2-1">
+                        다이어리 0/64
+                    </div>
+                </div>
             </div>
-            <div class="bg3-2-1">
-                말
+            <div class="bg3-2">
+                <div class="bg3-2-1-title">
+                    MiniRoom
+                </div>
+                <div class="bg3-2-1">
+                    말
+                </div>
+                <div class="bg3-2-2">
+                    >내마구간
+                </div>
             </div>
-            <div class="bg3-2-2">
-                >내마구간
-            </div>
-        </div>
-
-
-    </div>
-
-
-    <div class="side">
-        <div class="side1">
-            <button class="btnmain1">메인</button>
-        </div>
-        <div class="side2">
-            <a th:href="@{/Guestbook/goGuestbook}">
-                <button class="btnmain2">방명록</button>
-            </a>
-        </div>
-        <div class="side3">
-            <a th:href="@{/Album/toAlbumPage}">
-                <button class="btnmain2">사진첩</button>
-            </a>
-        </div>
-        <div class="side4">
-            <button class="btnmain2">다이어리</button>
         </div>
     </div>
 </div>
-
-
+<div class="side">
+    <button class="btnmain1">메인</button>
+    <a th:href="@{/Guestbook/goGuestbook}">
+        <button class="btnmain2">방명록</button>
+    </a>
+    <a th:href="@{/Album/toAlbumPage}">
+        <button class="btnmain2">사진첩</button>
+    </a>
+    <button class="btnmain2">다이어리</button>
+</div>
 
 <script th:inline="javascript">
  function getFamily(){

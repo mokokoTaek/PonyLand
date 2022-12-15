@@ -31,8 +31,8 @@
             url:"/family/getFamily",
             data:{"familyProposerId":familyProposerId,
                 "familyProposedId":familyProposedId,
-                "me":me,
-                "other":other},
+                "familyMe":me,
+                "familyOther":other},
             type:"post"
         }).done(function(resp){
                 if(resp=="2"){

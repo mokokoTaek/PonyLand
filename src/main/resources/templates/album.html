@@ -76,9 +76,9 @@
                                 <th th:text="${list.Album_seq}">글번호</th>
                                 <th th:text="${list.getAlbum_sysdate()}">시간</th>
                                 <th>비밀</th>
-                                <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a>></th>
+                                <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th>
 
-                                <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>>삭제</th>
+                                <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th>
 
                             </tr>
                         </div>
@@ -86,8 +86,6 @@
                             <div class="alpicture">
                                 사진
                             </div>
-
-
                         </div>
 
                         <div class="alcontent">

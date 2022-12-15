@@ -14,6 +14,41 @@
         }
     </style>
 
+<script>
+
+    $(function() {
+        // 방명록 댓글 : List와 insert 기능
+        $(".gbbutton").on("click", function () {
+
+            $(this).prev().find('input').attr("name", "guestbook_comment_contents");
+
+            let seq = $(this).next().val();
+            let content = $(this).prev().find('input').val();
+
+            $.ajax({
+                url: "/GuestbookComment/commentFrm",
+                type: "post",
+                data: {"seq": seq , "content": content}
+            }).done(function (data) {
+                let target = JSON.parse(data.list);
+                console.log(target[0].parent_seq);
+
+                for(let i=0; i<target.length; i++){
+                    let div = $("<div>");
+
+                    let span = $("<span>");
+                    span.append(target[i].guestbook_writer)
+                    let span = $("<span>");
+                    span.append(target[i].guestbook_contents)
+                    let span = $("<span>");
+                }
+
+            }).fail(function (data){
+                console.log("ㅋㅋ 뭘봐")
+            })
+        })
+    })
+</script>
 
 </head>
 
@@ -67,8 +102,8 @@
     </div>
     <div class="bg3">
         <div class="bg3in">
-<!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-            <form action="/GuestbookComment/insert" id="form">
+
+            <form action="" id="form">
                 <div th:each="list:${dto}">
                     <div class="gbtitle">
                         <tr>
@@ -78,6 +113,7 @@
                             <th>비밀로 하기</th>
                             <th>
                             <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
+                            <th><a th:href="@{/GuestbookComment/select?(parent_seq=${list.getGuestbook_seq})}">댓글보기</a>
                             </th>
                             <!-- <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
                              </button>-->
@@ -92,21 +128,26 @@
                             <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
                         </div>
                     </div>
-                    <div th:each="list1:${dto1}">
-                        <div>
-                            <tr>
-                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>
-                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>
-                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>
-                            </tr>
-                        </div>
+                    <div>
+                        댓글영역??
                     </div>
+<!--                    <div th:each="list1:${dto1}">-->
+<!--                        <div>-->
+<!--                            <tr>-->
+<!--                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>-->
+<!--                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>-->
+<!--                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>-->
+<!--                            </tr>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
                     <div class="gbcmtinput">
                         <div class="gbcmt">
                             <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
                         </div>
-                        <button class="gbbutton">확인</button>
-                        <input type="hidden" class="parent_seq" th:value="${list.getGuestbook_seq()}">
+                        <button class="gbbutton" type="button">확인</button>
+                        <input type="hidden" name="parent_seq" th:value="${list.getGuestbook_seq()}">
+
                     </div>
                 </div>
             </form>
@@ -150,25 +191,8 @@
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
     })
 
-    //댓글 확인 버튼 클릭시 name에 guestbook_comment_contents 넣고 ,
-    $(".gbbutton").on("click", function () {
-        $(this).next().attr("name", "parent_seq");
-        $(this).prev().find('input').attr("name", "guestbook_comment_contents");
-        $("#form").submit();
-    })
-    // $(".gbbutton").on("click", function () {
-    //     let seq = ${list.getGuestbook_seq()};
-    //     $(".gbbutton").on("click", function () {
-    //         $.ajax({
-    //             url: "/GuestbookComment/insert",
-    //             type: "post",
-    //             data: {"contents": $(this).prev().find('input').val()},
-    //             dataType: "json"
-    //         }).done(function (data) {
-    //             console.log("data")
-    //         })
-    //     })
-    // })
+
+
 </script>
 
 </html>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -47,6 +48,7 @@ public class GuestbookController {
     @RequestMapping("goGuestbook")
     public String goGuestbook(Model model) {
         List<GuestbookDTO> list = service.select();
+
         model.addAttribute("dto",list);
 
         return "guestbook";}
@@ -55,6 +57,4 @@ public class GuestbookController {
     //방명록에서 글작성으로 가는 코드
     @RequestMapping("gowrite")
     public String gowrite(){return  "guesbookwrite";}
-
-
 }

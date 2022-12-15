@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.LinkedList;
+import java.util.Queue;
 
 @Controller
 @RequestMapping("/member/")
@@ -79,10 +81,6 @@ public class MemberController {
         MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
        model.addAttribute("id",dto.getMemberId());
 
-
         return "index";
     }
-
-
-
 }

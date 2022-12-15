@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,6 +22,9 @@ public class AlbumController {
     private AlbumService service;
     @Autowired
     private AlbumCommentService albumCommentService;
+
+    @Autowired
+    private HttpSession session;
 
 //    @GetMapping("hello")
 //    public String hello() {
@@ -33,10 +37,11 @@ public class AlbumController {
     }
 
     @RequestMapping("insert")
-    public String insert(AlbumDTO dto) {
+    public String insert(AlbumDTO dto, Model model) {
         try {
             service.insert(dto);
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
+            model.addAttribute(session.getAttribute("sessionID").toString());
         } catch (Exception e) {
             return "error";
         }
@@ -54,7 +59,6 @@ public class AlbumController {
 
         return "album";
     }
-
 
 
     @RequestMapping("delete")
@@ -79,6 +83,15 @@ public class AlbumController {
         List<AlbumDTO> list = service.selectAll();
         model.addAttribute("dto", list);
 
+
+
         return "album";
+    }
+
+    @RequestMapping("UpdateAlbum")
+    public String UpdateAlbum(Model model) {
+        List<AlbumDTO> list= service.selectAll();
+        model.addAttribute("dto",list);
+        return "albumupdate";
     }
 }

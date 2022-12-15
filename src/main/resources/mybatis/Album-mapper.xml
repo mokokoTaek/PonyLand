@@ -6,7 +6,7 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.AlbumMapper">
     <insert id="insert">
-        insert into album values(album_seq.nextval,#{Album_title},#{Album_contents},0,0,sysdate)
+        insert into album values(album_seq.nextval,#{Album_title},#{Album_contents},0,0,sysdate,#{Album_writer})
 
     </insert>
 
@@ -23,4 +23,8 @@
     <update id="update">
         update Album set Album_title=#{Album_title},Album_contents=#{Album_contents} where Album_seq = #{Album_seq}
     </update>
+
+<!--    <select id="selectByPageNo" resultType="PonyLand.PonyLand.dto.AlbumDTO">-->
+<!--        select * from (select Album.*, row_number() over(order by seq desc) as rnum from Album) where rnum between #{start} and #{end}-->
+<!--    </select>-->
 </mapper>

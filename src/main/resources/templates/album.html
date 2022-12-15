@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <meta charset="UTF-8">
@@ -27,9 +27,9 @@
                 <div class="profile0" th:text="${id}">님의 마구간</div>
             </div>
 
-            <div class="profile1">
-                테스트입니다.
-            </div>
+        <div class="profile1">
+            테스트입니다.
+        </div>
 
             <div class="profile2">
                 <div>상태메시지</div>
@@ -101,7 +101,7 @@
                                          readonly>
 
                                     </div>
-                                    <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
+    <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
                                 </div>
                             </div>
 
@@ -114,7 +114,7 @@
                             </div>
 
                             <button class="gbbutton" id="comment">확인</button>
-                            <input type="hidden" th:value="${list.Album_seq}"/>
+                            <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
                     </div>
 
@@ -124,6 +124,7 @@
                         <tr>
                         <tr>
                             <th>글번호</th>
+
                             <th>이름</th>
                             <th>내용</th>
                             <th>삭제</th>
@@ -167,8 +168,8 @@
     //     }
     // })
 
-    $("#comment").on("click", function () {
-        $("#form").attr("action", "/Comment/write");
+    $("#comment").on("click",function (){
+        $("#form").attr("action","/Comment/write");
         $("#form").submit();
     })
     // $("#modifyBtn").on("click", function() {
@@ -180,38 +181,44 @@
     //     }
     // })
     // 댓글 확인 버튼 클릭시 name에 Album_comment_contents 넣고 ,
+    // $(".gbbutton").on("click", function () {
+    //     $(this).next().attr("name", "Album_Comment_parent_seq");
+    //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
+    //     $("#form").submit();
+    // })
+
+
+
     $(".gbbutton").on("click", function () {
-        $(this).next().attr("name", "Album_Comment_parent_seq");
+
         $(this).prev().find('input').attr("name", "Album_Comment_contents");
-        $("#form").submit();
-    })
+        let Album_Comment_parent_seq = $(this).next().val();
+        let Album_Comment_contents = $(this).prev().find('input').val();
+
+        $.ajax({
+            url: "/Comment/write",
+            type: "post",
+            data: {"Album_Comment_parent_seq": Album_Comment_parent_seq ,
+                "Album_Comment_contents": Album_Comment_contents}
+        }).done(function (data) {
+            let json = JSON.parse(data);
+            console.log(json[0].parent_seq);
 
 
-    $(document).ready(function () {
-        $("#comment").on("click", function () {
-            let Album_Comment_contents = $("#Album_Comment_contents").val(); //입력한 댓글
-            if (Album_Comment_contents == null || Album_Comment_contents == "") {
-                alert("내용을 입력하세요");
-                return;
-            }
-            $.ajax({
-                type: "POST",
-                url: "/Album/view",
-                data: {"Album_Comment_contents": Album_Comment_contents},
-                success: function (data) {
-                    if (data.result == "success") {
-                        $("#CommentList").removeClass(("d-none"));
-                        location.reload();
-                    } else {
-                        alert("쓰기 실패");
-                    }
-                },
-                error: function () {
-                    alert("쓰기 에러");
-                }
-            })
+
+
+
+        }).fail(function (data){
+            console.log("ㅋㅋ 뭘봐")
         })
+
+
     })
+
+
+
+
+
 
 
 </script>

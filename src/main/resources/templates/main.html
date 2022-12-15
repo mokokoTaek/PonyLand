@@ -48,6 +48,13 @@
             </div>
                 </div>
                 <div>
+                    <div th:if="${id}== ${sessionID}">
+
+                        <button class="profilebtn" type="button"onclick="openChild()">일촌목록</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
                     <a th:href="@{/member/wave}">
                         <button class="profilebtn" type="button" id="wave">파도타기</button>
                     </a>

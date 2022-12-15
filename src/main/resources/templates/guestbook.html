@@ -92,71 +92,6 @@ $(function (){
                 </div>
             </div>
 
-        <div class="profile4">
-            <div class="profile4-1">
-                History
-            </div>
-            <div class="profile4-2">
-                <th>윤성민(개굴개굴)<br>
-                <th>임근혁(시카고)<br>
-                <th>이진혁(물리)
-            </div>
-        </div>
-    </div>
-    <div class="bg3">
-        <div class="bg3in">
-
-            <form action="" id="">
-                <div th:each="list:${dto}">
-                    <div class="gbtitle">
-                        <tr>
-                            <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
-                            <th th:text="${list.getGuestbook_writer()}"></th>
-                            <th th:text="${list.getGuestbook_write_date()}"></th>
-                            <th>비밀로 하기</th>
-                            <th>
-                            <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
-                            <th><a th:href="@{/GuestbookComment/select?(parent_seq=${list.getGuestbook_seq})}">댓글보기</a>
-                            </th>
-                            <!-- <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
-                             </button>-->
-                            </th>
-                        </tr>
-                    </div>
-                    <div class="gbcontent">
-                        <div class="gbprofile">
-                            프로필이미지
-                        </div>
-                        <div class="gbtext">
-                            <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
-                        </div>
-                    </div>
-                    <div th:each="list1:${dto1}">
-<!--                        <div>-->
-<!--                            <tr>-->
-<!--                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>-->
-<!--                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>-->
-<!--                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>-->
-<!--                            </tr>-->
-<!--                        </div>-->
-                    </div>
-<!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-                    <div class="gbcmtinput">
-                        <div class="gbcmt">
-                            <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
-                        </div>
-                        <button class="gbbutton" type="button">확인</button>
-                        <input type="hidden" name="parent_seq" th:value="${list.getGuestbook_seq()}">
-
-                    </div>
-                </div>
-            </form>
-            <div class="gbcmtview">
-                <tr class="abc">
-                    <th>이름</th>
-                    <th>내용</th>
-                    <th>삭제</th>
-                </tr>
             <div class="profile4">
                 <div class="profile4-1">
                     History
@@ -177,19 +112,12 @@ $(function (){
                                 <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
                                 <th th:text="${list.getGuestbook_writer()}"></th>
                                 <th th:text="${list.getGuestbook_write_date()}"></th>
-                                <th>비밀로 하기</th>
                                 <th>
                                 <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
-                                <th>
-                                    <a th:href="@{/GuestbookComment/select?(parent_seq=${list.getGuestbook_seq})}">댓글보기</a>
-                                </th>
-                                <!-- <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
-                                 </button>-->
+
                                 </th>
                                 <th>
-                                    <a th:href="@{/Guestbook/gowrite}">
-                                        <button class="gowrite">글쓰기</button>
-                                    </a>
+                                    <button class="gowrite" type="button">글쓰기</button>
                                 </th>
                             </tr>
                         </div>
@@ -198,7 +126,6 @@ $(function (){
                                 프로필이미지
                             </div>
                             <div class="gbtext">
-                                sadasd
                                 <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
                             </div>
                         </div>
@@ -226,9 +153,6 @@ $(function (){
             </div>
 
         </div>
-        <a th:href="@{/Guestbook/gowrite}">
-            <button class="gowrite">글쓰기</button>
-        </a>
     </div>
 </div>
 <div class="side">
@@ -248,6 +172,10 @@ $(function (){
     $("#delete").on("click", function () {
         let seq = $(this).attr("seq");
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
+    })
+
+    $(".gowrite").on("click", function (){
+        location.href = "/Guestbook/gowrite";
     })
 
 

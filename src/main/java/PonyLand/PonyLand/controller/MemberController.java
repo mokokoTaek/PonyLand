@@ -46,17 +46,12 @@ public class MemberController {
     public String login(MemberDTO dto, Model model) throws Exception{
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
-        System.out.println(session.getAttribute("sessionID"));
+//        System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", dto.getMemberId());
         System.out.println(dto.getMemberId());
         return "index";
     }
 
-    @GetMapping("message")
-    public String message(String id, Model model){
-        model.addAttribute("id",id);
-        return "message";
-    }
 
     @GetMapping ("logout")
     public String logout() throws Exception{
@@ -80,11 +75,10 @@ public class MemberController {
 
 
     @RequestMapping("signinForNaver")
-    public String singForNaver(Model model, String name, String email){
+    public String singinForNaver(Model model, String name, String email){
 
         MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
        model.addAttribute("id",dto.getMemberId());
-
 
         return "index";
     }

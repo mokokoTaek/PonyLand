@@ -38,6 +38,24 @@ public class FamilyController {
     public String checkNewFamily(Model model){
 
         model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
+        System.out.println(service.checkNewFamily((String)session.getAttribute("sessionID"),0).size());
+        return "checkNewFamilyList";
+    }
+
+    @RequestMapping("agreeFamily")
+    public String agreeFamily(int familySeq,Model model){
+
+        service.agreeFamily(familySeq).setFamilyStatus(1);
+
+        model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
+
+        return "checkNewFamilyList";
+    }
+
+    @RequestMapping("refuseFamily")
+    public String refuseFamily(int familySeq,Model model){
+        service.deleteByFamilySeq(familySeq);
+        model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
 
         return "checkNewFamilyList";
     }

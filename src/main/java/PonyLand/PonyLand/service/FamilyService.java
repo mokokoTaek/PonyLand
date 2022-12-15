@@ -25,7 +25,10 @@ public class FamilyService {
             return 2;
         } else if (result == 1) {
             return 1;
-        } else {
+        } else if (result==3){
+            return 3;
+        }
+        else {
             return 0;
         }
     }
@@ -39,6 +42,8 @@ public class FamilyService {
             return 1;
         } else if (dto1 == null) {
             return 2;
+        } else if ((dto1==null) && (dto2!=null)){
+            return 3;
         }
         return 0;
     }

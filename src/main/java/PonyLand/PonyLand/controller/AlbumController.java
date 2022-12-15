@@ -23,8 +23,7 @@ public class AlbumController {
     private AlbumService service;
     @Autowired
     private AlbumCommentService albumCommentService;
-    @Autowired
-    private HttpSession session;
+
 
     @Autowired
     private AlbumCommentService AlbumCommentService;
@@ -37,10 +36,12 @@ public class AlbumController {
 //    }
 
     @RequestMapping("write")
-    public String write(Model model) {
+    public String write(Model model , String Album_host) {
 
-        model.addAttribute(session.getAttribute("sessionID").toString());
-        System.out.println(session);
+//        model.addAttribute(session.getAttribute("sessionID").toString());
+//        System.out.println(session);
+
+        model.addAttribute("id",Album_host);
         return "albumwrite";
     }
 
@@ -86,11 +87,14 @@ public class AlbumController {
 
     }
 
-
+//사진첩으로 가는길 ,
     @RequestMapping("toAlbumPage")
-    public String goGuestbook(Model model) {
+    public String goGuestbook(Model model,String Album_host) {
         List<AlbumDTO> list = service.selectAll();
         model.addAttribute("dto", list);
+//세션담아서 가줌.
+        model.addAttribute("id",Album_host);
+
 
 
 

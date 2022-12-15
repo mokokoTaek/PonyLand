@@ -5,12 +5,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Album</title>
-    <style>
-
-        .bg3 {
-            overflow: scroll
-        }
-    </style>
 </head>
 <body>
 <div class="container">
@@ -65,32 +59,27 @@
             </div>
         </div>
         <form id="form">
-            <div class="bg3">
+            <div class="albg3">
                 <div class="bg3in">
                     <div th:each="list:${dto}">
                         <div class="gbtitle">
                             <tr>
-
                                 <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
                                 <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
                                 <th th:text="${list.Album_seq}">글번호</th>
                                 <th th:text="${list.getAlbum_sysdate()}">시간</th>
                                 <th>비밀</th>
-                                <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a>></th>
-
-                                <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>>삭제</th>
-
+                                <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th>
+                                <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th>
+                                <button id="write" class="alwritebtn">글쓰기</button>
                             </tr>
                         </div>
-                        <div class="alcontent">
-                            <div class="alpicture">
-                                사진
-                            </div>
-
-
+                        <div class="alpic">
+                            사진
                         </div>
 
-                        <div class="alcontent">
+                        <div class="alcontext">
+                            글
                             <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
@@ -110,29 +99,14 @@
                         <div class="gbcmtinput" id=CommentList>
                             <div class="gbcmt">
                                 <!--                       <tr th:each="list1:${dto1}">-->
-                                <input type="text" id="Album_Comment_contents">
+                                <input class="gbcmt" type="text" id="Album_Comment_contents">
                             </div>
 
                             <button class="gbbutton" id="comment">확인</button>
-                            <input type="hidden" th:value="${list.Album_seq}"/>
+                            <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
                     </div>
-
-
-                    <div class="gbcmtview">
-
-                        <tr>
-                        <tr>
-                            <th>글번호</th>
-
-                            <th>이름</th>
-                            <th>내용</th>
-                            <th>삭제</th>
-                        </tr>
-
-                    </div>
                 </div>
-                <button id="write">글쓰기</button>
             </div>
         </form>
 
@@ -181,37 +155,36 @@
     //     }
     // })
     // 댓글 확인 버튼 클릭시 name에 Album_comment_contents 넣고 ,
+    // $(".gbbutton").on("click", function () {
+    //     $(this).next().attr("name", "Album_Comment_parent_seq");
+    //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
+    //     $("#form").submit();
+    // })
+
+
     $(".gbbutton").on("click", function () {
-        $(this).next().attr("name", "Album_Comment_parent_seq");
+
         $(this).prev().find('input').attr("name", "Album_Comment_contents");
-        $("#form").submit();
-    })
+        let Album_Comment_parent_seq = $(this).next().val();
+        let Album_Comment_contents = $(this).prev().find('input').val();
 
-
-    $(document).ready(function () {
-        $("#comment").on("click", function () {
-            let Album_Comment_contents = $("#Album_Comment_contents").val(); //입력한 댓글
-            if (Album_Comment_contents == null || Album_Comment_contents == "") {
-                alert("내용을 입력하세요");
-                return;
+        $.ajax({
+            url: "/Comment/write",
+            type: "post",
+            data: {
+                "Album_Comment_parent_seq": Album_Comment_parent_seq,
+                "Album_Comment_contents": Album_Comment_contents
             }
-            $.ajax({
-                type: "POST",
-                url: "/Album/view",
-                data: {"Album_Comment_contents": Album_Comment_contents},
-                success: function (data) {
-                    if (data.result == "success") {
-                        $("#CommentList").removeClass(("d-none"));
-                        location.reload();
-                    } else {
-                        alert("쓰기 실패");
-                    }
-                },
-                error: function () {
-                    alert("쓰기 에러");
-                }
-            })
+        }).done(function (data) {
+            let json = JSON.parse(data);
+            console.log(json[0].parent_seq);
+
+
+        }).fail(function (data) {
+            console.log("ㅋㅋ 뭘봐")
         })
+
+
     })
 
 

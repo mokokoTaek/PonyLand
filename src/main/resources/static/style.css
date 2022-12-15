@@ -275,7 +275,7 @@ body {
     border-radius: 8px;
     flex-direction: column;
     align-items: center;
-    /*justify-content: center;*/
+    justify-content: center;
     flex-wrap: wrap;
     column-gap: 100px;
 }
@@ -498,6 +498,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     justify-content: space-between;
+    margin-bottom: 20px;
     /*border: 1px solid red;*/
 }
 
@@ -530,6 +531,16 @@ button:hover {
 
 /*--------------------------------album*/
 
+.albg3 {
+    display: flex;
+    width: 582px;
+    height: 730px;
+    background: white;
+    border-radius: 8px;
+    justify-content: center;
+    overflow: scroll;
+}
+
 .alpic{
     display: flex;
     height: 300px;
@@ -547,4 +558,14 @@ button:hover {
     border-radius: 4px;
     align-items: center;
     justify-content: center;
+}
+
+.alwritebtn{
+    background: transparent;
+    color: #F4A127;
+    border: transparent;
+    font-size: 16px;
+}
+.alwritebtn:hover{
+    color: #5a3d2b;
 }

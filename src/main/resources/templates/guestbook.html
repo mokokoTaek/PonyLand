@@ -14,46 +14,55 @@
         }
     </style>
 
-<script>
+    <script>
 
-    $(function() {
-        // 방명록 댓글 : List와 insert 기능
-        $(".gbbutton").on("click", function () {
+        $(function () {
+            // 방명록 댓글 : List와 insert 기능
+            $(".gbbutton").on("click", function () {
 
-            $(this).prev().find('input').attr("name", "guestbook_comment_contents");
+                $(this).prev().find('input').attr("name", "guestbook_comment_contents");
 
-            let seq = $(this).next().val();
-            let content = $(this).prev().find('input').val();
+                let seq = $(this).next().val();
+                let content = $(this).prev().find('input').val();
 
-            $.ajax({
-                url: "/GuestbookComment/commentFrm",
-                type: "post",
-                data: {"seq": seq , "content": content}
-            }).done(function (data) {
-                let target = JSON.parse(data.list);
-                console.log(target[0].parent_seq);
+                $.ajax({
+                    url: "/GuestbookComment/commentFrm",
+                    type: "post",
+                    data: {"seq": seq, "content": content}
+                }).done(function (data) {
+                    let target = JSON.parse(data);
+                    console.log(target[0].parent_seq);
 
-                for(let i=0; i<target.length; i++){
-                    let div = $("<div>");
+                    for (let i = 0; i < target.length; i++) {
+                        let div = $("<div>");
 
-                    let span = $("<span>");
-                    span.append(target[i].guestbook_writer)
-                    let span = $("<span>");
-                    span.append(target[i].guestbook_contents)
-                    let span = $("<span>");
-                }
+                        let contents = $("<span>");
+                        contents.append(target[i].guestbook_comment_contents);
 
-            }).fail(function (data){
-                console.log("ㅋㅋ 뭘봐")
+                        div.append(contents);
+                        $("#hano").append(div);
+
+                    }
+                }).fail(function (data) {
+                    console.log("ㅋㅋ 뭘봐")
+                })
             })
         })
-    })
-</script>
+
+        window.onload = function (){
+
+        }
+
+
+    </script>
 
 </head>
 
 
 <body>
+
+<div></div>
+
 <div class="container">
     <div class="top">
         <div class="today">Today : 245</div>
@@ -128,19 +137,17 @@
                             <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
                         </div>
                     </div>
-                    <div>
-                        댓글영역??
+                    <div  id="hano">
                     </div>
-<!--                    <div th:each="list1:${dto1}">-->
-<!--                        <div>-->
-<!--                            <tr>-->
-<!--                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>-->
-<!--                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>-->
-<!--                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>-->
-<!--                            </tr>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!-- 댓글@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+                    <!--                    <div th:each="list1:${dto1}">-->
+                    <!--                        <div>-->
+                    <!--                            <tr>-->
+                    <!--                                <th th:text="${list1.getGusetbook_comment_writer()}"></th>-->
+                    <!--                                <th th:text="${list1.getGuestbook_comment_write_date()}"></th>-->
+                    <!--                                <th th:text="${list1.getGuestbook_comment_contents()}"></th>-->
+                    <!--                            </tr>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                     <div class="gbcmtinput">
                         <div class="gbcmt">
                             <input type="text" placeholder="댓글을 입력하세요" id="guestbook_comment_contents">
@@ -190,7 +197,6 @@
         let seq = $(this).attr("seq");
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
     })
-
 
 
 </script>

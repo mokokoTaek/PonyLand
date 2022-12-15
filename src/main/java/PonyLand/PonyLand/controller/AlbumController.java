@@ -23,12 +23,10 @@ public class AlbumController {
     @Autowired
     private AlbumCommentService albumCommentService;
 
-    @Autowired
-    private HttpSession session;
 
-//    @GetMapping("hello")
-//    public String hello() {
-//        return "main";
+
+
+
 //    }
 
     @RequestMapping("write")
@@ -37,11 +35,11 @@ public class AlbumController {
     }
 
     @RequestMapping("insert")
-    public String insert(AlbumDTO dto, Model model) {
+    public String insert(AlbumDTO dto) {
         try {
             service.insert(dto);
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
-            model.addAttribute(session.getAttribute("sessionID").toString());
+
         } catch (Exception e) {
             return "error";
         }

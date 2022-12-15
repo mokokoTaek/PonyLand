@@ -5,8 +5,55 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Album</title>
+    <script>
+        $(function(){
+            $(".gbbutton").on("click", function () {
+
+                $(this).prev().find('input').attr("name", "Album_Comment_contents");
+                let Album_seq = $(this).next().val();
+                let Album_Comment_contents = $(this).prev().find('input').val();
+                console.log(Album_seq);
+                console.log(Album_Comment_contents);
+                $.ajax({
+                    url: "/Comment/writer",
+                    type: "post",
+                    data: {
+                        "Album_seq": Album_seq,
+                        "Album_Comment_contents": Album_Comment_contents
+                    }
+                }).done(function (data) {
+                    let target = JSON.parse(data);
+                    for (let i = 0; i < target.length; i++) {
+                        console.log("a");
+
+                        let div1 = $("<div>");
+
+                        let divAlbum_Comment_contents = $("<span>");
+                        divAlbum_Comment_contents.append(target[i].Album_Comment_contents);
+                        console.log("b");
+                        div1.append(divAlbum_Comment_contents);
+
+
+                        $("#abc").append(div1);
+                        console.log("권준구");
+
+                    }
+
+
+                }).fail(function (data) {
+                    console.log("ㅋㅋ 뭘봐")
+                })
+            });
+
+        })
+
+
+    </script>
 </head>
 <body>
+<div ></div>
+
+
 <div class="container">
     <div class="top">
         <div class="">Today : 245</div>
@@ -102,7 +149,7 @@
                                 <input class="gbcmt" type="text" id="Album_Comment_contents">
                             </div>
 
-                            <button class="gbbutton" id="comment">확인</button>
+                            <button class="gbbutton" type="button" id="comment">확인</button>
                             <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
                     </div>
@@ -111,7 +158,8 @@
                     <div class="gbcmtview">
 
                         <tr>
-                        <tr class = "abc">
+                        <tr>
+                        <div id="abc"></div>
                             <th>글번호</th>
 
                             <th>이름</th>
@@ -124,7 +172,7 @@
 
             </div>
         </form>
-        <button id="write">글쓰기</button>
+        <button id="write1">글쓰기</button>
 
     </div>
 </div>
@@ -144,7 +192,7 @@
 </div>
 </body>
 <script>
-    $("#write").on("click", function () {
+    $("#write1").on("click", function () {
         location.href = "/Album/write";
     })
 
@@ -158,10 +206,10 @@
     //     }
     // })
 
-    $("#comment").on("click", function () {
-        $("#form").attr("action", "/Comment/write");
-        $("#form").submit();
-    })
+    // $("#comment").on("click", function () {
+    //     $("#form").attr("action", "/Comment/write");
+    //     $("#form").submit();
+    // })
     // $("#modifyBtn").on("click", function() {
     //     if (confirm("수정하시겠습니까?")) {
     //         $("#title").removeAttr("readonly");
@@ -178,50 +226,94 @@
     // })
 
 
-    $(".gbbutton").on("click", function () {
+    // $(".gbbutton").on("click", function () {
+    //
+    //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
+    //     let Album_Comment_parent_seq = $(this).next().val();
+    //     let Album_Comment_contents = $(this).prev().find('input').val();
+    //
+    //     $.ajax({
+    //         url: "/Comment/write",
+    //         type: "post",
+    //         data: {
+    //             "Album_Comment_parent_seq": Album_Comment_parent_seq,
+    //             "Album_Comment_contents": Album_Comment_contents
+    //         }
+    //     }).done(function (data) {
+    //         let json = JSON.parse(data.list);
+    //         for (let i = 0; i < json.length; i++) {
+    //
+    //             let tr = $("<tr>");
+    //
+    //             let tdAlbum_Comment_seq = $("<td>");
+    //             tdAlbum_Comment_seq.append(i+1);
+    //
+    //             let tdAlbum_Comment_contents = $("<td>");
+    //             tdAlbum_Comment_contents.append(i+1);
+    //
+    //
+    //             tr.append(tdAlbum_Comment_seq);
+    //             tr.append(tdAlbum_Comment_contents);
+    //
+    //            $(".abc").append(tr);
+    //
+    //
+    //
+    //         }
+    //
+    //
+    //
+    //
+    //     }).fail(function (data) {
+    //         console.log("ㅋㅋ 뭘봐")
+    //     })
+    //
+    // $(function(){
+    //     $(".gbbutton").on("click", function () {
+    //
+    //         $(this).prev().find('input').attr("name", "Album_Comment_contents");
+    //         let Album_Comment_parent_seq = $(this).next().val();
+    //         let Album_Comment_contents = $(this).prev().find('input').val();
+    //
+    //         $.ajax({
+    //             url: "/Comment/write",
+    //             type: "post",
+    //             data: {
+    //                 "Album_Comment_parent_seq": Album_Comment_parent_seq,
+    //                 "Album_Comment_contents": Album_Comment_contents
+    //             }
+    //         }).done(function (data) {
+    //             let target = JSON.parse(data);
+    //             for (let i = 0; i < target.length; i++) {
+    //
+    //                 let div1 = $("<div>");
+    //
+    //
+    //                 let divAlbum_Comment_seq = $("<span>");
+    //                 divAlbum_Comment_seq.append(target[i].Album_Comment_parent_seq);
+    //
+    //                 let divAlbum_Comment_contents = $("<span>");
+    //                 divAlbum_Comment_contents.append(target[i].Album_Comment_contents);
+    //
+    //                 div1.append(divAlbum_Comment_seq)
+    //                 div1.append(divAlbum_Comment_contents);
+    //
+    //
+    //                 $(".abc").append(div1);
+    //
+    //
+    //             }
+    //
+    //
+    //         }).fail(function (data) {
+    //             console.log("ㅋㅋ 뭘봐")
+    //         })
+    //     });
+    //
+    // })
+    //
 
-        $(this).prev().find('input').attr("name", "Album_Comment_contents");
-        let Album_Comment_parent_seq = $(this).next().val();
-        let Album_Comment_contents = $(this).prev().find('input').val();
 
-        $.ajax({
-            url: "/Comment/write",
-            type: "post",
-            data: {
-                "Album_Comment_parent_seq": Album_Comment_parent_seq,
-                "Album_Comment_contents": Album_Comment_contents
-            }
-        }).done(function (data) {
-            let json = JSON.parse(data.list);
-            for (let i = 0; i < json.length; i++) {
-
-                let tr = $("<tr>");
-
-                let tdAlbum_Comment_seq = $("<td>");
-                tdAlbum_Comment_seq.append(i+1);
-
-                let tdAlbum_Comment_contents = $("<td>");
-                tdAlbum_Comment_contents.append(i+1);
-
-
-                tr.append(tdAlbum_Comment_seq);
-                tr.append(tdAlbum_Comment_contents);
-
-               $(".abc").append(tr);
-
-
-
-            }
-
-
-
-
-        }).fail(function (data) {
-            console.log("ㅋㅋ 뭘봐")
-        })
-
-
-    })
 
 
 </script>

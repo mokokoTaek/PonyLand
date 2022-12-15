@@ -112,19 +112,12 @@
                                 <th th:text="Ｎo.+${list.getGuestbook_seq()}"></th>
                                 <th th:text="${list.getGuestbook_writer()}"></th>
                                 <th th:text="${list.getGuestbook_write_date()}"></th>
-                                <th>비밀로 하기</th>
                                 <th>
                                 <th><a th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글 삭제</a>
-                                <th>
-                                    <a th:href="@{/GuestbookComment/select?(parent_seq=${list.getGuestbook_seq})}">댓글보기</a>
-                                </th>
-                                <!-- <button type="button" id="delete" name="delete" th:seq="${list.getGuestbook_seq()}">삭제
-                                 </button>-->
+
                                 </th>
                                 <th>
-                                    <a th:href="@{/Guestbook/gowrite}">
-                                        <button class="gowrite">글쓰기</button>
-                                    </a>
+                                    <button class="gowrite" type="button">글쓰기</button>
                                 </th>
                             </tr>
                         </div>
@@ -133,7 +126,6 @@
                                 프로필이미지
                             </div>
                             <div class="gbtext">
-                                sadasd
                                 <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
                             </div>
                         </div>
@@ -180,6 +172,10 @@
     $("#delete").on("click", function () {
         let seq = $(this).attr("seq");
         location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
+    })
+
+    $(".gowrite").on("click", function (){
+        location.href = "/Guestbook/gowrite";
     })
 
 

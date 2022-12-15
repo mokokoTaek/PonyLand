@@ -54,11 +54,11 @@
   <!--enctype="multipart/form-data"-->
   <div class=container>
     <div>자유게시판 글 작성하기</div>
-    <!--        <input type="hidden" name="writer" value="${loginId }">-->
+<!--            <input type="hidden" name="Album_writer" value="${sessionID }">-->
 
-    <!--    <div>-->
-    <!--      <input type="text" placeholder="글 번호을 입력하세요" id="Album_seq" name="Album_seq">-->
-    <!--    </div>-->
+<!--        <div>-->
+<!--          <input type="text" placeholder="글 번호을 입력하세요" id="Album_seq" name="Album_seq">-->
+<!--        </div>-->
     <div>
       <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
       <input type="hidden" name="Album_writer" th:value="${sessionID}">

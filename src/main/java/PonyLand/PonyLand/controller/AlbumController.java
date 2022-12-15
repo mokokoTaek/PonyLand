@@ -22,6 +22,9 @@ public class AlbumController {
     private AlbumService service;
     @Autowired
     private AlbumCommentService albumCommentService;
+    @Autowired
+    private HttpSession session;
+
 
 
 
@@ -30,7 +33,10 @@ public class AlbumController {
 //    }
 
     @RequestMapping("write")
-    public String write() {
+    public String write(Model model) {
+
+        model.addAttribute(session.getAttribute("sessionID").toString());
+        System.out.println(session);
         return "albumwrite";
     }
 

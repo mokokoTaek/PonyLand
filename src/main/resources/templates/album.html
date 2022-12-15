@@ -10,6 +10,7 @@
         $(function(){
             $(".gbbutton").on("click", function () {
 
+                $("#abc").empty();
                 $(this).prev().find('input').attr("name", "Album_Comment_contents");
                 let Album_seq = $(this).next().val();
                 let Album_Comment_contents = $(this).prev().find('input').val();

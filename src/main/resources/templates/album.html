@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Album</title>
     <script>
+
         $(function(){
             $(".gbbutton").on("click", function () {
 
                 $(this).prev().find('input').attr("name", "Album_Comment_contents");
                 let Album_seq = $(this).next().val();
                 let Album_Comment_contents = $(this).prev().find('input').val();
-                console.log(Album_seq);
-                console.log(Album_Comment_contents);
+
                 $.ajax({
                     url: "/Comment/writer",
                     type: "post",
@@ -24,24 +24,24 @@
                 }).done(function (data) {
                     let target = JSON.parse(data);
                     for (let i = 0; i < target.length; i++) {
-                        console.log("a");
+
 
                         let div1 = $("<div>");
 
                         let divAlbum_Comment_contents = $("<span>");
                         divAlbum_Comment_contents.append(target[i].Album_Comment_contents);
-                        console.log("b");
+
                         div1.append(divAlbum_Comment_contents);
 
 
                         $("#abc").append(div1);
-                        console.log("권준구");
+
 
                     }
 
 
                 }).fail(function (data) {
-                    console.log("ㅋㅋ 뭘봐")
+
                 })
             });
 
@@ -112,8 +112,8 @@
                                 <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
                                 <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
                                 <th th:text="${list.Album_seq}">글번호</th>
-                                <th th:text="${list.getAlbum_sysdate()}">시간</th>
-                                <th>비밀</th>
+                                <th th:text="${list.Album_sysdate}">시간</th>
+                                <th></th>
                                 <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th>
                                 <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th>
                                 <button id="write" class="alwritebtn">글쓰기</button>
@@ -124,7 +124,7 @@
                         </div>
 
                         <div class="alcontext">
-                            글
+
                             <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
@@ -188,7 +188,7 @@
 </div>
 </body>
 <script>
-    $("#write1").on("click", function () {
+    $("#write1").on("click", function() {
         location.href = "/Album/write";
     })
 
@@ -309,12 +309,6 @@
     // })
     //
 
-        }).fail(function (data) {
-            console.log("ㅋㅋ 뭘봐")
-        })
-
-
-    })
 
 
 </script>

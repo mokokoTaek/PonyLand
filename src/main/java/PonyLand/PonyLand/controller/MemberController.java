@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.LinkedList;
-import java.util.Queue;
 
 @Controller
 @RequestMapping("/member/")
@@ -32,10 +30,10 @@ public class MemberController {
 
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
-        System.out.println(randomNumber);
 
         String id = service.toWave(randomNumber);
         model.addAttribute("id",id);
+        model.addAttribute("sessionID",session.getAttribute("sessionID"));
         return "main";
     }
     @PostMapping("insert")
@@ -52,6 +50,12 @@ public class MemberController {
         model.addAttribute("id", dto.getMemberId());
         System.out.println(dto.getMemberId());
         return "index";
+    }
+
+    @GetMapping("message")
+    public String message(String id, Model model){
+        model.addAttribute("id",id);
+        return "message";
     }
 
     @GetMapping ("logout")
@@ -81,6 +85,12 @@ public class MemberController {
         MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
        model.addAttribute("id",dto.getMemberId());
 
+
         return "index";
     }
+
+
+
+
+
 }

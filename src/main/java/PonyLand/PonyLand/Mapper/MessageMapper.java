@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface MessageMapper {
     int insert(MessageDTO dto);
-
+    List<MessageDTO> selectAll();
 }

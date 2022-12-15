@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
+import java.util.List;
+
 @Controller
 @RequestMapping("/message/")
 public class MessageController {
@@ -23,13 +26,30 @@ public class MessageController {
 
     @GetMapping("message")
     public String message(MemberDTO dto, Model model){
-       String id =  (String)session.getAttribute("sessionID");
+       String id = (String)session.getAttribute("sessionID");
+        List<MessageDTO> list = service.selectAll();
         System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", id);
+        model.addAttribute("list",list);
         return "message";
     }
-
-   public void insert(MessageDTO dto) {
-       int result = service.insert(dto);
+    @GetMapping("write")
+   public String write(MessageDTO dto, Model model) {
+        String id = (String)session.getAttribute("sessionID");
+        System.out.println(session.getAttribute("sessionID"));
+        model.addAttribute("id", id);
+//       int result = service.insert(dto);
+        return "messageinput";
    }
+
+    @RequestMapping("insert" )
+    public void insert(MessageDTO dto) throws Exception {
+      int result = service.insert(dto);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('전송 되었습니다.'); history.go(-1);</script>");
+        out.flush();
+        response.flushBuffer();
+        out.close();
+    }
 }

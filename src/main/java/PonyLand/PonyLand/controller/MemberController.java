@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,10 +30,10 @@ public class MemberController {
 
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
-        System.out.println(randomNumber);
 
         String id = service.toWave(randomNumber);
         model.addAttribute("id",id);
+        model.addAttribute("sessionID",session.getAttribute("sessionID"));
         return "main";
     }
     @PostMapping("insert")
@@ -51,17 +52,30 @@ public class MemberController {
         return "index";
     }
 
+    @GetMapping("message")
+    public String message(String id, Model model){
+        model.addAttribute("id",id);
+        return "message";
+    }
+
     @GetMapping ("logout")
-    public void logout() throws Exception{
+    public String logout() throws Exception{
         service.logout();
+        return "index";
     }
 
     @RequestMapping("signinForKakao")
-    public String signinForKakao(String name ,String email,Model model){
+    public String signinForKakao(String name,String email,Model model){
 
         MemberDTO dto = service.makeIdAndPwByEmailForKakao(name,email);
         model.addAttribute("id",dto.getMemberId());
         return "index";
+    }
+
+    @RequestMapping("areYouKakao")
+    @ResponseBody
+    public String areYouKakao(String id){
+        return service.findById(id).getMemberLoginType();
     }
 
 
@@ -73,6 +87,8 @@ public class MemberController {
 
         return "index";
     }
+
+
 
 
 

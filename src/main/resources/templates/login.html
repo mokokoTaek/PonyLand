@@ -5,32 +5,35 @@
     <title>Login</title>
     <link rel="stylesheet" href="../static/style.css"/>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+            charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-<div class="logintitle">로그인</div>
-<div class="loginsection">
-    <div class="container">
-        <form action="/member/login" method="post">
-            <input type="text" class="loginbg" placeholder="아이디" name="memberId"><br>
-            <input type="text" class="loginbg" placeholder="비밀번호" name="memberPw">
-            <button class="loginbtn">로그인</button>
-        </form>
-        <div class="loginfind">
-            <span>회원가입 </span>
-            <span>아이디|비밀번호찾기</span>
-            <!--        <div>회원가입</div><div>아이디|비밀번호찾기</div>-->
+
+<div class="container">
+    <div class="logintitle">로그인</div>
+    <div class="loginsection">
+        <div class="container">
+            <form action="/member/login" method="post">
+                <input type="text" class="loginbg" placeholder="아이디" name="memberId"><br>
+                <input type="text" class="loginbg" placeholder="비밀번호" name="memberPw">
+                <button class="loginbtn">로그인</button>
+            </form>
+            <div class="loginfind">
+                <span>회원가입 </span>
+                <span>아이디|비밀번호찾기</span>
+                <!--        <div>회원가입</div><div>아이디|비밀번호찾기</div>-->
+            </div>
+
+            <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>
+            <button class="loginbtn" onclick="kakaoLogout();" type="button">카카오 로그아웃</button>
+            <button class="loginbtn" id="naver_id_login">네이버 로그인</button>
+            <a href="/">
+                <button class="loginbtn">메인으로</button>
+            </a>
         </div>
-
-        <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>
-        <button class="loginbtn" onclick="kakaoLogout();" type="button">카카오 로그아웃</button>
-        <button class="loginbtn" id="naver_id_login">네이버 로그인</button>
-        <a href="main.html">
-            <button class="loginbtn">메인으로</button>
-        </a>
     </div>
-
 </div>
 
 <!--네이버 로그인-->
@@ -45,9 +48,6 @@
 </script>
 
 
-
-
-
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
@@ -60,13 +60,15 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     data: {
-                        property_keys: ['kakao_account.email', 'kakao_account.gender'],
+                        property_keys: ['kakao_account.email', 'kakao_account.gender', 'kakao_account.name', 'kakao_account.profile'],
                     },
                     success: function (response) {
 
                         let kakao_account = response.kakao_account.email;
-                        console.log(kakao_account)
-                         location.href="/member/signinForKakao?email="+kakao_account+"";
+                        let kakao_name = response.kakao_account.profile.nickname;
+                        console.log(kakao_account);
+                        console.log(kakao_name);
+                        location.href = "/member/signinForKakao?email=" + kakao_account + "&name=" + kakao_name + "";
                     },
                     fail: function (error) {
                         console.log(error)

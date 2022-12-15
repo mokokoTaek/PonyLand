@@ -36,6 +36,7 @@ public class AlbumCommentController {
         System.out.println("4번 : " + list);
 
         String s = g.toJson(list);
+
         return s;
     }
 

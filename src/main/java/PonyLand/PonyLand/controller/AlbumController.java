@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -24,6 +25,9 @@ public class AlbumController {
     private AlbumCommentService albumCommentService;
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private AlbumCommentService AlbumCommentService;
 
 
 
@@ -82,10 +86,12 @@ public class AlbumController {
 
     }
 
+
     @RequestMapping("toAlbumPage")
     public String goGuestbook(Model model) {
         List<AlbumDTO> list = service.selectAll();
         model.addAttribute("dto", list);
+
 
 
 

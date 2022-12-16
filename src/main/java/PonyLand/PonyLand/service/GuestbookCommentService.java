@@ -16,6 +16,7 @@ public class GuestbookCommentService {
 
     public int insert(GuestbookCommentDTO dto) { return dao.insert(dto);}
 
-
-    public List<GuestbookCommentDTO> select(int parent_seq) {return dao.select(parent_seq);}
+    public List<GuestbookCommentDTO> select() {
+        return dao.select();
+    }
 }

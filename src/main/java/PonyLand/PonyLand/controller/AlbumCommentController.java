@@ -21,21 +21,23 @@ public class AlbumCommentController {
     private Gson g;
 
     @ResponseBody
-    @RequestMapping("write")
-    public String write(String Album_Comment_parent_seq,String Album_Comment_contents) {
+    @RequestMapping("writer")
+    public String write(String Album_seq,String Album_Comment_contents) {
+        System.out.println("1번 : " + Album_seq + " : " + Album_Comment_contents);
         AlbumCommentDTO dto = new AlbumCommentDTO();
-        dto.setAlbum_Comment_parent_seq(Integer.parseInt(Album_Comment_parent_seq));
-        System.out.println(Album_Comment_parent_seq);
-
+        dto.setAlbum_Comment_parent_seq(Integer.parseInt(Album_seq));
         dto.setAlbum_Comment_contents(Album_Comment_contents);
-        System.out.println(Album_Comment_contents);
-
+        System.out.println("2번 : " + dto.getAlbum_Comment_parent_seq());
+        System.out.println("3번 : " + dto.getAlbum_Comment_contents());
+        System.out.println("a");
         service.insert(dto);
-
-        List<AlbumCommentDTO> list  = service.selectComment(Integer.parseInt(Album_Comment_parent_seq));
+        System.out.println("b");
+        List<AlbumCommentDTO> list  = service.selectComment(Integer.parseInt(Album_seq));
+        System.out.println("4번 : " + list);
 
         String s = g.toJson(list);
-        return "s";
+
+        return s;
     }
 
 

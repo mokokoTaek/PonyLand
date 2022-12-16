@@ -27,9 +27,8 @@ public class MessageController {
     @GetMapping("message")
     public String message(MemberDTO dto, Model model){
        String id = (String)session.getAttribute("sessionID");
-        List<MessageDTO> list = service.selectAll();
-        System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", id);
+        List<MessageDTO> list = service.selectAll(id);
         model.addAttribute("list",list);
         return "message";
     }
@@ -44,12 +43,24 @@ public class MessageController {
 
     @RequestMapping("insert" )
     public void insert(MessageDTO dto) throws Exception {
-      int result = service.insert(dto);
+        service.insert(dto);
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println("<script>alert('전송 되었습니다.'); history.go(-1);</script>");
         out.flush();
         response.flushBuffer();
         out.close();
+    }
+
+    @RequestMapping("detail")
+    public String detail(MessageDTO dto, Model model){
+        String id = (String)session.getAttribute("sessionID");
+        model.addAttribute("id", id);
+        MessageDTO dto2 = service.selectBySeq(dto.getNo());
+        List<MessageDTO> list = service.selectAll(id);
+        model.addAttribute("list",list);
+        model.addAttribute("no", dto.getNo());
+        model.addAttribute("dto", dto2);
+        return "message";
     }
 }

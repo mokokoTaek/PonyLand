@@ -18,4 +18,5 @@ public class MessageDTO {
     private String title;
     private Timestamp send_time;
     private String content;
+
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -23,25 +24,33 @@ public class AlbumController {
     @Autowired
     private AlbumCommentService albumCommentService;
 
-    @Autowired
-    private HttpSession session;
 
-//    @GetMapping("hello")
-//    public String hello() {
-//        return "main";
+    @Autowired
+    private AlbumCommentService AlbumCommentService;
+
+
+
+
+
+
 //    }
 
     @RequestMapping("write")
-    public String write() {
+    public String write(Model model , String Album_host) {
+
+//        model.addAttribute(session.getAttribute("sessionID").toString());
+//        System.out.println(session);
+
+        model.addAttribute("id",Album_host);
         return "albumwrite";
     }
 
     @RequestMapping("insert")
-    public String insert(AlbumDTO dto, Model model) {
+    public String insert(AlbumDTO dto) {
         try {
             service.insert(dto);
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
-            model.addAttribute(session.getAttribute("sessionID").toString());
+
         } catch (Exception e) {
             return "error";
         }
@@ -78,10 +87,15 @@ public class AlbumController {
 
     }
 
+//사진첩으로 가는길 ,
     @RequestMapping("toAlbumPage")
-    public String goGuestbook(Model model) {
+    public String goGuestbook(Model model,String Album_host) {
         List<AlbumDTO> list = service.selectAll();
         model.addAttribute("dto", list);
+//세션담아서 가줌.
+        model.addAttribute("id",Album_host);
+
+
 
 
 

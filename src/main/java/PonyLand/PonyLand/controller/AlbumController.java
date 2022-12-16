@@ -1,6 +1,8 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.AlbumCommentDTO;
 import PonyLand.PonyLand.dto.AlbumDTO;
+import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import PonyLand.PonyLand.service.AlbumCommentService;
 import PonyLand.PonyLand.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,13 +61,11 @@ public class AlbumController {
             String realPath = session.getServletContext().getRealPath("load");
             System.out.println(realPath);
             File filePath = new File(realPath); //객체생성
-
                     if(!filePath.exists()) {
                 filePath.mkdir();      //파일업로드 폴더가 없으면 생성.
-
             }
 
-            if(filePath.exists()) {filePath.mkdir();} // 파일 업로드 폴더가 없다면 생성하는 코드
+
 
             String Album_oriName  = file.getOriginalFilename();
             dto.setAlbum_oriname(Album_oriName);  //dto에 사진을담음
@@ -78,7 +78,7 @@ public class AlbumController {
             file.transferTo(new File(filePath+"/"+Album_sysName));
             service.insert(dto);
 
-            System.out.println(realPath);
+
 
 
 
@@ -125,9 +125,11 @@ public class AlbumController {
     @RequestMapping("toAlbumPage")
     public String goGuestbook(Model model,String Album_host) {
         List<AlbumDTO> list = service.selectAll();
+        List<AlbumCommentDTO> list1 = albumCommentService.selectComment();
         model.addAttribute("dto", list);
 //세션담아서 가줌.
         model.addAttribute("id",Album_host);
+        model.addAttribute("list1",list1);
 
 
 

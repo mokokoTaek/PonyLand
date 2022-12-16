@@ -17,8 +17,8 @@ public class AlbumCommentDAO {
         return AlbumCommentmapper.insert(dto);
     }
 
-    public List<AlbumCommentDTO> selectComment(int Album_Comment_parent_seq){
+    public List<AlbumCommentDTO> selectComment(){
 
-        return AlbumCommentmapper.selectComment(Album_Comment_parent_seq);
+        return AlbumCommentmapper.selectComment();
     }
 }

@@ -86,7 +86,7 @@
                             <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
                         </div>
                     </div>
-                    <div class="comment" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
+                    <div class="comment" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.geParent_seq()}">
                         <th th:text="${list1.getGuestbook_comment_writer()}"></th>
                         <th th:text="${list1.getGuestbook_comment_contents()}"></th>
                         <th th:text="${list1.getGuestbook_comment_write_date()}"></th>

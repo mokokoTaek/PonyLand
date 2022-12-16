@@ -14,7 +14,7 @@
     </insert>
 
     <select id = "selectComment" resultType="PonyLand.PonyLand.dto.AlbumCommentDTO">
-        select * from Album_Comment where Album_Comment_parent_seq=#{Album_Comment_parent_seq}
+        select * from Album_Comment order by Album_Comment_seq desc
     </select>
 
 </mapper>

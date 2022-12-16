@@ -7,49 +7,7 @@
     <title>Album</title>
     <script>
 
-        $(function(){
-            $(".gbbutton").on("click", function () {
 
-                $("#abc").empty();
-                $(this).prev().find('input').attr("name", "Album_Comment_contents");
-                let Album_seq = $(this).next().val();
-                let Album_Comment_contents = $(this).prev().find('input').val();
-
-
-                $("#Album_Comment_contents").val("");
-
-                $.ajax({
-                    url: "/Comment/writer",
-                    type: "post",
-                    data: {
-                        "Album_seq": Album_seq,
-                        "Album_Comment_contents": Album_Comment_contents
-                    }
-                }).done(function (data) {
-                    let target = JSON.parse(data);
-                    for (let i = 0; i < target.length; i++) {
-
-
-                        let div1 = $("<div>");
-
-                        let divAlbum_Comment_contents = $("<span>");
-                        divAlbum_Comment_contents.append(target[i].Album_Comment_contents);
-
-                        div1.append(divAlbum_Comment_contents);
-
-
-                        $("#abc").append(div1);
-
-
-                    }
-
-
-                }).fail(function (data) {
-
-                })
-            });
-
-        })
 
 
     </script>
@@ -110,7 +68,7 @@
         <form id="form">
             <div class="albg3">
                 <div class="bg3in">
-                    <div th:each="list:${dto}">
+                    <div th:each="list:${dto}" >
                         <div class="gbtitle">
                             <tr>
                                 <input type="hidden" th:value="${id}" id="host" />
@@ -126,7 +84,7 @@
                         </div>
                         <div class="alpic">
 <!--                            <th th:src="@{${file.oriname()}}">-->
-                            <th th:src="${list.getAlbum_oriname()}">
+
                             </th>사진
                         </div>
 
@@ -147,14 +105,19 @@
                             </div>
 
                         </div>
+                        <div class="comment" th:each="list1: ${list1}" th:if="${list.getAlbum_seq() == list1.getAlbum_Comment_parent_seq()}">
+                            <th th:text="${list1.getAlbum_Comment_writer()}"></th>
+                            <th th:text="${list1.getAlbum_Comment_contents()}"></th>
+                            <th th:text="${list1.getAlbum_Comment_write_date()}"></th>
+                        </div>
 
-                        <div class="gbcmtinput" id=CommentList>
+                        <div class="gbcmtinput" >
                             <div class="gbcmt">
                                 <!--                       <tr th:each="list1:${dto1}">-->
                                 <input class="gbcmt" type="text" id="Album_Comment_contents">
                             </div>
 
-                            <button class="gbbutton" type="button" id="comment">확인</button>
+                            <button class="gbbutton" type="button" >확인</button>
                             <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
                     </div>
@@ -193,7 +156,7 @@
     </a>
     <a th:href="@{/Album/toAlbumPage}">
     <button class="btnmain1">사진첩</button>
-    </a>
+    </a>4
     <button class="btnmain2">다이어리</button>
 </div>
 </body>
@@ -204,6 +167,56 @@
         let Album_host = $("#host").val();
 
         location.href = "/Album/write?Album_host="+Album_host;
+    })
+    $(function(){
+        $(".gbbutton").on("click", function () {
+
+
+            $(this).prev().find('input').attr("name", "Album_Comment_contents");
+            let Album_seq = $(this).next().val();
+            let Album_Comment_contents = $(this).prev().find('input').val();
+
+
+            $("#Album_Comment_contents").val("");
+
+            $.ajax({
+                url: "/Comment/writer",
+                type: "post",
+                data: {
+                    "Album_seq": Album_seq,
+                    "Album_Comment_contents": Album_Comment_contents
+                }
+            }).done(function (data) {
+                let target = JSON.parse(data);
+
+                for (let i = 0; i < target.length; i++) {
+
+//
+                    let div = $("<div>")
+
+                    let th1 = $("<th>");
+                    th1.attr("th:text","${list1.getAlbum_Comment_writer()}");
+
+                    let th2 = $("<th>");
+                    th2.attr("th:text","${list1.getAlbum_Comment_contents()}");
+
+                    let th3 = $("<th>");
+                    th3.attr("th:text","${list1.getAlbum_Comment_write_date()}");
+
+                    div.append(th1);
+                    div.append(th2);
+                    div.append(th3);
+                    $(".comment").append(div);
+
+
+                }
+
+
+            }).fail(function (data) {
+
+            })
+        });
+
     })
 
 

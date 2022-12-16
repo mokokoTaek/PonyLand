@@ -15,6 +15,9 @@
                 let Album_seq = $(this).next().val();
                 let Album_Comment_contents = $(this).prev().find('input').val();
 
+
+                $("#Album_Comment_contents").val("");
+
                 $.ajax({
                     url: "/Comment/writer",
                     type: "post",
@@ -122,7 +125,9 @@
                             </tr>
                         </div>
                         <div class="alpic">
-                            사진
+<!--                            <th th:src="@{${file.oriname()}}">-->
+                            <th th:src="${list.getAlbum_oriname()}">
+                            </th>사진
                         </div>
 
                         <div class="alcontext">
@@ -171,7 +176,7 @@
                 </div>
             </div>
         </form>
-<!--        <button id="write1">글쓰기</button>-->
+        <button id="write1">글쓰기</button>
 
 
     </div>
@@ -195,7 +200,7 @@
 <script>
 
     //앨범 글쓰기로 가는 세션. (아이디 포함)
-    $("#write").on("click", function() {
+    $("#write1").on("click", function() {
         let Album_host = $("#host").val();
 
         location.href = "/Album/write?Album_host="+Album_host;

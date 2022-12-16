@@ -2,6 +2,7 @@ package PonyLand.PonyLand.Mapper;
 
 import PonyLand.PonyLand.dto.AlbumCommentDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

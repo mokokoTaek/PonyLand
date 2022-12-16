@@ -1,19 +1,18 @@
 package PonyLand.PonyLand.controller;
 
-import PonyLand.PonyLand.dto.AlbumCommentDTO;
 import PonyLand.PonyLand.dto.AlbumDTO;
-import PonyLand.PonyLand.dto.GuestbookDTO;
 import PonyLand.PonyLand.service.AlbumCommentService;
 import PonyLand.PonyLand.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/Album/")
@@ -27,6 +26,9 @@ public class AlbumController {
 
     @Autowired
     private AlbumCommentService AlbumCommentService;
+
+    @Autowired
+    private HttpSession session;
 
 
 
@@ -49,10 +51,39 @@ public class AlbumController {
     }
 
     @RequestMapping("insert")
-    public String insert(AlbumDTO dto) {
+    public String insert(AlbumDTO dto, MultipartFile file) {
         try {
-            service.insert(dto);
+
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
+
+            String realPath = session.getServletContext().getRealPath("load");
+            System.out.println(realPath);
+            File filePath = new File(realPath); //객체생성
+
+                    if(!filePath.exists()) {
+                filePath.mkdir();      //파일업로드 폴더가 없으면 생성.
+
+            }
+
+            if(filePath.exists()) {filePath.mkdir();} // 파일 업로드 폴더가 없다면 생성하는 코드
+
+            String Album_oriName  = file.getOriginalFilename();
+            dto.setAlbum_oriname(Album_oriName);  //dto에 사진을담음
+
+            String Album_sysName = UUID.randomUUID() + "_" + Album_oriName;
+            dto.setAlbum_sysname(Album_sysName); //dto에 사진을담음
+
+            //			현재시간과 겹치지않는 문자열을 자동생성
+            Album_oriName= new String(Album_oriName.getBytes("utf8"),"ISO-8859-1");
+            file.transferTo(new File(filePath+"/"+Album_sysName));
+            service.insert(dto);
+
+            System.out.println(realPath);
+
+
+
+
+
 
         } catch (Exception e) {
             return "error";

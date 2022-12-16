@@ -28,10 +28,10 @@ public class AlbumCommentController {
     @RequestMapping("writer")
     public String write(String Album_seq,String Album_Comment_contents) {
 
-        String Album_Comment_writer = (String) session.getAttribute("sessionID");
+        String Album_Comment_writer = (String) session.getAttribute("sessionID"); //세션값.
         System.out.println("1번 : " + Album_seq + " : " + Album_Comment_contents);
         AlbumCommentDTO dto = new AlbumCommentDTO();
-        dto.setAlbum_Comment_writer(Album_Comment_writer);
+        dto.setAlbum_Comment_writer(Album_Comment_writer); //세션값
         dto.setAlbum_Comment_parent_seq(Integer.parseInt(Album_seq));
         dto.setAlbum_Comment_contents(Album_Comment_contents);
         System.out.println("2번 : " + dto.getAlbum_Comment_parent_seq());

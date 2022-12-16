@@ -8,7 +8,7 @@
 
     <insert id="insert" >
 
-        insert into album_comment values(Album_Comment_seq.nextval,0,#{Album_Comment_contents},sysdate,#{Album_Comment_parent_seq})
+        insert into album_comment values(Album_Comment_seq.nextval,#{Album_Comment_writer},#{Album_Comment_contents},sysdate,#{Album_Comment_parent_seq})
 
 
     </insert>

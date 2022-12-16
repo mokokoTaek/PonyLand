@@ -58,6 +58,8 @@ public class AlbumController {
 
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
 
+            String Album_writer = (String)session.getAttribute("sessionID");
+            dto.setAlbum_writer(Album_writer);
             String realPath = session.getServletContext().getRealPath("load");
             System.out.println(realPath);
             File filePath = new File(realPath); //객체생성

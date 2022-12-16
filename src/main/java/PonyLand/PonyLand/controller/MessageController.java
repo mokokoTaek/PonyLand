@@ -52,7 +52,7 @@ public class MessageController {
         out.close();
     }
 
-    @GetMapping("detail")
+    @RequestMapping("detail")
     public String detail(MessageDTO dto, Model model){
         String id = (String)session.getAttribute("sessionID");
         model.addAttribute("id", id);

@@ -1,6 +1,8 @@
 package PonyLand.PonyLand.service;
 
+import PonyLand.PonyLand.dao.GuestbookCommentDAO;
 import PonyLand.PonyLand.dao.GuestbookDAO;
+import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import PonyLand.PonyLand.dto.GuestbookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,4 +23,6 @@ public class GuestbookService {
     public int update(GuestbookDTO dto) {return dao.update(dto); }
 
     public List<GuestbookDTO> select() {return dao.select();}
+
+
 }

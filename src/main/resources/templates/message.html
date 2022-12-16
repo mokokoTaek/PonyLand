@@ -16,7 +16,8 @@
             text-decoration: none;
             color: black;
         }
-        .detail:hover{
+
+        .detail:hover {
             cursor: pointer;
         }
 
@@ -44,7 +45,7 @@
                     <!-- 메세지 검색 -->
                     <div class="srch_bar">
                         <div class="stylish-input-group">
-                            <input type="text" class="search-bar"  placeholder="Search" >
+                            <input type="text" class="search-bar" placeholder="Search">
                             <span class="input-group-addon">
 	                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
 	                </span>
@@ -53,29 +54,30 @@
                 </div>
 
                 <!-- 메세지 리스트 -->
-<!--                <form action="/message/detail?${no}" id="see">-->
+                <!--                <form action="/message/detail?${no}" id="see">-->
                 <div class="inbox_chat">
-                    <a onclick="detail()" href="#">
-                        <div th:each="item : ${list}">
-<!--                            <a th:href="@{/message/detail?(no=${item.no})}">-->
-<!--                          <input type="hidden" th:value="${item.no}" name="no" value="${item.no}">-->
-                            <div>
-                                  <div th:text="${item.no}"/>
-                                <div>보낸이: <span th:text="${item.send_nick}"/></div>
-                                <div>제목: <span th:text="${item.title}"/></div>
-                                <br/>
-                                <!-- 새로운 div 태그 추가 -->
-                                <div style="border: 1px solid; border-color: black;">
-                                </div>
+
+                    <div th:each="item : ${list}">
+                        <!--                            <a th:href="@{/message/detail?(no=${item.no})}">-->
+                        <!--                          <input type="hidden" th:value="${item.no}" name="no" value="${item.no}">-->
+                        <div>
+                            <div th:text="${item.no}"/>
+                            <div>보낸이: <span th:text="${item.send_nick}"/></div>
+<!--                            <div>제목:<a href="@{#}" th:onclick="detail()"> <span th:text="${item.title}"/> </a></div>-->
+                            <div>제목:<button onclick="detail()"> <span th:text="${item.title}"/></div>
+                            <br/>
+                            <!-- 새로운 div 태그 추가 -->
+                            <div style="border: 1px solid; border-color: black;">
                             </div>
-<!--                            </a>-->
                         </div>
+                        <!--                            </a>-->
+                    </div>
                     </a>
                 </div>
-<!--                </form>-->
+                <!--                </form>-->
                 <a href="/message/write" onClick="window.open(this.href, '', 'width=530, height=550'); return false;">
                     <button>쪽지 보내기</button>
-                </a>
+
             </div>
 
             <!-- 메세지 내용 영역 -->
@@ -98,28 +100,52 @@
 
 </script>
 
-<script>
+<script th:inline="javascript">
 
-            function detail() {
-            var send_nick = '${send_nick}';
-            var title = '${title}';
-            var content = '${content}';
-            var send_time = '${send_time}';
+    function detail() {
 
-            $.ajax({
-                url: "/message/detail",
-                type: "POST",
-                data: {
-                    send_nick: send_nick,
-                    title: title,
-                    content: content,
-                    send_time: send_time
-                },
-                success: function(response) {
-                    alert(response);
-                }
-            });
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+
+        let send_nick = '${send_nick}';
+        let title = '${title}';
+        let content = '${content}';
+        let send_time = '${send_time}';
+
+        console.log(send_nick);
+        console.log(title);
+        console.log(content);
+        console.log(send_time);
+
+        $.ajax({
+            url: "/message/detail",
+            type: "POST",
+            data: {
+                send_nick: send_nick,
+                title: title,
+                content: content,
+                send_time: send_time
+            },
+            success: function (response) {
+                alert(response);
+            }
         });
+    };
 
 </script>
 </body>

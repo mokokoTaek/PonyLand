@@ -1,6 +1,5 @@
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>쪽지함</title>
 
@@ -11,6 +10,7 @@
     <!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         a {
             text-decoration: none;
@@ -81,46 +81,43 @@
             <!-- 메세지 내용 영역 -->
             <div class="mesgs">
                 <!-- 메세지 내용 목록 -->
-                <div class="msg_history" name="contentList">
-                    <p th:text="${send_nick}"></p>
-                    <p th:text="${title}"></p>
-                    <p th:text="${content}"></p>
-                    <p th:text="${send_time}"></p>
-                </div>
+            </div>
                 <div class="send_message">
                 </div>
                 <!-- 메세지 입력란이 올자리 -->
-            </div>
         </div>
 
     </div>
 </div>
 
-</script>
-
 <script>
+        function detail() {
+        // Get the values of the "send_nick", "title", "content", and "send_time" variables
+        var send_nick = "${send_nick}";
+        var title = "${title}";
+        var content = "${content}";
 
-            function detail() {
-            var send_nick = '${send_nick}';
-            var title = '${title}';
-            var content = '${content}';
-            var send_time = '${send_time}';
-
+        // Use AJAX to send a request to the server
             $.ajax({
-                url: "/message/detail",
-                type: "POST",
-                data: {
-                    send_nick: send_nick,
-                    title: title,
-                    content: content,
-                    send_time: send_time
-                },
-                success: function(response) {
-                    alert(response);
-                }
-            });
+            url: '/message/detail',
+            type: 'GET',
+            data: {
+            send_nick: send_nick,
+            title: title,
+            content: content,
+        },
+        success: function(response) {
+        // If the request is successful, update the page with the information from the server
+            $('#send_nick').text(response.send_nick);
+            $('#title').text(response.title);
+            $('#content').text(response.content);
+        }
         });
-
+        }
 </script>
+
+
 </body>
+
+
 </html>

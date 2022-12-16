@@ -9,13 +9,13 @@
     <title>Guestbook</title>
 
     <script>
-
+        // 방명록 댓글 : List와 insert 기능
         $(function () {
-            // 방명록 댓글 : List와 insert 기능
             $(".gbbutton").on("click", function () {
                 $(this).prev().find('input').attr("name", "guestbook_comment_contents");
                 let parent_seq = $(this).next().val();
                 let guestbook_comment_contents = $(this).prev().find('input').val();
+
                 $("#guestbook_comment_contents").val("");
 
                 $.ajax({
@@ -27,15 +27,18 @@
                     let target = JSON.parse(data);
 
                     for (let i = 0; i < target.length; i++) {
-                        let div = $("<div>");
 
-                        let contents = $("<span>");
-                        contents.append(target[i].guestbook_comment_contents);
+                            let div = $("<div>");
+                            let contents = $("<span>");
+                            contents.append(target[i].guestbook_comment_contents);
 
-                        div.append(contents);
-                        $(".hano").append(div);
+                            if(방명록 글 seq == 방명록 댓글 parent_seq){
+                                div.append(contents);
+                                $(".hano").append(div);
+                            }
 
-                    }
+
+                        }
                 }).fail(function (data) {
                     console.log("ㅋㅋ 실패")
                 })
@@ -43,6 +46,7 @@
         })
 
         window.onload = function () {
+
         }
 
 

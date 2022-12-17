@@ -45,6 +45,14 @@ public class AlbumCommentController {
         return s;
     }
 
+    @RequestMapping("delete")
+    public String delete(int Album_Comment_seq) {
+        service.delete(Album_Comment_seq);
+
+        return "redirect:/Album/toAlbumPage";
+
+    }
+
 
 
 

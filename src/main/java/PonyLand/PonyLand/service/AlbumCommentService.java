@@ -18,4 +18,7 @@ public class AlbumCommentService {
     public List<AlbumCommentDTO> selectComment() {
         return dao.selectComment();
     }
+    public int delete(int Album_Comment_seq) {
+        return dao.delete(Album_Comment_seq);
+    }
 }

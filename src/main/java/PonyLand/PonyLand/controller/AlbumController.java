@@ -127,7 +127,7 @@ public class AlbumController {
     @RequestMapping("toAlbumPage")
     public String goGuestbook(Model model,String Album_host) {
         List<AlbumDTO> list = service.selectAll();
-        List<AlbumCommentDTO> list1 = albumCommentService.selectComment();
+        List<AlbumCommentDTO> list1 = albumCommentService.selectComment();  //list로 묶은 댓글목록들을 여기서 가져온다.
         model.addAttribute("dto", list);
 //세션담아서 가줌.
         model.addAttribute("id",Album_host);

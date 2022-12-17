@@ -84,7 +84,7 @@
                         </div>
                         <div class="alpic">
 <!--                            <th th:src="@{${file.oriname()}}">-->
-<!--                            <img th:src="{'/static/img/'+ list.Album_oriname}" alt="">-->
+                            <img th:src="@{${list.getAlbum_oriname()}}"> <!--이미지 경로 불러오기.-->
 
                             </th>사진
                         </div>
@@ -107,9 +107,11 @@
 
                         </div>
                         <div class="comment" th:each="list1: ${list1}" th:if="${list.getAlbum_seq() == list1.getAlbum_Comment_parent_seq()}">
+
                             <th th:text="${list1.getAlbum_Comment_writer()}"></th>
                             <th th:text="${list1.getAlbum_Comment_contents()}"></th>
                             <th th:text="${list1.getAlbum_Comment_write_date()}"></th>
+                            <th><a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.Album_Comment_seq})}">x</a></th>
                         </div>
 
                         <div class="gbcmtinput" >
@@ -211,6 +213,9 @@
                     $(".comment").append(div);
 
 
+
+
+
                 }
 
 
@@ -249,6 +254,8 @@
     //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
     //     $("#form").submit();
     // })
+
+
 
 
     // $(".gbbutton").on("click", function () {

@@ -17,4 +17,9 @@
         select * from Album_Comment order by Album_Comment_seq desc
     </select>
 
+    <delete id="delete">
+        delete from Album_Comment where Album_Comment_seq = #{value}
+
+
+    </delete>
 </mapper>

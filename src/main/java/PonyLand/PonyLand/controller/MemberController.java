@@ -54,9 +54,7 @@ public class MemberController {
     public String login(MemberDTO dto, Model model) throws Exception{
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
-//        System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", dto.getMemberId());
-        System.out.println(dto.getMemberId());
         return "index";
     }
 

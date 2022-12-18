@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,22 +21,36 @@ public class AlbumCommentController {
     @Autowired
     private Gson g;
 
+    @Autowired
+    private HttpSession session;
+
     @ResponseBody
-    @RequestMapping("write")
-    public String write(String Album_Comment_parent_seq,String Album_Comment_contents) {
+    @RequestMapping("writer")
+    public String write(String Album_seq,String Album_Comment_contents) {
+
+        String Album_Comment_writer = (String) session.getAttribute("sessionID"); //세션값.
+        System.out.println("1번 : " + Album_seq + " : " + Album_Comment_contents);
         AlbumCommentDTO dto = new AlbumCommentDTO();
-        dto.setAlbum_Comment_parent_seq(Integer.parseInt(Album_Comment_parent_seq));
-        System.out.println(Album_Comment_parent_seq);
-
+        dto.setAlbum_Comment_writer(Album_Comment_writer); //세션값
+        dto.setAlbum_Comment_parent_seq(Integer.parseInt(Album_seq));
         dto.setAlbum_Comment_contents(Album_Comment_contents);
-        System.out.println(Album_Comment_contents);
-
+        System.out.println("2번 : " + dto.getAlbum_Comment_parent_seq());
+        System.out.println("3번 : " + dto.getAlbum_Comment_contents());
+        System.out.println("a");
         service.insert(dto);
+        System.out.println("b");
 
-        List<AlbumCommentDTO> list  = service.selectComment(Integer.parseInt(Album_Comment_parent_seq));
+        String s = g.toJson(dto);
 
-        String s = g.toJson(list);
-        return "s";
+        return s;
+    }
+
+    @RequestMapping("delete")
+    public String delete(int Album_Comment_seq) {
+        service.delete(Album_Comment_seq);
+
+        return "redirect:/Album/toAlbumPage";
+
     }
 
 

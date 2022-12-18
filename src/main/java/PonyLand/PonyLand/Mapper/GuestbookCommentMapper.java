@@ -13,5 +13,5 @@ public interface GuestbookCommentMapper {
 
     int delete(int guestbook_Comment_Seq);
 
-    List<GuestbookCommentDTO> select(int parent_seq);
+    List<GuestbookCommentDTO> select();
 }

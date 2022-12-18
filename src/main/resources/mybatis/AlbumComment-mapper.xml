@@ -8,13 +8,18 @@
 
     <insert id="insert" >
 
-        insert into album_comment values(Album_Comment_seq.nextval,0,#{Album_Comment_contents},sysdate,#{Album_Comment_parent_seq})
+        insert into album_comment values(Album_Comment_seq.nextval,#{Album_Comment_writer},#{Album_Comment_contents},sysdate,#{Album_Comment_parent_seq})
 
 
     </insert>
 
     <select id = "selectComment" resultType="PonyLand.PonyLand.dto.AlbumCommentDTO">
-        select * from Album_Comment where Album_Comment_parent_seq=#{Album_Comment_parent_seq}
+        select * from Album_Comment order by Album_Comment_seq desc
     </select>
 
+    <delete id="delete">
+        delete from Album_Comment where Album_Comment_seq = #{value}
+
+
+    </delete>
 </mapper>

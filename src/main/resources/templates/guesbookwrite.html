@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/style.css"/>
     <title>GuestbookWrite</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
+
 </head>
 <body>
 <div class="container">
@@ -73,7 +78,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit">글쓰기완료</button>
+                <button type="submit" id="writee">글쓰기완료</button>
+                <input type="hidden" th:value="${id}" name="guestbook_host" id="host">
             </div>
         </form>
     </div>
@@ -96,5 +102,11 @@
     </div>
 
 </div>
+
+<script>
+    $("#writee").on("click", function () {
+        console.log($("#host").val());
+    })
+</script>
 </body>
 </html>

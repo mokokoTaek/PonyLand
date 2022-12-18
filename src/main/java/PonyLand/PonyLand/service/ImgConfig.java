@@ -12,7 +12,7 @@ public class ImgConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**")
-                .addResourceLocations("file:////")
+                .addResourceLocations("file:///C:\\Users\\이진혁\\AppData\\Local\\Temp\\tomcat-docbase.80.13049837589883602549\\load/")
                 .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
     }
 }

@@ -5,6 +5,7 @@ import PonyLand.PonyLand.dto.AlbumDTO;
 import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import PonyLand.PonyLand.service.AlbumCommentService;
 import PonyLand.PonyLand.service.AlbumService;
+import PonyLand.PonyLand.service.ImgConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,9 @@ public class AlbumController {
 
     @Autowired
     private HttpSession session;
+
+
+
 
 
 

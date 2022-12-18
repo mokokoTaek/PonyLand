@@ -55,21 +55,16 @@ public class AlbumController {
     @RequestMapping("insert")
     public String insert(AlbumDTO dto, MultipartFile file) {
         try {
-
-
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
 
             String Album_writer = (String)session.getAttribute("sessionID");
             dto.setAlbum_writer(Album_writer);
-//            String realPath = session.getServletContext().getRealPath("load");
-//            System.out.println(realPath);
-//            File filePath = new File(realPath); //객체생성
-//                    if(!filePath.exists()) {
-//                filePath.mkdir();      //파일업로드 폴더가 없으면 생성.
-//            }
-
-
-
+            String realPath = session.getServletContext().getRealPath("load");
+            System.out.println(realPath);
+            File filePath = new File(realPath); //객체생성
+                    if(!filePath.exists()) {
+                filePath.mkdir();      //파일업로드 폴더가 없으면 생성.
+            }
             String Album_oriName  = file.getOriginalFilename();
             dto.setAlbum_oriname(Album_oriName);  //dto에 사진을담음
 
@@ -78,14 +73,8 @@ public class AlbumController {
 
             //			현재시간과 겹치지않는 문자열을 자동생성
             Album_oriName= new String(Album_oriName.getBytes("utf8"),"ISO-8859-1");
-            file.transferTo(new File(Album_sysName));
+            file.transferTo(new File(filePath+"/"+Album_sysName));
             service.insert(dto);
-
-
-
-
-
-
 
         } catch (Exception e) {
             return "error";

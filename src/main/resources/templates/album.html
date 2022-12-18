@@ -83,7 +83,7 @@
                         </div>
                         <div class="alpic">
 <!--                            <th th:src="@{${file.oriname()}}">-->
-                            <img th:src="@{${list.getAlbum_oriname()}}"> <!--이미지 경로 불러오기.-->
+                            <img th:src="|/@{${list.getAlbum_oriname()}}|"> <!--이미지 경로 불러오기.-->
 
                             </th>사진
                         </div>
@@ -172,8 +172,12 @@
 
         location.href = "/Album/write?Album_host="+Album_host;
     })
+
+
+
     $(function(){
         $(".gbbutton").on("click", function () {
+            location.reload();
 
 
             $(this).prev().find('input').attr("name", "Album_Comment_contents");

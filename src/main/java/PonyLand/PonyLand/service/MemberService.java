@@ -5,24 +5,30 @@ import PonyLand.PonyLand.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Random;
 import java.util.UUID;
 
 @Service
 public class MemberService {
 
+    private final static String VIEWCOOKIENAME = "alreadyViewCookie";
+
     @Autowired
     private MemberDAO dao;
     @Autowired
     private Random random;
-    @Autowired
-    private HttpServletResponse response;
+
     @Autowired
     private HttpSession session;
+
 
     public Long getWave() {
         return dao.countMember();
@@ -45,6 +51,7 @@ public class MemberService {
     public String login( String member_id, String member_pw) throws Exception {
         MemberDTO dto = dao.login(member_id, member_pw);
         if (dto == null) {
+            HttpServletResponse response = null;
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('아이디와 패스워드를 확인해 주세요.'); history.go(-1);</script>");
@@ -61,7 +68,7 @@ public class MemberService {
 
         int index= email.indexOf("@");
 
-        String newId = "[K]"+email.substring(0,index);
+        String newId = "K"+email.substring(0,index);
 
         UUID uuid = UUID.randomUUID();
 
@@ -85,7 +92,7 @@ public class MemberService {
 
         int index= email.indexOf("@");
 
-        String newId = "[N]"+email.substring(0,index);
+        String newId = "N"+email.substring(0,index);
 
         UUID uuid = UUID.randomUUID();
 
@@ -129,8 +136,54 @@ public class MemberService {
         return dao.findById(id);
     }
 
+    public void addView(String id, HttpServletRequest request, HttpServletResponse response){
 
-}
+        Cookie[] cookies = request.getCookies();
+        boolean checkCookie = false;
+        if(cookies != null){
+            for (Cookie cookie : cookies)
+            {
+                // 이미 조회를 한 경우 체크
+                if (cookie.getName().equals(VIEWCOOKIENAME+id)) checkCookie = true;
+
+            }
+            if(!checkCookie){
+                Cookie newCookie = createCookieForForNotOverlap(id);
+                response.addCookie(newCookie);
+                dao.addView(id);
+            }
+        } else {
+            Cookie newCookie = createCookieForForNotOverlap(id);
+            response.addCookie(newCookie);
+            dao.addView(id);
+        }
+
+    }
+
+    /*
+     * 조회수 중복 방지를 위한 쿠키 생성 메소드
+     * @param cookie
+     * @return
+     * */
+    private Cookie createCookieForForNotOverlap(String id) {
+        Cookie cookie = new Cookie(VIEWCOOKIENAME+id, id);
+        cookie.setComment("조회수 중복 증가 방지 쿠키");	// 쿠키 용도 설명 기재
+        cookie.setMaxAge(getRemainSecondForTommorow()); 	// 하루를 준다.
+        cookie.setHttpOnly(true);				// 서버에서만 조작 가능
+        return cookie;
+    }
+
+    // 다음 날 정각까지 남은 시간(초)
+    private int getRemainSecondForTommorow() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime tommorow = LocalDateTime.now().plusDays(1L).truncatedTo(ChronoUnit.DAYS);
+        return (int) now.until(tommorow, ChronoUnit.SECONDS);
+    }
+
+    }
+
+
+
 
 
 

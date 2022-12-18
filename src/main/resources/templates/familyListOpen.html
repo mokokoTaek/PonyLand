@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="bg3">
+    <div class="bg3in">
+
+        <form action="" method="post" id="frm">
+            <div th:if="${list1}!=null">
+                <div th:each="list1:${list1}">
+
+                    <tr>
+
+                        <th th:text="|${list1.familyMe} |"></th> <br>
+                        <th th:text="|${list1.familyProposedName} |"></th>
+                        <br>
+                        <button type="button" class="deleteBtn">삭제</button>
+                        <input type="hidden" class="hiddenSeq" th:value="${list1.familySeq}">
+                        <br><br>
+
+
+                    </tr>
+
+                </div>
+            </div>
+
+            <div th:if="${list2}!=null">
+                <div th:each="list2:${list2}">
+
+                    <tr>
+
+                        <th th:text="|${list2.familyOther} |"></th> <br>
+                        <th th:text="|${list2.familyProposerName} |"></th>
+                        <br>
+                        <button type="button" class="deleteBtn">삭제</button>
+                        <input type="hidden" class="hiddenSeq" th:value="${list2.familySeq}">
+                        <br><br>
+
+                    </tr>
+
+                </div>
+            </div>
+        </form>
+
+        <div th:if="${list1.size()}==0 or ${list2.size()}==0">
+            아직 일촌 목록에 사람들을 추가하지 않으셨습니다. 지금 바로 추가해보세요!
+        </div>
+    </div>
+</div>
+</body>
+</html>

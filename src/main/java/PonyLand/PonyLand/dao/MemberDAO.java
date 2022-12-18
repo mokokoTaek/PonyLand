@@ -3,6 +3,8 @@ package PonyLand.PonyLand.dao;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.Repository.member.SpringDataJpaMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Member;
@@ -35,4 +37,9 @@ public class MemberDAO {
     }
 
     public MemberDTO findById(String id){return sdjr.findByMemberId(id);}
+
+    public void addView(String id){
+        sdjr.addView(id);
+    }
+
 }

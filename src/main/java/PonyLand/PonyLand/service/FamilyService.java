@@ -67,4 +67,11 @@ public class FamilyService {
         dao.deleteByFamilySeq(familySeq);
     }
 
+    public List<FamilyDTO> getFamilyListByProposerId(String id){
+        return dao.getFamilyListByProposerId(id);
+    }
+
+    public List<FamilyDTO> getFamilyListByProposedId(String id){
+        return dao.getFamilyListByProposedId(id);
+    }
 }

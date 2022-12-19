@@ -5,7 +5,6 @@ import PonyLand.PonyLand.dto.AlbumDTO;
 import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import PonyLand.PonyLand.service.AlbumCommentService;
 import PonyLand.PonyLand.service.AlbumService;
-import PonyLand.PonyLand.service.ImgConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,11 +41,9 @@ public class AlbumController {
 
 
 
-
-
 //    }
 
-    @RequestMapping("write")
+    @RequestMapping("write")  //글쓰기로 가는부분
     public String write(Model model , String Album_host) {
 
 //        model.addAttribute(session.getAttribute("sessionID").toString());
@@ -56,7 +53,7 @@ public class AlbumController {
         return "albumwrite";
     }
 
-    @RequestMapping("insert")
+    @RequestMapping("insert")   //게시글 입력
     public String insert(AlbumDTO dto, MultipartFile file) {
         try {
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
@@ -99,14 +96,14 @@ public class AlbumController {
     }
 
 
-    @RequestMapping("delete")
+    @RequestMapping("delete")  //삭제
     public String delete(int Album_seq) {
         service.delete(Album_seq);
 
         return "redirect:toAlbumPage";
     }
 
-    @RequestMapping("update")
+    @RequestMapping("update") //수정
     public String update(String Album_title, String Album_contents, int Album_seq, Model model) {
         service.update(Album_title, Album_contents, Album_seq);
 //       수정.
@@ -117,7 +114,7 @@ public class AlbumController {
     }
 
 //사진첩으로 가는길 ,
-    @RequestMapping("toAlbumPage")
+    @RequestMapping("toAlbumPage")  //전체 목록 뷰
     public String goGuestbook(Model model,String Album_host) {
         List<AlbumDTO> list = service.selectAll();
         List<AlbumCommentDTO> list1 = albumCommentService.selectComment();  //list로 묶은 댓글목록들을 여기서 가져온다.

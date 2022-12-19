@@ -15,7 +15,10 @@ public class AlbumCommentService {
     public int insert(AlbumCommentDTO dto) {
         return dao.insert(dto);
     }
-    public List<AlbumCommentDTO> selectComment(int Album_Comment_parent_seq) {
-        return dao.selectComment( Album_Comment_parent_seq);
+    public List<AlbumCommentDTO> selectComment() {
+        return dao.selectComment();
+    }
+    public int delete(int Album_Comment_seq) {
+        return dao.delete(Album_Comment_seq);
     }
 }

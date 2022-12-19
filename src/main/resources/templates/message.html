@@ -1,7 +1,8 @@
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
-    <title>메세지함</title>
+    <title>쪽지함</title>
 
 
     <!-- CSS File -->
@@ -10,7 +11,17 @@
     <!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet"/>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
 
+        .detail:hover {
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -29,46 +40,112 @@
             <div class="inbox_people">
                 <div class="headind_srch">
                     <div class="recent_heading">
-                        <h4>쪽지함</h4>
+                        <h4>Recent</h4>
                     </div>
                     <!-- 메세지 검색 -->
                     <div class="srch_bar">
                         <div class="stylish-input-group">
-                            <input type="text" class="search-bar" placeholder="검색">
+                            <input type="text" class="search-bar" placeholder="Search">
                             <span class="input-group-addon">
 	                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
 	                </span>
                         </div>
                     </div>
                 </div>
+
                 <!-- 메세지 리스트 -->
+                <!--                <form action="/message/detail?${no}" id="see">-->
                 <div class="inbox_chat">
 
+                    <div th:each="item : ${list}">
+                        <!--                            <a th:href="@{/message/detail?(no=${item.no})}">-->
+                        <!--                          <input type="hidden" th:value="${item.no}" name="no" value="${item.no}">-->
+                        <div>
+                            <div th:text="${item.no}"/>
+                            <div>보낸이: <span th:text="${item.send_nick}"/></div>
+<!--                            <div>제목:<a href="@{#}" th:onclick="detail()"> <span th:text="${item.title}"/> </a></div>-->
+                            <div>제목:<button onclick="detail()"> <span th:text="${item.title}"/></div>
+                            <br/>
+                            <!-- 새로운 div 태그 추가 -->
+                            <div style="border: 1px solid; border-color: black;">
+                            </div>
+                        </div>
+                        <!--                            </a>-->
+                    </div>
+                    </a>
                 </div>
+                <!--                </form>-->
+                <a href="/message/write" onClick="window.open(this.href, '', 'width=530, height=550'); return false;">
+                    <button>쪽지 보내기</button>
+
             </div>
 
             <!-- 메세지 내용 영역 -->
             <div class="mesgs">
-                <form action="MessageServiceCon" method="post">
-                    <h3> 쪽지 보내기 </h3>
-                    <div class="field half first">
-                        <input type="text" id="fromName" placeholder="받는 사람" name="sendName"/>
-                        <label>에게</label>
-                    </div>
-
-                    <br>
-                    <div class="field">
-                        <label for="message">내용</label>
-                        <textarea id="message" rows="6" name="message"></textarea></div>
-                    <ul class="actions">
-                       <input type="submit" value="전송" class="special"/>
-                    </ul>
-                </form>
+                <!-- 메세지 내용 목록 -->
+                <div class="msg_history" name="contentList">
+                    <p th:text="${send_nick}"></p>
+                    <p th:text="${title}"></p>
+                    <p th:text="${content}"></p>
+                    <p th:text="${send_time}"></p>
+                </div>
+                <div class="send_message">
+                </div>
+                <!-- 메세지 입력란이 올자리 -->
             </div>
         </div>
 
     </div>
 </div>
+
+</script>
+
+<script th:inline="javascript">
+
+    function detail() {
+
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+        console.log("afsdfasdfasdf");
+
+        let send_nick = '${send_nick}';
+        let title = '${title}';
+        let content = '${content}';
+        let send_time = '${send_time}';
+
+        console.log(send_nick);
+        console.log(title);
+        console.log(content);
+        console.log(send_time);
+
+        $.ajax({
+            url: "/message/detail",
+            type: "POST",
+            data: {
+                send_nick: send_nick,
+                title: title,
+                content: content,
+                send_time: send_time
+            },
+            success: function (response) {
+                alert(response);
+            }
+        });
+    };
 
 </script>
 </body>

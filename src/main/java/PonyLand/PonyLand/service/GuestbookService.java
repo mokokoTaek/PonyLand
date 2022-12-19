@@ -21,4 +21,6 @@ public class GuestbookService {
     public int update(GuestbookDTO dto) {return dao.update(dto); }
 
     public List<GuestbookDTO> select() {return dao.select();}
+
+
 }

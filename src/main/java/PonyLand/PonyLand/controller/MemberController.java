@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -26,12 +27,19 @@ public class MemberController {
     @GetMapping("wave")
 
     @RequestMapping("wave")
-    public String getWave(Model model){
+    public String getWave(Model model,HttpServletRequest request, HttpServletResponse response){
 
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
 
         String id = service.toWave(randomNumber);
+        System.out.println("!!!!");
+        System.out.println(id);
+        service.addView(id,request,response);
+
+        MemberDTO dto = service.findById(id);
+
+        model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
         return "main";
@@ -46,17 +54,10 @@ public class MemberController {
     public String login(MemberDTO dto, Model model) throws Exception{
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
-        System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", dto.getMemberId());
-        System.out.println(dto.getMemberId());
         return "index";
     }
 
-    @GetMapping("message")
-    public String message(String id, Model model){
-        model.addAttribute("id",id);
-        return "message";
-    }
 
     @GetMapping ("logout")
     public String logout() throws Exception{

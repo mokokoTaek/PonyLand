@@ -56,5 +56,22 @@ public class FamilyService {
         return dao.checkNewFamily(familyProposedId,familyStatus);
     }
 
+    public FamilyDTO agreeFamily(int familySeq){
+        FamilyDTO dto = dao.findByFamilySeq(familySeq);
 
+        return dto;
+
+    }
+
+    public void deleteByFamilySeq(int familySeq){
+        dao.deleteByFamilySeq(familySeq);
+    }
+
+    public List<FamilyDTO> getFamilyListByProposerId(String id){
+        return dao.getFamilyListByProposerId(id);
+    }
+
+    public List<FamilyDTO> getFamilyListByProposedId(String id){
+        return dao.getFamilyListByProposedId(id);
+    }
 }

@@ -38,9 +38,41 @@ public class FamilyController {
     public String checkNewFamily(Model model){
 
         model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
+        System.out.println(service.checkNewFamily((String)session.getAttribute("sessionID"),0).size());
+        return "checkNewFamilyList";
+    }
+
+    @RequestMapping("agreeFamily")
+    public String agreeFamily(int familySeq,Model model){
+
+        service.agreeFamily(familySeq).setFamilyStatus(1);
+
+        model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
 
         return "checkNewFamilyList";
     }
+
+    @RequestMapping("refuseFamily")
+    public String refuseFamily(int familySeq,Model model){
+        service.deleteByFamilySeq(familySeq);
+        model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
+
+        return "checkNewFamilyList";
+    }
+
+    @RequestMapping("familyListOpen")
+    public String familyListOpen(Model model){
+        String id = (String)session.getAttribute("sessionID");
+
+        List<FamilyDTO> list1 = service.getFamilyListByProposerId(id);
+        List<FamilyDTO> list2 = service.getFamilyListByProposedId(id);
+
+        model.addAttribute("list1",list1);
+        model.addAttribute("list2",list2);
+        return "familyListOpen";
+    }
+
+
 
 //    @RequestMapping("areTheyFamily")
 //    public String areTheyFamily(String proposer, String proposed){

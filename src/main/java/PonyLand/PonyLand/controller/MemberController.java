@@ -88,6 +88,10 @@ public class MemberController {
 
         return "index";
     }
+    @RequestMapping("goMypage")
+    public String goMypage(){
+        return "mypage";
+    }
 
 
 

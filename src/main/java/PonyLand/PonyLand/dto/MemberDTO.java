@@ -20,8 +20,6 @@ import javax.persistence.*;
 )
 public class MemberDTO {
 
-
-
         @Id
         @GeneratedValue(
                 strategy = GenerationType.SEQUENCE
@@ -56,5 +54,7 @@ public class MemberDTO {
         @Column(name="member_login_type")
         private String memberLoginType;
 
+        @Column(name="member_homepage_view_count")
+        private int memberHomepageViewCount;
 
 }

@@ -43,7 +43,11 @@ public class FamilyDAO {
         sdjr.deleteByFamilySeq(familySeq);
     }
 
+    public List<FamilyDTO> getFamilyListByProposerId(String id){
+        return sdjr.findAllByFamilyStatusAndFamilyProposerId(1,id);
+    }
 
-
-
+    public List<FamilyDTO> getFamilyListByProposedId(String id){
+        return sdjr.findAllByFamilyStatusAndFamilyProposedId(1,id);
+    }
 }

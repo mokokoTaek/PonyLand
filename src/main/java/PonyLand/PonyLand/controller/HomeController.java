@@ -1,5 +1,7 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,9 @@ public class HomeController {
     @Autowired
     private HttpSession session;
 
+    @Autowired
+    private MemberService service;
+
     @RequestMapping("/")
     public String home(){
         return "index";
@@ -21,6 +26,10 @@ public class HomeController {
 
     @GetMapping("/toMiniPage")
     public String miniHome(String id, Model model){
+
+        MemberDTO dto =service.findById(id);
+
+        model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
         return "main";
@@ -49,4 +58,7 @@ public class HomeController {
 
     @GetMapping("/toCheckNewFamilyOpen")
     public String toCheckNewFamilyOpen(){return "checkNewFamilyOpen";}
+
+    @RequestMapping("/toFamilyListOpen")
+    public String toFamilyListOpen(){return "redirect:/family/familyListOpen";}
 }

@@ -8,10 +8,14 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/MiniGame/")
-public class MiniGameController {
+public class GameController {
 
     @Autowired
     private HttpSession session;
 
+    @RequestMapping("goGame")
+    public String goGame(){
+        return "gameStart";
+    }
 
 }

@@ -1,12 +1,12 @@
 package PonyLand.PonyLand.service;
 
-import PonyLand.PonyLand.dao.MiniGameDAO;
+import PonyLand.PonyLand.dao.GameDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MiniGameService {
+public class GameService {
 
     @Autowired
-    MiniGameDAO dao;
+    GameDAO dao;
 }

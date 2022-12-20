@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -40,7 +42,8 @@ public class MemberService {
         return (int) (Math.random() * intCountMember + 1);
 
     }
-    public String toWave(int rn){
+
+    public String toWave(int rn) {
         return dao.getIdByRowNum(rn);
     }
 
@@ -48,7 +51,7 @@ public class MemberService {
         dao.insert(dto);
     }
 
-    public String login( String member_id, String member_pw) throws Exception {
+    public String login(String member_id, String member_pw) throws Exception {
         MemberDTO dto = dao.login(member_id, member_pw);
         if (dto == null) {
             HttpServletResponse response = null;
@@ -64,11 +67,11 @@ public class MemberService {
         return "redirect:/";
     }
 
-    public MemberDTO makeIdAndPwByEmailForKakao(String name, String email){
+    public MemberDTO makeIdAndPwByEmailForKakao(String name, String email) {
 
-        int index= email.indexOf("@");
+        int index = email.indexOf("@");
 
-        String newId = "K"+email.substring(0,index);
+        String newId = "K" + email.substring(0, index);
 
         UUID uuid = UUID.randomUUID();
 
@@ -81,18 +84,18 @@ public class MemberService {
         dto.setMember_name(name);
         dto.setMemberLoginType("kakao");
 
-        if(dao.loginForKakao(newId)==null){
+        if (dao.loginForKakao(newId) == null) {
             dao.insert(dto);
         }
-        session.setAttribute("sessionID",dto.getMemberId());
+        session.setAttribute("sessionID", dto.getMemberId());
         return dto;
     }
 
-    public MemberDTO makeIdAndPwByEmailForNaver(String name, String email){
+    public MemberDTO makeIdAndPwByEmailForNaver(String name, String email) {
 
-        int index= email.indexOf("@");
+        int index = email.indexOf("@");
 
-        String newId = "N"+email.substring(0,index);
+        String newId = "N" + email.substring(0, index);
 
         UUID uuid = UUID.randomUUID();
 
@@ -105,21 +108,19 @@ public class MemberService {
         dto.setMember_name(name);
         dto.setMemberLoginType("naver");
 
-        if(dao.loginForKakao(newId)==null){
+        if (dao.loginForKakao(newId) == null) {
             dao.insert(dto);
         }
-        session.setAttribute("sessionID",dto.getMemberId());
+        session.setAttribute("sessionID", dto.getMemberId());
         return dto;
     }
 
 
-
-
     public void logout() throws IOException {
 
-        String id = (String)session.getAttribute("sessionID");
+        String id = (String) session.getAttribute("sessionID");
 
-       if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
+        if (dao.loginForKakao(id).getMemberLoginType().equals("kakao")) {
             System.out.println("이것은 카카오 아이디!");
         }
 
@@ -130,24 +131,23 @@ public class MemberService {
 //        out.flush();
 //        response.flushBuffer();
 //        out.close();
-}
+    }
 
-    public MemberDTO findById(String id){
+    public MemberDTO findById(String id) {
         return dao.findById(id);
     }
 
-    public void addView(String id, HttpServletRequest request, HttpServletResponse response){
+    public void addView(String id, HttpServletRequest request, HttpServletResponse response) {
 
         Cookie[] cookies = request.getCookies();
         boolean checkCookie = false;
-        if(cookies != null){
-            for (Cookie cookie : cookies)
-            {
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
                 // 이미 조회를 한 경우 체크
-                if (cookie.getName().equals(VIEWCOOKIENAME+id)) checkCookie = true;
+                if (cookie.getName().equals(VIEWCOOKIENAME + id)) checkCookie = true;
 
             }
-            if(!checkCookie){
+            if (!checkCookie) {
                 Cookie newCookie = createCookieForForNotOverlap(id);
                 response.addCookie(newCookie);
                 dao.addView(id);
@@ -166,10 +166,10 @@ public class MemberService {
      * @return
      * */
     private Cookie createCookieForForNotOverlap(String id) {
-        Cookie cookie = new Cookie(VIEWCOOKIENAME+id, id);
-        cookie.setComment("조회수 중복 증가 방지 쿠키");	// 쿠키 용도 설명 기재
-        cookie.setMaxAge(getRemainSecondForTommorow()); 	// 하루를 준다.
-        cookie.setHttpOnly(true);				// 서버에서만 조작 가능
+        Cookie cookie = new Cookie(VIEWCOOKIENAME + id, id);
+        cookie.setComment("조회수 중복 증가 방지 쿠키");    // 쿠키 용도 설명 기재
+        cookie.setMaxAge(getRemainSecondForTommorow());    // 하루를 준다.
+        cookie.setHttpOnly(true);                // 서버에서만 조작 가능
         return cookie;
     }
 
@@ -180,7 +180,48 @@ public class MemberService {
         return (int) now.until(tommorow, ChronoUnit.SECONDS);
     }
 
+
+    // 코인 업데이트
+    public void coinUpdate(String id, int bettingCoin, int horseCount) {
+        Map<String, Object> map = new HashMap<>();
+
+        if (horseCount == 2) {
+            double sum = bettingCoin * 1.25;
+            map.put("id", id);
+            map.put("sum", sum);
+            dao.updateCoin(map);
+        } else if (horseCount == 3) {
+            double sum = bettingCoin * 1.5;
+            map.put("id", id);
+            map.put("sum", sum);
+            dao.updateCoin(map);
+            //dao.updateCoin(id,sum);
+        } else if (horseCount == 4) {
+            double sum = bettingCoin * 2;
+            map.put("id", id);
+            map.put("sum", sum);
+            dao.updateCoin(map);
+            //dao.updateCoin(id,sum);
+        }
     }
+
+
+    public double add(int bettingCoin, int horseCount) {
+        double sum;
+        if (horseCount == 2) {
+            sum = bettingCoin * 1.25;
+            return sum;
+
+        } else if (horseCount == 3) {
+            sum = bettingCoin * 1.5;
+            return sum;
+
+        } else {
+            sum = bettingCoin * 2;
+            return sum;
+        }
+    }
+}
 
 
 

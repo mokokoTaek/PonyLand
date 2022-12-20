@@ -1,5 +1,6 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

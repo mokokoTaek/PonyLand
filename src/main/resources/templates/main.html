@@ -9,14 +9,15 @@
 </head>
 
 <body>
-
 <div class="container">
+
     <div class="top">
         <div th:if="${id}!=null">
         <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
         <div class="">뮤직플레이어 부분</div>
         </div>
     </div>
+
 
     <div class="bg1">
         <div class="bg2">
@@ -37,17 +38,17 @@
             <div class="profile3">
                 <div>
                     <div th:if="${id}== ${sessionID}">
-                    <button  class="profilebtn" type="button" onclick="checkNewFamily();">일촌신청알림</button>
+                        <button class="profilebtn" type="button" onclick="checkNewFamily();">일촌신청알림</button>
                     </div>
                 </div>
                 <div>
                     <div th:if="${id}!= ${sessionID}">
 
-                <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
-                <input type="hidden" th:value="${id}" id="hiddenProposed">
-                        <button class="profilebtn" type="button"onclick="openChild()">일촌신청</button>
-                    </form>
-            </div>
+                        <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
+                        <input type="hidden" th:value="${id}" id="hiddenProposed">
+                        <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
+                        </form>
+                    </div>
                 </div>
                 <div>
                     <div th:if="${id}== ${sessionID}">
@@ -99,7 +100,7 @@
                     MiniRoom
                 </div>
                 <div class="bg3-2-1">
-                    말
+                    <div>시이이팔 뮤직플레이어 안되네</div>
                 </div>
                 <div class="bg3-2-2">
                     >내마구간
@@ -120,29 +121,32 @@
     <button class="btnmain2">다이어리</button>
 </div>
 
+
 <script th:inline="javascript">
- function getFamily(){
-         $.ajax({
-             url:"/family/getFamily",
-             data:{"familyProposerId":[[${sessionID}]],
-             "familyProposedId":[[${id}]]},
-             type:"post"
-         })
-             .done(function(resp){
-                 if(resp=="2"){
-                     alert("일촌 신청이 완료되었습니다.")
+    function getFamily() {
+        $.ajax({
+            url: "/family/getFamily",
+            data: {
+                "familyProposerId": [[${sessionID}]],
+                "familyProposedId": [[${id}]]
+            },
+            type: "post"
+        })
+            .done(function (resp) {
+                if (resp == "2") {
+                    alert("일촌 신청이 완료되었습니다.")
 
-                 }else if(resp=="1"){
-                     alert("이미 일촌 관계입니다.");
-                 }else{
-                     alert("상대방이 아직 일촌 신청을 수락하지 않았습니다.")
-                 }
+                } else if (resp == "1") {
+                    alert("이미 일촌 관계입니다.");
+                } else {
+                    alert("상대방이 아직 일촌 신청을 수락하지 않았습니다.")
+                }
 
 
-             })
-             .fail(function(){
-                 console.log("error!");
-             });
+            })
+            .fail(function () {
+                console.log("error!");
+            });
 
          <a href="/member/writer"> <button>이동</button> </a>;
  }
@@ -161,5 +165,20 @@ function openFamilyList(){
 }
 </script>
 </body>
+
+
+<!--&lt;!&ndash; 음악 플레이어 스크립트 &ndash;&gt;-->
+<!--<script type="text/javascript" src="https://www.wikplayer.com/code.js"-->
+<!--        data-config="{'skin':'skins/wikfull/ribbonOrange/skin.css','volume':51,'autoplay':true,'shuffle':false,'repeat':0,'showcomment':false,'marqueetexton':true,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'},{'title':'Vain','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'},{'title':'Trip','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}]}"></script>-->
+<!--&lt;!&ndash; 음악 플레이어 끝나는 곳 &ndash;&gt;-->
+
+<!-- SCM Music Player https://www.scmplayer.net -->
+<script type="text/javascript" src="https://www.scmplayer.net/script.js"
+        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,
+        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}
+        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}
+        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>
+<!-- SCM Music Player script end -->
+
 
 </html>

@@ -14,7 +14,13 @@
 <div class="container">
     <div class="top">
         <div class="">Today : 245</div>
-        <div class="">뮤직플레이어 부분</div>
+        <div class="">
+<!--            <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+<!--                <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+<!--                Your browser does not support the audio element.-->
+<!--            </audio>-->
+<!--            <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+        </div>
     </div>
 
     <div class="bg1">
@@ -170,4 +176,27 @@
     })
 
 </script>
+
+<script>
+
+    // Load the current song from local storage
+    var currentSong = localStorage.getItem("currentSong");
+
+    // Update the audio element to play the current song
+    document.getElementById("myAudio").src = currentSong;
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+        if ( sessionStorage.getItem('played') != "true" ) {
+            $('#music').get(0).play();
+            sessionStorage.setItem('played', "true");
+        }
+    });
+</script>
+
+
+
 </html>

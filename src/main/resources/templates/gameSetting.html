@@ -37,15 +37,40 @@
           <option value="4">승택</option>
 
         </select> <br>
-        <span>보유금액 : </span><span th:text="${dto.getMember_coin()}"></span><br>
-        <span><input type="text" placeholder="배팅할 금액을 입력하시오"></span> <br>
-        <span>배팅 성공시 예상금액 : </span><span></span> <br>
-
+        <br>
+        말의 수
         <button onclick="count('plus')">+</button><span id="horseCount">2</span><button onclick="count('minus')">-</button>
         <br>
-        <span th:text = "${dto.getMember_name()}"></span>의 말 선택 : 선택부분
+        달릴 말 선택
+        <span th:text = "${dto.getMember_name()}"></span>
         <br>
-        <span th:text = "${dto.getMember_coin()}"></span>
+        보유금액
+        <span th:text = "${dto.getMember_coin()}" id="member_coin"></span>
+        <br>
+        배팅금액
+        <input type="text" id="battingCoin">
+        <br>
+        예상수익금액
+        if(horseCount==2){
+          예상수익금액 = 배팅금액 * 1.5;
+        }else if(horseCount==3){
+          예상수익금액 = 배팅금액 * 1.7;
+        }else{
+          예상수익금액 = 배팅금액 * 2;
+        }
+        <script>
+          $("#battingCoin").on("keyup",function(){
+            let currentCoin = $("#member_coin").val() - $("#battingCoin").val();
+          })
+
+          $("#battingCoin").on("keyup",function (){
+
+            let horseCount = $("#horseCount").val();
+            let battingCoin = $("#battingCoin").val();
+
+          })
+
+        </script>
         <br>
         <span><button id="gameRun">게임시작</button></span>
         <script>

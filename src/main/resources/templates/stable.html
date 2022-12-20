@@ -431,7 +431,7 @@ document.body.addEventListener("keypress", function(e) {
 </div>
 <div class="side">
     <button class="btnmain1">마구간</button>
-    <a th:href="@{/}">
+    <a th:href="@{/game/gameStart?(id=${id})}">
         <button class="btnmain2" id="game">게임</button>
     </a>
     <a th:href="@{/}">
@@ -441,11 +441,6 @@ document.body.addEventListener("keypress", function(e) {
     <button class="btnmain2">충전</button>
     </a>
 </div>
-<script>
-    $("#game").on("click",function(){
-        location.href = "/game/gameStart";
-    })
-</script>
 </body>
 
 </html>

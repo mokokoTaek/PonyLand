@@ -30,7 +30,7 @@
             <button class="ponyland" type="button">
                 <span th:text="${id}"></span> 입장하기
             </button>
-            <a th:href="@{/stable}">
+            <a th:href="@{/stable?(id=${id})}">
             </a>
             <button class="ponyland">마구간</button>
         </a>

@@ -13,11 +13,20 @@ public class GameController {
     private HttpSession session;
 
     @RequestMapping("gameStart")
-    public String gameStart()  throws Exception{
+    public String gameStart() throws Exception {
         return "gameStart";
     }
+
     @RequestMapping("goGameSetting")
-    public String goGameSetting(){
-        return "goGameSetting";
+    public String goGameSetting() throws Exception{
+        return "gameSetting";
     }
+
+
+    @RequestMapping("goGameExplain")
+    public String gameExplain() throws Exception {
+        return "gameExplain";
+    }
+
+
 }

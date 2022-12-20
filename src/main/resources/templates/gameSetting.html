@@ -23,22 +23,46 @@
   </div>
   <div class="bg1">
     <div class="bg2">
-      <div style="font-size: 100px">게임세팅</div>
+      <div style="font-size: 100px; text-align: center">게임세팅</div>
+      <div style="text-align: center">
+        <select name="말 마리 수 선택">
+          <option value="four">4마리</option>
+          <option value="three">3마리</option>
+          <option value="two">2마리</option>
+        </select><br>
+        <select name="말 이미지 선택">
+          <option value="1">한호</option>
+          <option value="2">준구</option>
+          <option value="3">진혁</option>
+          <option value="4">승택</option>
+        </select> <br>
+        <span>보유 coin</span><br>
+        <span><input type="text" placeholder="배팅할 금액을 입력하시오"></span> <br>
+        <span>배팅 성공시 예상금액</span> <br>
+        <span><button id="gameRun">게임시작</button></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 </div>
 <div class="side">
   <button class="btnmain2">마구간</button>
-  <a th:href="@{}">
+  <a th:href="@{/}">
     <button class="btnmain1">게임</button>
   </a>
-  <a th:href="@{}">
+  <a th:href="@{/}">
     <button class="btnmain2">상점</button>
   </a>
   <button class="btnmain2">충전</button>
 </div>
 
 </body>
+
+<script>
+  $("gameRun").on("click",function (){
+
+  })
+</script>
 
 </html>

@@ -475,6 +475,7 @@ button:hover {
     height: 30px;
     border-radius: 4px;
     color: #F4A127;
+    background-color: #fffefa;
 }
 
 .gbcontent {
@@ -527,9 +528,18 @@ button:hover {
 }
 
 .gbcmt2{
-    display: flex;
-    justify-content: space-between;
+    /*display: flex;*/
+    color: #5a3d2b;
+    background-color: #fffefa;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
 
+.gbcmttitle{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    /*background-color: whitesmoke ;*/
 }
 
 .gbcmt > input {

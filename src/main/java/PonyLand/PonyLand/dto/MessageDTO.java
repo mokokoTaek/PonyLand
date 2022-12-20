@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class MessageDTO {
 
-    private Integer no;
+    private int no;
     private String send_nick;
     private String recv_nick;
     private String title;

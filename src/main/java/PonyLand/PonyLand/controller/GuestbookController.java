@@ -9,12 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 @RequestMapping("/Guestbook/")
 public class GuestbookController {
+
+    @Autowired
+    private HttpSession session;
 
     @Autowired
     private GuestbookService GuestbookService;
@@ -47,6 +52,7 @@ public class GuestbookController {
     //미니홈피에서 방명록으로 가는 코트
     @RequestMapping("goGuestbook")
     public String goGuestbook(String guestbook_host, Model model) {
+
         List<GuestbookDTO> list = GuestbookService.select();
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
         model.addAttribute("id",guestbook_host);

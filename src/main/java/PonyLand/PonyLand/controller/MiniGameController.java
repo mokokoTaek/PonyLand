@@ -13,5 +13,4 @@ public class MiniGameController {
     @Autowired
     private HttpSession session;
 
-
 }

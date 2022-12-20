@@ -1,5 +1,6 @@
 package PonyLand.PonyLand.dao;
 
+import PonyLand.PonyLand.Mapper.MemberMapper;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.Repository.member.SpringDataJpaMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,12 @@ import java.lang.reflect.Member;
 @Repository
 public class MemberDAO {
 
+
     @Autowired
     private SpringDataJpaMemberRepository sdjr;
+
+    @Autowired
+    MemberMapper MemberMapper;
 
     public Long countMember(){
         return sdjr.countBy();
@@ -40,6 +45,14 @@ public class MemberDAO {
 
     public void addView(String id){
         sdjr.addView(id);
+    }
+
+    public int update(MemberDTO dto) {
+        return MemberMapper.update(dto);
+    }
+
+    public String imgupdate(MemberDTO dto) {
+        return MemberMapper.imgupdate(dto);
     }
 
 }

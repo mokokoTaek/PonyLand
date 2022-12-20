@@ -1,14 +1,13 @@
 package PonyLand.PonyLand.dao;
 
+import PonyLand.PonyLand.Mapper.GameMapper;
 import PonyLand.PonyLand.Mapper.MemberMapper;
-import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.Repository.member.SpringDataJpaMemberRepository;
+import PonyLand.PonyLand.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Member;
+import java.util.Map;
 
 @Repository
 public class MemberDAO {
@@ -19,6 +18,9 @@ public class MemberDAO {
 
     @Autowired
     MemberMapper MemberMapper;
+
+    @Autowired
+    GameMapper gameMapper;
 
     public Long countMember(){
         return sdjr.countBy();
@@ -55,4 +57,5 @@ public class MemberDAO {
         return MemberMapper.imgupdate(dto);
     }
 
+    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
 }

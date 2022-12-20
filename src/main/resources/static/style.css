@@ -578,3 +578,10 @@ button:hover {
 .alwritebtn:hover{
     color: #5a3d2b;
 }
+
+
+.scm-player-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

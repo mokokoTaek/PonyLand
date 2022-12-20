@@ -25,11 +25,8 @@
 </head>
 
 <body>
-
 <!-- 메뉴바
    현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->
-
-
 <br/>
 <br/><br/>
 <div class="msg-container">
@@ -56,15 +53,17 @@
                 <!-- 메세지 리스트 -->
                 <!--                <form action="/message/detail?${no}" id="see">-->
                 <div class="inbox_chat">
-
                     <div th:each="item : ${list}">
                         <!--                            <a th:href="@{/message/detail?(no=${item.no})}">-->
                         <!--                          <input type="hidden" th:value="${item.no}" name="no" value="${item.no}">-->
                         <div>
-                            <div th:text="${item.no}"/>
+                            <div th:text="${item.no}" th:value="${item.no}"/>
+                            <!--<input type="hidden" class="no" name="no" th: value="${item.no}">-->
                             <div>보낸이: <span th:text="${item.send_nick}"/></div>
 <!--                            <div>제목:<a href="@{#}" th:onclick="detail()"> <span th:text="${item.title}"/> </a></div>-->
-                            <div>제목:<button onclick="detail()"> <span th:text="${item.title}"/></div>
+                            <div> 제목:<button type="button" class="detailBtn"> <span th:text="${item.title}"/></button></div>
+                            <input type="hidden" name="no" class="no" th:value="${item.no}" th:attrappend="id=${itemStat.index}">
+
                             <br/>
                             <!-- 새로운 div 태그 추가 -->
                             <div style="border: 1px solid; border-color: black;">
@@ -98,54 +97,23 @@
     </div>
 </div>
 
-</script>
+<script>
 
-<script th:inline="javascript">
-
-    function detail() {
-
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-        console.log("afsdfasdfasdf");
-
-        let send_nick = '${send_nick}';
-        let title = '${title}';
-        let content = '${content}';
-        let send_time = '${send_time}';
-
-        console.log(send_nick);
-        console.log(title);
-        console.log(content);
-        console.log(send_time);
-
+    $(".detailBtn").on("click",function (){
+        let index = $(this).attr("id");
+        let no = $('no').eq(index).text;
+        console.log(no);
         $.ajax({
             url: "/message/detail",
             type: "POST",
             data: {
-                send_nick: send_nick,
-                title: title,
-                content: content,
-                send_time: send_time
+                "no" : no
             },
             success: function (response) {
                 alert(response);
             }
         });
-    };
+    });
 
 </script>
 </body>

@@ -69,7 +69,7 @@
         <div class="albg3">
             <input type="hidden" th:value="${id}" name="guestbook_host" id="host" >
             <div class="bg3in">
-                <div th:each="list:${dto}">
+                <div class="bgcontent" th:each="list:${dto}">
                     <div class="gbtitle">
                         <div><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
@@ -103,7 +103,7 @@
                         <button class="gbbutton" type="button">확인</button>
                         <input type="hidden" name="guestbook_seq" th:value="${list.getGuestbook_seq()}">
                     </div>
-                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">
+<!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                 </div>
             </div>
         </div>

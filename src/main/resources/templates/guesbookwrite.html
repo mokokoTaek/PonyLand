@@ -59,27 +59,18 @@
         <form action="/Guestbook/insert">
             <div class="bg3">
                 <div class="bg3in">
-                    <div class="gbtitle">
-                        <tr>
-                            <th>글번호</th>
-                            <th>시간</th>
-                            <th>비밀</th>
-                            <th>수정</th>
-                            <th>삭제</th>
-                        </tr>
-                    </div>
-                    <div class="gbcontent">
-                        <div class="gbprofile">
-                            프로필이미지
-                        </div>
-                        <div class="gbtext">
-                            <input type="text" id="guestbook_contents" name="guestbook_contents"
+                    <div class="gbwcontent">
+<!--                        <div class="gbprofile">-->
+<!--                            프로필이미지-->
+<!--                        </div>-->
+                        <div class="gbtext" >
+                            <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
                                    placeholder="내용을 입력하세요">
                         </div>
                     </div>
+                    <button class="profilebtn" type="submit" id="writee">글쓰기완료</button>
+                    <input type="hidden" th:value="${id}" name="guestbook_host" id="host">
                 </div>
-                <button type="submit" id="writee">글쓰기완료</button>
-                <input type="hidden" th:value="${id}" name="guestbook_host" id="host">
             </div>
         </form>
     </div>
@@ -87,11 +78,11 @@
 
 <div class="side">
     <div class="side1">
-        <button class="btnmain1">메인</button>
+        <button class="btnmain2">메인</button>
     </div>
     <div class="side2">
         <a th:href="@{/Guestbook/goGuestbook}">
-            <button class="btnmain2">방명록</button>
+            <button class="btnmain1">방명록</button>
         </a>
     </div>
     <div class="side3">

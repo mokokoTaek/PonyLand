@@ -467,6 +467,11 @@ button:hover {
     width: 90%;
     /*border: 1px solid black;*/
 }
+.bgcontent{
+    border: 1px solid #5a3d2b;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
 
 .gbtitle {
     display: flex;
@@ -570,6 +575,19 @@ button:hover {
 
 .gowrite:hover{
     color: #5a3d2b;
+}
+/*--------------------------------guesbook write*/
+.gbwcontent{
+    display: flex;
+    height: 400px;
+    border-radius: 4px;
+    align-items: center;
+    border: 1px solid #5a3d2b;
+}
+
+.gbwtype{
+    height: 200px;
+    width: 400px;
 }
 
 /*--------------------------------album*/

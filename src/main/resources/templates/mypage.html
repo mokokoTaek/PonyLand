@@ -2,14 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Stable</title>
-    <link rel="stylesheet" href="../static/stable.css"/>
+    <title>mypage</title>
+    <link rel="stylesheet" href="../static/mypage.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
+
+
 
 <body>
 
@@ -21,28 +23,108 @@
         <div class="">뮤직플레이어 부분 </div>
     </div>
     <div class="bg1">
-        <div class="bg4">
+        <form action="/member/imgupdate" method="post" enctype="multipart/form-data">
+            <div class="bg4">
+                <div class = "control">
+                    <input type = file name="files" id = "profile_img"  accept=".png,.jpg,.jpeg,.gif">
+                    <!-- name을 넘겨야해서 지정해준다. -->
+                </div>
+                <div class="profile1">
+                    <div class = "thumbnail">
+                        <input type="hidden" name="memberId" th:value="${id}">
+                        <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|" id = profile >
+                    </div>
 
-        </div>
+                </div>
 
-        <div class="bg3">
+                <button class="profilebtn" type="submit" id="wave">프로필수정</button>
+                <button class="profilebtn1" type="button" id="wave">취소</button>
+                <button class="profilebtn2" type="button" id="wave">변경</button>
+
+            </div>
+        </form>
+
+
+
+        <form action="/member/modify">
+        <div class="bg3" th:each="dto:${list}">
+            <div><input type="text" class="loginbg" placeholder="아이디" th:value="${list.getMemberId()}"  name="memberId" readonly></div>
+            <div><input type="text" class="loginbg" placeholder="닉네임" th:value="${list.getMember_name()}" name="member_name" readonly></div>
+            <div><input type="text" class="loginbg" placeholder="전화번호" th:value="${list.getMember_phone()}"  name="member_phone" readonly></div>
+            <div><input type="text" class="loginbg" placeholder="이메일" th:value="${list.getMember_email()}"  name="member_email" readonly></div>
+            <div><input type="text" class="loginbg" placeholder="비밀번호" th:value="${list.getMemberPw()}"   name="memberPw" readonly></div>
+
+            <button class="modifybtn" type="button" id="wave">수정하기</button>
+            <button class="modifybtn1" type="button" id="wave">취소</button>
+            <button class="modifybtn2" type="button" id="wave">변경</button>
 
         </div>
 
     </div>
 </div>
 <div class="side">
-    <button class="btnmain1">메인</button>
-    <a th:href="@{/}">
+    <button class="btnmain2">메인</button>
+    <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}">
         <button class="btnmain2">방명록</button>
     </a>
-    <a th:href="@{/}">
+    <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
         <button class="btnmain2">사진첩</button>
     </a>
-    <a th:href="@{/}">
-        <button class="btnmain2">다이어리</button>
+    <a th:href="@{/member/goMypage?(memberId=${id})}">
+        <button class="btnmain1">내정보</button>
     </a>
 </div>
+<script>
+$(".modifybtn").on("click",function (){
+    $("input").removeAttr("readonly"); //수정하기버튼누르면 readonly가 해체
+    $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+    $(".modifybtn1").on("click",function (){ //취소누르면 reload
+        location.reload();
+    })
+})
+
+
+
+
+function fileToBase64(file){
+    const reader = new FileReader();
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+        $("#profile").attr("src",reader.result); // base64
+        console.dir(reader.result)   // base64
+    }
+}
+
+
+$("#profile_img").on("change",function(e){
+
+    if($("#profile_img").val()==""){
+        $("#profile").val();
+        return;
+    }
+    let ext = $("#profile_img").val().split(".").pop().toLowerCase(); //배열의 pop은 가장 마지막요소를 꺼내옴.
+
+
+    let accept = ["png","jpg","jpeg","gif"]; //담고싶은 확장자만 담아둔다.
+
+    let result = $.inArray(ext,accept); // 첫 번째 인자값이, 두번째 인자 배열안에 존재 한다면 0, 존재하지 않는다면 -1을 반환.
+
+    if(result == -1) {
+        alert("이미지만 사용 가능합니다.")//png,jpg,jpeg,gif
+        $("#profile_img").val(""); //선택한 파일이 무효시킴.
+
+    }
+
+    fileToBase64(document.getElementById("profile_img").files[0]);
+
+
+
+});
+
+
+
+
+</script>
 
 </body>
 

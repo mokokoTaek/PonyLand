@@ -180,6 +180,15 @@ public class MemberService {
         return (int) now.until(tommorow, ChronoUnit.SECONDS);
     }
 
+    public int update(MemberDTO dto) {
+        return dao.update(dto);
+    }
+    public String imgupdate(MemberDTO dto) {
+        System.out.println(dto);
+        return dao.imgupdate(dto);
+
+    }
+
     }
 
 

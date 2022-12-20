@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/member/")
@@ -89,9 +92,61 @@ public class MemberController {
         return "index";
     }
     @RequestMapping("goMypage")
-    public String goMypage(){
+    public String goMypage(MemberDTO dto1,Model model){  //마이페이지에 DTO를 이용하여 id를 가져온다.
+        MemberDTO dto = service.findById(dto1.getMemberId()); //dto1에서 아이디를 가져와서 dto에담아준다
+        model.addAttribute("id",dto.getMemberId()); //id를 dto에 담아줌.
+        model.addAttribute("list",dto);// dto를 list로 묶어서 배포.
         return "mypage";
     }
+    @RequestMapping("modify")
+    public String modify(MemberDTO dto) {
+        service.update(dto);
+
+        return "redirect:/member/goMypage?&memberId="+dto.getMemberId();
+
+    }
+
+    @RequestMapping("imgupdate")
+    public String imgupdate(MultipartFile files, MemberDTO dto,Model model ){
+
+        try {
+            String memberId = (String) session.getAttribute("sessionID");
+            dto.setMemberId(memberId); //id.
+            String realPath = session.getServletContext().getRealPath("load");
+            System.out.println(realPath);
+            //리얼패스 내부에 파일이존재하는 경로를 가져옴.
+            File filePath = new File(realPath);
+            if (!filePath.exists()) {
+                filePath.mkdir();  //업로드 폴더가 없으면 생성함.
+
+            }
+            System.out.println("1");
+            //여기서부터 문제
+            String oriName = files.getOriginalFilename();  //클라이언트는 자신이 선택이름을 가진 파일을 받길원함.
+            dto.setMember_oriname(oriName); //dto에 사진담고
+
+            System.out.println("2");
+            System.out.println(oriName);
+
+
+            String sysName = UUID.randomUUID().randomUUID() + "_" + oriName; // 서버는 클라이언트가 선택한 파일의 서버쪽 이름이 필요하다
+            dto.setMember_sysname(sysName); // 사진담고
+            System.out.println(sysName);
+            //oriName = new String(oriName.getBytes("utf8"),"ISO-8859-1");  //한글화.
+
+            files.transferTo(new File(filePath + "/" + sysName)); //우리가 사용할 파일의 정보를 담음.
+
+            model.addAttribute("list",dto);
+            service.imgupdate(dto);
+
+        }catch(Exception e){
+            return "error";
+        }
+
+        return "redirect:modify";
+
+    }
+
 
 
 

@@ -26,7 +26,9 @@
             </div>
 
             <div class="profile1">
-                테스트입니다.
+
+                <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|" >
+
             </div>
 
             <div class="profile2">
@@ -118,8 +120,8 @@
 
         <button class="btnmain2">사진첩</button>
     </a>
-    <a href="/member/goMypage">
-    <button class="btnmain2">다이어리</button>
+    <a th:href="@{/member/goMypage?(memberId=${id})}">
+    <button class="btnmain2">내정보</button>
     </a>
 </div>
 
@@ -175,11 +177,11 @@ function openFamilyList(){
 <!--&lt;!&ndash; 음악 플레이어 끝나는 곳 &ndash;&gt;-->
 
 <!-- SCM Music Player https://www.scmplayer.net -->
-<script type="text/javascript" src="https://www.scmplayer.net/script.js"
-        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,
-        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}
-        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}
-        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>
+<!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
+<!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
+<!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
+<!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
+<!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>-->
 <!-- SCM Music Player script end -->
 
 

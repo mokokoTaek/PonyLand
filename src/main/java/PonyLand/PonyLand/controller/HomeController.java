@@ -32,6 +32,7 @@ public class HomeController {
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
+        model.addAttribute("list",dto);
         return "main";
     }
 

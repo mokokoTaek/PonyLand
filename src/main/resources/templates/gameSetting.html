@@ -25,21 +25,33 @@
     <div class="bg2">
       <div style="font-size: 100px; text-align: center">게임세팅</div>
       <div style="text-align: center">
-        <select name="말 마리 수 선택">
-          <option value="four">4마리</option>
-          <option value="three">3마리</option>
-          <option value="two">2마리</option>
-        </select><br>
-        <select name="말 이미지 선택">
-          <option value="1">한호</option>
-          <option value="2">준구</option>
-          <option value="3">진혁</option>
-          <option value="4">승택</option>
-        </select> <br>
-        <span>보유 coin</span><br>
-        <span><input type="text" placeholder="배팅할 금액을 입력하시오"></span> <br>
-        <span>배팅 성공시 예상금액</span> <br>
+
+        <button onclick="count('plus')">+</button><span id="horseCount">2</span><button onclick="count('minus')">-</button>
+        <br>
+        <span th:text = "${dto.getMember_name()}"></span>의 말 선택 : 선택부분
+        <br>
+        <span th:text = "${dto.getMember_coin()}"></span>
+        <br>
         <span><button id="gameRun">게임시작</button></span>
+        <script>
+          function count(type)  {
+
+            let resultElement = document.getElementById('horseCount');
+
+            let number = resultElement.innerText;
+
+            if(type === 'plus') {
+              if(number <= 3) {
+                number = parseInt(number) + 1;
+              }
+            }else if(type === 'minus')  {
+              if(number >= 3) {
+                number = parseInt(number) - 1;
+              }
+            }
+            resultElement.innerText = number;
+          }
+        </script>
         </div>
       </div>
     </div>

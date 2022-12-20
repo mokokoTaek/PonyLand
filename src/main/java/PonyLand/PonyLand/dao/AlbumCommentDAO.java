@@ -17,8 +17,12 @@ public class AlbumCommentDAO {
         return AlbumCommentmapper.insert(dto);
     }
 
-    public List<AlbumCommentDTO> selectComment(int Album_Comment_parent_seq){
+    public List<AlbumCommentDTO> selectComment(){
 
-        return AlbumCommentmapper.selectComment(Album_Comment_parent_seq);
+        return AlbumCommentmapper.selectComment();
+    }
+
+    public int delete(int Album_Comment_seq) {
+        return AlbumCommentmapper.delete(Album_Comment_seq);
     }
 }

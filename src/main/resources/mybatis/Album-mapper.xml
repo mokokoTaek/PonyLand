@@ -6,7 +6,7 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.AlbumMapper">
     <insert id="insert">
-        insert into album values(album_seq.nextval,#{Album_title},#{Album_contents},0,0,sysdate,#{Album_writer},#{Album_host})
+        insert into album values(album_seq.nextval,#{Album_title},#{Album_contents},#{Album_oriname},#{Album_sysname},sysdate,#{Album_writer},#{Album_host})
 
     </insert>
 

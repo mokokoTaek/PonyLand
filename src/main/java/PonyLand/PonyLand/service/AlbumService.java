@@ -4,6 +4,7 @@ import PonyLand.PonyLand.dao.AlbumDAO;
 import PonyLand.PonyLand.dto.AlbumDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class AlbumService {
     private AlbumDAO dao;
 
 
-    public int insert(AlbumDTO dto) {
+    public int insert(AlbumDTO dto ) {
         return dao.insert(dto);
     }
 

@@ -27,8 +27,6 @@ public class GuestbookController {
     @Autowired
     private GuestbookCommentService GuestbookCommentService;
 
-    @Autowired
-    private HttpSession session;
 
     @GetMapping("insert")
     public String insert(GuestbookDTO dto) throws Exception {

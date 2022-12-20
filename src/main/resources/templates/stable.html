@@ -51,6 +51,12 @@
         vertical-align: top;
     }
 
+    #mokoko {
+        position:absolute;
+        z-index: 9999;
+        transform:translate(-50%, -50%);
+    }
+
     /* .floor .player {
         position: absolute;
         z-index: 1;
@@ -159,7 +165,8 @@
 </style>
 
 <body>
-
+<input type="hidden" id="dto" th:value="${dto}">
+<input type="hidden" id="id" th:value="${id}">
 
 <div class="container">
 
@@ -253,7 +260,7 @@
                         <div data-cords='[5,2]' class="tile"></div>
                         <div data-cords='[5,3]' class="tile"></div>
                         <div data-cords='[5,4]' class="tile"></div>
-                        <div data-cords='[5,5]' class="tile"></div>
+                        <div data-cords='[5,5]' class="tile" id="targetdiv"></div>
                         <div data-cords='[5,6]' class="tile"></div>
                         <div data-cords='[5,7]' class="tile"></div>
                         <div data-cords='[5,8]' class="tile"></div>
@@ -424,7 +431,7 @@ document.body.addEventListener("keypress", function(e) {
         </div>
 
         <div class="bg3">
-
+        <img src="/static/img/mokoko.png" id="mokoko">
         </div>
 
     </div>
@@ -441,6 +448,44 @@ document.body.addEventListener("keypress", function(e) {
     <button class="btnmain2">충전</button>
     </a>
 </div>
+
+<script>
+    let reclick = false;
+    $("#mokoko").click(function(){
+
+        if(reclick == false){
+
+
+            $(document).mousemove(function(e){
+
+                let mouseX = e.pageX;
+                let mouseY = e.pageY;
+                console.log(mouseY)
+                $("#mokoko").css({
+                    left:mouseX + "px",
+                    top:(mouseY-100) + "px",
+                    opacity:0.5
+                })
+
+            })
+
+            reclick=true;
+
+        }
+
+    })
+
+    $("#targetdiv").click(function(){
+
+        if(reclick){
+
+                $("#mokoko").hide();
+                console.log("사라졌다!")
+                reclick=false;
+
+        }
+    })
+</script>
 
 </body>
 

@@ -10,11 +10,167 @@
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .wrapper {
+        position: absolute;
+        width: 590px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .floor {
+        -webkit-transform: rotateX(55deg) rotateZ(45deg);
+        -webkit-transform-style: preserve-3d;
+        font-size: 0;
+    }
+
+    img{
+        -webkit-transform: rotateX(305deg) rotateZ(335deg);
+        -webkit-transform-style: preserve-3d;
+        z-index: 10;
+    }
+
+    .floor .tile {
+        font-size: 11pt;
+        color: #ccc;
+        display: inline-block;
+        background: white;
+        width: 48px;
+        height: 48px;
+        margin: 0;
+        box-shadow: 0 0 0 .1em hsla(0, 0%, 0%, .2);
+        border: solid 1px gray;
+        line-height: 48px;
+        text-align: center;
+        /* position: relative; */
+        vertical-align: top;
+    }
+
+    #mokoko {
+        position:absolute;
+        z-index: 9999;
+        transform:translate(-50%, -50%);
+    }
+
+    /* .floor .player {
+        position: absolute;
+        z-index: 1;
+        width: 47px;
+        height: 47px;
+        border-radius: 3px;
+        transform-style: preserve-3d;
+        -webkit-transition: all 250ms;
+        -moz-transition: all 250ms;
+        -ms-transition: all 250ms;
+        -o-transition: all 250ms;
+        transition: all 250ms;
+       opacity: 1;
+    } */
+
+    /* .floor .player.die{
+      animation: fallanddie 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    .floor .player div {
+        border: solid 1px rgba(0,0,0,.5);
+        position: absolute;
+        width: 47px;
+        height: 47px;
+        border-radius: 3px;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .floor .player .front {
+        transform-origin: 50% 100%;
+        -webkit-transform-origin: 50% 100%;
+        -moz-transform-origin: 50% 100%;
+        transform: rotateX(-90deg);
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform: rotateX(-90deg);
+    }
+
+    .floor .player .top {
+        transform-origin: 50% 0%;
+        transform: rotateX(-90deg);
+        -webkit-transform-origin: 50% 0%;
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform-origin: 50% 0%;
+        -moz-transform: rotateX(-90deg);
+    }
+
+    .floor .player .right {
+        transform-origin: 100% 50%;
+        transform: rotateY(90deg);
+        -webkit-transform-origin: 100% 50%;
+        -webkit-transform: rotateY(90deg);
+        -moz-transform-origin: 100% 50%;
+        -moz-transform: rotateY(90deg);
+    }
+
+
+    .floor .player.red div{
+        background: rgba(255, 0, 0, 0.5);
+    }
+
+    .floor .player.blue div{
+       I know it's not blue
+     background: rgba(255, 255, 255, 1);
+    } */
+
+    /* .floor .player.green div{
+        background: rgba(0, 255, 0, 0.5);
+    } */ */
+
+    /* .youdied{
+       color: gray;
+    }
+    .youdied:before{
+       color: transparent;
+       content: "* ";
+    }
+
+    @keyframes fallanddie {
+      from {
+        z-index: -1;
+        opacity: 1;
+        transform: translateZ(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateZ(-150px);
+      }
+    } */
+
+    /* .warning{
+       position: absolute;
+       top: 5px;
+       left: 5px;
+       font-size: 13px;
+       color: rgba(150,50,50,1);
+    } */
+
+    .tile:hover{
+        background-color: red;
+
+    }
+</style>
 
 <body>
 
 
 <div class="container">
+
+    <input type="hidden" name="dto" th:value="${dto}">
+    <input type="hidden" name="id" th:value="${id}">
 
     <div class="top">
         <div class="">Today : 245</div>
@@ -22,7 +178,258 @@
     </div>
     <div class="bg1">
         <div class="bg4">
+            <div class="wrapper">
+                <div class="floor">
 
+                    <!-- <div class="players"> -->
+                    <!-- player 1 -->
+                    <!-- <div class="player blue" data-name="joe">
+                       <div class="right"></div>
+                       <div class="front">
+                          <div class="top"></div>
+                       </div>
+                    </div>      -->
+                    <!-- </div> -->
+                    <!-- Data Cords are for Future use -->
+                    <div class="row">
+                        <div data-cords='[0,0]' class="tile" ></div>
+                        <div data-cords='[0,1]' class="tile"></div>
+                        <div data-cords='[0,2]' class="tile"></div>
+                        <div data-cords='[0,3]' class="tile"></div>
+                        <div data-cords='[0,4]' class="tile"></div>
+                        <div data-cords='[0,5]' class="tile"></div>
+                        <div data-cords='[0,6]' class="tile"></div>
+                        <div data-cords='[0,7]' class="tile"></div>
+                        <div data-cords='[0,8]' class="tile"></div>
+                        <div data-cords='[0,9]' class="tile"></div>
+                        <div data-cords='[0,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[1,0]' class="tile"></div>
+                        <div data-cords='[1,1]' class="tile"></div>
+                        <div data-cords='[1,2]' class="tile"></div>
+                        <div data-cords='[1,3]' class="tile"></div>
+                        <div data-cords='[1,4]' class="tile"></div>
+                        <div data-cords='[1,5]' class="tile"></div>
+                        <div data-cords='[1,6]' class="tile"></div>
+                        <div data-cords='[1,7]' class="tile"></div>
+                        <div data-cords='[1,8]' class="tile"></div>
+                        <div data-cords='[1,9]' class="tile"></div>
+                        <div data-cords='[1,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[2,0]' class="tile"></div>
+                        <div data-cords='[2,1]' class="tile"></div>
+                        <div data-cords='[2,2]' class="tile"></div>
+                        <div data-cords='[2,3]' class="tile"></div>
+                        <div data-cords='[2,4]' class="tile"></div>
+                        <div data-cords='[2,5]' class="tile"></div>
+                        <div data-cords='[2,6]' class="tile"></div>
+                        <div data-cords='[2,7]' class="tile"></div>
+                        <div data-cords='[2,8]' class="tile"></div>
+                        <div data-cords='[2,9]' class="tile"></div>
+                        <div data-cords='[2,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[3,0]' class="tile"></div>
+                        <div data-cords='[3,1]' class="tile"></div>
+                        <div data-cords='[3,2]' class="tile"></div>
+                        <div data-cords='[3,3]' class="tile"></div>
+                        <div data-cords='[3,4]' class="tile"></div>
+                        <div data-cords='[3,5]' class="tile"></div>
+                        <div data-cords='[3,6]' class="tile"></div>
+                        <div data-cords='[3,7]' class="tile"></div>
+                        <div data-cords='[3,8]' class="tile"></div>
+                        <div data-cords='[3,9]' class="tile"></div>
+                        <div data-cords='[3,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[4,0]' class="tile"></div>
+                        <div data-cords='[4,1]' class="tile"></div>
+                        <div data-cords='[4,2]' class="tile"></div>
+                        <div data-cords='[4,3]' class="tile"></div>
+                        <div data-cords='[4,4]' class="tile"></div>
+                        <div data-cords='[4,5]' class="tile"></div>
+                        <div data-cords='[4,6]' class="tile"></div>
+                        <div data-cords='[4,7]' class="tile"></div>
+                        <div data-cords='[4,8]' class="tile"></div>
+                        <div data-cords='[4,9]' class="tile"></div>
+                        <div data-cords='[4,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[5,0]' class="tile"></div>
+                        <div data-cords='[5,1]' class="tile"></div>
+                        <div data-cords='[5,2]' class="tile"></div>
+                        <div data-cords='[5,3]' class="tile"></div>
+                        <div data-cords='[5,4]' class="tile"></div>
+                        <div data-cords='[5,5]' class="tile"></div>
+                        <div data-cords='[5,6]' class="tile"></div>
+                        <div data-cords='[5,7]' class="tile"></div>
+                        <div data-cords='[5,8]' class="tile"></div>
+                        <div data-cords='[5,9]' class="tile"></div>
+                        <div data-cords='[5,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[6,0]' class="tile"></div>
+                        <div data-cords='[6,1]' class="tile"></div>
+                        <div data-cords='[6,2]' class="tile"></div>
+                        <div data-cords='[6,3]' class="tile"></div>
+                        <div data-cords='[6,4]' class="tile"></div>
+                        <div data-cords='[6,5]' class="tile"></div>
+                        <div data-cords='[6,6]' class="tile"></div>
+                        <div data-cords='[6,7]' class="tile"></div>
+                        <div data-cords='[6,8]' class="tile"></div>
+                        <div data-cords='[6,9]' class="tile"></div>
+                        <div data-cords='[6,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[7,0]' class="tile"></div>
+                        <div data-cords='[7,1]' class="tile"></div>
+                        <div data-cords='[7,2]' class="tile"></div>
+                        <div data-cords='[7,3]' class="tile"></div>
+                        <div data-cords='[7,4]' class="tile"></div>
+                        <div data-cords='[7,5]' class="tile"></div>
+                        <div data-cords='[7,6]' class="tile"></div>
+                        <div data-cords='[7,7]' class="tile"></div>
+                        <div data-cords='[7,8]' class="tile"></div>
+                        <div data-cords='[7,9]' class="tile"></div>
+                        <div data-cords='[7,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[8,0]' class="tile"></div>
+                        <div data-cords='[8,1]' class="tile"></div>
+                        <div data-cords='[8,2]' class="tile"></div>
+                        <div data-cords='[8,3]' class="tile"></div>
+                        <div data-cords='[8,4]' class="tile"></div>
+                        <div data-cords='[8,5]' class="tile"></div>
+                        <div data-cords='[8,6]' class="tile"></div>
+                        <div data-cords='[8,7]' class="tile"></div>
+                        <div data-cords='[8,8]' class="tile"></div>
+                        <div data-cords='[8,9]' class="tile"></div>
+                        <div data-cords='[8,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[9,0]' class="tile"></div>
+                        <div data-cords='[9,1]' class="tile"></div>
+                        <div data-cords='[9,2]' class="tile"></div>
+                        <div data-cords='[9,3]' class="tile"></div>
+                        <div data-cords='[9,4]' class="tile"></div>
+                        <div data-cords='[9,5]' class="tile"></div>
+                        <div data-cords='[9,6]' class="tile"></div>
+                        <div data-cords='[9,7]' class="tile"></div>
+                        <div data-cords='[9,8]' class="tile"></div>
+                        <div data-cords='[9,9]' class="tile"></div>
+                        <div data-cords='[9,10]' class="tile"></div>
+                    </div>
+                    <div class="row">
+                        <div data-cords='[10,0]' class="tile"></div>
+                        <div data-cords='[10,1]' class="tile"></div>
+                        <div data-cords='[10,2]' class="tile"></div>
+                        <div data-cords='[10,3]' class="tile"></div>
+                        <div data-cords='[10,4]' class="tile"></div>
+                        <div data-cords='[10,5]' class="tile"></div>
+                        <div data-cords='[10,6]' class="tile"></div>
+                        <div data-cords='[10,7]' class="tile"></div>
+                        <div data-cords='[10,8]' class="tile"></div>
+                        <div data-cords='[10,9]' class="tile"></div>
+                        <div data-cords='[10,10]' class="tile"></div>
+                    </div>
+                </div>
+                <!-- <p class='youdied'></p> -->
+            </div>
+</body>
+<!-- <script>
+    var KEY = {
+   W: 119,
+   A: 97,
+   S: 115,
+   D: 100
+}
+
+var map = {};
+map.height = 480;
+map.width = 480;
+
+var user = {};
+user.deaths = 0;
+user.moved = false;
+user.element = $("*[data-name=joe]");
+user.pos = {
+   left: 240,
+   top: 240
+};
+
+setInterval(function() {
+   if (user.deaths) $(".youdied").text("Suicides: " + user.deaths);
+   $(user.element).css({
+      "top": user.pos.top + "px",
+      "left": user.pos.left + "px"
+   });
+   user.moved = false;
+}, 100);
+
+user.isDead = false;
+
+user.die = function() {
+   user.isDead = true;
+   setTimeout(function() {
+      $(user.element).addClass('die');
+      setTimeout(function() {
+         user.pos = {
+            left: 48,
+            top: 48
+         };
+         setTimeout(function() {
+            user.deaths++;
+            $(user.element).removeClass('die');
+            user.isDead = false;
+         }, 250);
+      }, 350);
+   }, 250);
+};
+
+/* Listeners */
+document.body.addEventListener("keypress", function(e) {
+   if (user.isDead) return;
+   var c = e.keyCode;
+
+   if (user.moved) return;
+
+   if (c == KEY.W) {
+      if (user.pos.top != 0) {
+         user.pos.top -= 48;
+         user.moved = true;
+      } else {
+         user.pos.top -= 48;
+         user.die();
+      }
+   } else if (c == KEY.A) {
+      if (user.pos.left != 0) {
+         user.pos.left -= 48;
+         user.moved = true;
+      } else {
+         user.pos.left -= 48;
+         user.die();
+      }
+   } else if (c == KEY.S) {
+      if (user.pos.top < map.height) {
+         user.pos.top += 48;
+         user.moved = true;
+      } else {
+         user.pos.top += 48;
+         user.die();
+      }
+   } else if (c == KEY.D) {
+      if (user.pos.left < map.width) {
+         user.pos.left += 48;
+         user.moved = true;
+      } else {
+         user.pos.left += 48;
+         user.die();
+      }
+   }
+});
+</script> -->
         </div>
 
         <div class="bg3">
@@ -33,9 +440,9 @@
 </div>
 <div class="side">
     <button class="btnmain1">마구간</button>
-    <a th:href="@{/}">
-        <button class="btnmain2">게임</button>
-    </a>
+    <a th:href="@{/game/gameStart(id=${id})}">
+        <button class="btnmain2" type="button" id="adc">게임</button>
+
     <a th:href="@{/}">
         <button class="btnmain2">상점</button>
     </a>

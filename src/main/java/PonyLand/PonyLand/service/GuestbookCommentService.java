@@ -14,9 +14,9 @@ public class GuestbookCommentService {
     @Autowired
     GuestbookCommentDAO dao;
 
-    public int insert(GuestbookCommentDTO dto) { return dao.insert(dto);}
-
-    public List<GuestbookCommentDTO> select() {
-        return dao.select();
+    public int insert(GuestbookCommentDTO dto) {
+        return dao.insert(dto);
     }
+
+    public List<GuestbookCommentDTO> select() {return dao.select();}
 }

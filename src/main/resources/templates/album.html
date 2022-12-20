@@ -78,14 +78,15 @@
                                 <th></th>
                                 <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th>
                                 <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th>
-                                <button id="write" class="alwritebtn" type="button">글쓰기</button>
+                                <button id="write1" class="alwritebtn" type="button">글쓰기</button>
                             </tr>
                         </div>
                         <div class="alpic">
 <!--                            <th th:src="@{${file.oriname()}}">-->
-                            <img th:src="|/@{${list.getAlbum_oriname()}}|"> <!--이미지 경로 불러오기.-->
+                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|">
+                                           <!--사진 불러오기.-->
 
-                            </th>사진
+                            </th>
                         </div>
 
                         <div class="alcontext">
@@ -142,7 +143,7 @@
                 </div>
             </div>
         </form>
-        <button id="write1">글쓰기</button>
+
 
 
     </div>
@@ -167,7 +168,7 @@
 <script>
 
     //앨범 글쓰기로 가는 세션. (아이디 포함)
-    $("#write1").on("click", function() {
+    $("#write").on("click", function() {
         let Album_host = $("#host").val();
 
         location.href = "/Album/write?Album_host="+Album_host;
@@ -177,8 +178,8 @@
 
     $(function(){
         $(".gbbutton").on("click", function () {
-            location.reload();
 
+            location.reload();
 
             $(this).prev().find('input').attr("name", "Album_Comment_contents");
             let Album_seq = $(this).next().val();
@@ -215,6 +216,7 @@
                     div.append(th2);
                     div.append(th3);
                     $(".comment").append(div);
+
 
 
 

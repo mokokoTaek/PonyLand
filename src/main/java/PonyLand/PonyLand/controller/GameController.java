@@ -1,5 +1,6 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,12 @@ public class GameController {
     }
 
     @RequestMapping("goGameSetting")
-    public String goGameSetting() throws Exception{
+    public String goGameSetting(Model model) throws Exception{
+        String id=(String) session.getAttribute("sessionID");
+        MemberDTO dto = service.findById(id);
+        model.addAttribute("dto",dto);
+        System.out.println(dto.getMember_coin());
+        System.out.println(id);
         return "gameSetting";
     }
 

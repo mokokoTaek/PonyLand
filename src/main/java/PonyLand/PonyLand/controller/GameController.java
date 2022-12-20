@@ -1,7 +1,9 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -12,8 +14,14 @@ public class GameController {
     @Autowired
     private HttpSession session;
 
+    @Autowired
+    private MemberService service;
+
+
     @RequestMapping("gameStart")
-    public String gameStart() throws Exception {
+    public String gameStart(String id, Model model)  {
+        model.addAttribute("id", id);
+        model.addAttribute("dto",service.findById(id));
         return "gameStart";
     }
 

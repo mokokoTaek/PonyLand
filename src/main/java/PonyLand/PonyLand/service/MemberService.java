@@ -200,15 +200,18 @@ public class MemberService {
             double sum = bettingCoin * 1.25;
             map.put("sum", sum);
             dao.updateCoin(map);
+
         } else if (horseCount == 3) {
             double sum = bettingCoin * 1.5;
             map.put("sum", sum);
             dao.updateCoin(map);
+
             //dao.updateCoin(id,sum);
         } else if (horseCount == 4) {
             double sum = bettingCoin * 2;
             map.put("sum", sum);
             dao.updateCoin(map);
+
             //dao.updateCoin(id,sum);
         }
     }

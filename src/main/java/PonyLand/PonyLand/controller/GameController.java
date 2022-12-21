@@ -48,7 +48,7 @@ public class GameController {
         System.out.println(bettingCoin+id);
         System.out.println(horseCount);
         service.coinUpdate(id,bettingCoin,horseCount);
-        return "gameRun";
+        return "gameRun"+horseCount;
     }
 
 
@@ -59,6 +59,9 @@ public class GameController {
         return service.add(bettingCoin,horseCount);
     }
 
+
+    @RequestMapping("goGameResult")
+    public String goGameResult(){ return "gameResult"; }
 
 
 }

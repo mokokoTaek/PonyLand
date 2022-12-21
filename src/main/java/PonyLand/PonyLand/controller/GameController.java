@@ -1,6 +1,7 @@
 package PonyLand.PonyLand.controller;
 
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.dto.RacingDTO;
 import PonyLand.PonyLand.service.GameService;
 import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class GameController {
     private GameService Gameservice;
 
 
+
     @RequestMapping("gameStart")
     public String gameStart() {
         return "gameStart";
@@ -44,14 +46,15 @@ public class GameController {
     }
 
     @RequestMapping("gameRun")
-    public String gameRun(String id, int bettingCoin, int horseCount) {
-        System.out.println(bettingCoin+id);
+    public String gameRun(String id, int bettingCoin, int horseCount, String betHorse) {
+        System.out.println(bettingCoin+id+betHorse);
         System.out.println(horseCount);
-        service.coinUpdate(id,bettingCoin,horseCount);
+        service.bettingCoin(id,bettingCoin,horseCount,betHorse);
         return "gameRun"+horseCount;
     }
 
 
+    // ajax 실시간 배팅예상 금액 코드
     @ResponseBody
     @RequestMapping("estimatedAmount")
     public double estimatedAmount(int bettingCoin,int horseCount){
@@ -61,14 +64,22 @@ public class GameController {
 
 
     @RequestMapping("goGameResult")
-    public String goGameResult(int winner){
-      /*  MemberDTO dto = service.selectMyBetHorseAndCoin//db 에 배팅한 말,코인 숫자 꺼내옴
-        if(dto.get == winner){
-            return "돈 딴거 db에 입력";
+    public String goGameResult(String winner){
+        RacingDTO dto = new RacingDTO();
+        dto=service.selectBet((String)session.getAttribute("sessionID"));
+
+        if(dto.getRacing_horse_seq().equals(winner)){
+            System.out.println("d여긴?");
+            service.updateWin(dto);
+            service.deleteBet((String) session.getAttribute("sessionID"));
+
         }else{
-            return "배팅한 금액 db에서 뻄";
+            System.out.println("d여긴??!?!??");
+            service.updateLose(dto);
+            service.deleteBet((String) session.getAttribute("sessionID"));
+
         }
-        System.out.println("위너"+winner);*/
+        System.out.println("위너"+winner);
         return "gameResult";
     }
 

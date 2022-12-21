@@ -6,9 +6,25 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.GameMapper">
 
-    <!--코인 배팅성공시 업데이트 문-->
-    <update id="updateCoin">
-        update member set member_coin=member_coin+#{sum} where member_id = #{id}
+    <!--코인 배팅 insert 문-->
+    <insert id="bettingCoin">
+        insert  into racing values (#{racing_id},#{racing_seq},#{racing_coin})
+    </insert>
+
+    <select id="selectBet" resultType="PonyLand.PonyLand.dto.RacingDTO">
+        select * from racing where racing_id=#{value}
+    </select>
+
+    <delete id="deleteBet">
+        delete racing where racing_id=#{value}
+    </delete>
+
+    <update id="updateWin">
+        update member set member_coin=member_coin+#{racing_coin} where member_id=#{racing_id}
+    </update>
+
+    <update id="updateLose">
+        update member set member_coin=member_coin-#{racing_coin} where member_id=#{racing_id}
     </update>
 
 

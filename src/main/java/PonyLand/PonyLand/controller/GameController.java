@@ -45,7 +45,6 @@ public class GameController {
 
     @RequestMapping("gameRun")
     public String gameRun(String id, int bettingCoin, int horseCount) {
-        System.out.println("도차");
         System.out.println(bettingCoin+id);
         System.out.println(horseCount);
         service.coinUpdate(id,bettingCoin,horseCount);

@@ -6,6 +6,7 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.GameMapper">
 
+    <!--코인 배팅성공시 업데이트 문-->
     <update id="updateCoin">
         update member set member_coin=member_coin+#{sum} where member_id = #{id}
     </update>

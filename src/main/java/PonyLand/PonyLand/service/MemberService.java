@@ -192,7 +192,7 @@ public class MemberService {
     }
 
 
-    // 코인 업데이트
+    // 코인 배팅 성공시 업데이트
     public void coinUpdate(String id, int bettingCoin, int horseCount) {
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
@@ -213,7 +213,7 @@ public class MemberService {
         }
     }
 
-
+    // 배팅할 금액 입력시 ajax로 실시간 예상금액 출력
     public double add(int bettingCoin, int horseCount) {
         double sum;
         if (horseCount == 2) {

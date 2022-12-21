@@ -81,16 +81,14 @@
             <div class="bg3-1">
                 <div class="updatednews">
                     <div>Updated News</div>
-                    <div>사진첩: 하......</div>
-                    <div>게시판: 하......</div>
-                    <div>방명록: 하......</div>
+                    <div th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 0/64
+                        방명록 0 /  <div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 0/64
+                        사진첩 0/ <div  th:text="${list1}"></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64

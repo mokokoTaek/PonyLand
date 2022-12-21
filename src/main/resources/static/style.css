@@ -309,7 +309,11 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 10px;
+    font-size: 25px;
+
+    color: #5a3d2b;
+
+    /*gap: 10px;*/
 }
 
 .updatednews2{

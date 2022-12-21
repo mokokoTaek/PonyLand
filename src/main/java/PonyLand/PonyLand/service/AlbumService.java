@@ -28,4 +28,14 @@ public class AlbumService {
         return dao.update(Album_title,Album_contents,Album_seq);
     }
 
+    public int count() {  //게시글 총 갯수
+        return dao.count();
+    }
+    public List<AlbumDTO> select() {
+        return dao.select();
+    }
+
+//    public List<AlbumDTO> replycount() {
+//        return dao.replycount();
+//    }
 }

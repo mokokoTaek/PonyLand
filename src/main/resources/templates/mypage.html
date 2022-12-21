@@ -37,9 +37,9 @@
 
                 </div>
 
-                <button class="profilebtn" type="submit" id="wave">프로필수정</button>
+                <button class="profilebtn" type="button" id="wave">프로필수정</button>
                 <button class="profilebtn1" type="button" id="wave">취소</button>
-                <button class="profilebtn2" type="button" id="wave">변경</button>
+                <button class="profilebtn2" type="sumbit" id="wave">변경</button>
 
             </div>
         </form>
@@ -120,6 +120,10 @@ $("#profile_img").on("change",function(e){
 
 
 });
+
+$(".profilebtn1").on("click",function (){
+    location.reload();
+})
 
 
 

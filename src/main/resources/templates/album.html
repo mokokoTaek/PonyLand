@@ -84,12 +84,10 @@
                             <!--                            <th th:src="@{${file.oriname()}}">-->
                             <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|">
                             <!--사진 불러오기.-->
-
                             </th>
                         </div>
 
                         <div class="alcontext">
-
                             <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
@@ -104,13 +102,18 @@
                             </div>
                         </div>
 
-                        <div class="comment" th:each="list1: ${list1}" th:if="${list.getAlbum_seq() == list1.getAlbum_Comment_parent_seq()}">
-
-                            <th th:text="${list1.getAlbum_Comment_writer()}"></th>
-                            <th th:text="${list1.getAlbum_Comment_contents()}"></th>
-                            <th th:text="${list1.getAlbum_Comment_write_date()}"></th>
-
-                            <th id="delete"  th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}"><a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.Album_Comment_seq})}">x</a></th>
+                        <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getAlbum_seq() == list1.getAlbum_Comment_parent_seq()}">
+                            <div class="gbtitle">
+                                <div>
+                                    <th th:text="${list1.getAlbum_Comment_writer()}">작성자</th>
+                                </div>
+                                <div style="font-size: 10px; color: darkgrey">
+                                    <th th:text="${#dates.format(list1.getAlbum_Comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                                </div>
+                            </div>
+                            <div style="font-size: 16px;">
+                                <th th:text="${list1.getAlbum_Comment_contents()}">작성내용</th>
+                            </div>
                         </div>
 
                         <div class="gbcmtinput" >

@@ -35,4 +35,6 @@ public class MemberDAO {
     }
 
     public MemberDTO findById(String id){return sdjr.findByMemberId(id);}
+
+
 }

@@ -3,7 +3,10 @@ class GameScene4 extends Phaser.Scene {
         this.load.setPath('/static/assets');
         this.load.image('bg', 'bg/1.png'); // 바닥
         this.load.image('cactus', 'bg/2.png'); //장애물
-        this.load.spritesheet('player', 'player/2.png', {frameWidth: 50, frameHeight: 50}); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
+        this.load.spritesheet('player5', 'player/5.png', {frameWidth: 50, frameHeight: 50}); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
+        this.load.spritesheet('player2', 'player/2.png', {frameWidth: 50, frameHeight: 50}); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
+        this.load.spritesheet('player3', 'player/3.png', {frameWidth: 50, frameHeight: 50}); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
+        this.load.spritesheet('player4', 'player/4.png', {frameWidth: 50, frameHeight: 50}); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
     }
 
 
@@ -26,28 +29,28 @@ class GameScene4 extends Phaser.Scene {
         //공룡 달리기 속도 조절 가능
         this.anims.create({
             key: 'run1',
-            frames: this.anims.generateFrameNames('player', {start: 0, end: 1}), //0과 1 (두장)으로 애니메이션을 만드는 것이다.
+            frames: this.anims.generateFrameNames('player2', {start: 0, end: 1}), //0과 1 (두장)으로 애니메이션을 만드는 것이다.
             frameRate: 5, //두장 이미지가 반복되는 속도 커질수록 빨라진다.
             repeat: -1 // 이것을 해야 애니메이션이 계속 반복된다.???
         });
 
         this.anims.create({
             key: 'run2',
-            frames: this.anims.generateFrameNames('player', {start: 0, end: 1}),
+            frames: this.anims.generateFrameNames('player3', {start: 0, end: 1}),
             frameRate: 5,
             repeat: -1
         })
 
         this.anims.create({
             key: 'run3',
-            frames: this.anims.generateFrameNames('player', {start: 0, end: 1}),
+            frames: this.anims.generateFrameNames('player4', {start: 0, end: 1}),
             frameRate: 5,
             repeat: -1
         });
 
         this.anims.create({
             key: 'run4',
-            frames: this.anims.generateFrameNames('player', {start: 0, end: 1}),
+            frames: this.anims.generateFrameNames('player5', {start: 0, end: 1}),
             frameRate: 5,
             repeat: -1
         });
@@ -118,7 +121,7 @@ class GameScene4 extends Phaser.Scene {
                 cactus1.destroy();
             }.bind(this)
         })
-        this.physics.add.overlap(this.cactusGroup1, this.player1, this.hitCactusPlayer, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+        this.physics.add.overlap(this.cactusGroup1, this.player1, this.hitCactusPlayer4, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
     //2번 레인
@@ -140,7 +143,7 @@ class GameScene4 extends Phaser.Scene {
                 cactus2.destroy();
             }.bind(this)
         })
-        this.physics.add.overlap(this.cactusGroup2, this.player2, this.hitCactusPlayer, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+        this.physics.add.overlap(this.cactusGroup2, this.player2, this.hitCactusPlayer3, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
     //3번 레인
@@ -162,7 +165,7 @@ class GameScene4 extends Phaser.Scene {
                 cactus3.destroy();
             }.bind(this)
         })
-        this.physics.add.overlap(this.cactusGroup3, this.player3, this.hitCactusPlayer, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+        this.physics.add.overlap(this.cactusGroup3, this.player3, this.hitCactusPlayer2, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
     //4번 레인
@@ -184,7 +187,7 @@ class GameScene4 extends Phaser.Scene {
                 cactus4.destroy();
             }.bind(this)
         })
-        this.physics.add.overlap(this.cactusGroup4, this.player4, this.hitCactusPlayer, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+        this.physics.add.overlap(this.cactusGroup4, this.player4, this.hitCactusPlayer1, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
     update() {
@@ -194,22 +197,33 @@ class GameScene4 extends Phaser.Scene {
         this.bg4.tilePositionX += 11;
     }
 
-    hitCactusPlayer() {
-
-        if (this.player1.play('run1')) {
-            alert("한호 1등 !");
-            location.href = "/game/goGameResult";
-        } else if (this.player2.play('run2')) {
-            alert("준구 1등 !");
-            location.href = "/game/goGameResult";
-        } else if (this.player3.play('run3')) {
-            alert("진혁 1등 !");
-            location.href = "/game/goGameResult";
-        } else if (this.player3.play('run4')) {
-            alert("근혁 1등 !");
-            location.href = "/game/goGameResult";
-        }
-
-
+    hitCactusPlayer1() {
+        alert("한호 1등 !");
+        console.log("1번말 우승")
+        location.href = "/game/goGameResult?winner=1";
     }
+
+    hitCactusPlayer2() {
+        alert("준구 1등 !");
+        console.log("2번말 우승")
+        location.href = "/game/goGameResult?winner=2";
+    }
+
+
+    hitCactusPlayer3() {
+        alert("진혁 1등 !");
+        console.log("3번말 우승")
+        location.href = "/game/goGameResult?winner=3";
+    }
+    hitCactusPlayer4() {
+        alert("근혁 1등 !");
+        console.log("4번말 우승")
+        location.href = "/game/goGameResult?winner=4";
+    }
+
+
+
 }
+
+
+

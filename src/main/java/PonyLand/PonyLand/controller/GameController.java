@@ -61,7 +61,16 @@ public class GameController {
 
 
     @RequestMapping("goGameResult")
-    public String goGameResult(){ return "gameResult"; }
+    public String goGameResult(int winner){
+      /*  MemberDTO dto = service.selectMyBetHorseAndCoin//db 에 배팅한 말,코인 숫자 꺼내옴
+        if(dto.get == winner){
+            return "돈 딴거 db에 입력";
+        }else{
+            return "배팅한 금액 db에서 뻄";
+        }
+        System.out.println("위너"+winner);*/
+        return "gameResult";
+    }
 
 
 }

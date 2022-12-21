@@ -3,13 +3,14 @@ class GameScene2 extends Phaser.Scene{
         this.load.setPath('/static/assets');
         this.load.image('bg', 'bg/1.png'); // 바닥
         this.load.image('cactus', 'bg/2.png'); //장애물
-        this.load.spritesheet('player', 'player/1.png', { frameWidth: 50, frameHeight: 50 }); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
+        this.load.spritesheet('player1', 'player/1.png', { frameWidth: 50, frameHeight: 50 }); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
+        this.load.spritesheet('player4', 'player/4.png', { frameWidth: 50, frameHeight: 50 }); //캐릭터, spritesheet 로 폭과 높이로 잘라서 두장으로 만든다.
     }
 
 
     create(){
 
-        //바닥
+        //바닥s
         this.bg1=this.add.tileSprite(0, HEIGHT-30, WIDTH, 15, 'bg') //tileSprite : 바닥 그림이 끝나는 부분에 이어서 나오도록 설정 (x축, y축, 폭, 높이, 그림)
             .setOrigin(0, 0);
 
@@ -20,14 +21,14 @@ class GameScene2 extends Phaser.Scene{
         //공룡 달리기 속도 조절 가능
         this.anims.create({
             key: 'run1',
-            frames: this.anims.generateFrameNames('player', {start:0,end: 1}), //0과 1 (두장)으로 애니메이션을 만드는 것이다.
+            frames: this.anims.generateFrameNames('player4', {start:0,end: 1}), //0과 1 (두장)으로 애니메이션을 만드는 것이다.
             frameRate: 5, //두장 이미지가 반복되는 속도 커질수록 빨라진다.
             repeat: -1 // 이것을 해야 애니메이션이 계속 반복된다.???
         });
 
         this.anims.create({
             key: 'run2',
-            frames: this.anims.generateFrameNames('player', {start:0,end: 1}),
+            frames: this.anims.generateFrameNames('player1', {start:0,end: 1}),
             frameRate: 5,
             repeat: -1
         });
@@ -74,7 +75,7 @@ class GameScene2 extends Phaser.Scene{
                 cactus1.destroy();
             }.bind(this)
         })
-        this.physics.add.overlap(this.cactusGroup1 ,this.player1,this.hitCactusPlayer,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+        this.physics.add.overlap(this.cactusGroup1 ,this.player1,this.hitCactusPlayer2,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
     //2번 레인
@@ -96,7 +97,7 @@ class GameScene2 extends Phaser.Scene{
                 cactus2.destroy();
             }.bind(this)
         })
-        this.physics.add.overlap(this.cactusGroup2 ,this.player2,this.hitCactusPlayer,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+        this.physics.add.overlap(this.cactusGroup2 ,this.player2,this.hitCactusPlayer1,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
 
@@ -105,14 +106,16 @@ class GameScene2 extends Phaser.Scene{
         this.bg2.tilePositionX +=7;
     }
 
-    hitCactusPlayer(){
-        if (this.player1.play('한호')) {
+
+    hitCactusPlayer1(){
             alert("한호 1등 !");
-            location.href = "/game/goGameResult";
-        } else if (this.player2.play('준구')) {
-            alert("준구 1등 !");
-            location.href = "/game/goGameResult";
-        }
+            console.log("1번말 우승");
+            location.href = "/game/goGameResult?winner=1";
+    }
+    hitCactusPlayer2(){
+        alert("준구 1등 !");
+        console.log("2번말 우승")
+        location.href = "/game/goGameResult?winner=2";
     }
 
 

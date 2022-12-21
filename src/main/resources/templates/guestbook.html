@@ -89,12 +89,15 @@
                         </div>
                     </div>
                     <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
-                        <div class="gbcmttitle">
-                            <div><th th:text="${list1.getGuestbook_comment_writer()}">작성자</th></div>
-                            <div style="font-size: 10px; color: darkgrey"><th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th></div>
-
-                        <div style="font-size: 16px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
+                        <div class="gbtitle">
+                            <div>
+                                <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+                            </div>
+                            <div style="font-size: 10px; color: darkgrey">
+                                <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}" class="cmttime" >작성시간</th>
+                            </div>
                         </div>
+                        <div style="font-size: 16px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
                     </div>
                     <div class="gbcmtinput">
                         <div class="gbcmt">
@@ -103,7 +106,7 @@
                         <button class="gbbutton" type="button">확인</button>
                         <input type="hidden" name="guestbook_seq" th:value="${list.getGuestbook_seq()}">
                     </div>
-<!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
+                    <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                 </div>
             </div>
         </div>
@@ -195,7 +198,4 @@
         }
     });
 </script>
-
-
-
 </html>

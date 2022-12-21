@@ -52,8 +52,10 @@ public class MessageController {
         out.close();
     }
 
-    @GetMapping("detail")
-    public String detail(MessageDTO dto, Model model){
+    @RequestMapping("detail")
+    public String detail(MessageDTO dto, Model model,String no){
+        System.out.println("메세지 내용 들어오니? " + Integer.parseInt(no));
+
         String id = (String)session.getAttribute("sessionID");
         model.addAttribute("id", id);
         MessageDTO dto2 = service.selectBySeq(dto.getNo());

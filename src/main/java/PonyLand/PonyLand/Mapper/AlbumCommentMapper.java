@@ -2,6 +2,7 @@ package PonyLand.PonyLand.Mapper;
 
 import PonyLand.PonyLand.dto.AlbumCommentDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -10,5 +11,7 @@ public interface AlbumCommentMapper {
 
     int insert(AlbumCommentDTO dto);
 
-    List<AlbumCommentDTO> selectComment(int Album_Comment_parent_seq);
+    List<AlbumCommentDTO> selectComment();
+
+    int delete(int Album_Comment_seq);
 }

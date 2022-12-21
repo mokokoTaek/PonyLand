@@ -60,6 +60,20 @@ public class FamilyController {
         return "checkNewFamilyList";
     }
 
+    @RequestMapping("familyListOpen")
+    public String familyListOpen(Model model){
+        String id = (String)session.getAttribute("sessionID");
+
+        List<FamilyDTO> list1 = service.getFamilyListByProposerId(id);
+        List<FamilyDTO> list2 = service.getFamilyListByProposedId(id);
+
+        model.addAttribute("list1",list1);
+        model.addAttribute("list2",list2);
+        return "familyListOpen";
+    }
+
+
+
 //    @RequestMapping("areTheyFamily")
 //    public String areTheyFamily(String proposer, String proposed){
 //        Boolean areTheyFamily = service.areTheyFamily(proposer,proposed);

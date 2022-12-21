@@ -28,7 +28,7 @@
             </div>
 
             <div class="profile1">
-                테스트입니다.
+
             </div>
 
             <div class="profile2">
@@ -82,9 +82,9 @@
                             </tr>
                         </div>
                         <div class="alpic">
-<!--                            <th th:src="@{${file.oriname()}}">-->
+                            <!--                            <th th:src="@{${file.oriname()}}">-->
                             <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|">
-                                           <!--사진 불러오기.-->
+                            <!--사진 불러오기.-->
 
                             </th>
                         </div>
@@ -131,7 +131,7 @@
 
                         <tr>
                         <tr>
-                        <div id="abc"></div>
+                            <div id="abc"></div>
                             <th>글번호</th>
 
                             <th>이름</th>
@@ -155,14 +155,13 @@
     <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
     </a>
-    <a th:href="@{/Guestbook/goGuestbook}">
+    <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}">
         <button class="btnmain2">방명록</button>
     </a>
-    <a th:href="@{/Album/toAlbumPage}">
     <button class="btnmain1">사진첩</button>
-
+    <a th:href="@{/member/goMypage?(memberId=${id})}">
+        <button class="btnmain2">내정보</button>
     </a>
-    <button class="btnmain2">다이어리</button>
 </div>
 </body>
 <script>

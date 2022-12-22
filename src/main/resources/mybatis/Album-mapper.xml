@@ -24,6 +24,29 @@
         update Album set Album_title=#{Album_title},Album_contents=#{Album_contents} where Album_seq = #{Album_seq}
     </update>
 
+    <select id="count" resultType="int">
+        select count(*) as count from album
+    </select>
+
+    <select id="select" resultType="PonyLand.PonyLand.dto.AlbumDTO">
+        SELECT * FROM album WHERE rownum <![CDATA[ <= ]]> 5 ORDER BY album_seq DESC
+
+    </select>
+
+<!--    <select id="replycount" resultType="int">-->
+
+<!--        select * from-->
+<!--        (select-->
+<!--        album.*,-->
+<!--        row_number() over(order by Album_seq desc) rn,-->
+<!--        (select count(*) from album_comment where album_comment_parent_seq=album_seq) replycount-->
+<!--        from Album)-->
+<!--        where rn between 1 and 5-->
+<!--    </select>-->
+
+
+
+
 <!--    <select id="selectByPageNo" resultType="PonyLand.PonyLand.dto.AlbumDTO">-->
 <!--        select * from (select Album.*, row_number() over(order by seq desc) as rnum from Album) where rnum between #{start} and #{end}-->
 <!--    </select>-->

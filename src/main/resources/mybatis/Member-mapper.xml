@@ -18,5 +18,10 @@
         select COUNT(*) from member where member_id = #{value}
     </select>
 
+    <update id="message">
+        update member set member_message = #{member_message} where member_id=#{memberId}
+
+
+    </update>
 
 </mapper>

@@ -63,4 +63,7 @@ public class MemberDTO {
         @Column(name="member_sysname")
         private String member_sysname;
 
+        @Column(name = "member_message")
+        private String member_message;
+
 }

@@ -38,9 +38,12 @@
             </div>
 
             <div class="profile2">
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-                <div>상태메시지</div>
+                <form action="/member/message">
+
+                    <div><textarea class="loginbg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                    <button class="modifybtn" type="button" >수정하기</button>
+                    <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
+                    <button class="modifybtn2" type="button" id="wave">변경</button>
             </div>
 
             <div class="profile3">
@@ -87,16 +90,14 @@
             <div class="bg3-1">
                 <div class="updatednews">
                     <div>Updated News</div>
-                    <div>사진첩: 하......</div>
-                    <div>게시판: 하......</div>
-                    <div>방명록: 하......</div>
+                    <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 0/64
+                        방명록 0 /  <div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 0/64
+                        사진첩 0/ <div  th:text="${list1}"></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64
@@ -123,13 +124,19 @@
         <button class="btnmain2">방명록</button>
     </a>
     <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
+
         <button class="btnmain2">사진첩</button>
     </a>
     <a th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
 </div>
-
+<script>
+    $(".modifybtn").on("click",function(){
+        $('textarea').removeAttr("readonly");
+        $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+    })
+</script>
 
 <script th:inline="javascript">
     function getFamily() {
@@ -157,7 +164,7 @@
                 console.log("error!");
             });
 
-        <a href="/member/writer"> <button>이동</button> </a>;
+        <a href="/member/writer"> <button>이동</button> </a>
     }
     function openChild(){
         let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
@@ -172,6 +179,8 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
+
+
 </script>
 </body>
 

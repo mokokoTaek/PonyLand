@@ -110,10 +110,16 @@ public class MemberController {
 
     }
 
-    @RequestMapping("imgupdate")
-    public String imgupdate(MultipartFile files, MemberDTO dto,Model model ){
+    @RequestMapping("message")
+    public String message(MemberDTO dto) {
+        service.message(dto);
+        return "redirect:/member/toMinipage?id="+dto.getMemberId();
+    }
 
-        try {
+    @RequestMapping("imgupdate")
+    public String imgupdate(MultipartFile files, MemberDTO dto,Model model )throws Exception{
+
+//        try {
             String memberId = (String) session.getAttribute("sessionID");
             dto.setMemberId(memberId); //id.
             String realPath = session.getServletContext().getRealPath("load");
@@ -143,11 +149,11 @@ public class MemberController {
             model.addAttribute("list",dto);
             service.imgupdate(dto);
 
-        }catch(Exception e){
-            return "error";
-        }
+//        }catch(Exception e){
+//            return "error";
+//        }
 
-        return "redirect:modify";
+        return "redirect:/member/goMypage?&memberId="+dto.getMemberId();
 
     }
 

@@ -32,13 +32,21 @@
                              onkeyup="Coin()">
                     </span> <br>
                     <span>Pony의 수</span>
-                    <button onclick="count('minus'),Coin()"  type="button" >-</button>
+                    <button onclick="count('minus'),Coin()" type="button">-</button>
                     <span id="horseCount">2</span>
                     <input type="hidden" value="2" name="horseCount" id="hiddenCount">
                     <button type="button" onclick="count('plus'),Coin()">+</button>
                     <br>
                     <span>배팅 성공시 예상금액 : </span> <span id="resultCoin"></span><br>
-                    <span th:text="${dto.getMember_name()}"></span>의 말 선택 : 선택부분
+                    <span th:text="${dto.getMember_name()}"></span><span>님이 배팅하실 말 :</span>
+                    <span>
+                        <select name="betHorse" id="choose">
+                             <option value="1">1번말</option>
+                             <option value="2">2번말</option>
+                             <option value="3" id="three" style="display: none">3번말</option>
+                             <option value="4" id="four" style="display: none">4번말</option>
+                        </select>
+                    </span>
                     <br>
                     <span><button id="gameRun" type="submit">게임시작</button></span>
                     <input type="hidden" th:value="${dto.getMemberId()}" name="id">
@@ -51,14 +59,24 @@
                             let number = resultElement.innerText;
 
                             if (type === 'plus') {
-                                if (number <= 3) {
+                                if (number == 2) {
                                     number = parseInt(number) + 1;
                                     hiddenCount.setAttribute("value", number);
+                                    $("#three").css("display","block")
+                                }else if(number ==3){
+                                    number = parseInt(number) + 1;
+                                    hiddenCount.setAttribute("value", number);
+                                    $("#four").css("display","block")
                                 }
                             } else if (type === 'minus') {
-                                if (number >= 3) {
+                                if (number == 3) {
                                     number = parseInt(number) - 1;
                                     hiddenCount.setAttribute("value", number);
+                                    $("#three").css("display","none")
+                                }else if(number ==4){
+                                    number = parseInt(number) - 1;
+                                    hiddenCount.setAttribute("value", number);
+                                    $("#four").css("display","none")
                                 }
                             }
                             resultElement.innerText = number;
@@ -88,17 +106,18 @@
         let bettingCoin = $("#bettingCoin").val();
         let horseCount = $("#horseCount").html();
 
-        console.log(bettingCoin+":"+horseCount);
+        console.log(bettingCoin + ":" + horseCount);
 
         $.ajax({
             url: "/game/estimatedAmount",
             type: "post",
-            dataType:"json",
+            dataType: "json",
             data: {"bettingCoin": bettingCoin, "horseCount": horseCount}
         }).done(function (data) {
-          $("#resultCoin").text(data)
+            $("#resultCoin").text(data)
         })
     }
+
 
 </script>
 

@@ -11,4 +11,6 @@ public interface MemberMapper {
 
     int duplCheck(String memberId);
 
+    String message(MemberDTO dto);
+
 }

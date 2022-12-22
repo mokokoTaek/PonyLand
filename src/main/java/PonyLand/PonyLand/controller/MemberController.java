@@ -5,10 +5,7 @@ import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +42,7 @@ public class MemberController {
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
+
         return "main";
     }
     @PostMapping("insert")
@@ -52,6 +50,13 @@ public class MemberController {
         service.insert(dto);
         return "redirect:/";
     }
+
+    @RequestMapping("duplCheck")
+    @ResponseBody
+    public boolean duplCheck(@RequestParam("member_id") String memberId) {
+        return service.duplCheck(memberId);
+    }
+
 
     @RequestMapping("login")
     public String login(MemberDTO dto, Model model) throws Exception{

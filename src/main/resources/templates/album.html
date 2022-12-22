@@ -11,6 +11,14 @@
 
     </script>
 </head>
+<style>
+    textarea{
+        resize:none;
+        border: solid transparent;
+
+
+    }
+</style>
 <body>
 <div ></div>
 
@@ -32,7 +40,8 @@
             </div>
 
             <div class="profile2">
-                <textarea class="loginbg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea>
+                <div><textarea class="textareabg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
             </div>
 
             <div class="profile3">
@@ -76,7 +85,7 @@
                                 <div><th th:text="${#dates.format(list.getAlbum_write_date(), 'yyyy-MM-dd HH:mm')}">시간</th></div>
                                 <div><th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th></div>
                                 <div><th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th></div>
-                                <div><button id="write1" class="alwritebtn" type="button">글쓰기</button></div>
+                                <div><button id="write" class="alwritebtn" type="button">글쓰기</button></div>
                             </tr>
                         </div>
                         <div class="alpic">

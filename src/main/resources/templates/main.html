@@ -8,6 +8,14 @@
 
 </head>
 
+<style>
+    textarea{
+        resize:none;
+        border: solid transparent;
+
+
+    }
+</style>
 <body>
 <div class="container">
 
@@ -40,12 +48,10 @@
             <div class="profile2">
                 <form action="/member/message">
 
-                    <div><textarea class="loginbg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                    <div><textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
                     <button class="modifybtn" type="button" >수정하기</button>
                     <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
-                    <button class="modifybtn2" type="button">변경</button>
-
-            </form>
+                    <button class="modifybtn2" type="button" >변경</button>
             </div>
 
             <div class="profile3">
@@ -60,14 +66,14 @@
                         <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
                         <input type="hidden" th:value="${id}" id="hiddenProposed">
                         <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
-
+                        </form>
                     </div>
                 </div>
                 <div>
                     <div th:if="${id}== ${sessionID}">
 
                         <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
-
+                        </form>
                     </div>
                 </div>
                 <div>
@@ -136,6 +142,8 @@
 <script>
     $(".modifybtn").on("click",function(){
         $('textarea').removeAttr("readonly");
+            $(this).hide();
+            $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
     })
 </script>

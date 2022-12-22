@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -21,7 +21,9 @@
                 <div><button class="loginbtn">로그인</button></div>
             </form>
             <div class="loginfind">
-                <span>회원가입 </span>
+                <a th:href="@{/signin}">
+                    회원가입
+                </a>
                 <span>아이디|비밀번호찾기</span>
                 <!--        <div>회원가입</div><div>아이디|비밀번호찾기</div>-->
             </div>

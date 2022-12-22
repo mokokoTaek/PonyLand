@@ -21,6 +21,7 @@ public class AlbumDTO {
     private Timestamp Album_write_date;
     private String Album_writer;
     private String Album_host;
+//    private int Album_reply_count;
 
 
 }

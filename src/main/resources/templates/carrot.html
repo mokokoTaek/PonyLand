@@ -10,6 +10,8 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 </head>
 
 <body>
@@ -30,26 +32,79 @@
                         10 당근코인
                     </div>
                     <div class="carrotprice">
-                        <button class="carrotprice2">1,000원</button>
+                        <button class="carrotprice2" id="button1">1,000원</button>
                     </div>
                 </div>
+                <script>
+                    document.getElementById('button1').addEventListener('click', sendAmount);
+                    function sendAmount() {
+                        var amount = 1000;
+                        var charge = 10 + " 당근코인";
+                        document.getElementById('chargeValue').textContent = charge;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/stable/purchase', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                console.log('Amount sent to controller');
+                            }
+                        };
+                        xhr.send('amount=' + amount);
+                    }
+
+                </script>
                 <div class="carrotbox2">
                     <div class="carrotamount">
                         20 당근코인
                     </div>
                     <div class="carrotprice">
-                        <button class="carrotprice2">2,000원</button>
+                        <button class="carrotprice2" id="button2">2,000원</button>
                     </div>
                 </div>
+                <script>
+                    document.getElementById('button2').addEventListener('click', sendAmount);
+                    function sendAmount() {
+                        var amount = 2000;
+                        var charge = 20 + " 당근코인";
+                        document.getElementById('chargeValue').textContent = charge;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/stable/purchase', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                console.log('Amount sent to controller');
+                            }
+                        };
+                        xhr.send('amount=' + amount);
+                    }
 
+                </script>
                 <div class="carrotbox2">
                     <div class="carrotamount">
                         32 당근코인
                     </div>
                     <div class="carrotprice">
-                        <button class="carrotprice2">3,000원</button>
+                        <button class="carrotprice2" id="button3">3,000원</button>
                     </div>
                 </div>
+                <script>
+                    document.getElementById('button3').addEventListener('click', sendAmount);
+                    function sendAmount() {
+                        var amount = 3000;
+                        var charge = 32 + " 당근코인";
+                        document.getElementById('chargeValue').textContent = charge;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/stable/purchase', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                console.log('Amount sent to controller');
+                            }
+                        };
+                        xhr.send('amount=' + amount);
+                    }
+
+                </script>
             </div>
 
             <div class="carrotbox1">
@@ -58,40 +113,97 @@
                         55 당근코인
                     </div>
                     <div class="carrotprice">
-                        <button class="carrotprice2">5,000원</button>
+                        <button class="carrotprice2" id="button4">5,000원</button>
                     </div>
                 </div>
+                <script>
+                    document.getElementById('button4').addEventListener('click', sendAmount);
+                    function sendAmount() {
+                        var amount = 5000;
+                        var charge = 55 + " 당근코인";
+                        document.getElementById('chargeValue').textContent = charge;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/stable/purchase', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                console.log('Amount sent to controller');
+                            }
+                        };
+                        xhr.send('amount=' + amount);
+                    }
+
+                </script>
                 <div class="carrotbox2">
                     <div class="carrotamount">
                         115 당근코인
                     </div>
                     <div class="carrotprice">
-                        <button class="carrotprice2">10,000원</button>
+                        <button class="carrotprice2" id="button5">10,000원</button>
                     </div>
                 </div>
+                <script>
+                    document.getElementById('button5').addEventListener('click', sendAmount);
+                    function sendAmount() {
+                        var amount = 10000;
+                        var charge = 115 + " 당근코인";
+                        document.getElementById('chargeValue').textContent = charge;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/stable/purchase', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                console.log('Amount sent to controller');
+                            }
+                        };
+                        xhr.send('amount=' + amount);
+                    }
+
+                </script>
 
                 <div class="carrotbox2">
                     <div class="carrotamount">
                         350 당근코인
                     </div>
                     <div class="carrotprice">
-                        <button class="carrotprice2">30,000원</button>
+                        <button class="carrotprice2" id="button6">30,000원</button>
                     </div>
                 </div>
+                <script>
+                    document.getElementById('button6').addEventListener('click', sendAmount);
+                    function sendAmount() {
+                        var amount = 30000;
+                        var charge = 350 + " 당근코인";
+                        document.getElementById('chargeValue').textContent = charge;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', '/stable/purchase', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                console.log('Amount sent to controller');
+                            }
+                        };
+                        xhr.send('amount=' + amount);
+                    }
+
+                </script>
             </div>
         </div>
 
         <div class="carrotbg3">
             <div class="balancebox">
                 <div class="coinbalance">보유한 당근코인</div>
-                <div class="coinprice">25</div>
+                <div class="coinprice">
+                    <p th:text="${coin}  + ' 당근코인'"></p>
             </div>
             <div class="balancebox">
-                <div class="coinbalance">충전 후 당근코인</div>
-                <div class="coinprice">375</div>
+                <div class="coinbalance">충전 당근코인</div>
+                <div class="coinprice"><p id="chargeValue">0 당근코인</p></div>
             </div>
+
             <div class="balancebox">
-                <button class="paybutton">$$,$$$원 결제하기</button>
+                <button onclick="requestPay()" class="paybutton" id="result">결제하기</button>
+
             </div>
         </div>
 
@@ -102,12 +214,113 @@
     <a th:href="@{shop.html}">
         <button class="btnmain2">게임</button>
     </a>
-    <a th:href="@{}">
+    <a th:href="@{/}">
         <button class="btnmain2">상점</button>
     </a>
     <button class="btnmain1">충전</button>
 </div>
 
+
+
+<script>
+
+
+        // Get a reference to all the buttons and the result button
+        const button1 = document.getElementById('button1');
+        const button2 = document.getElementById('button2');
+        const button3 = document.getElementById('button3');
+        const button4 = document.getElementById('button4');
+        const button5 = document.getElementById('button5');
+        const button6 = document.getElementById('button6');
+        const result = document.getElementById('result');
+
+        var name;
+        var carrot;
+        var amount;
+        // Bind an event listener to each button that listens for the "click" event
+        button1.addEventListener('click', function() {
+            name = button1.innerText;
+            result.innerText = name + " 결제하기";
+            carrot = "10 당근코인"
+            amount ="1000"
+    });
+        button2.addEventListener('click', function() {
+            name = button2.innerText;
+            result.innerText = name + " 결제하기";
+            carrot = "20 당근코인"
+            amount ="2000"
+    });
+        button3.addEventListener('click', function() {
+        result.innerText = button3.innerText + " 결제하기";
+            carrot = "32 당근코인"
+            amount ="3000"
+    });
+        button4.addEventListener('click', function() {
+        result.innerText = button4.innerText + " 결제하기";
+            carrot = "55 당근코인"
+            amount ="5000"
+    });
+        button5.addEventListener('click', function() {
+        result.innerText = button5.innerText + " 결제하기";
+            carrot = "115 당근코인"
+            amount ="10000"
+    });
+        button6.addEventListener('click', function() {
+        result.innerText = button6.innerText + " 결제하기";
+            carrot = "350 당근코인"
+            amount ="30000"
+    });
+
+
+const numberStr2 = "${dto.product_price }";
+        const number2 = numberStr.replace(/,/g, "");
+        var result2 = number2
+        function requestPay() {
+
+            var form = document.formgo;
+            // IMP.request_pay(param, callback) 결제창 호출
+            var IMP = window.IMP; // 생략 가능
+            IMP.init("imp52470434"); // 예: imp00000000
+            IMP.request_pay({ // param
+                pg: "html5_inicis",
+                pay_method: "card",
+                /* merchant_uid: "ORD20180131-0000011", */
+                name: carrot,
+                /* amount: result2, */
+                amount: amount,
+                buyer_email: "",
+                buyer_name: "ghim",
+                buyer_tel: "",
+
+
+            },function (rsp) { // callback
+                if (rsp.success) {
+                    amount
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/stable/purchase2', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            console.log('Amount sent to controller');
+                        }
+                    };
+                    xhr.send('amount=' + amount);
+
+                    var msg = carrot + '충전 되었습니다';
+                    // msg += '에러내용 : ' + rsp.error_msg;
+                    alert(msg)
+                    location.reload();
+
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    // msg += '에러내용 : ' + rsp.error_msg;
+                    alert(msg)
+                    location.reload();
+                }
+            });
+        }
+
+</script>
 </body>
 
 </html>

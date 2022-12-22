@@ -106,6 +106,12 @@ public class MemberController {
 
     }
 
+    @RequestMapping("message")
+    public String message(MemberDTO dto) {
+        service.message(dto);
+        return "redirect:/member/toMinipage?id="+dto.getMemberId();
+    }
+
     @RequestMapping("imgupdate")
     public String imgupdate(MultipartFile files, MemberDTO dto,Model model )throws Exception{
 

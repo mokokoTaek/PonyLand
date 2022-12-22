@@ -188,6 +188,9 @@ public class MemberService {
         return dao.imgupdate(dto);
 
     }
+    public String message(MemberDTO dto) {
+        return dao.message(dto);
+    }
 
     }
 

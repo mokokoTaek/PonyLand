@@ -32,10 +32,14 @@
             </div>
 
             <div class="profile2">
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-                <div>상태메시지</div>
+                <form action="/member/message">
+
+                    <div><textarea class="loginbg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                    <button class="modifybtn" type="button" >수정하기</button>
+                    <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
+                    <button class="modifybtn2" type="button" id="wave">변경</button>
             </div>
+
 
             <div class="profile3">
                 <div>
@@ -81,7 +85,7 @@
             <div class="bg3-1">
                 <div class="updatednews">
                     <div>Updated News</div>
-                    <div th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
+                    <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
@@ -122,9 +126,15 @@
     <button class="btnmain2">내정보</button>
     </a>
 </div>
-
+<script>
+    $(".modifybtn").on("click",function(){
+        $('textarea').removeAttr("readonly");
+        $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+    })
+</script>
 
 <script th:inline="javascript">
+
     function getFamily() {
         $.ajax({
             url: "/family/getFamily",
@@ -150,7 +160,7 @@
                 console.log("error!");
             });
 
-         <a href="/member/writer"> <button>이동</button> </a>;
+         <a href="/member/writer"> <button>이동</button> </a>
  }
 function openChild(){
      let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
@@ -165,6 +175,9 @@ function checkNewFamily(){
 function openFamilyList(){
     let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
 }
+
+
+
 </script>
 </body>
 

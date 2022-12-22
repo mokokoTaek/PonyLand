@@ -9,4 +9,6 @@ public interface MemberMapper {
     int update(MemberDTO dto);
     String imgupdate(MemberDTO dto);
 
+    String message(MemberDTO dto);
+
 }

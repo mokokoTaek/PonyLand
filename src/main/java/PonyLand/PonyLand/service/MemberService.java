@@ -14,10 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MemberService {
@@ -122,7 +119,7 @@ public class MemberService {
 
         String id = (String)session.getAttribute("sessionID");
 
-       if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
+        if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
             System.out.println("이것은 카카오 아이디!");
         }
 
@@ -133,7 +130,7 @@ public class MemberService {
 //        out.flush();
 //        response.flushBuffer();
 //        out.close();
-}
+    }
 
     public MemberDTO findById(String id){
         return dao.findById(id);
@@ -242,7 +239,7 @@ public class MemberService {
 
     // racing 테이블에 내가 배팅한 말 번호를 조회 하기위한 select 문
     public RacingDTO selectBet(String id){
-       return dao.selectBet(id);
+        return dao.selectBet(id);
     }
 
     //이겼을때 member문에 coin 업데이트 위한 문
@@ -259,6 +256,10 @@ public class MemberService {
     public void deleteBet(String id) {
         dao.deleteBet(id);
     }
+    public boolean duplCheck(String memberId) {
+        return dao.duplCheck(memberId);
+    }
+
 }
 
 

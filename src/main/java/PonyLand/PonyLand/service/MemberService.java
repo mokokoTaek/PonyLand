@@ -198,6 +198,7 @@ public class MemberService {
         Map<String, Object> map = new HashMap<>();
         map.put("racing_id", id);
         map.put("racing_seq", betHorse);
+        map.put("bettingCoin",bettingCoin);
 
         if (horseCount == 2) {
             double sum = bettingCoin * 1.25;

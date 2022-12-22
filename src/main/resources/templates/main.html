@@ -97,7 +97,7 @@
         <div class="bg3">
             <div class="bg3-1">
                 <div class="updatednews">
-                    <div>Updated News</div>
+                    <div style="font-size: 30px; color: #F4A127" >사진첩 최근글</div>
                     <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">

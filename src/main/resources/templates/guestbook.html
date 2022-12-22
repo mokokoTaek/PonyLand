@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="../static/style.css"/>
     <title>Guestbook</title>
 </head>
+<style>
+    textarea{
+        resize:none;
+        border: solid transparent;
+
+
+    }
+</style>
 
 <body>
 
@@ -34,7 +42,7 @@
             </div>
 
             <div class="profile2">
-                <textarea class="loginbg"  th:text="${list2.getMember_message()}"  name="member_message" readonly ></textarea>
+                <textarea class="textareabg"  th:text="${list2.getMember_message()}"  name="member_message" readonly ></textarea>
             </div>
 
             <div class="profile3">

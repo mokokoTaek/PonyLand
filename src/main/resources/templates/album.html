@@ -11,6 +11,15 @@
 
     </script>
 </head>
+
+<style>
+    textarea{
+        resize:none;
+        border: solid transparent;
+
+
+    }
+</style>
 <body>
 <div ></div>
 
@@ -32,7 +41,7 @@
             </div>
 
             <div class="profile2">
-                <textarea class="loginbg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea>
+                <textarea class="textareabg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea>
             </div>
 
             <div class="profile3">

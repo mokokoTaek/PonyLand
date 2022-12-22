@@ -4,6 +4,7 @@ import PonyLand.PonyLand.Mapper.GameMapper;
 import PonyLand.PonyLand.Mapper.MemberMapper;
 import PonyLand.PonyLand.Repository.member.SpringDataJpaMemberRepository;
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.dto.RacingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -60,5 +61,17 @@ public class MemberDAO {
         return MemberMapper.message(dto);
     }
 
-    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
+    public void bettingCoin(Map<String, Object> map) {gameMapper.bettingCoin(map);}
+
+    //racing select 문
+    public RacingDTO selectBet(String id){return gameMapper.selectBet(id);}
+
+
+    public void updateWin(RacingDTO dto) {gameMapper.updateWin(dto);
+    }
+
+    public void updateLose(RacingDTO dto) {gameMapper.updateLose(dto);
+    }
+
+    public void deleteBet(String id) {gameMapper.deleteBet(id);}
 }

@@ -2,6 +2,7 @@ package PonyLand.PonyLand.service;
 
 import PonyLand.PonyLand.dao.MemberDAO;
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.dto.RacingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -195,28 +196,33 @@ public class MemberService {
     }
 
 
-    // 코인 업데이트
-    public void coinUpdate(String id, int bettingCoin, int horseCount) {
+    // 코인 배팅 racing 테이블에 insert
+    public void bettingCoin(String id, int bettingCoin, int horseCount, String betHorse) {
         Map<String, Object> map = new HashMap<>();
-        map.put("id", id);
+        map.put("racing_id", id);
+        map.put("racing_seq", betHorse);
+
         if (horseCount == 2) {
             double sum = bettingCoin * 1.25;
-            map.put("sum", sum);
-            dao.updateCoin(map);
+            map.put("racing_coin", sum);
+            dao.bettingCoin(map);
+
         } else if (horseCount == 3) {
             double sum = bettingCoin * 1.5;
-            map.put("sum", sum);
-            dao.updateCoin(map);
+            map.put("racing_coin", sum);
+            dao.bettingCoin(map);
+
             //dao.updateCoin(id,sum);
         } else if (horseCount == 4) {
             double sum = bettingCoin * 2;
-            map.put("sum", sum);
-            dao.updateCoin(map);
+            map.put("racing_coin", sum);
+            dao.bettingCoin(map);
+
             //dao.updateCoin(id,sum);
         }
     }
 
-
+    // 배팅할 금액 입력시 ajax로 실시간 예상금액 출력
     public double add(int bettingCoin, int horseCount) {
         double sum;
         if (horseCount == 2) {
@@ -231,6 +237,26 @@ public class MemberService {
             sum = bettingCoin * 2;
             return sum;
         }
+    }
+
+    // racing 테이블에 내가 배팅한 말 번호를 조회 하기위한 select 문
+    public RacingDTO selectBet(String id){
+       return dao.selectBet(id);
+    }
+
+    //이겼을때 member문에 coin 업데이트 위한 문
+    public void updateWin(RacingDTO dto) {
+        dao.updateWin(dto);
+    }
+
+    // 졌을때 member문에 coin 업데이트 위한 문
+    public void updateLose(RacingDTO dto) {
+        dao.updateLose(dto);
+    }
+
+    // 쿼리문 하나씩만 조회하기 위한 삭제 문
+    public void deleteBet(String id) {
+        dao.deleteBet(id);
     }
 }
 

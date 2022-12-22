@@ -35,7 +35,7 @@ public class MessageController {
         return "message";
     }
     @GetMapping("write")
-   public String write(MessageDTO dto, Model model) {
+   public String write(Model model) {
         String id = (String)session.getAttribute("sessionID");
         System.out.println(session.getAttribute("sessionID"));
         model.addAttribute("id", id);

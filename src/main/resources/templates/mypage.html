@@ -10,12 +10,7 @@
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
-
-
-
 <body>
-
-
 <div class="container">
 
     <div class="top">
@@ -48,14 +43,16 @@
 
         <form action="/member/modify">
             <div class="bg3" th:each="dto:${list}">
-                <div><input type="text" class="loginbg" placeholder="아이디" th:value="${list.getMemberId()}"  name="memberId" readonly></div>
-                <div><input type="text" class="loginbg" placeholder="닉네임" th:value="${list.getMember_name()}" name="member_name" readonly></div>
-                <div><input type="text" class="loginbg" placeholder="전화번호" th:value="${list.getMember_phone()}"  name="member_phone" readonly></div>
-                <div><input type="text" class="loginbg" placeholder="이메일" th:value="${list.getMember_email()}"  name="member_email" readonly></div>
-                <div><input type="text" class="loginbg" placeholder="비밀번호" th:value="${list.getMemberPw()}"   name="memberPw" readonly></div>
-                <button class="modifybtn" type="button">수정하기</button>
-                <button class="modifybtn1" type="button">취소</button>
-                <button class="modifybtn2" type="button">변경</button>
+                <div class="mypage">
+                    <div><input type="text" class="loginbg" placeholder="아이디" th:value="${list.getMemberId()}"  name="memberId" readonly></div>
+                    <div><input type="text" class="loginbg" placeholder="닉네임" th:value="${list.getMember_name()}" name="member_name" readonly></div>
+                    <div><input type="text" class="loginbg" placeholder="전화번호" th:value="${list.getMember_phone()}"  name="member_phone" readonly></div>
+                    <div><input type="text" class="loginbg" placeholder="이메일" th:value="${list.getMember_email()}"  name="member_email" readonly></div>
+                    <div><input type="text" class="loginbg" placeholder="비밀번호" th:value="${list.getMemberPw()}"   name="memberPw" readonly></div>
+                    <button class="modifybtn" type="button">수정하기</button>
+                    <button class="modifybtn1" type="button">취소</button>
+                    <button class="modifybtn2" type="button">변경</button>
+                </div>
             </div>
         </form>
     </div>

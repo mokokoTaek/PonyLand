@@ -162,81 +162,6 @@ button:hover {
     justify-content: center;
     border-bottom: 2px solid #F4A127;
 }
-/*carrot--------------------------------------------------------------------------------------*/
-.carrotbg3{
-    display: flex;
-    width: 388px;
-    height: 730px;
-    background: white;
-    border-radius: 8px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    column-gap: 100px;
-}
-
-.balancebox{
-    margin-top: 50px;
-}
-
-.carrotboxtitle{
-    font-size: 70px;
-    color: #5a3d2b;
-}
-
-.carrotbox1{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 50px;
-}
-
-.carrotbox2{
-    width: 150px;
-    height: 150px;
-    color: white;
-    color: #5a3d2b;
-    border: 2px solid #F4A127;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.carrotamount{
-    display: flex;
-    font-size: 25px;
-    height: 30%;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid #F4A127;
-}
-
-.carrotprice {
-    display: flex;
-    background: #FFECB4;
-    height: 70%;
-    align-items: center;
-    justify-content: center;
-}
-
-.carrotprice2{
-    /*width: 100px;*/
-    /*height: 60px;*/
-    background: transparent;
-    font-size: 35px;
-    color: #5a3d2b;
-    border: solid transparent;
-}
-
-.coinbalance{
-    color: #5a3d2b;
-    font-size: 50px;
-}
-
-.coinprice{
-    color: #F4A127;
-    font-size: 40px;
-}
 
 .paybutton{
     width: 250px;
@@ -256,119 +181,98 @@ button:hover {
     width: 50%;
     height: 250px;
     background: rgba(255, 255, 255, 1);
-    border: 5px solid rgba(90, 61, 43, 1);
+    border: 5px solid #5a3d2b;
     border-radius: 8px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 .profilebtn {
-    position: relative;
-    bottom: 40px;
     width: 170px;
     height: 50px;
-    background: rgba(90, 61, 43, 1);
+    background: #5a3d2b;
     font-size: 20px;
-    color: rgba(244, 161, 39, 1);
-    border-top: 1px solid rgba(90, 61, 43, 1);
-    border-right: 1px solid rgba(90, 61, 43, 1);
-    border-left: 3px solid rgba(244, 161, 39, 1);
-    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: #F4A127;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     border-radius: 8px;
     overflow: hidden;
 }
 .profilebtn1 {
-    position: relative;
-    top: 49px;
-    right: 60px;
     width: 100px;
     height: 50px;
-    background: rgba(90, 61, 43, 1);
+    background: #5a3d2b;
     font-size: 20px;
-    color: rgba(244, 161, 39, 1);
-    border-top: 1px solid rgba(90, 61, 43, 1);
-    border-right: 1px solid rgba(90, 61, 43, 1);
-    border-left: 3px solid rgba(244, 161, 39, 1);
-    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: #F4A127;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     border-radius: 8px;
     overflow: hidden;
 }
 .profilebtn2 {
-
-    position: relative;
-    left: 60px;
     width: 100px;
     height: 50px;
-    background: rgba(90, 61, 43, 1);
+    background: #5a3d2b;
     font-size: 20px;
-    color: rgba(244, 161, 39, 1);
-    border-top: 1px solid rgba(90, 61, 43, 1);
-    border-right: 1px solid rgba(90, 61, 43, 1);
-    border-left: 3px solid rgba(244, 161, 39, 1);
-    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: #F4A127;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     border-radius: 8px;
     overflow: hidden;
 }
 .loginbg {
-    position: relative;
-    bottom: 80px;
-    display: flex;
-    margin-top: 20px;
     width: 250px;
     height: 40px;
     background: white;
-    border-top: 1px solid rgba(90, 61, 43, 1);
-    border-right: 1px solid rgba(90, 61, 43, 1);
-    border-left: 3px solid rgba(244, 161, 39, 1);
-    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     border-radius: 8px;
     font-size: 25px;
 }
 
 .modifybtn {
-    position: relative;
-    bottom: 1px;
-    width: 170px;
     height: 50px;
-    background: rgba(90, 61, 43, 1);
+    background: #5a3d2b;
     font-size: 20px;
-    color: rgba(244, 161, 39, 1);
-    border-top: 1px solid rgba(90, 61, 43, 1);
-    border-right: 1px solid rgba(90, 61, 43, 1);
-    border-left: 3px solid rgba(244, 161, 39, 1);
-    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: #F4A127;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     border-radius: 8px;
     overflow: hidden;
 }
 .modifybtn1 {
-    position: relative;
-    top: 85px;
-    right: 60px;
     width: 100px;
     height: 50px;
-    background: rgba(90, 61, 43, 1);
+    background: #5a3d2b;
     font-size: 20px;
-    color: rgba(244, 161, 39, 1);
-    border-top: 1px solid rgba(90, 61, 43, 1);
-    border-right: 1px solid rgba(90, 61, 43, 1);
-    border-left: 3px solid rgba(244, 161, 39, 1);
-    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: #F4A127;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     border-radius: 8px;
     overflow: hidden;
 }
 .modifybtn2 {
-    position: relative;
-    top: 36px;
-    left: 60px;
     width: 100px;
     height: 50px;
-    background: rgba(90, 61, 43, 1);
+    background: #5a3d2b;
     font-size: 20px;
-    color: rgba(244, 161, 39, 1);
-    border-top: 1px solid rgba(90, 61, 43, 1);
-    border-right: 1px solid rgba(90, 61, 43, 1);
-    border-left: 3px solid rgba(244, 161, 39, 1);
-    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    color: #F4A127;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -377,6 +281,13 @@ button:hover {
     height: 100%;
 }
 
+.mypage{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: column;
+
+}
 
 
 

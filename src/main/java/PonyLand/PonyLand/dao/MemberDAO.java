@@ -67,7 +67,7 @@ public class MemberDAO {
 
     public void bettingCoin(Map<String, Object> map) {gameMapper.bettingCoin(map);}
 
-    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
+//    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
 
     public boolean duplCheck(String memberId) {
         int count = MemberMapper.duplCheck(memberId);

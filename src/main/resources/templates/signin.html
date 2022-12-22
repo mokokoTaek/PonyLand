@@ -11,14 +11,18 @@
 </head>
 <style>
     input[type=password] {
-        font-style: revert;
+        font-family: Arial;
+    }
+
+    ::placeholder{
+        font-family: HS새마을체;
     }
 </style>
 <body>
 <form action="/member/insert" id="frm" method="post" enctype="multipart/form-data">
     <div class="logintitle">회원가입</div>
-    <div class="loginsection">
-        <div class="signinform">
+    <div class="signinsection">
+        <div class="signinform" style="margin-top: 30px">
             이름
            <div id ="div_name"><input type="text" class="signinbg" placeholder="이름, 한글 3~5자" name="member_name" id="member_name"></div><br>
         </div>
@@ -50,6 +54,7 @@
 
         <button class="signinbtn">가입하기</button>
         <button class="signinbtn">메인으로</button>
+        <div style="margin-bottom: 30px"></div>
     </div>
 </form>
 
@@ -88,6 +93,7 @@
         let answer3 = regex3.test(regi3);
         if (!answer3) {
             document.getElementById("div_name").style.border = "2px solid red";
+            document.getElementById("div_name").style.borderRadius = "8px";
         }else if (answer3) {
             document.getElementById("div_name").style.border = "";
         }

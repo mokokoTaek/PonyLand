@@ -143,6 +143,19 @@ body {
 
 /* signin------------------------------------------------------------------------------------ */
 
+.signinsection {
+    width: 400px;
+    height: auto;
+    background: #5a3d2b;
+    border-left: 4px solid rgba(244, 161, 39, 1);
+    border-bottom: 4px solid rgba(244, 161, 39, 1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 
 .signinform {
     /*display: flex;*/
@@ -176,11 +189,6 @@ body {
     color: rgba(90, 61, 43, 1);
     border-radius: 8px;
     font-size: 30px;
-}
-
-
-.signinform2{
-
 }
 
 /* main------------------------------------------------------------------------------------ */

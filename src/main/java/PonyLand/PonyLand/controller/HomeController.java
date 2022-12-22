@@ -70,8 +70,6 @@ public class HomeController {
         return "main";
     }
 
-    @GetMapping("/stable")
-    public String stable(){return "stable";}
 
     @GetMapping("/toAlbumPage")
     public String AlbumPage(){
@@ -97,10 +95,4 @@ public class HomeController {
     @RequestMapping("/toFamilyListOpen")
     public String toFamilyListOpen(){return "redirect:/family/familyListOpen";}
 
-    @RequestMapping("/stable")
-    public String toStable(String id, Model model){
-        model.addAttribute("id",id);
-        model.addAttribute("dto",service.findById(id));
-        return "stable";
-    }
 }

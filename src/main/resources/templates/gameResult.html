@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Game</title>
-  <!--        <link rel="stylesheet" href="../static/style.css"/>-->
-  <link rel="stylesheet" href="../static/stable.css"/>
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <!--        <link rel="stylesheet" href="../static/style.css"/>-->
+    <link rel="stylesheet" href="../static/stable.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-          charset="utf-8"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+            charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 
 <body>
@@ -17,28 +17,70 @@
 
 <div class="container">
 
-  <div class="top">
-    <div class="">Today : 245</div>
-    <div class="">뮤직플레이어 부분</div>
-  </div>
-  <div class="bg1">
-    <div class="bg2">
-      <div style="font-size: 100px">게임결과</div>
+    <div class="top">
+        <div class="">Today : 245</div>
+        <div class="">뮤직플레이어 부분</div>
     </div>
-  </div>
+    <div class="bg1">
+        <div class="bg2" style="text-align: center">
+            <div style="font-size: 100px">게임결과</div>
+            <div>
+                <button type="button" id="showResult">결과보기</button>
+            </div>
+            <div id="resultDiv" style="display: none">
+                <div>
+                    <span th:text="${winner}" id="winner" th:name="winner"></span><span>번 말이 우승하였습니다 !</span> <br>
+                    <span th:text="${dto.getMember_name()}"></span><span>님은</span>
+                    <span th:text="${betNumber}" id="betNumber" th:name="betNumber"></span><span>번 말에 배팅하여</span><br>
+                    <span class="betting"></span>
+                </div>
+
+                <div>
+                    <span th:text="${dto.getMember_name()}"></span><span>님의 coin 보유금액은 </span><span
+                        th:text="${dto.getMember_coin()}"></span><span>원 입니다.</span>
+                </div>
+
+                <div>
+                    <button id="oneMore" type="button">한판 더 하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 <div class="side">
-  <button class="btnmain2">마구간</button>
-  <a th:href="@{/}">
-    <button class="btnmain1">게임</button>
-  </a>
-  <a th:href="@{/}">
-    <button class="btnmain2">상점</button>
-  </a>
-  <button class="btnmain2">충전</button>
+    <button class="btnmain2">마구간</button>
+    <a th:href="@{/}">
+        <button class="btnmain1">게임</button>
+    </a>
+    <a th:href="@{/}">
+        <button class="btnmain2">상점</button>
+    </a>
+    <button class="btnmain2">충전</button>
 </div>
 
 </body>
+<script>
+    $("#oneMore").on("click", function () {
+        location.href = "/game/goGameSetting;"
+    })
+
+
+    $("#showResult").on("click", function () {
+        $("#resultDiv").css("display", "block")
+        $("#showResult").css("display", "none")
+    })
+
+    function onload(){
+        if ("${winner}".equals("${betNumber}")) {
+            $(".betting").text("배팅에 성공 하셨습니다.")
+        } else {
+            $(".betting").text("배팅에 실패 하셨습니다.")
+        }
+    }
+
+
+
+</script>
 
 </html>

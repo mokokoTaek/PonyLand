@@ -9,6 +9,8 @@ public interface MemberMapper {
     int update(MemberDTO dto);
     String imgupdate(MemberDTO dto);
 
+    int duplCheck(String memberId);
+
     String message(MemberDTO dto);
 
 }

@@ -32,7 +32,7 @@
             </button>
         </a>
 
-            <a th:href="@{/stable?(id = ${id})}">
+            <a th:href="@{/stable/toStable(id = ${id})}">
                 <button class="ponyland" type="button">마구간</button>
             </a>
 
@@ -51,9 +51,8 @@
             <button class="ponyland" type="button">미니홈피</button>
         </a>
 
-        <a th:href="@{/stable}">
-<!--        <a href="stable">-->
-            <button class="ponyland">마구간</button>
+        <a th:href="@{/stable/toStable(id = ${id})}">
+            <button class="ponyland" type="button">마구간</button>
         </a>
         <a th:href="@{/login}">
             <button class="login">로그인</button>

@@ -22,6 +22,9 @@ public class MemberDAO {
     @Autowired
     GameMapper gameMapper;
 
+    @Autowired
+    private SqlSession sqlSession;
+
     public Long countMember(){
         return sdjr.countBy();
     }
@@ -60,5 +63,23 @@ public class MemberDAO {
         return MemberMapper.message(dto);
     }
 
+    public void bettingCoin(Map<String, Object> map) {gameMapper.bettingCoin(map);}
+
     public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
+
+    public boolean duplCheck(String memberId) {
+        int count = MemberMapper.duplCheck(memberId);
+        return count > 0;
+    }
+    //racing select 문
+    public RacingDTO selectBet(String id){return gameMapper.selectBet(id);}
+
+
+    public void updateWin(RacingDTO dto) {gameMapper.updateWin(dto);
+    }
+
+    public void updateLose(RacingDTO dto) {gameMapper.updateLose(dto);
+    }
+
+    public void deleteBet(String id) {gameMapper.deleteBet(id);}
 }

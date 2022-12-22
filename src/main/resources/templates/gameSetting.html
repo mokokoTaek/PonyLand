@@ -38,13 +38,13 @@
                     <button type="button" onclick="count('plus'),Coin()">+</button>
                     <br>
                     <span>배팅 성공시 예상금액 : </span> <span id="resultCoin"></span><br>
-                    <span th:text="${dto.getMember_name()}"></span><span>이 배팅하실 말 :</span>
+                    <span th:text="${dto.getMember_name()}"></span><span>님이 배팅하실 말 :</span>
                     <span>
                         <select name="betHorse" id="choose">
-                             <option value="1">한호</option>
-                             <option value="2">준구</option>
-                             <option value="3" id="jin" style="display: none">진혁</option>
-                             <option value="4" id="teak" style="display: none">승택</option>
+                             <option value="1">1번말</option>
+                             <option value="2">2번말</option>
+                             <option value="3" id="three" style="display: none">3번말</option>
+                             <option value="4" id="four" style="display: none">4번말</option>
                         </select>
                     </span>
                     <br>
@@ -62,21 +62,21 @@
                                 if (number == 2) {
                                     number = parseInt(number) + 1;
                                     hiddenCount.setAttribute("value", number);
-                                    $("#jin").css("display","block")
+                                    $("#three").css("display","block")
                                 }else if(number ==3){
                                     number = parseInt(number) + 1;
                                     hiddenCount.setAttribute("value", number);
-                                    $("#teak").css("display","block")
+                                    $("#four").css("display","block")
                                 }
                             } else if (type === 'minus') {
                                 if (number == 3) {
                                     number = parseInt(number) - 1;
                                     hiddenCount.setAttribute("value", number);
-                                    $("#jin").css("display","none")
+                                    $("#three").css("display","none")
                                 }else if(number ==4){
                                     number = parseInt(number) - 1;
                                     hiddenCount.setAttribute("value", number);
-                                    $("#teak").css("display","none")
+                                    $("#four").css("display","none")
                                 }
                             }
                             resultElement.innerText = number;

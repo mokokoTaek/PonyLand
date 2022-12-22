@@ -25,7 +25,6 @@ public class GameController {
     private GameService Gameservice;
 
 
-
     @RequestMapping("gameStart")
     public String gameStart() {
         return "gameStart";
@@ -46,40 +45,52 @@ public class GameController {
     }
 
     @RequestMapping("gameRun")
-    public String gameRun(String id, int bettingCoin, int horseCount, String betHorse) {
-        System.out.println(bettingCoin+id+betHorse);
+    public String gameRun(String id, int bettingCoin, int horseCount, String betHorse) throws Exception{
+        System.out.println(bettingCoin + id + betHorse);
         System.out.println(horseCount);
-        service.bettingCoin(id,bettingCoin,horseCount,betHorse);
-        return "gameRun"+horseCount;
+        service.bettingCoin(id, bettingCoin, horseCount, betHorse);
+        return "gameRun" + horseCount;
     }
 
 
     // ajax 실시간 배팅예상 금액 코드
     @ResponseBody
     @RequestMapping("estimatedAmount")
-    public double estimatedAmount(int bettingCoin,int horseCount){
+    public double estimatedAmount(int bettingCoin, int horseCount) {
 
-        return service.add(bettingCoin,horseCount);
+        return service.add(bettingCoin, horseCount);
     }
 
 
     @RequestMapping("goGameResult")
-    public String goGameResult(String winner){
+    public String goGameResult(String winner, Model model) throws Exception{
+        String betNumber="";
         RacingDTO dto = new RacingDTO();
-        dto=service.selectBet((String)session.getAttribute("sessionID"));
+        dto = service.selectBet((String) session.getAttribute("sessionID"));
 
-        if(dto.getRacing_horse_seq().equals(winner)){
+        if (dto.getRacing_horse_seq().equals(winner)) {
             System.out.println("d여긴?");
             service.updateWin(dto);
+            betNumber = dto.getRacing_horse_seq();
             service.deleteBet((String) session.getAttribute("sessionID"));
 
-        }else{
+
+        } else {
             System.out.println("d여긴??!?!??");
             service.updateLose(dto);
+            betNumber = dto.getRacing_horse_seq();
             service.deleteBet((String) session.getAttribute("sessionID"));
 
         }
-        System.out.println("위너"+winner);
+        System.out.println("위너 : " + winner);
+
+        // 결과 화면에 값 뿌려주기 위한 코드
+        String member_id = (String) session.getAttribute("sessionID");
+        MemberDTO dto1 = service.findById(member_id);
+        model.addAttribute("dto", dto1);
+        model.addAttribute("winner", winner);
+        model.addAttribute("betNumber", betNumber);
+
         return "gameResult";
     }
 

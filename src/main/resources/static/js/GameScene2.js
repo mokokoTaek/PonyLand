@@ -108,12 +108,12 @@ class GameScene2 extends Phaser.Scene{
 
 
     hitCactusPlayer1(){
-            alert("한호 1등 !");
+            alert("1번말 우승 !");
             console.log("1번말 우승");
             location.href = "/game/goGameResult?winner=1";
     }
     hitCactusPlayer2(){
-        alert("준구 1등 !");
+        alert("2번말 우승 !");
         console.log("2번말 우승")
         location.href = "/game/goGameResult?winner=2";
     }

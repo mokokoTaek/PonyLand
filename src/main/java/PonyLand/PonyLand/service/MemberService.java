@@ -2,6 +2,7 @@ package PonyLand.PonyLand.service;
 
 import PonyLand.PonyLand.dao.MemberDAO;
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.dto.RacingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MemberService {
@@ -62,25 +62,6 @@ public class MemberService {
             return "redirect:/";
         }
         return "redirect:/";
-    }
-
-    public double currentCoin(int member_coin, int batting_coin) {
-        double current_coin = 0;
-        if(member_coin > batting_coin) {
-            current_coin = member_coin - batting_coin;
-        }
-        return current_coin;
-    }
-    public double expectCoin(int batting_coin,int horseCount) {
-        double result = 0;
-        if(horseCount==2){
-            result = batting_coin * 1.5;
-        }else if(horseCount==3){
-            result = batting_coin * 1.75;
-        }else{
-            result = batting_coin * 2.0;
-        }
-        return result;
     }
 
     public MemberDTO makeIdAndPwByEmailForKakao(String name, String email){
@@ -138,7 +119,7 @@ public class MemberService {
 
         String id = (String)session.getAttribute("sessionID");
 
-       if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
+        if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
             System.out.println("이것은 카카오 아이디!");
         }
 
@@ -149,7 +130,7 @@ public class MemberService {
 //        out.flush();
 //        response.flushBuffer();
 //        out.close();
-}
+    }
 
     public MemberDTO findById(String id){
         return dao.findById(id);
@@ -199,6 +180,85 @@ public class MemberService {
         return (int) now.until(tommorow, ChronoUnit.SECONDS);
     }
 
+    public int update(MemberDTO dto) {
+        return dao.update(dto);
+    }
+    public String imgupdate(MemberDTO dto) {
+        System.out.println(dto);
+        return dao.imgupdate(dto);
+
+    }
+    public String message(MemberDTO dto) {
+        return dao.message(dto);
+    }
+
+
+    // 코인 배팅 racing 테이블에 insert
+    public void bettingCoin(String id, int bettingCoin, int horseCount, String betHorse) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("racing_id", id);
+        map.put("racing_seq", betHorse);
+        map.put("bettingCoin",bettingCoin);
+
+        if (horseCount == 2) {
+            double sum = bettingCoin * 1.25;
+            map.put("racing_coin", sum);
+            dao.bettingCoin(map);
+
+        } else if (horseCount == 3) {
+            double sum = bettingCoin * 1.5;
+            map.put("racing_coin", sum);
+            dao.bettingCoin(map);
+
+            //dao.updateCoin(id,sum);
+        } else if (horseCount == 4) {
+            double sum = bettingCoin * 2;
+            map.put("racing_coin", sum);
+            dao.bettingCoin(map);
+
+            //dao.updateCoin(id,sum);
+        }
+    }
+
+    // 배팅할 금액 입력시 ajax로 실시간 예상금액 출력
+    public double add(int bettingCoin, int horseCount) {
+        double sum;
+        if (horseCount == 2) {
+            sum = bettingCoin * 1.25;
+            return sum;
+
+        } else if (horseCount == 3) {
+            sum = bettingCoin * 1.5;
+            return sum;
+
+        } else {
+            sum = bettingCoin * 2;
+            return sum;
+        }
+    }
+
+    // racing 테이블에 내가 배팅한 말 번호를 조회 하기위한 select 문
+    public RacingDTO selectBet(String id){
+        return dao.selectBet(id);
+    }
+
+    //이겼을때 member문에 coin 업데이트 위한 문
+    public void updateWin(RacingDTO dto) {
+        dao.updateWin(dto);
+    }
+
+    // 졌을때 member문에 coin 업데이트 위한 문
+    public void updateLose(RacingDTO dto) {
+        dao.updateLose(dto);
+    }
+
+    // 쿼리문 하나씩만 조회하기 위한 삭제 문
+    public void deleteBet(String id) {
+        dao.deleteBet(id);
+    }
+    public boolean duplCheck(String memberId) {
+        return dao.duplCheck(memberId);
+    }
 
 }
 

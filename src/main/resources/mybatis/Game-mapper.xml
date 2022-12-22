@@ -5,4 +5,27 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="PonyLand.PonyLand.Mapper.GameMapper">
+
+    <!--코인 배팅 insert 문-->
+    <insert id="bettingCoin">
+        insert  into racing values (#{racing_id},#{racing_seq},#{racing_coin},#{bettingCoin})
+    </insert>
+
+    <select id="selectBet" resultType="PonyLand.PonyLand.dto.RacingDTO">
+        select * from racing where racing_id=#{value}
+    </select>
+
+    <delete id="deleteBet">
+        delete racing where racing_id=#{value}
+    </delete>
+
+    <update id="updateWin">
+        update member set member_coin=member_coin+#{racing_coin}-#{bettingCoin} where member_id=#{racing_id}
+    </update>
+
+    <update id="updateLose">
+        update member set member_coin=member_coin-#{bettingCoin} where member_id=#{racing_id}
+    </update>
+
+
 </mapper>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="UTF-8">
-  <title>Game</title>
-  <!--        <link rel="stylesheet" href="../static/style.css"/>-->
-  <link rel="stylesheet" href="../static/stable.css"/>
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <!--        <link rel="stylesheet" href="../static/style.css"/>-->
+    <link rel="stylesheet" href="../static/stable.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
-  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-          charset="utf-8"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+            charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 
 <body>
@@ -17,98 +17,108 @@
 
 <div class="container">
 
-  <div class="top">
-    <div class="">Today : 245</div>
-    <div class="">뮤직플레이어 부분</div>
-  </div>
-  <div class="bg1">
-    <div class="bg2">
-      <div style="font-size: 100px; text-align: center">게임세팅</div>
-      <div style="text-align: center">
-<form action="/game/goGameRun" th:type="post">
-        <br>
-        말의 수
-        <button onclick="count('minus')">-</button><span id="horseCount" name="horseCount">2</span><button onclick="count('plus')">+</button>
-        <br>
-        달릴 말 선택
-        <span th:text="${dto.getMember_name()}"></span>
-        <br>
-        보유금액
-        <span th:text="${dto.getMember_coin()}" id="member_coin"></span>
-        <br>
-        배팅금액
-        <input id="batting_coin">
-        예상금액
-        <div id="expect_coin"></div>
-        <br>
-        남은금액
-        <div id="currentCoinArea"></div>
-
-        <button>게임 시작</button>
-</form>
-        <script>
-          //남은 금액
-          $("#batting_coin").on("keyup",function(){
-            let member_coin = $("#member_coin").html();
-            let batting_coin = $("#batting_coin").val();
-            let horseCount = $("#horseCount").html();
-            $.ajax({
-              url : "/game/currentCoin",
-              type : "post",
-              data : {"member_coin" : member_coin, "batting_coin" : batting_coin},
-              dataType: "json"
-            }).done(function(data){
-              $("#currentCoinArea").append(data);
-            })
-          })
-
-          //예상 금액
-          $("#batting_coin").on("keyup",function(){
-            let batting_coin = $("#batting_coin").val();
-            let horseCount = $("#horseCount").html();
-            $.ajax({
-              url : "/game/expectCoin",
-              type : "post",
-              data : {"batting_coin" : batting_coin, "horseCount" : horseCount},
-              dataType: "json"
-            }).done(function(data){
-              $("#expect_coin").append(data);
-            })
-          })
-
-          //말 마리 수 설정
-          function count(type)  {
-            let resultElement = document.getElementById('horseCount');
-            let number = resultElement.innerText;
-
-            if(type === 'plus') {
-              if(number <= 3) {
-                number = parseInt(number) + 1;
-              }
-            }else if(type === 'minus')  {
-              if(number >= 3) {
-                number = parseInt(number) - 1;
-              }
-            }
-            resultElement.innerText = number;
-          }
-        </script>
-        </div>
-      </div>
+    <div class="top">
+        <div class="">Today : 245</div>
+        <div class="">뮤직플레이어 부분</div>
     </div>
-  </div>
+    <form action="/game/gameRun">
+        <div class="bg1">
+            <div class="bg2">
+                <div style="font-size: 100px; text-align: center">게임세팅</div>
+                <div style="text-align: center">
+                    <span>보유금액 : </span><span th:text="${dto.getMember_coin()}"></span><br>
+                    <span>
+                      <input type="text" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin"
+                             onkeyup="Coin()">
+                    </span> <br>
+                    <span>Pony의 수</span>
+                    <button onclick="count('minus'),Coin()" type="button">-</button>
+                    <span id="horseCount">2</span>
+                    <input type="hidden" value="2" name="horseCount" id="hiddenCount">
+                    <button type="button" onclick="count('plus'),Coin()">+</button>
+                    <br>
+                    <span>배팅 성공시 예상금액 : </span> <span id="resultCoin"></span><br>
+                    <span th:text="${dto.getMember_name()}"></span><span>님이 배팅하실 말 :</span>
+                    <span>
+                        <select name="betHorse" id="choose">
+                             <option value="1">1번말</option>
+                             <option value="2">2번말</option>
+                             <option value="3" id="three" style="display: none">3번말</option>
+                             <option value="4" id="four" style="display: none">4번말</option>
+                        </select>
+                    </span>
+                    <br>
+                    <span><button id="gameRun" type="submit">게임시작</button></span>
+                    <input type="hidden" th:value="${dto.getMemberId()}" name="id">
+                    <script>
+                        function count(type) {
+                            let hiddenCount = document.getElementById('hiddenCount');
+
+                            let resultElement = document.getElementById('horseCount');
+
+                            let number = resultElement.innerText;
+
+                            if (type === 'plus') {
+                                if (number == 2) {
+                                    number = parseInt(number) + 1;
+                                    hiddenCount.setAttribute("value", number);
+                                    $("#three").css("display","block")
+                                }else if(number ==3){
+                                    number = parseInt(number) + 1;
+                                    hiddenCount.setAttribute("value", number);
+                                    $("#four").css("display","block")
+                                }
+                            } else if (type === 'minus') {
+                                if (number == 3) {
+                                    number = parseInt(number) - 1;
+                                    hiddenCount.setAttribute("value", number);
+                                    $("#three").css("display","none")
+                                }else if(number ==4){
+                                    number = parseInt(number) - 1;
+                                    hiddenCount.setAttribute("value", number);
+                                    $("#four").css("display","none")
+                                }
+                            }
+                            resultElement.innerText = number;
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 </div>
 <div class="side">
-  <button class="btnmain2">마구간</button>
-  <a th:href="@{/}">
-    <button class="btnmain1">게임</button>
-  </a>
-  <a th:href="@{/}">
-    <button class="btnmain2">상점</button>
-  </a>
-  <button class="btnmain2">충전</button>
+    <button class="btnmain2">마구간</button>
+    <a th:href="@{/}">
+        <button class="btnmain1">게임</button>
+    </a>
+    <a th:href="@{/}">
+        <button class="btnmain2">상점</button>
+    </a>
+    <button class="btnmain2">충전</button>
 </div>
 
 </body>
+
+<script>
+    function Coin() {
+        let bettingCoin = $("#bettingCoin").val();
+        let horseCount = $("#horseCount").html();
+
+        console.log(bettingCoin + ":" + horseCount);
+
+        $.ajax({
+            url: "/game/estimatedAmount",
+            type: "post",
+            dataType: "json",
+            data: {"bettingCoin": bettingCoin, "horseCount": horseCount}
+        }).done(function (data) {
+            $("#resultCoin").text(data)
+        })
+    }
+
+
+</script>
+
 </html>

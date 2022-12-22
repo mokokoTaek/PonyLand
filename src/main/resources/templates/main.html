@@ -13,8 +13,14 @@
 
     <div class="top">
         <div th:if="${id}!=null">
-        <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
-        <div class="">뮤직플레이어 부분</div>
+            <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
+        </div>
+        <div class="">
+<!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+<!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+<!--                            Your browser does not support the audio element.-->
+<!--                        </audio>-->
+<!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
         </div>
     </div>
 
@@ -26,15 +32,21 @@
             </div>
 
             <div class="profile1">
-                테스트입니다.
+
+                <img style="width: 100%; height: 100%;" th:src="|/img/@{${dto.getMember_sysname()}}|" >
+
             </div>
 
             <div class="profile2">
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-            </div>
+                <form action="/member/message">
 
+                    <div><textarea class="loginbg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                    <button class="modifybtn" type="button" >수정하기</button>
+                    <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
+                    <button class="modifybtn2" type="button">변경</button>
+
+            </form>
+            </div>
             <div class="profile3">
                 <div>
                     <div th:if="${id}== ${sessionID}">
@@ -47,14 +59,14 @@
                         <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
                         <input type="hidden" th:value="${id}" id="hiddenProposed">
                         <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
-                        </form>
+
                     </div>
                 </div>
                 <div>
                     <div th:if="${id}== ${sessionID}">
 
                         <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
-                        </form>
+
                     </div>
                 </div>
                 <div>
@@ -79,16 +91,14 @@
             <div class="bg3-1">
                 <div class="updatednews">
                     <div>Updated News</div>
-                    <div>사진첩: 하......</div>
-                    <div>게시판: 하......</div>
-                    <div>방명록: 하......</div>
+                    <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 0/64
+                        방명록 0 /  <div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 0/64
+                        사진첩 0/ <div  th:text="${list1}"></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64
@@ -118,9 +128,16 @@
 
         <button class="btnmain2">사진첩</button>
     </a>
-    <button class="btnmain2">다이어리</button>
+    <a th:href="@{/member/goMypage?(memberId=${id})}">
+        <button class="btnmain2">내정보</button>
+    </a>
 </div>
-
+<script>
+    $(".modifybtn").on("click",function(){
+        $('textarea').removeAttr("readonly");
+        $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+    })
+</script>
 
 <script th:inline="javascript">
     function getFamily() {
@@ -148,21 +165,22 @@
                 console.log("error!");
             });
 
-         <a href="/member/writer"> <button>이동</button> </a>;
- }
-function openChild(){
-     let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
+    }
+    function openChild(){
+        let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
 
-}
+    }
 
-function checkNewFamily(){
-    let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=800px,scrollbars=yes");
+    function checkNewFamily(){
+        let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=800px,scrollbars=yes");
 
-}
+    }
 
-function openFamilyList(){
-    let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
-}
+    function openFamilyList(){
+        let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
+    }
+
+
 </script>
 </body>
 
@@ -172,13 +190,22 @@ function openFamilyList(){
 <!--        data-config="{'skin':'skins/wikfull/ribbonOrange/skin.css','volume':51,'autoplay':true,'shuffle':false,'repeat':0,'showcomment':false,'marqueetexton':true,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'},{'title':'Vain','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'},{'title':'Trip','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}]}"></script>-->
 <!--&lt;!&ndash; 음악 플레이어 끝나는 곳 &ndash;&gt;-->
 
-<!--&lt;!&ndash; SCM Music Player https://www.scmplayer.net &ndash;&gt;-->
-<!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
-<!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
-<!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
-<!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
-<!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>-->
-<!--&lt;!&ndash; SCM Music Player script end &ndash;&gt;-->
+<!-- SCM Music Player https://www.scmplayer.net -->
+
+
+<!--음악 스크립트
+<script type="text/javascript" src="https://www.scmplayer.net/script.js"
+        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,
+        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}
+        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}
+        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>
+-->
+
+
+
+
+
+<!-- SCM Music Player script end -->
 
 
 </html>

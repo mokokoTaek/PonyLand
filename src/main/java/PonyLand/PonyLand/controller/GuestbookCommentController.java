@@ -33,4 +33,5 @@ public class GuestbookCommentController {
         service.insert(new GuestbookCommentDTO(0,Guestbook_comment_writer,guestbook_comment_contents,null,Integer.parseInt(parent_seq)));
         return "Guestbook";
     }
+
 }

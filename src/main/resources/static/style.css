@@ -309,7 +309,11 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 10px;
+    font-size: 25px;
+
+    color: #5a3d2b;
+
+    /*gap: 10px;*/
 }
 
 .updatednews2{
@@ -487,16 +491,19 @@ button:hover {
 }
 
 .gbcontent {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     border-radius: 4px;
     /*border: 1px solid #5a3d2b;*/
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-gbprofile1{
+.gbprofile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.gbprofile1{
     display: flex;
     border: 1px solid black;
     width: 30%;

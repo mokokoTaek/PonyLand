@@ -28,13 +28,11 @@
             </div>
 
             <div class="profile1">
-
+                <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|" >
             </div>
 
             <div class="profile2">
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-                <div>상태메시지</div>
+                <textarea class="loginbg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea>
             </div>
 
             <div class="profile3">

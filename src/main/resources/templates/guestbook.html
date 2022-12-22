@@ -30,13 +30,11 @@
             </div>
 
             <div class="profile1">
-
+                <img style="width: 100%; height: 100%;" th:src="|/img/@{${list2.getMember_sysname()}}|" >
             </div>
 
             <div class="profile2">
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-                <div>상태메시지</div>
+                <textarea class="loginbg"  th:text="${list2.getMember_message()}"  name="member_message" readonly ></textarea>
             </div>
 
             <div class="profile3">
@@ -84,58 +82,65 @@
 
 
                     <div class="gbcontent">
-                        <div class="gbprofle1">
-                            <div class="gbprofile2"></div>
-                        </div>
-                        <div class="gbtext">
-                            <th th:text="${list.getGuestbook_contents()}" th:readonly>방명록내용</th>
-                        </div>
-                    </div>
+                        <div th:each="dto: ${list2}"></div>
+                        <div class="gbprofile">
 
-
-
-                    <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
-                        <div class="gbcmttitle">
-                            <div style="font-size: 13px">
-                                <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+                            <div class="gbprofle1">
+                                <div class="gbprofile2">
+                                    <img style="width: 100%; height: 100%;" th:src="|/img/@{${list2.getMember_sysname()}}|" id = profile >
+                                </div>
                             </div>
-                            <div style="font-size: 10px; color: darkgrey">
-                                <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                            <div class="gbtext">
+                                <th th:text="${list.getGuestbook_contents()}" th:readonly>방명록내용</th>
                             </div>
                         </div>
-                        <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
-                    </div>
 
 
 
-
-
-
-                    <div class="gbcmtinput">
-                        <div class="gbcmt">
-                            <input class="gbcmt" type="text" maxlength="45" placeholder="댓글을 입력하세요(최대45자)">
+                        <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
+                            <div class="gbcmttitle">
+                                <div style="font-size: 13px">
+                                    <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+                                </div>
+                                <div style="font-size: 10px; color: darkgrey">
+                                    <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                                </div>
+                            </div>
+                            <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
                         </div>
-                        <button class="gbbutton" type="button">확인</button>
-                        <input type="hidden" name="guestbook_seq" th:value="${list.getGuestbook_seq()}">
+
+
+
+
+
+
+                        <div class="gbcmtinput">
+                            <div class="gbcmt">
+                                <input class="gbcmt" type="text" maxlength="45" placeholder="댓글을 입력하세요(최대45자)">
+                            </div>
+                            <button class="gbbutton" type="button">확인</button>
+                            <input type="hidden" name="guestbook_seq" th:value="${list.getGuestbook_seq()}">
+                        </div>
+                        <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                     </div>
-                    <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="side">
-    <a th:href="@{/toMiniPage(id = ${id})}">
-        <button class="btnmain2">메인</button>
-    </a>
-    <button class="btnmain1">방명록</button>
-    <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
-        <button class="btnmain2">사진첩</button>
-    </a>
-    <a th:href="@{/member/goMypage?(memberId=${id})}">
-        <button class="btnmain2">내정보</button>
-    </a>
-</div>
+    <div class="side">
+        <a th:href="@{/toMiniPage(id = ${id})}">
+            <button class="btnmain2">메인</button>
+        </a>
+        <button class="btnmain1">방명록</button>
+        <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
+            <button class="btnmain2">사진첩</button>
+        </a>
+        <a th:href="@{/member/goMypage?(memberId=${id})}">
+            <button class="btnmain2">내정보</button>
+        </a>
+    </div>
+
 </body>
 
 <script>
@@ -210,4 +215,7 @@
         }
     });
 </script>
+
+
+
 </html>

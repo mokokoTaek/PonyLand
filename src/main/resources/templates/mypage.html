@@ -32,9 +32,9 @@
 
                 </div>
 
-                <button class="profilebtn" type="submit">프로필수정</button>
+                <button class="profilebtn" type="button">프로필수정</button>
                 <button class="profilebtn1" type="button">취소</button>
-                <button class="profilebtn2" type="button">변경</button>
+                <button class="profilebtn2" type="sumbit">변경</button>
 
             </div>
         </form>
@@ -118,6 +118,10 @@
 
 
     });
+
+$(".profilebtn1").on("click",function (){
+    location.reload();
+})
 
 
 

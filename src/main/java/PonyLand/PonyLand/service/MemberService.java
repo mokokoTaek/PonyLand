@@ -190,6 +190,9 @@ public class MemberService {
         return dao.imgupdate(dto);
 
     }
+    public String message(MemberDTO dto) {
+        return dao.message(dto);
+    }
 
 
     // 코인 업데이트

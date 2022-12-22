@@ -56,6 +56,9 @@ public class MemberDAO {
     public String imgupdate(MemberDTO dto) {
         return MemberMapper.imgupdate(dto);
     }
+    public String message(MemberDTO dto) {
+        return MemberMapper.message(dto);
+    }
 
     public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
 }

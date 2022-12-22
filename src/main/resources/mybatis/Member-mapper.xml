@@ -14,5 +14,10 @@
         update member set member_oriname =#{member_oriname} ,member_sysname=#{member_sysname} where member_id=#{memberId}
     </update>
 
+    <update id="message">
+        update member set member_message = #{member_message} where member_id=#{memberId}
+
+
+    </update>
 
 </mapper>

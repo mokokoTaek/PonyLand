@@ -11,7 +11,6 @@
 
     </script>
 </head>
-
 <style>
     textarea{
         resize:none;
@@ -41,7 +40,8 @@
             </div>
 
             <div class="profile2">
-                <textarea class="textareabg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea>
+                <div><textarea class="textareabg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
             </div>
 
             <div class="profile3">

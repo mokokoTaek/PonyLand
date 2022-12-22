@@ -66,14 +66,14 @@
                         <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
                         <input type="hidden" th:value="${id}" id="hiddenProposed">
                         <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
-
+                        </form>
                     </div>
                 </div>
                 <div>
                     <div th:if="${id}== ${sessionID}">
 
                         <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
-
+                        </form>
                     </div>
                 </div>
                 <div>
@@ -141,14 +141,10 @@
 </div>
 <script>
     $(".modifybtn").on("click",function(){
-        $(this).hide();
         $('textarea').removeAttr("readonly");
-        $('.textareabg').css('border-color', 'brown');
-        $('<button id="cancel-button" class="cancel">취소</button>').insertAfter(this);
+            $(this).hide();
+            $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
-        $(".cancel").on("click",function (){
-            location.reload();
-        })
     })
 </script>
 
@@ -178,6 +174,7 @@
                 console.log("error!");
             });
 
+        <a href="/member/writer"> <button>이동</button> </a>
     }
     function openChild(){
         let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");

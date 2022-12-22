@@ -67,7 +67,8 @@
         <form id="form">
             <div class="albg3">
                 <div class="bg3in">
-                    <div th:each="list:${dto}" >
+                    <div style="margin-top: 30px"></div>
+                    <div th:each="list:${dto}" style="margin-bottom: 50px">
                         <div class="gbtitle">
                             <tr>
                                 <input type="hidden" th:value="${id}" id="host" />
@@ -87,7 +88,7 @@
                             </th>
                         </div>
 
-                        <div class="alcontext">
+                        <div class="alcontext">test
                             <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
@@ -103,15 +104,15 @@
                         </div>
 
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getAlbum_seq() == list1.getAlbum_Comment_parent_seq()}">
-                            <div class="gbtitle">
-                                <div>
+                            <div class="gbcmttitle">
+                                <div style="font-size: 13px">
                                     <th th:text="${list1.getAlbum_Comment_writer()}">작성자</th>
                                 </div>
                                 <div style="font-size: 10px; color: darkgrey">
                                     <th th:text="${#dates.format(list1.getAlbum_Comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
                                 </div>
                             </div>
-                            <div style="font-size: 16px;">
+                            <div style="font-size: 18px;">
                                 <th th:text="${list1.getAlbum_Comment_contents()}">작성내용</th>
                             </div>
                         </div>
@@ -126,9 +127,6 @@
                             <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </form>

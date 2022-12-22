@@ -464,13 +464,14 @@ button:hover {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
+    margin-bottom: 50px;
     width: 90%;
     /*border: 1px solid black;*/
 }
 .bgcontent{
     /*border: 1px solid #5a3d2b;*/
     border-radius: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 .gbtitle {
@@ -478,27 +479,35 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     height: 30px;
+    margin-bottom: 5px;
     border-radius: 4px;
     color: #F4A127;
+    background-color: #faf7ed;
+    /*background-color: #FFECB4;*/
 }
 
 .gbcontent {
     display: flex;
-    height: 100px;
+    flex-direction: row;
+    justify-content: space-between;
     border-radius: 4px;
-    align-items: center;
     /*border: 1px solid #5a3d2b;*/
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.gbprofile {
-    border: 1px solid black;
-    height: 90px;
-    width: 90px;
-    float: left;
+gbprofile1{
     display: flex;
-    margin-left: 5px;
+    border: 1px solid black;
+    width: 30%;
+}
+
+.gbprofile2 {
+    /*border: 1px solid black;*/
+    height: 150px;
+    width: 150px;
+    /*width: 100px;*/
+    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
@@ -506,10 +515,13 @@ button:hover {
 }
 
 .gbtext {
-    margin: auto;
     display: flex;
-    align-items: center;
+    width: 70%;
+    font-size: 24px;
+    color: #5a3d2b;
+    /*align-items: center;*/
     justify-content: center;
+    align-items: center;
 
 }
 
@@ -518,7 +530,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     /*border: 1px solid red;*/
 }
@@ -526,7 +538,6 @@ button:hover {
 .gbcmt {
     display: flex;
     width: 100%;
-    /*border: 1px solid blue;*/
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
@@ -534,16 +545,19 @@ button:hover {
 .gbcmt2{
     /*display: flex;*/
     color: #5a3d2b;
-    background-color: #fffefa;
-    margin-bottom: 5px;
+    /*background-color: #fffefa;*/
+    margin-bottom: 7px;
     border-radius: 4px;
 }
 
 .gbcmttitle{
     display: flex;
-    flex-direction: column;
-    /*justify-content: space-between;*/
-    /*background-color: whitesmoke ;*/
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+    /*margin-bottom: 5px;*/
+    border-radius: 4px;
+    color: #F4A127;
 }
 
 .gbcmt > input {
@@ -551,7 +565,7 @@ button:hover {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     height: 40px;
-    border: 1px solid #5a3d2b;
+    border: 1px solid darkgray;
 }
 
 .gbbutton {
@@ -598,24 +612,28 @@ button:hover {
     background: white;
     border-radius: 8px;
     justify-content: center;
+
     overflow: scroll;
 }
 
 .alpic{
     display: flex;
     height: 300px;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     border-radius: 4px;
     align-items: center;
     justify-content: center;
     color: #F4A127;
+    margin-top: 10px;
 }
 
 .alcontext{
     display: flex;
     height: 100px;
-    border: 1px solid black;
-    border-radius: 4px;
+    /*border: 1px solid black;*/
+    font-size: 24px;
+    color: #5a3d2b;
+    /*border-radius: 4px;*/
     align-items: center;
     justify-content: center;
 }

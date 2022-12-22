@@ -69,7 +69,9 @@
         <div class="albg3">
             <input type="hidden" th:value="${id}" name="guestbook_host" id="host" >
             <div class="bg3in">
+                <div style="margin-top: 30px"></div>
                 <div class="bgcontent" th:each="list:${dto}">
+
                     <div class="gbtitle">
                         <div><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
@@ -79,27 +81,29 @@
                             <button class="gowrite" type="button" style="padding: 0px">글쓰기</button>
                         </div>
                     </div>
+
+
                     <div class="gbcontent">
-                        <div class="gbprofile">
-                            프로필이미지
+                        <div class="gbprofle1">
+                            <div class="gbprofile2"></div>
                         </div>
                         <div class="gbtext">
-                            <th th:text="${list.getGuestbook_contents()}" th:readonly></th>
+                            <th th:text="${list.getGuestbook_contents()}" th:readonly>방명록내용</th>
                         </div>
                     </div>
 
 
 
                     <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
-                        <div class="gbtitle">
-                            <div>
+                        <div class="gbcmttitle">
+                            <div style="font-size: 13px">
                                 <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
                             </div>
                             <div style="font-size: 10px; color: darkgrey">
                                 <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
                             </div>
                         </div>
-                        <div style="font-size: 16px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
+                        <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
                     </div>
 
 

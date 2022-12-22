@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -192,7 +194,45 @@ public class MemberService {
         return dao.message(dto);
     }
 
+
+    // 코인 업데이트
+    public void coinUpdate(String id, int bettingCoin, int horseCount) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        if (horseCount == 2) {
+            double sum = bettingCoin * 1.25;
+            map.put("sum", sum);
+            dao.updateCoin(map);
+        } else if (horseCount == 3) {
+            double sum = bettingCoin * 1.5;
+            map.put("sum", sum);
+            dao.updateCoin(map);
+            //dao.updateCoin(id,sum);
+        } else if (horseCount == 4) {
+            double sum = bettingCoin * 2;
+            map.put("sum", sum);
+            dao.updateCoin(map);
+            //dao.updateCoin(id,sum);
+        }
     }
+
+
+    public double add(int bettingCoin, int horseCount) {
+        double sum;
+        if (horseCount == 2) {
+            sum = bettingCoin * 1.25;
+            return sum;
+
+        } else if (horseCount == 3) {
+            sum = bettingCoin * 1.5;
+            return sum;
+
+        } else {
+            sum = bettingCoin * 2;
+            return sum;
+        }
+    }
+}
 
 
 

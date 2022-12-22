@@ -2,6 +2,7 @@ package PonyLand.PonyLand.service;
 
 import PonyLand.PonyLand.dao.MemberDAO;
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.dto.RacingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -118,7 +119,7 @@ public class MemberService {
 
         String id = (String)session.getAttribute("sessionID");
 
-       if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
+        if(dao.loginForKakao(id).getMemberLoginType().equals("kakao")){
             System.out.println("이것은 카카오 아이디!");
         }
 
@@ -129,7 +130,7 @@ public class MemberService {
 //        out.flush();
 //        response.flushBuffer();
 //        out.close();
-}
+    }
 
     public MemberDTO findById(String id){
         return dao.findById(id);
@@ -237,7 +238,7 @@ public class MemberService {
 
     // racing 테이블에 내가 배팅한 말 번호를 조회 하기위한 select 문
     public RacingDTO selectBet(String id){
-       return dao.selectBet(id);
+        return dao.selectBet(id);
     }
 
     //이겼을때 member문에 coin 업데이트 위한 문

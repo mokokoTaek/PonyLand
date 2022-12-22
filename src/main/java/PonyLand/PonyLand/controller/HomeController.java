@@ -70,8 +70,6 @@ public class HomeController {
         return "main";
     }
 
-    @GetMapping("/stable")
-    public String stable(){return "stable";}
 
     @GetMapping("/toAlbumPage")
     public String AlbumPage(){

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PonyLand.PonyLand.Mapper.MemberMapper">
+
+    <update id ="update">
+        update member set member_pw =#{memberPw} ,member_name=#{member_name},member_phone=#{member_phone},member_email=#{member_email} where member_id=#{memberId}
+    </update>
+
+    <update id ="imgupdate">
+        update member set member_oriname =#{member_oriname} ,member_sysname=#{member_sysname} where member_id=#{memberId}
+    </update>
+
+    <update id="message">
+        update member set member_message = #{member_message} where member_id=#{memberId}
+
+
+    </update>
+
+</mapper>

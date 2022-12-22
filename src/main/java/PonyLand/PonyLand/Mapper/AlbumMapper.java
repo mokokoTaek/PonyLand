@@ -14,4 +14,12 @@ public interface AlbumMapper {
     int delete(int Album_seq);
 
     int update(String Album_title, String Album_contents, int Album_seq);
+
+    int count();   //게시글 총 갯수
+
+    List<AlbumDTO> select();
+
+//    List<AlbumDTO> replycount();
+
+
 }

@@ -23,13 +23,120 @@
         transform:translate(-50%, -50%);
     }
 
+    /* .floor .player {
+        position: absolute;
+        z-index: 1;
+        width: 47px;
+        height: 47px;
+        border-radius: 3px;
+        transform-style: preserve-3d;
+        -webkit-transition: all 250ms;
+        -moz-transition: all 250ms;
+        -ms-transition: all 250ms;
+        -o-transition: all 250ms;
+        transition: all 250ms;
+       opacity: 1;
+    } */
 
+    /* .floor .player.die{
+      animation: fallanddie 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    .floor .player div {
+        border: solid 1px rgba(0,0,0,.5);
+        position: absolute;
+        width: 47px;
+        height: 47px;
+        border-radius: 3px;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .floor .player .front {
+        transform-origin: 50% 100%;
+        -webkit-transform-origin: 50% 100%;
+        -moz-transform-origin: 50% 100%;
+        transform: rotateX(-90deg);
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform: rotateX(-90deg);
+    }
+
+    .floor .player .top {
+        transform-origin: 50% 0%;
+        transform: rotateX(-90deg);
+        -webkit-transform-origin: 50% 0%;
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform-origin: 50% 0%;
+        -moz-transform: rotateX(-90deg);
+    }
+
+    .floor .player .right {
+        transform-origin: 100% 50%;
+        transform: rotateY(90deg);
+        -webkit-transform-origin: 100% 50%;
+        -webkit-transform: rotateY(90deg);
+        -moz-transform-origin: 100% 50%;
+        -moz-transform: rotateY(90deg);
+    }
+
+
+    .floor .player.red div{
+        background: rgba(255, 0, 0, 0.5);
+    }
+
+    .floor .player.blue div{
+       I know it's not blue
+     background: rgba(255, 255, 255, 1);
+    } */
+
+    /* .floor .player.green div{
+        background: rgba(0, 255, 0, 0.5);
+    } */ */
+
+    /* .youdied{
+       color: gray;
+    }
+    .youdied:before{
+       color: transparent;
+       content: "* ";
+    }
+
+    @keyframes fallanddie {
+      from {
+        z-index: -1;
+        opacity: 1;
+        transform: translateZ(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateZ(-150px);
+      }
+    } */
+
+    /* .warning{
+       position: absolute;
+       top: 5px;
+       left: 5px;
+       font-size: 13px;
+       color: rgba(150,50,50,1);
+    } */
+
+    .tile:hover{
+        background-color: red;
+
+    }
 </style>
 
 <body>
 
 
 <div class="container">
+
+    <input type="hidden" name="dto" th:value="${dto}">
+    <input type="hidden" name="id" th:value="${id}">
 
     <div class="top">
         <div class="">Today : 245</div>
@@ -61,14 +168,15 @@
 </div>
 <div class="side">
     <button class="btnmain1">마구간</button>
-    <a th:href="@{/}">
-        <button class="btnmain2">게임</button>
-    </a>
+    <a th:href="@{/game/gameStart(id=${id})}">
+        <button class="btnmain2" type="button" id="adc">게임</button>
+
     <a th:href="@{/}">
         <button class="btnmain2">상점</button>
     </a>
-    <a th:href="@{/}">
-        <button class="btnmain2">충전</button>
+
+    <a th:href="@{/stable/charge}">
+    <button class="btnmain2">충전</button>
     </a>
 </div>
 

@@ -22,5 +22,8 @@ public class GuestbookService {
 
     public List<GuestbookDTO> select() {return dao.select();}
 
+    public int count() {
+        return dao.count();
+    }
 
 }

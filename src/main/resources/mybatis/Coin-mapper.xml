@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="PonyLand.PonyLand.Mapper.CoinMapper">
+    <select id="selectByOne" resultType="int">
+        SELECT member_coin FROM member WHERE member_id = #{value}
+    </select>
+
+    <update id="setCoin">
+        update member set member_coin= member_coin + #{coin} where member_id= #{id}
+    </update>
+</mapper>

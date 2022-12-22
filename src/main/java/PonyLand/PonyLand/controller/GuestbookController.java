@@ -2,8 +2,10 @@ package PonyLand.PonyLand.controller;
 
 import PonyLand.PonyLand.dto.GuestbookCommentDTO;
 import PonyLand.PonyLand.dto.GuestbookDTO;
+import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.service.GuestbookCommentService;
 import PonyLand.PonyLand.service.GuestbookService;
+import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,9 @@ public class GuestbookController {
 
     @Autowired
     private GuestbookCommentService GuestbookCommentService;
+
+    @Autowired
+    private MemberService memberService;
 
 
 
@@ -56,12 +61,13 @@ public class GuestbookController {
     @RequestMapping("goGuestbook")
     public String goGuestbook(String guestbook_host, Model model) {
 
+        MemberDTO dto = memberService.findById(guestbook_host);
         List<GuestbookDTO> list = GuestbookService.select();
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
         model.addAttribute("id", guestbook_host);
         model.addAttribute("dto", list);
         model.addAttribute("list1", list1);
-
+        model.addAttribute("list2",dto);
         return "guestbook";
     }
 

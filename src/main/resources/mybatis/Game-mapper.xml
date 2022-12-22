@@ -5,4 +5,10 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="PonyLand.PonyLand.Mapper.GameMapper">
+
+    <update id="updateCoin">
+        update member set member_coin=member_coin+#{sum} where member_id = #{id}
+    </update>
+
+
 </mapper>

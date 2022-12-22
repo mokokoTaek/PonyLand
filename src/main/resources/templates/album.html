@@ -28,13 +28,11 @@
             </div>
 
             <div class="profile1">
-                테스트입니다.
+                <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|" >
             </div>
 
             <div class="profile2">
-                <div>상태메시지</div>
-                <div>상태메시지</div>
-                <div>상태메시지</div>
+                <textarea class="loginbg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea>
             </div>
 
             <div class="profile3">
@@ -67,29 +65,28 @@
         <form id="form">
             <div class="albg3">
                 <div class="bg3in">
-                    <div th:each="list:${dto}" >
+                    <div style="margin-top: 30px"></div>
+                    <div th:each="list:${dto}" style="margin-bottom: 50px">
                         <div class="gbtitle">
                             <tr>
                                 <input type="hidden" th:value="${id}" id="host" />
                                 <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
                                 <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
-                                <th th:text="${list.Album_seq}">글번호</th>
-                                <th th:text="${list.getAlbum_write_date()}">시간</th>
-                                <th></th>
-                                <th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th>
-                                <th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th>
-                                <button id="write" class="alwritebtn" type="button">글쓰기</button>
+                                <div><th th:text="NO.+${list.Album_seq}">글번호</th></div>
+                                <div><th th:text="${#dates.format(list.getAlbum_write_date(), 'yyyy-MM-dd HH:mm')}">시간</th></div>
+                                <div><th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th></div>
+                                <div><th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th></div>
+                                <div><button id="write1" class="alwritebtn" type="button">글쓰기</button></div>
                             </tr>
                         </div>
                         <div class="alpic">
-<!--                            <th th:src="@{${file.oriname()}}">-->
-                            <img th:src="|/@{${list.getAlbum_oriname()}}|"> <!--이미지 경로 불러오기.-->
-
-                            </th>사진
+                            <!--                            <th th:src="@{${file.oriname()}}">-->
+                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|">
+                            <!--사진 불러오기.-->
+                            </th>
                         </div>
 
-                        <div class="alcontext">
-
+                        <div class="alcontext">test
                             <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_title}" name = "Album_title"/>-->
                             <!--                        <input type="hidden" th:value="${list.Album_contents}" name = "Album_contents"/>-->
@@ -98,20 +95,24 @@
                                     <!--                                <div class = "post_seq"  th:text="${list.Album_seq}" ></div>-->
                                     <div class="post_title" id="Album_contents" th:text="${list.Album_contents}"
                                          readonly>
-
                                     </div>
                                     <!--                                <a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a>-->
                                 </div>
                             </div>
-
                         </div>
-                        <div class="comment" th:each="list1: ${list1}" th:if="${list.getAlbum_seq() == list1.getAlbum_Comment_parent_seq()}">
 
-                            <th th:text="${list1.getAlbum_Comment_writer()}"></th>
-                            <th th:text="${list1.getAlbum_Comment_contents()}"></th>
-                            <th th:text="${list1.getAlbum_Comment_write_date()}"></th>
-
-                            <th id="delete"  th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}"><a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.Album_Comment_seq})}">x</a></th>
+                        <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getAlbum_seq() == list1.getAlbum_Comment_parent_seq()}">
+                            <div class="gbcmttitle">
+                                <div style="font-size: 13px">
+                                    <th th:text="${list1.getAlbum_Comment_writer()}">작성자</th>
+                                </div>
+                                <div style="font-size: 10px; color: darkgrey">
+                                    <th th:text="${#dates.format(list1.getAlbum_Comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                                </div>
+                            </div>
+                            <div style="font-size: 18px;">
+                                <th th:text="${list1.getAlbum_Comment_contents()}">작성내용</th>
+                            </div>
                         </div>
 
                         <div class="gbcmtinput" >
@@ -124,25 +125,10 @@
                             <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
                     </div>
-
-
-                    <div class="gbcmtview">
-
-                        <tr>
-                        <tr>
-                        <div id="abc"></div>
-                            <th>글번호</th>
-
-                            <th>이름</th>
-                            <th>내용</th>
-                            <th>삭제</th>
-                        </tr>
-
-                    </div>
                 </div>
             </div>
         </form>
-        <button id="write1">글쓰기</button>
+
 
 
     </div>
@@ -154,20 +140,19 @@
     <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
     </a>
-    <a th:href="@{/Guestbook/goGuestbook}">
+    <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}">
         <button class="btnmain2">방명록</button>
     </a>
-    <a th:href="@{/Album/toAlbumPage}">
     <button class="btnmain1">사진첩</button>
-
+    <a th:href="@{/member/goMypage?(memberId=${id})}">
+        <button class="btnmain2">내정보</button>
     </a>
-    <button class="btnmain2">다이어리</button>
 </div>
 </body>
 <script>
 
     //앨범 글쓰기로 가는 세션. (아이디 포함)
-    $("#write1").on("click", function() {
+    $("#write").on("click", function() {
         let Album_host = $("#host").val();
 
         location.href = "/Album/write?Album_host="+Album_host;
@@ -177,8 +162,8 @@
 
     $(function(){
         $(".gbbutton").on("click", function () {
-            location.reload();
 
+            location.reload();
 
             $(this).prev().find('input').attr("name", "Album_Comment_contents");
             let Album_seq = $(this).next().val();
@@ -215,6 +200,7 @@
                     div.append(th2);
                     div.append(th3);
                     $(".comment").append(div);
+
 
 
 

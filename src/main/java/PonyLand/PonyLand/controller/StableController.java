@@ -109,24 +109,6 @@ public class StableController {
         return "redirect:/carrot";
     }
 
-//    package PonyLand.PonyLand.controller;
-//
-//import PonyLand.PonyLand.dto.ItemDTO;
-//import PonyLand.PonyLand.service.ItemService;
-//import PonyLand.PonyLand.service.MemberService;
-//import com.google.gson.Gson;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.relational.core.sql.In;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.stereotype.Repository;
-//import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.ResponseBody;
-//
-//import javax.annotation.Resource;
-//import javax.servlet.http.HttpSession;
-
-
         @RequestMapping("toStable")
         public String toStable(Model model,String id){
 

@@ -3,43 +3,219 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <head>
     <meta charset="UTF-8">
     <title>Signin</title>
     <link rel="stylesheet" href="../static/style.css"/>
 </head>
+<style>
+    input[type=password] {
+        font-style: revert;
+    }
+</style>
 <body>
 <form action="/member/insert" id="frm" method="post" enctype="multipart/form-data">
     <div class="logintitle">회원가입</div>
     <div class="loginsection">
         <div class="signinform">
             이름
-            <input type="text" class="signinbg" placeholder="이름" name="member_name"><br>
+           <div id ="div_name"><input type="text" class="signinbg" placeholder="이름, 한글 3~5자" name="member_name" id="member_name"></div><br>
         </div>
         <div class="signinform">
             아이디
-            <input type="text" class="signinbg" placeholder="영문,숫자 5~11자" name="memberId"><br>
+            <input type="text" class="signinbg" placeholder="영문,숫자 5~11자" name="memberId" id="member_id"><br>
+            <div id=result2></div>
         </div>
+        <div id ="div_id"></div>
 
         <div class="signinform">
             비밀번호
-            <input type="text" class="signinbg" placeholder="숫자, 영문, 특수문자 조합 최소 8자"><br>
-            <input type="text" class="signinbg" placeholder="비밀번호 재입력" name="memberPw"><br>
+            <input type="password" class="signinbg" placeholder="숫자, 영문, 특수문자 조합 최소 8자" id="passwd" name="passwd"><br>
+            <input type="password" class="signinbg" placeholder="비밀번호 재입력" id ="passwdck" name="member_pw"><br>
+            <div id="div3"></div>
         </div>
 
         <div class="signinform">
             이메일
-            <input type="text" class="signinbg" placeholder="exapmle@naver.com" name="member_email"><br>
+            <input type="text" class="signinbg" placeholder="exapmle@naver.com" name="member_email" id="mail"><br>
+            <div id="div7"></div>
         </div>
 
         <div class="signinform">
-            전화번호
-            <input type="text" class="signinbg" placeholder="010-1234-1234" name="member_phone"><br>
+            휴대폰 번호
+            <input type="text" class="signinbg" placeholder="하이픈(-) 제외 입력" name= "member_phone" id="number"><br>
+            <div id="div6"></div>
         </div>
 
         <button class="signinbtn">가입하기</button>
         <button class="signinbtn">메인으로</button>
     </div>
 </form>
+
+<script>
+
+    document.getElementById("member_id").onkeyup = function() {
+        let id = document.getElementById("member_id").value;
+        let regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+        let answer = regExp.test(id);
+
+        $.ajax({
+            url:"/member/duplCheck",
+            data:{"member_id":id}
+        }).done(function(resp){
+            console.log(resp);
+            if(resp === true){
+                $("#result2").html("이미 사용중인 아이디 입니다.");
+                $("#result2").css("color","red")
+            }else{
+                if(answer){
+                    $("#result2").html("사용 가능한 아이디 입니다.");
+                    $("#result2").css("color","green")
+                }
+                else {
+                    document.getElementById("result2").innerHTML = "아이디를 확인해 주세요.";
+                    $("#result2").css("color","red")
+                }
+            }
+        });
+    }
+
+
+    member_name.onkeyup = function() {
+        let regi3 = document.getElementById("member_name").value;
+        let regex3 = /^[가-힣]{2,5}$/;
+        let answer3 = regex3.test(regi3);
+        if (!answer3) {
+            document.getElementById("div_name").style.border = "2px solid red";
+        }else if (answer3) {
+            document.getElementById("div_name").style.border = "";
+        }
+
+    }
+    passwdck.onkeyup = function() {
+        let passwd = document.getElementById("passwd").value;
+        let passck = document.getElementById("passwdck").value;
+        let regex2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+        let answer1 = regex2.test(passwd);
+        let answer2 = regex2.test(passck);
+        console.log(answer2)
+        if  (answer2.length <= 8 || answer2.length >= 20 ){
+            document.getElementById("div3").innerHTML = "비밀번호는 영문 및 특수문자 숫자 포함, 8자 이상 20자 이하로 작성해주세요. ";
+            $("#div3").css("color","red")
+        }
+        if (answer2 == true && answer1 == true && (passwd.length == passck.length)) {
+            document.getElementById("div3").innerHTML = "사용 가능한 패스워드 입니다.";
+            $("#div3").css("color","green")
+        }else if (passck.length != passwd.length){
+            document.getElementById("div3").innerHTML = "패스워드를 확인해 주세요. ";
+            $("#div3").css("color","red")
+        }
+    }
+
+    passwd.onkeyup = function() {
+        console.log(123)
+        let passwd = document.getElementById("passwd").value;
+        let passck = document.getElementById("passwdck").value;
+        let regex2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+        let answer1 = regex2.test(passwd);
+        let answer2 = regex2.test(passck);
+        console.log(answer2)
+        if  (answer2.length <= 8 || answer2.length >= 20 ){
+            document.getElementById("div3").innerHTML = "비밀번호는 영문 및 특수문자 숫자 포함, 8자 이상 20자 이하로 작성해주세요. ";
+            $("#div3").css("color","red")
+        }
+        if (answer2 == true && answer1 == true && (passwd.length == passck.length)) {
+            document.getElementById("div3").innerHTML = "사용 가능한 패스워드 입니다.";
+            $("#div3").css("color","green")
+        }
+        else if (passck.length != passwd.length){
+            document.getElementById("div3").innerHTML = "패스워드를 확인해 주세요. ";
+            $("#div3").css("color","red")
+        }
+    }
+
+    mail.onkeyup = function() {
+        let regi5 = document.getElementById("mail").value;
+        let regex5 = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+        let answer5 = regex5.test(regi5);
+        if (answer5) {
+            document.getElementById("div7").innerHTML = "";
+        } else {
+            document.getElementById("div7").innerHTML = "메일 주소를 확인해 주세요.";
+            $("#div7").css("color","red")
+        }
+    }
+
+    number.onkeyup = function() {
+        let regi4 = document.getElementById("number").value;
+        let regex4 = /^01\d\d{3,4}\d{4}$/;
+        let answer4 = regex4.test(regi4);
+        if (answer4) {
+            document.getElementById("div6").innerHTML = "";
+        } else {
+            document.getElementById("div6").innerHTML = "번호를 확인해 주세요.";
+            $("#div6").css("color","red")
+        }
+    }
+
+    let inputname = document.getElementById("member_name")
+    let inputphone = document.getElementById("number")
+    let inputid = document.getElementById("member_id")
+    let inputmail = document.getElementById("mail")
+    let frm = document.getElementById("frm")
+
+    frm.onsubmit = function () {
+        let str = inputphone.value;
+        let name = inputname.value;
+        let id = inputid.value;
+        let mail = inputmail.value;
+        if (id == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '아이디를 입력하세요',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputphone.focus();
+            })
+            return false;
+        } else if (name == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '이름을 입력해 주세요!',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputname.focus();
+            })
+            return false;
+        } else if (str == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '휴대폰 번호를 입력해 주세요!',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputid.focus();
+            })
+            return false;
+        }
+        else if (mail == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '메일을 입력해 주세요!',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputid.focus();
+            })
+            return false;
+        }
+    }
+
+
+
+</script>
 </body>
 </html>

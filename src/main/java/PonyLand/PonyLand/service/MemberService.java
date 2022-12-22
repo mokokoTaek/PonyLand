@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MemberService {
@@ -229,6 +226,10 @@ public class MemberService {
             return sum;
         }
     }
+    public boolean duplCheck(String memberId) {
+        return dao.duplCheck(memberId);
+    }
+
 }
 
 

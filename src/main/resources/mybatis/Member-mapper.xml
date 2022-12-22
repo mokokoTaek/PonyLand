@@ -14,5 +14,9 @@
         update member set member_oriname =#{member_oriname} ,member_sysname=#{member_sysname} where member_id=#{memberId}
     </update>
 
+    <select id ="duplCheck" parameterType="string" resultType="int">
+        select COUNT(*) from member where member_id = #{value}
+    </select>
+
 
 </mapper>

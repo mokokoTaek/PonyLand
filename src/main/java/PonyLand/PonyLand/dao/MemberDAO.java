@@ -4,6 +4,7 @@ import PonyLand.PonyLand.Mapper.GameMapper;
 import PonyLand.PonyLand.Mapper.MemberMapper;
 import PonyLand.PonyLand.Repository.member.SpringDataJpaMemberRepository;
 import PonyLand.PonyLand.dto.MemberDTO;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,9 @@ public class MemberDAO {
 
     @Autowired
     GameMapper gameMapper;
+
+    @Autowired
+    private SqlSession sqlSession;
 
     public Long countMember(){
         return sdjr.countBy();
@@ -58,4 +62,9 @@ public class MemberDAO {
     }
 
     public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
+
+    public boolean duplCheck(String memberId) {
+        int count = MemberMapper.duplCheck(memberId);
+        return count > 0;
+    }
 }

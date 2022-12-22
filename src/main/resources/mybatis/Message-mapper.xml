@@ -5,7 +5,7 @@
 
 
 <mapper namespace="PonyLand.PonyLand.Mapper.MessageMapper">
-    <insert id="insert">
+    <insert id="insert" >
         insert into message values(message_seq.nextval, #{send_nick}, #{recv_nick}, #{title} ,sysdate, #{content})
     </insert>
 

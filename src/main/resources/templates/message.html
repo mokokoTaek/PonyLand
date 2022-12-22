@@ -1,10 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>쪽지함</title>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- CSS File -->
     <link href="../static/message.css" rel="stylesheet">
 
@@ -60,12 +60,13 @@
                         <!--                            <a th:href="@{/message/detail?(no=${item.no})}">-->
                         <!--                          <input type="hidden" th:value="${item.no}" name="no" value="${item.no}">-->
                         <div>
-                            <div th:text="${item.no}" th:value="${item.no}"/>
+                            <div th:text="${item.no}"/>
                             <!--<input type="hidden" class="no" name="no" th: value="${item.no}">-->
                             <div>보낸이: <span th:text="${item.send_nick}"/></div>
-<!--                            <div>제목:<a href="@{#}" th:onclick="detail()"> <span th:text="${item.title}"/> </a></div>-->
-                            <div> 제목:<button type="button" class="detailBtn"> <span th:text="${item.title}"/></button></div>
-                            <input type="hidden" name="no" class="no" th:value="${item.no}" th:attrappend="id=${itemStat.index}">
+                            <!--                            <div>제목:<a href="@{#}" th:onclick="detail()"> <span th:text="${item.title}"/> </a></div> <button type="button" class="detailBtn"> -->
+                            <button th:text="${item.title}" class="detailBtn" type="button"></button>
+                            <input type="hidden" name="no" class="no" th:value="${item.no}"
+                                   th:attrappend="id=${itemStat.index}">
 
                             <br/>
                             <!-- 새로운 div 태그 추가 -->
@@ -77,19 +78,15 @@
                     </a>
                 </div>
                 <!--                </form>-->
-                <a href="/message/write" onClick="window.open(this.href, '', 'width=530, height=550'); return false;">
+                <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
                     <button>쪽지 보내기</button>
+                    <a/>
 
             </div>
-
             <!-- 메세지 내용 영역 -->
             <div class="mesgs">
                 <!-- 메세지 내용 목록 -->
                 <div class="msg_history" name="contentList">
-                    <p th:text="${send_nick}"></p>
-                    <p th:text="${title}"></p>
-                    <p th:text="${content}"></p>
-                    <p th:text="${send_time}"></p>
                 </div>
                 <div class="send_message">
                 </div>
@@ -103,18 +100,41 @@
 <script>
 
     $(".detailBtn").on("click",function (){
-        let index = $(this).attr("id");
-        let no = $('no').eq(index).text;
-        console.log(no);
+        // let no = $('no').eq(index).text;
+        $(".msg_history").empty();
+        let no = $(this).next().val();
         $.ajax({
             url: "/message/detail",
             type: "POST",
             data: {
-                "no" : no
+                "no": no
             },
-            success: function (response) {
-                alert(response);
-            }
+        }).done(function (data) {
+                let target = JSON.parse(data)
+            console.log(target);
+                let div = $("<div>");
+
+                let p1 = $("<p>");
+                p1.append(target.no);
+
+                let p2 = $("<p>");
+                p2.append(target.send_nick);
+
+                let p3 = $("<p>");
+                p3.append(target.recv_nick);
+
+                let p4 = $("<p>");
+                p4.append(target.send_time);
+
+                let p5 = $("<p>");
+                p5.append(target.content);
+
+                div.append(p1);
+                div.append(p2);
+                div.append(p3);
+                div.append(p4);
+                div.append(p5);
+                $(".msg_history").append(div);
         });
     });
 

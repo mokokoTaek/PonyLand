@@ -25,59 +25,60 @@
     <div class="bg2">
       <div style="font-size: 100px; text-align: center">게임세팅</div>
       <div style="text-align: center">
-        <select name="말 마리 수 선택">
-          <option value="four">4마리</option>
-          <option value="three">3마리</option>
-          <option value="two">2마리</option>
-        </select><br>
-        <select name="말 이미지 선택">
-          <option value="1">한호</option>
-          <option value="2">준구</option>
-          <option value="3">진혁</option>
-          <option value="4">승택</option>
-
-        </select> <br>
+<form action="/game/goGameRun" th:type="post">
         <br>
         말의 수
-        <button onclick="count('plus')">+</button><span id="horseCount">2</span><button onclick="count('minus')">-</button>
+        <button onclick="count('minus')">-</button><span id="horseCount" name="horseCount">2</span><button onclick="count('plus')">+</button>
         <br>
         달릴 말 선택
-        <span th:text = "${dto.getMember_name()}"></span>
+        <span th:text="${dto.getMember_name()}"></span>
         <br>
         보유금액
-        <span th:text = "${dto.getMember_coin()}" id="member_coin"></span>
+        <span th:text="${dto.getMember_coin()}" id="member_coin"></span>
         <br>
         배팅금액
-        <input type="text" id="battingCoin">
+        <input id="batting_coin">
+        예상금액
+        <div id="expect_coin"></div>
         <br>
-        예상수익금액
-        if(horseCount==2){
-          예상수익금액 = 배팅금액 * 1.5;
-        }else if(horseCount==3){
-          예상수익금액 = 배팅금액 * 1.7;
-        }else{
-          예상수익금액 = 배팅금액 * 2;
-        }
+        남은금액
+        <div id="currentCoinArea"></div>
+
+        <button>게임 시작</button>
+</form>
         <script>
-          $("#battingCoin").on("keyup",function(){
-            let currentCoin = $("#member_coin").val() - $("#battingCoin").val();
+          //남은 금액
+          $("#batting_coin").on("keyup",function(){
+            let member_coin = $("#member_coin").html();
+            let batting_coin = $("#batting_coin").val();
+            let horseCount = $("#horseCount").html();
+            $.ajax({
+              url : "/game/currentCoin",
+              type : "post",
+              data : {"member_coin" : member_coin, "batting_coin" : batting_coin},
+              dataType: "json"
+            }).done(function(data){
+              $("#currentCoinArea").append(data);
+            })
           })
 
-          $("#battingCoin").on("keyup",function (){
-
-            let horseCount = $("#horseCount").val();
-            let battingCoin = $("#battingCoin").val();
-
+          //예상 금액
+          $("#batting_coin").on("keyup",function(){
+            let batting_coin = $("#batting_coin").val();
+            let horseCount = $("#horseCount").html();
+            $.ajax({
+              url : "/game/expectCoin",
+              type : "post",
+              data : {"batting_coin" : batting_coin, "horseCount" : horseCount},
+              dataType: "json"
+            }).done(function(data){
+              $("#expect_coin").append(data);
+            })
           })
 
-        </script>
-        <br>
-        <span><button id="gameRun">게임시작</button></span>
-        <script>
+          //말 마리 수 설정
           function count(type)  {
-
             let resultElement = document.getElementById('horseCount');
-
             let number = resultElement.innerText;
 
             if(type === 'plus') {
@@ -110,11 +111,4 @@
 </div>
 
 </body>
-
-<script>
-  $("gameRun").on("click",function (){
-
-  })
-</script>
-
 </html>

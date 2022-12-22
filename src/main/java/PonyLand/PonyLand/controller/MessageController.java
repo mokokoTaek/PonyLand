@@ -3,11 +3,13 @@ package PonyLand.PonyLand.controller;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.dto.MessageDTO;
 import PonyLand.PonyLand.service.MessageService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -52,17 +54,24 @@ public class MessageController {
         out.close();
     }
 
+//    @RequestMapping("detail")
+//    public String detail(MessageDTO dto, Model model,String no){
+//        System.out.println("메세지 내용 들어오니? " + Integer.parseInt(no));
+//
+//        String id = (String)session.getAttribute("sessionID");
+//        model.addAttribute("id", id);
+//        MessageDTO dto2 = service.selectBySeq(dto.getNo());
+//        List<MessageDTO> list = service.selectAll(id);
+//        model.addAttribute("list",list);
+//        model.addAttribute("no", dto.getNo());
+//        model.addAttribute("dto", dto2);
+//        return "message";
+//    }
+    @ResponseBody
     @RequestMapping("detail")
-    public String detail(MessageDTO dto, Model model,String no){
-        System.out.println("메세지 내용 들어오니? " + Integer.parseInt(no));
-
-        String id = (String)session.getAttribute("sessionID");
-        model.addAttribute("id", id);
-        MessageDTO dto2 = service.selectBySeq(dto.getNo());
-        List<MessageDTO> list = service.selectAll(id);
-        model.addAttribute("list",list);
-        model.addAttribute("no", dto.getNo());
-        model.addAttribute("dto", dto2);
-        return "message";
+    public String detail(String no) {
+        MessageDTO dto = service.selectBySeq(Integer.parseInt(no));
+        Gson g = new Gson();
+        return g.toJson(dto);
     }
 }

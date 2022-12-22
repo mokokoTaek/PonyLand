@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member/")
@@ -28,7 +30,6 @@ public class MemberController {
 
     @RequestMapping("wave")
     public String getWave(Model model,HttpServletRequest request, HttpServletResponse response){
-
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
 
@@ -37,7 +38,10 @@ public class MemberController {
         System.out.println(id);
         service.addView(id,request,response);
 
+
         MemberDTO dto = service.findById(id);
+
+
 
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
@@ -88,9 +92,4 @@ public class MemberController {
 
         return "index";
     }
-
-
-
-
-
 }

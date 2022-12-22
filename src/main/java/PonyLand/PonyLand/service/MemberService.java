@@ -64,6 +64,25 @@ public class MemberService {
         return "redirect:/";
     }
 
+    public double currentCoin(int member_coin, int batting_coin) {
+        double current_coin = 0;
+        if(member_coin > batting_coin) {
+            current_coin = member_coin - batting_coin;
+        }
+        return current_coin;
+    }
+    public double expectCoin(int batting_coin,int horseCount) {
+        double result = 0;
+        if(horseCount==2){
+            result = batting_coin * 1.5;
+        }else if(horseCount==3){
+            result = batting_coin * 1.75;
+        }else{
+            result = batting_coin * 2.0;
+        }
+        return result;
+    }
+
     public MemberDTO makeIdAndPwByEmailForKakao(String name, String email){
 
         int index= email.indexOf("@");
@@ -180,7 +199,8 @@ public class MemberService {
         return (int) now.until(tommorow, ChronoUnit.SECONDS);
     }
 
-    }
+
+}
 
 
 

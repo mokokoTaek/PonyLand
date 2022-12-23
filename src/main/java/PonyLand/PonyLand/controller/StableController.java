@@ -144,6 +144,7 @@ public class StableController {
         public String coordinate(String x, String y){
             int intx = Integer.parseInt(x);
             int inty = Integer.parseInt(y);
+
             String itemCategory = "horse";
 
             String id =(String)session.getAttribute("sessionID");

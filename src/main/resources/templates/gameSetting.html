@@ -28,9 +28,8 @@
                 <div class="minigame">게임세팅</div>
                 <div class="gameset">
                     <div>
-                        보유금액 :
-                        <th:text="${dto.getMember_coin()}">
-
+                        <span>보유금액 : </span>
+                        <span th:text="${dto.getMember_coin()}"></span>
                         <input type="text" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin"
                                onkeyup="Coin()">
 

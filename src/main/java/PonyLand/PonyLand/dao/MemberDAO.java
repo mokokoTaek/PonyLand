@@ -65,9 +65,12 @@ public class MemberDAO {
         return MemberMapper.message(dto);
     }
 
+    //racin table에 값들 넣은 코드문
     public void bettingCoin(Map<String, Object> map) {gameMapper.bettingCoin(map);}
 
-//    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
+
+    //게임 시작 버튼 클릭시 member_Coin에서 배팅금액 먼저 뺴는 코드
+    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
 
     public boolean duplCheck(String memberId) {
         int count = MemberMapper.duplCheck(memberId);
@@ -80,8 +83,8 @@ public class MemberDAO {
     public void updateWin(RacingDTO dto) {gameMapper.updateWin(dto);
     }
 
-    public void updateLose(RacingDTO dto) {gameMapper.updateLose(dto);
-    }
+    /*public void updateLose(RacingDTO dto) {gameMapper.updateLose(dto);
+    }*/
 
     public void deleteBet(String id) {gameMapper.deleteBet(id);}
 }

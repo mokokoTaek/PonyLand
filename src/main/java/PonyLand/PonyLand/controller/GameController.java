@@ -67,22 +67,23 @@ public class GameController {
     //게임 후 레이싱 결과화면으로 가는 코드
     @RequestMapping("goGameResult")
     public String goGameResult(String winner, Model model) throws Exception{
-        String betNumber="";
+
         RacingDTO dto = new RacingDTO();
+        String betNumber="";
         dto = service.selectBet((String) session.getAttribute("sessionID"));
 
         //내가 배팅한 말 번호랑 , 승리한 말이랑 번호가 같을 경우 업데이트문 실행, 업데이트 문 실행 후 racing 테이블  dto delete 문 실행
         if (dto.getRacing_horse_seq().equals(winner)) {
             System.out.println("d여긴?");
             service.updateWin(dto);
-            betNumber = dto.getRacing_horse_seq();
+            betNumber=dto.getRacing_horse_seq();
             service.deleteBet((String) session.getAttribute("sessionID"));
 
             //내가 배팅한 말 번호랑 , 승리한 말이랑 번호가 다를 경우 업데이트문 실행, 업데이트 문 실행 후 racing 테이블  dto delete 문 실행
         } else {
             System.out.println("d여긴??!?!??");
-            service.updateLose(dto);
-            betNumber = dto.getRacing_horse_seq();
+            //service.updateLose(dto);
+            betNumber=dto.getRacing_horse_seq();
             service.deleteBet((String) session.getAttribute("sessionID"));
 
         }

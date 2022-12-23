@@ -10,6 +10,7 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -21,14 +22,14 @@
         <div class="">Today : 245</div>
         <div class="">뮤직플레이어 부분</div>
     </div>
-    <form action="/game/gameRun">
+    <form action="" id="form">
         <div class="bg1">
             <div class="bg2">
                 <div style="font-size: 100px; text-align: center">게임세팅</div>
                 <div style="text-align: center">
-                    <span>보유금액 : </span><span th:text="${dto.getMember_coin()}"></span><br>
-                    <span>
-                      <input type="text" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin"
+                    <span>보유금액 : </span><span th:text="${dto.getMember_coin()}" id="myMoney"></span><br>
+                    <span>배팅할금액 :</span><span>
+                      <input type="text" placeholder="보유금액보다 적은 금액을 입력하시오" name="bettingCoin" id="bettingCoin"
                              onkeyup="Coin()">
                     </span> <br>
                     <span>Pony의 수</span>
@@ -48,7 +49,7 @@
                         </select>
                     </span>
                     <br>
-                    <span><button id="gameRun" type="submit">게임시작</button></span>
+                    <span><button id="gameRun" type="button">게임시작</button></span>
                     <input type="hidden" th:value="${dto.getMemberId()}" name="id">
                     <script>
                         function count(type) {
@@ -117,6 +118,18 @@
             $("#resultCoin").text(data)
         })
     }
+
+
+
+        $("#gameRun").on("click", function () {
+            if( parseInt($("#bettingCoin").val())  >  parseInt($("#myMoney").html())   ){
+                alert("배팅 값을 다시 입력하세요.");
+            }else{
+                $("#form").attr("action","/game/gameRun");
+                $("#form").submit();
+            }
+    })
+
 
 
 </script>

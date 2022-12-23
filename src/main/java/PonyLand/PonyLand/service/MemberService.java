@@ -204,19 +204,22 @@ public class MemberService {
             double sum = bettingCoin * 1.25;
             map.put("racing_coin", sum);
             dao.bettingCoin(map);
+            dao.updateCoin(map);
+
 
         } else if (horseCount == 3) {
             double sum = bettingCoin * 1.5;
             map.put("racing_coin", sum);
             dao.bettingCoin(map);
+            dao.updateCoin(map);
 
             //dao.updateCoin(id,sum);
         } else if (horseCount == 4) {
             double sum = bettingCoin * 2;
             map.put("racing_coin", sum);
             dao.bettingCoin(map);
+            dao.updateCoin(map);
 
-            //dao.updateCoin(id,sum);
         }
     }
 
@@ -248,9 +251,9 @@ public class MemberService {
     }
 
     // 졌을때 member문에 coin 업데이트 위한 문
-    public void updateLose(RacingDTO dto) {
+   /* public void updateLose(RacingDTO dto) {
         dao.updateLose(dto);
-    }
+    }*/
 
     // 쿼리문 하나씩만 조회하기 위한 삭제 문
     public void deleteBet(String id) {

@@ -18,10 +18,11 @@ public interface GameMapper {
     void updateWin(RacingDTO dto);
 
     //배팅 실패 시 memeber tabe에 돈 빼는 업데이트 문
-    void updateLose(RacingDTO dto);
+   /* void updateLose(RacingDTO dto);*/
 
     RacingDTO selectBet(String id);
 
 
-
+    //게임 시작 버튼 클릭시 member_Coin에서 배팅금액 먼저 뺴는 코드
+    void updateCoin(Map<String, Object> map);
 }

@@ -62,29 +62,25 @@
                             <div style="border: 1px solid; border-color: black;">
                             </div>
                         </div>
-                        <!--                            </a>-->
                     </div>
                     </a>
+                <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
+                    <button>쪽지 보내기</button></a>
                 </div>
             </div>
+    </div>
             <!-- 메세지 내용 영역 -->
             <div class="mesgs">
                 <!-- 메세지 내용 목록 -->
                 <div class="msg_history" name="contentList">
-
                 </div>
 
                 <div class="send_message">
                 </div>
                 <!-- 메세지 입력란이 올자리 -->
             </div>
-        <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-            <button>쪽지 보내기</button></a>
-        </div>
 
-    </div>
 </div>
-
 <script>
 
     $(".detailBtn").on("click",function (){
@@ -97,6 +93,14 @@
             data: {
                 "no": no
             },
+            success: function (data) {
+
+                // Remove the replyBtn element if it exists
+                $(".mesgs button").remove();
+
+                // Add the replyBtn element
+            }
+
         }).done(function (data) {
                 let target = JSON.parse(data)
             console.log(target);
@@ -125,11 +129,14 @@
                 div.append(p5);
                 $(".msg_history").append(div);
 
-                let replyBtn = $("<button>");
-                replyBtn.text("답장하기");
-                $(".mesgs").append(replyBtn);
+                // let replyBtn = $("<button>");
+                // replyBtn.text("답장하기");
+                // $(".mesgs").append(replyBtn);
 
-                replyBtn.on("click", function() {
+            let replyBtn = $("<button>");
+            replyBtn.text("답장하기");
+            $(".mesgs").append(replyBtn);
+            replyBtn.on("click", function() {
                 window.open("/message/write?replyTo=" + target.send_nick, "", "width=550, height=502");
             });
         });

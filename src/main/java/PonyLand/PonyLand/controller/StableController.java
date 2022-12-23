@@ -111,13 +111,17 @@ public class StableController {
 
         @RequestMapping("toStable")
         public String toStable(Model model,String id){
-
+            String horse = "horse";
+            String bg = "background";
             model.addAttribute("id",id);
             model.addAttribute("dto",service1.findById(id));
             model.addAttribute("itemlist",service2.findHorseById(id));
-            model.addAttribute("nowdto", service2.findByItemStatus(id));
+            model.addAttribute("bglist",service2.findBgById(id));
+            model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
+            model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
             return "stable";
         }
+
 
         @RequestMapping("update")
         @ResponseBody
@@ -125,8 +129,9 @@ public class StableController {
 
             System.out.println(imgSeq);
             ItemDTO dto = service2.findByItemSeq(imgSeq);
+            String itemCategory = dto.getItemCategory();
             service2.updateItem(dto);
-            service2.updateOtherStatus(imgSeq);
+            service2.updateOtherStatus(imgSeq,itemCategory);
 
             Gson g = new Gson();
             String stringDto = g.toJson(dto);
@@ -140,9 +145,11 @@ public class StableController {
             int intx = Integer.parseInt(x);
             int inty = Integer.parseInt(y);
 
+            String itemCategory = "horse";
+
             String id =(String)session.getAttribute("sessionID");
-            System.out.println(id);
-            ItemDTO dto = service2.findByItemStatus(id);
+
+            ItemDTO dto = service2.findByItemStatus(id,itemCategory);
 
             dto.setItemX(intx);
             dto.setItemY(inty);

@@ -28,7 +28,7 @@ public class MessageController {
 
     //보낸 쪽지 & 받은 쪽지 뿌리기 기능
     @GetMapping("message")
-    public String message(MemberDTO dto, Model model){
+    public String message(Model model){
        String id = (String)session.getAttribute("sessionID");
         model.addAttribute("id", id);
         List<MessageDTO> list = service.selectAll(id);

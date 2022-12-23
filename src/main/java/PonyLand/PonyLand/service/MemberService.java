@@ -189,6 +189,7 @@ public class MemberService {
 
     }
     public String message(MemberDTO dto) {
+        System.out.println(dto);
         return dao.message(dto);
     }
 

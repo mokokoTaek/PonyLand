@@ -6,8 +6,28 @@
     <link rel="stylesheet" href="../static/style.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
+    <style>
+
+        #target {
+            position:absolute;
+            z-index: 5;
+            display: flex;
+        }
+
+        #bg4 {
+            position:relative;
+        }
+    </style>
 </head>
 
+<style>
+    textarea{
+        resize:none;
+        border: solid transparent;
+
+
+    }
+</style>
 <body>
 <div class="container">
 
@@ -40,13 +60,12 @@
             <div class="profile2">
                 <form action="/member/message">
 
-                    <div><textarea class="loginbg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                    <div><textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
                     <button class="modifybtn" type="button" >수정하기</button>
                     <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
-                    <button class="modifybtn2" type="button">변경</button>
-
-            </form>
+                    <button class="modifybtn2" type="button" >변경</button>
             </div>
+
             <div class="profile3">
                 <div>
                     <div th:if="${id}== ${sessionID}">
@@ -59,14 +78,14 @@
                         <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
                         <input type="hidden" th:value="${id}" id="hiddenProposed">
                         <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
-
+                        </form>
                     </div>
                 </div>
                 <div>
                     <div th:if="${id}== ${sessionID}">
 
                         <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
-
+                        </form>
                     </div>
                 </div>
                 <div>
@@ -90,7 +109,7 @@
         <div class="bg3">
             <div class="bg3-1">
                 <div class="updatednews">
-                    <div>Updated News</div>
+                    <div style="font-size: 30px; color: #F4A127" >사진첩 최근글</div>
                     <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
@@ -98,7 +117,7 @@
                         방명록 0 /  <div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 0/ <div  th:text="${list1}"></div>
+                        사진첩 0/ <div   th:text="${list1}"></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64
@@ -109,8 +128,13 @@
                 <div class="bg3-2-1-title">
                     MiniRoom
                 </div>
-                <div class="bg3-2-1">
-                    <div>시이이팔 뮤직플레이어 안되네</div>
+                <div class="bg3-2-1" id="bg4">
+<!--                    여기서부터 미니룸 div-->
+<!--                    <div class="bg4"  >-->
+
+                        <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
+
+<!--                    </div>-->
                 </div>
                 <div class="bg3-2-2">
                     >내마구간
@@ -135,6 +159,8 @@
 <script>
     $(".modifybtn").on("click",function(){
         $('textarea').removeAttr("readonly");
+            $(this).hide();
+            $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
     })
 </script>
@@ -180,32 +206,30 @@
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
 
+    $(function(){
+
+        let onloadx = [[${nowdto.itemX}]];
+        let onloady = [[${nowdto.itemY}]];
+
+        document.getElementById("target").style.left = onloadx + 'px';
+        document.getElementById("target").style.top = onloady + 'px';
+
+        $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.getItemName()}]]+")","background-repeat":"no-repeat",
+            "background-size":"cover"})
+        // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+    })
+
 
 </script>
 </body>
 
-
-<!--&lt;!&ndash; 음악 플레이어 스크립트 &ndash;&gt;-->
-<!--<script type="text/javascript" src="https://www.wikplayer.com/code.js"-->
-<!--        data-config="{'skin':'skins/wikfull/ribbonOrange/skin.css','volume':51,'autoplay':true,'shuffle':false,'repeat':0,'showcomment':false,'marqueetexton':true,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'},{'title':'Vain','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'},{'title':'Trip','url':'https%3A%2F%2Fdrive.google.com%2Fuc%3Fexport%3Ddownload%26id%3D1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}]}"></script>-->
-<!--&lt;!&ndash; 음악 플레이어 끝나는 곳 &ndash;&gt;-->
-
-<!-- SCM Music Player https://www.scmplayer.net -->
-
-
-<!--음악 스크립트
-<script type="text/javascript" src="https://www.scmplayer.net/script.js"
-        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,
-        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}
-        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}
-        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>
--->
-
-
-
-
-
-<!-- SCM Music Player script end -->
+<!--&lt;!&ndash; SCM Music Player https://www.scmplayer.net &ndash;&gt;-->
+<!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
+<!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
+<!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
+<!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
+<!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>-->
+<!--&lt;!&ndash; SCM Music Player script end &ndash;&gt;-->
 
 
 </html>

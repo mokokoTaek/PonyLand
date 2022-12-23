@@ -237,6 +237,7 @@ body {
 }
 
 .profile2 {
+    position: relative;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -254,6 +255,8 @@ body {
 }
 
 .profile4{
+    position: relative;
+    bottom: 30px;
     width: 80%;
     flex-direction: column;
 }
@@ -469,6 +472,17 @@ button:hover {
     color: white;
     cursor: pointer;
 }
+
+
+.textareabg{
+    display: flex;
+    width: 310px;
+    height: 100px;
+    background: white;
+    border-radius: 8px;
+    font-size: 25px;
+}
+
 
 
 /*--------------------------------guestbook*/

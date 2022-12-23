@@ -114,7 +114,7 @@ public class MemberController {
     @RequestMapping("message")
     public String message(MemberDTO dto) {
         service.message(dto);
-        return "redirect:/member/toMinipage?id="+dto.getMemberId();
+        return "redirect:/member/toMinipage?&memberId="+dto.getMemberId();
     }
 
     @RequestMapping("imgupdate")

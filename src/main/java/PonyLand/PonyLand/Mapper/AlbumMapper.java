@@ -17,6 +17,7 @@ public interface AlbumMapper {
 
     int count();   //게시글 총 갯수
 
+//    String selectHost(int album_seq);
     List<AlbumDTO> select();
 
 //    List<AlbumDTO> replycount();

@@ -33,6 +33,10 @@ public class AlbumDAO {
     public List<AlbumDTO> select(){
         return albumMapper.select();
     }
+
+//    public  String selectHost(int album_seq) {
+//        return albumMapper.selectHost(album_seq);
+//    }
 //    public List<AlbumDTO> replycount() {
 //        return albumMapper.replycount();
 //    }

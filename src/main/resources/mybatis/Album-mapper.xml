@@ -33,6 +33,10 @@
 
     </select>
 
+<!--    <select id="selectHost" resultType="PonyLand.PonyLand.dto.AlbumDTO">-->
+<!--            select album_host from album where album_seq = #{Album_seq}-->
+<!--    </select>-->
+
 <!--    <select id="replycount" resultType="int">-->
 
 <!--        select * from-->

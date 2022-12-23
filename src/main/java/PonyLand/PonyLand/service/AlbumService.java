@@ -35,6 +35,9 @@ public class AlbumService {
         return dao.select();
     }
 
+//    public String selectHost(int album_seq){
+//        System.out.println("권준구 : 서비스 앨범 씨컨스 값 : "+album_seq);
+//        return dao.selectHost(album_seq);}
 //    public List<AlbumDTO> replycount() {
 //        return dao.replycount();
 //    }

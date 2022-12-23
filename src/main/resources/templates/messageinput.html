@@ -23,7 +23,7 @@
         }
 
         .title {
-            width: 50%;
+            width: 48%;
             margin: 20px 0;
             margin: 0 auto;   /* add this line */
             border-color: lightgray;
@@ -47,6 +47,11 @@
         body {
             box-shadow: 0 0 0 10px #aeddf2;
         }
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+        }
+
 
     </style>
 </head>
@@ -61,8 +66,12 @@
             보낸이 : <input type="hidden" name="send_nick" th:text="${id}  + ' (이)가'" th:value="${id}"/>
         </div>
 
-        <div class="field half second">
+        <div th:if="${param.replyTo == null}" class="field half second">
             받는이 : <input type="text" placeholder="받는 사람" name="recv_nick"> 에게
+        </div>
+
+        <div th:if="${param.replyTo != null}" class="field half second">
+            받는이 : <input type="text" placeholder="받는 사람" name="recv_nick" th:value="${param.replyTo}" th:if="${param.replyTo != null}"> 에게
         </div>
         <br/><br/>
         <div class="title">

@@ -6,6 +6,21 @@
     <link rel="stylesheet" href="../static/style.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
+    <style>
+
+        #target {
+            position:absolute;
+            z-index: 5;
+            display: flex;
+            transform:translate(-50%, -50%);
+        }
+
+        #bg4 {
+            width: 480px;
+            height: 380px;
+            position:relative;
+        }
+    </style>
 </head>
 
 <body>
@@ -110,7 +125,12 @@
                     MiniRoom
                 </div>
                 <div class="bg3-2-1">
-                    <div>시이이팔 뮤직플레이어 안되네</div>
+<!--                    여기서부터 미니룸 div-->
+                    <div class="bg4" id="bg4" >
+
+                        <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
+
+                    </div>
                 </div>
                 <div class="bg3-2-2">
                     >내마구간
@@ -179,6 +199,19 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
+
+    $(function(){
+
+        let onloadx = [[${nowdto.itemX}]];
+        let onloady = [[${nowdto.itemY}]];
+
+        document.getElementById("target").style.left = onloadx + 'px';
+        document.getElementById("target").style.top = onloady + 'px';
+
+        $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.itemName}]]+")","background-repeat":"no-repeat",
+            "background-size":"cover"})
+        // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+    })
 
 
 </script>

@@ -4,6 +4,7 @@ import PonyLand.PonyLand.dto.AlbumDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.service.AlbumService;
 import PonyLand.PonyLand.service.GuestbookService;
+import PonyLand.PonyLand.service.ItemService;
 import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class HomeController {
 
     @Autowired
     private MemberService service;
+
+    @Autowired
+    private ItemService service2;
 
     @Autowired
     private AlbumService albumService;
@@ -56,8 +60,13 @@ public class HomeController {
 
         model.addAttribute("nowday",nowday);
 
+        String horse = "horse";
+        String bg = "background";
 
+        model.addAttribute("miniroomdto",service.findById(id));
 
+        model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
+        model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
@@ -66,7 +75,7 @@ public class HomeController {
         model.addAttribute("list2",dto2); //Guestbook 게시글 총 갯수 뿌림.
         model.addAttribute("list3",dto3);  //main에 최근 사진첩 게시글 제목 뿌리기.
 
-
+        System.out.println(service2.findByItemStatus(id,bg).getItemName());
         return "main";
     }
 

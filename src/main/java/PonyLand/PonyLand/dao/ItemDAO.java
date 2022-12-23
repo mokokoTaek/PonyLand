@@ -17,6 +17,10 @@ public class ItemDAO {
         return sdjr.findAllByItemMemberIdAndItemCategory(itemMemberId,itemCategory);
     }
 
+    public List<ItemDTO> findBgById(String itemMemberId, String itemCategory){
+        return sdjr.findAllByItemMemberIdAndItemCategory(itemMemberId,itemCategory);
+    }
+
     public void updateItem(ItemDTO dto){
         sdjr.save(dto);
     }
@@ -25,12 +29,12 @@ public class ItemDAO {
         return sdjr.findByItemSeq(itemSeq);
     }
 
-    public void updateOtherStatus(int itemSeq){
-        sdjr.updateOtherStatus(itemSeq);
+    public void updateOtherStatus(int itemSeq,String itemCateogry){
+        sdjr.updateOtherStatus(itemSeq,itemCateogry);
     }
 
-    public ItemDTO findByItemStatus(String id, int itemStatus){
-        return sdjr.findByItemMemberIdAndItemStatus(id,itemStatus);
+    public ItemDTO findByItemStatus(String id, int itemStatus, String itemCategory){
+        return sdjr.findByItemMemberIdAndItemStatusAndItemCategory(id,itemStatus,itemCategory);
     }
     public void updateCoordinate(ItemDTO dto){
         sdjr.save(dto);

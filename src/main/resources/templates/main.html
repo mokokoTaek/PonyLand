@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="../static/style.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
+    <style>
+
+        #target {
+            position:absolute;
+            z-index: 5;
+            display: flex;
+        }
+
+        #bg4 {
+            position:relative;
+        }
+    </style>
 </head>
 
 <style>
@@ -97,7 +109,7 @@
         <div class="bg3">
             <div class="bg3-1">
                 <div class="updatednews">
-                    <div>Updated News</div>
+                    <div style="font-size: 30px; color: #F4A127" >사진첩 최근글</div>
                     <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
@@ -105,7 +117,7 @@
                         방명록 0 /  <div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 0/ <div  th:text="${list1}"></div>
+                        사진첩 0/ <div   th:text="${list1}"></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64
@@ -116,8 +128,13 @@
                 <div class="bg3-2-1-title">
                     MiniRoom
                 </div>
-                <div class="bg3-2-1">
-                    <div>시이이팔 뮤직플레이어 안되네</div>
+                <div class="bg3-2-1" id="bg4">
+<!--                    여기서부터 미니룸 div-->
+<!--                    <div class="bg4"  >-->
+
+                        <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
+
+<!--                    </div>-->
                 </div>
                 <div class="bg3-2-2">
                     >내마구간
@@ -174,7 +191,6 @@
                 console.log("error!");
             });
 
-        <a href="/member/writer"> <button>이동</button> </a>
     }
     function openChild(){
         let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
@@ -189,6 +205,19 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
+
+    $(function(){
+
+        let onloadx = [[${nowdto.itemX}]];
+        let onloady = [[${nowdto.itemY}]];
+
+        document.getElementById("target").style.left = onloadx + 'px';
+        document.getElementById("target").style.top = onloady + 'px';
+
+        $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.getItemName()}]]+")","background-repeat":"no-repeat",
+            "background-size":"cover"})
+        // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+    })
 
 
 </script>

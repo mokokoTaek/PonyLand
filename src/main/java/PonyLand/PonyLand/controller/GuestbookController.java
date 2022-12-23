@@ -64,6 +64,7 @@ public class GuestbookController {
         MemberDTO dto = memberService.findById(guestbook_host);
         List<GuestbookDTO> list = GuestbookService.select();
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
+        System.out.println(list1);
         model.addAttribute("id", guestbook_host);
         model.addAttribute("dto", list);
         model.addAttribute("list1", list1);

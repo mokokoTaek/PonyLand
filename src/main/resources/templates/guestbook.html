@@ -106,7 +106,7 @@
 
 
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
-                            <div class="gbcmttitle">
+                            <div class="gbcmttitle" th:text="${list1.getGuestbook_comment_contents()}">
                                 <div style="font-size: 13px">
                                     <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
                                 </div>
@@ -115,8 +115,10 @@
                                 </div>
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
+
                             <button type="button" class="guestbook_comment_deleteBtn">삭제</button>
-                            <input type="hidden" th:value="${list1.getParent_seq()}">
+                            <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
+
                         </div>
 
 
@@ -129,7 +131,7 @@
                                 <input class="gbcmt" type="text" maxlength="45" placeholder="댓글을 입력하세요(최대45자)">
                             </div>
                             <button class="gbbutton" type="button">확인</button>
-                            <input type="hidden" th:value="${list.getGuestbook_seq()}">
+                            <input type="hidden"  th:value="${list.getGuestbook_seq()}" >
                         </div>
                         <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                     </div>
@@ -154,12 +156,11 @@
 </body>
 
 <script>
+
     // 방명록 댓들 삭제 기능
     $(".guestbook_comment_deleteBtn").on("click", function(){
        let guestbook_comment_seq = $(this).next().val();
-        console.log(guestbook_comment_seq);
        location.href = "/GuestbookComment/delete?guestbook_comment_seq="+guestbook_comment_seq;
-       $(this).next().focus();
     })
 
     // 방명록 글 삭제하는 코드
@@ -179,17 +180,19 @@
         $(".gbbutton").on("click", function () {
             let guestbook_seq = $(this).next().val();
             let guestbook_comment_contents = $(this).prev().find('input').val();
-            console.log(guestbook_seq + ":" +guestbook_comment_contents)
+            let a = $(this).closest().children().val();
+            console.log(a);
 
-            $.ajax({
-                url: "/GuestbookComment/insert",
-                type: "post",
-                data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents}
-            }).done(function (data) {
-                location.reload();
-            }).fail(function (data) {
-                console.log("ㅋㅋ 실패")
-            })
+            // $.ajax({
+            //     url: "/GuestbookComment/insert",
+            //     type: "post",
+            //     data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents}
+            // }).done(function (data) {
+            //     $(".gbcmt2").load(location.href+".gbcmt2")
+            //
+            // }).fail(function (data) {
+            //     console.log("ㅋㅋ 실패")
+            // })
 
         })
     })

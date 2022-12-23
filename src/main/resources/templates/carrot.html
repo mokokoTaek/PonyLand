@@ -195,34 +195,36 @@
                 <div class="coinbalance">보유한 당근코인</div>
                 <div class="coinprice">
                     <p th:text="${coin}  + ' 당근코인'"></p>
-            </div>
-            <div class="balancebox">
-                <div class="coinbalance">충전 당근코인</div>
-                <div class="coinprice"><p id="chargeValue">0 당근코인</p></div>
+                </div>
+                <div class="balancebox">
+                    <div class="coinbalance">충전 당근코인</div>
+                    <div class="coinprice"><p id="chargeValue">0 당근코인</p></div>
+                </div>
+
+                <div class="balancebox">
+                    <button onclick="requestPay()" class="paybutton" id="result">결제하기</button>
+
+                </div>
             </div>
 
-            <div class="balancebox">
-                <button onclick="requestPay()" class="paybutton" id="result">결제하기</button>
-
-            </div>
         </div>
-
     </div>
-</div>
-<div class="side">
-    <button class="btnmain2">마구간</button>
-    <a th:href="@{shop.html}">
-        <button class="btnmain2">게임</button>
-    </a>
-    <a th:href="@{/}">
-        <button class="btnmain2">상점</button>
-    </a>
-    <button class="btnmain1">충전</button>
-</div>
+    <div class="side">
+        <button class="btnmain2">마구간</button>
+        <a th:href="@{shop.html}">
+            <button class="btnmain2">게임</button>
+        </a>
+        <a th:href="@{/}">
+            <button class="btnmain2">상점</button>
+        </a>
+        <a th:href="@{/stable/charge}">
+            <button class="btnmain1">충전</button>
+        </a>
+    </div>
 
 
 
-<script>
+    <script>
 
 
         // Get a reference to all the buttons and the result button
@@ -243,36 +245,36 @@
             result.innerText = name + " 결제하기";
             carrot = "10 당근코인"
             amount ="1000"
-    });
+        });
         button2.addEventListener('click', function() {
             name = button2.innerText;
             result.innerText = name + " 결제하기";
             carrot = "20 당근코인"
             amount ="2000"
-    });
+        });
         button3.addEventListener('click', function() {
-        result.innerText = button3.innerText + " 결제하기";
+            result.innerText = button3.innerText + " 결제하기";
             carrot = "32 당근코인"
             amount ="3000"
-    });
+        });
         button4.addEventListener('click', function() {
-        result.innerText = button4.innerText + " 결제하기";
+            result.innerText = button4.innerText + " 결제하기";
             carrot = "55 당근코인"
             amount ="5000"
-    });
+        });
         button5.addEventListener('click', function() {
-        result.innerText = button5.innerText + " 결제하기";
+            result.innerText = button5.innerText + " 결제하기";
             carrot = "115 당근코인"
             amount ="10000"
-    });
+        });
         button6.addEventListener('click', function() {
-        result.innerText = button6.innerText + " 결제하기";
+            result.innerText = button6.innerText + " 결제하기";
             carrot = "350 당근코인"
             amount ="30000"
-    });
+        });
 
 
-const numberStr2 = "${dto.product_price }";
+        const numberStr2 = "${dto.product_price }";
         const number2 = numberStr.replace(/,/g, "");
         var result2 = number2
         function requestPay() {
@@ -320,7 +322,7 @@ const numberStr2 = "${dto.product_price }";
             });
         }
 
-</script>
+    </script>
 </body>
 
 </html>

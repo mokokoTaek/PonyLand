@@ -176,7 +176,7 @@ button:hover {
     border-bottom: 4px solid #F4A127;
 }
 .profile1{
-    margin-bottom: 120px;
+    margin-bottom: 10px;
     display: flex;
     width: 50%;
     height: 250px;
@@ -187,9 +187,34 @@ button:hover {
     justify-content: center;
     overflow: hidden;
 }
+
+.control{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.profileimg{
+    background-color: #5a3d2b;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 30px;
+    color: #F4A127;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    border-top: 0px solid #F4A127;
+    border-right: 0px solid #F4A127;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
+}
+
+
+
 .profilebtn {
     width: 170px;
-    height: 50px;
+    height: 40px;
     background: #5a3d2b;
     font-size: 20px;
     color: #F4A127;
@@ -202,7 +227,7 @@ button:hover {
 }
 .profilebtn1 {
     width: 100px;
-    height: 50px;
+    height: 40px;
     background: #5a3d2b;
     font-size: 20px;
     color: #F4A127;
@@ -215,7 +240,7 @@ button:hover {
 }
 .profilebtn2 {
     width: 100px;
-    height: 50px;
+    height: 40px;
     background: #5a3d2b;
     font-size: 20px;
     color: #F4A127;
@@ -239,7 +264,8 @@ button:hover {
 }
 
 .modifybtn {
-    height: 50px;
+    height: 40px;
+    width: 100px;
     background: #5a3d2b;
     font-size: 20px;
     color: #F4A127;
@@ -252,7 +278,7 @@ button:hover {
 }
 .modifybtn1 {
     width: 100px;
-    height: 50px;
+    height: 40px;
     background: #5a3d2b;
     font-size: 20px;
     color: #F4A127;
@@ -265,7 +291,7 @@ button:hover {
 }
 .modifybtn2 {
     width: 100px;
-    height: 50px;
+    height: 40px;
     background: #5a3d2b;
     font-size: 20px;
     color: #F4A127;

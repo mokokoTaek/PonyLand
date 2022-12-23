@@ -18,6 +18,11 @@ public class ItemService {
         return dao.findHorseById(itemMeberId,itemCategory);
     }
 
+    public List<ItemDTO> findBgById(String itemMeberId){
+        String itemCategory = "background";
+        return dao.findHorseById(itemMeberId,itemCategory);
+    }
+
     public void updateItem(ItemDTO dto){
         dto.setItemStatus(1);
         dao.updateItem(dto);
@@ -28,14 +33,14 @@ public class ItemService {
         return dao.findByItemSeq(seq);
     }
 
-    public void updateOtherStatus(String imgSeq){
+    public void updateOtherStatus(String imgSeq,String itemCategory){
         int itemSeq = Integer.parseInt(imgSeq);
-        dao.updateOtherStatus(itemSeq);
+        dao.updateOtherStatus(itemSeq,itemCategory);
     }
 
-    public ItemDTO findByItemStatus(String id){
+    public ItemDTO findByItemStatus(String id,String itemCategory){
         int itemStatus = 1;
-        return dao.findByItemStatus(id,itemStatus);
+        return dao.findByItemStatus(id,itemStatus,itemCategory);
     }
 
     public void updateCoordinate(ItemDTO dto){

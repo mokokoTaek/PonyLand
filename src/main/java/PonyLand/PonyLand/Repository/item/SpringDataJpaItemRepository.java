@@ -20,9 +20,9 @@ public interface SpringDataJpaItemRepository extends JpaRepository<ItemDTO, Inte
 
     @Modifying(clearAutomatically = true)
     @Transactional
-    @Query(nativeQuery = true, value = "update item set item_status=0 where not item_seq=:itemSeq")
-    void updateOtherStatus(@Param("itemSeq") int itemSeq);
+    @Query(nativeQuery = true, value = "update item set item_status=0 where item_category=:itemCategory and not item_seq=:itemSeq")
+    void updateOtherStatus(@Param("itemSeq") int itemSeq, @Param("itemCategory") String itemCategory);
 
     @Transactional
-    ItemDTO findByItemMemberIdAndItemStatus(String itemMemberId, int itemStatus);
+    ItemDTO findByItemMemberIdAndItemStatusAndItemCategory(String itemMemberId, int itemStatus, String itemCategory);
 }

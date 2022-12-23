@@ -79,12 +79,13 @@
                 <div class="bgcontent" th:each="list:${dto}">
 
                     <div class="gbtitle">
-                        <div><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
+                        <div style="margin-left: 10px"><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
                         <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
-                        <div>
-                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">글삭제</a>
-                            <button class="gowrite" type="button" style="padding: 0px">글쓰기</button>
+                        <div style="margin-right: 10px">
+                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">삭제</a>
+                            <span> | </span>
+                            <button class="gowrite" type="button" style="padding: 0px">작성</button>
                         </div>
                     </div>
 

@@ -34,6 +34,7 @@ public class ItemDAO {
     }
 
     public ItemDTO findByItemStatus(String id, int itemStatus, String itemCategory){
+
         return sdjr.findByItemMemberIdAndItemStatusAndItemCategory(id,itemStatus,itemCategory);
     }
     public void updateCoordinate(ItemDTO dto){

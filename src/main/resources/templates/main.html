@@ -36,11 +36,11 @@
             <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
         </div>
         <div class="">
-            <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
-            <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
-            <!--                            Your browser does not support the audio element.-->
-            <!--                        </audio>-->
-            <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+<!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+<!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+<!--                            Your browser does not support the audio element.-->
+<!--                        </audio>-->
+<!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
         </div>
     </div>
 
@@ -129,12 +129,12 @@
                     MiniRoom
                 </div>
                 <div class="bg3-2-1" id="bg4">
-                    <!--                    여기서부터 미니룸 div-->
-                    <!--                    <div class="bg4"  >-->
+<!--                    여기서부터 미니룸 div-->
+<!--                    <div class="bg4"  >-->
 
                     <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
 
-                    <!--                    </div>-->
+<!--                    </div>-->
                 </div>
                 <div class="bg3-2-2">
                     >내마구간
@@ -191,7 +191,6 @@
                 console.log("error!");
             });
 
-        <a href="/member/writer"> <button>이동</button> </a>
     }
     function openChild(){
         let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
@@ -215,7 +214,7 @@
         document.getElementById("target").style.left = onloadx + 'px';
         document.getElementById("target").style.top = onloady + 'px';
 
-        $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.itemName}]]+")","background-repeat":"no-repeat",
+        $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.getItemName()}]]+")","background-repeat":"no-repeat",
             "background-size":"cover"})
         // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
     })

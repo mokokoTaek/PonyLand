@@ -162,8 +162,12 @@
                 <div>
                     보유 말
                 </div>
-                <div class="itembox">
-                    말 이미지 있는 곳
+                <div class="horse">
+                    <div th:each="i : ${itemlist}" style="width: 100%; height: 100px;">
+                        <input type="hidden" th:value="${i.itemSeq}">
+                        <input type="radio" name="radioBtn" class="radioBtn">
+                        <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true" ondrag="drag_handler(event)">
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,7 +200,7 @@
             </div>
             <div style="margin-bottom: 50px"></div>
             <div class="furniture">
-                <div th:each="i : ${itemlist}" style="width: 100%; height: 100px;">
+                <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">
                     <input type="hidden" th:value="${i.itemSeq}">
                     <input type="radio" name="radioBtn" class="radioBtn">
                     <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true" ondrag="drag_handler(event)">
@@ -324,7 +328,8 @@
 
         document.getElementById("target").style.left = onloadx + 'px';
         document.getElementById("target").style.top = onloady + 'px';
-
+        console.log(onloadx)
+        console.log(onloady)
         $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.itemName}]]+")","background-repeat":"no-repeat",
             "background-size":"cover"})
         // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")

@@ -12,7 +12,7 @@
 
 
     <select id="selectAll" resultType="PonyLand.PonyLand.dto.AlbumDTO">
-        select * from Album order by 1
+        select * from Album order by Album_seq desc
     </select>
 
     <delete id="delete">

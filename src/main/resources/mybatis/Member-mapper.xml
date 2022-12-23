@@ -6,6 +6,7 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.MemberMapper">
 
+
     <update id ="update">
         update member set member_pw =#{memberPw} ,member_name=#{member_name},member_phone=#{member_phone},member_email=#{member_email} where member_id=#{memberId}
     </update>

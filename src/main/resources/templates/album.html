@@ -81,11 +81,15 @@
                                 <input type="hidden" th:value="${id}" id="host" />
                                 <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
                                 <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
-                                <div><th th:text="NO.+${list.Album_seq}">글번호</th></div>
+                                <div style="margin-left: 10px"><th th:text="NO.+${list.Album_seq}">글번호</th></div>
                                 <div><th th:text="${#dates.format(list.getAlbum_write_date(), 'yyyy-MM-dd HH:mm')}">시간</th></div>
-                                <div><th><a th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">글 수정</a></th></div>
-                                <div><th><a th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">글 삭제</a></th></div>
-                                <div><button id="write" class="alwritebtn" type="button">글쓰기</button></div>
+                                <div style="margin-right: 10px">
+                                    <a class="anchor" th:href="@{/Album/update?(Album_seq=${list.Album_seq})}">수정</a>
+                                    <span>|</span>
+                                    <a class="anchor" th:href="@{/Album/delete?(Album_seq=${list.Album_seq})}">삭제</a>
+                                    <span>|</span>
+                                    <button id="write" class="alwritebtn" type="button" style="padding: 0px">작성</button>
+                                </div>
                             </tr>
                         </div>
                         <div class="alpic">

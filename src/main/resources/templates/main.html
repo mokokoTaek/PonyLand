@@ -12,12 +12,9 @@
             position:absolute;
             z-index: 5;
             display: flex;
-            transform:translate(-50%, -50%);
         }
 
         #bg4 {
-            width: 480px;
-            height: 380px;
             position:relative;
         }
     </style>
@@ -39,11 +36,11 @@
             <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
         </div>
         <div class="">
-<!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
-<!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
-<!--                            Your browser does not support the audio element.-->
-<!--                        </audio>-->
-<!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+            <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+            <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+            <!--                            Your browser does not support the audio element.-->
+            <!--                        </audio>-->
+            <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
         </div>
     </div>
 
@@ -131,13 +128,13 @@
                 <div class="bg3-2-1-title">
                     MiniRoom
                 </div>
-                <div class="bg3-2-1">
-<!--                    여기서부터 미니룸 div-->
-                    <div class="bg4" id="bg4" >
+                <div class="bg3-2-1" id="bg4">
+                    <!--                    여기서부터 미니룸 div-->
+                    <!--                    <div class="bg4"  >-->
 
-                        <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
 
-                    </div>
+                    <!--                    </div>-->
                 </div>
                 <div class="bg3-2-2">
                     >내마구간
@@ -162,8 +159,8 @@
 <script>
     $(".modifybtn").on("click",function(){
         $('textarea').removeAttr("readonly");
-            $(this).hide();
-            $('<button id="cancel-button">취소</button>').insertAfter(this);
+        $(this).hide();
+        $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
     })
 </script>

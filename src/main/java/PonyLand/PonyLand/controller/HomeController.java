@@ -46,15 +46,13 @@ public class HomeController {
         int dto2 = guestbookService.count();//Guestbook  게시글 총 갯수 가져오기
 
         List<AlbumDTO> dto3 = albumService.select(); //main에 최근 사진첩 게시글 제목 뽑아오기
-        List<AlbumDTO> dto4 = albumService.selectAll(); // 게시글 리스트를 가져와야 뽑아와지더라고요?
 
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_MONTH, -7); //7일간 보이도록 하기위해서.
-        String nowday = format.format(cal.getTime());
-
-        model.addAttribute("nowday",nowday);
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        Calendar cal = Calendar.getInstance();
+//        cal.add(Calendar.DAY_OF_MONTH, -7); //7일간 보이도록 하기위해서.
+//        String nowday = format.format(cal.getTime());
+//
+//        model.addAttribute("nowday",nowday);
 
 
 

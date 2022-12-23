@@ -146,6 +146,7 @@ class GameScene3 extends Phaser.Scene {
         this.bg3.tilePositionX += 9;
     }
 
+
     hitCactusPlayer1() {
         alert("1번말 우승 !");
         console.log("1번말 우승")

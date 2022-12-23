@@ -107,6 +107,7 @@ class GameScene2 extends Phaser.Scene{
     }
 
 
+
     hitCactusPlayer1(){
             alert("1번말 우승 !");
             console.log("1번말 우승");
@@ -117,6 +118,4 @@ class GameScene2 extends Phaser.Scene{
         console.log("2번말 우승")
         location.href = "/game/goGameResult?winner=2";
     }
-
-
 }

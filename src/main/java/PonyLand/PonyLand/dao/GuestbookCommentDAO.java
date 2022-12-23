@@ -14,6 +14,11 @@ public class GuestbookCommentDAO {
 
     public int insert(GuestbookCommentDTO dto) {return GuestbookCommentMapper.insert(dto);}
 
+    public int delete(int guestbook_comment_seq) {
+
+        return GuestbookCommentMapper.delete(guestbook_comment_seq);
+    }
+
     public List<GuestbookCommentDTO> select() {
 
         return GuestbookCommentMapper.select();}

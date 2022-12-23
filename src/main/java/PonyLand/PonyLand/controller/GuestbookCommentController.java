@@ -34,4 +34,10 @@ public class GuestbookCommentController {
         return "Guestbook";
     }
 
+    @RequestMapping("delete")
+    public String guestbook_comment_delete(int guestbook_comment_seq){
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+guestbook_comment_seq);
+        service.delete(guestbook_comment_seq);
+        return "guestbook";
+    }
 }

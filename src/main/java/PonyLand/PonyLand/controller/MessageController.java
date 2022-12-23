@@ -26,12 +26,15 @@ public class MessageController {
     @Autowired
     private HttpServletResponse response;
 
+    //보낸 쪽지 & 받은 쪽지 뿌리기 기능
     @GetMapping("message")
     public String message(MemberDTO dto, Model model){
        String id = (String)session.getAttribute("sessionID");
         model.addAttribute("id", id);
         List<MessageDTO> list = service.selectAll(id);
+        List<MessageDTO> list2 = service.sentMailAll(id);
         model.addAttribute("list",list);
+        model.addAttribute("list2", list2);
         return "message";
     }
     @GetMapping("write")
@@ -43,6 +46,7 @@ public class MessageController {
         return "messageinput";
    }
 
+    //쪽지 보내기
     @RequestMapping("insert" )
     public void insert(MessageDTO dto) throws Exception {
         service.insert(dto);
@@ -54,19 +58,7 @@ public class MessageController {
         out.close();
     }
 
-//    @RequestMapping("detail")
-//    public String detail(MessageDTO dto, Model model,String no){
-//        System.out.println("메세지 내용 들어오니? " + Integer.parseInt(no));
-//
-//        String id = (String)session.getAttribute("sessionID");
-//        model.addAttribute("id", id);
-//        MessageDTO dto2 = service.selectBySeq(dto.getNo());
-//        List<MessageDTO> list = service.selectAll(id);
-//        model.addAttribute("list",list);
-//        model.addAttribute("no", dto.getNo());
-//        model.addAttribute("dto", dto2);
-//        return "message";
-//    }
+    //쪽지 디테일에 정보 뿌리기
     @ResponseBody
     @RequestMapping("detail")
     public String detail(String no) {

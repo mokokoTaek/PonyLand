@@ -26,12 +26,12 @@
             <div class="bg2">
                 <div style="font-size: 100px; text-align: center">게임세팅</div>
                 <div style="text-align: center">
-                    <span>보유금액 : </span><span th:text="${dto.getMember_coin()}"></span><br>
+                    <span>보유금액 : </span><span id="member_coin" th:text="${dto.getMember_coin()}"></span><br>
                     <span>
                       <input type="text" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin"
                              onkeyup="Coin()">
                     </span>
-                    <span></span>
+                    <span id="currentCoinArea"></span>
                     <br>
                     <span>Pony의 수</span>
                     <button onclick="count('minus'),Coin()" type="button">-</button>
@@ -107,7 +107,6 @@
     function Coin() {
         let bettingCoin = $("#bettingCoin").val();
         let horseCount = $("#horseCount").html();
-
         console.log(bettingCoin + ":" + horseCount);
 
         $.ajax({
@@ -120,6 +119,19 @@
         })
     }
 
+    //남은 금액
+    $("#batting_coin").on("keyup",function(){
+        let member_coin = $("#member_coin").html();
+        let batting_coin = $("#batting_coin").val();
+        $.ajax({
+            url : "/game/currentCoin",
+            type : "post",
+            data : {"member_coin" : member_coin, "batting_coin" : batting_coin},
+            dataType: "json"
+        }).done(function(data){
+            $("#currentCoinArea").append(data);
+        })
+    })
 
 </script>
 

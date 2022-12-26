@@ -51,6 +51,10 @@ public class HomeController {
 
         List<AlbumDTO> dto3 = albumService.select(); //main에 최근 사진첩 게시글 제목 뽑아오기
 
+        int dto4  = albumService.selectByDate(id);  // 사진첩 하루안에 올린 글 갯수
+
+        int dto5 = guestbookService.selectByDate(id);// 방명록 하루안에 올리 글 갯수
+
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        Calendar cal = Calendar.getInstance();
 //        cal.add(Calendar.DAY_OF_MONTH, -7); //7일간 보이도록 하기위해서.
@@ -69,6 +73,8 @@ public class HomeController {
         model.addAttribute("list1",dto1);  //album 게시글 총 갯수 뿌림.
         model.addAttribute("list2",dto2); //Guestbook 게시글 총 갯수 뿌림.
         model.addAttribute("list3",dto3);  //main에 최근 사진첩 게시글 제목 뿌리기.
+        model.addAttribute("list4",dto4);// 사진첩 하루안에 올린 글 갯수
+        model.addAttribute("list5",dto5); //방명록 하루안에 올린 글 갯수
         model.addAttribute("miniroomdto",service.findById(id));
         model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
         model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));

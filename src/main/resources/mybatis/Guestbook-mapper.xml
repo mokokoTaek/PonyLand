@@ -27,6 +27,13 @@
         select count(*) as count from guestbook where guestbook_writer = #{value}
     </select>
 
+    <select id="selectByDate" resultType="int">   <!--1일안에 올린 글 개수-->
+        SELECT count(*)
+        FROM guestbook
+        WHERE guestbook_write_date >= (sysdate-1) and guestbook_writer = #{value}
+
+    </select>
+
 
 
 </mapper>

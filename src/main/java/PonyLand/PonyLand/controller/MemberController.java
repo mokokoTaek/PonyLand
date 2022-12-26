@@ -1,6 +1,8 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.ItemDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.service.ItemService;
 import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ public class MemberController {
     @Autowired
     MemberService service;
     @Autowired
+    ItemService itemService;
+    @Autowired
     private HttpSession session;
     @Autowired
     private HttpServletResponse response;
@@ -39,15 +43,19 @@ public class MemberController {
 
         MemberDTO dto = service.findById(id);
 
+        model.addAttribute("nowdto", itemService.findByItemStatus(id,"horse"));
+        model.addAttribute("nowbgdto", itemService.findByItemStatus(id,"background"));
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
+
 
         return "main";
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){
         service.insert(dto);
+        itemService.newUser(dto);
         return "redirect:/";
     }
 
@@ -78,6 +86,7 @@ public class MemberController {
 
         MemberDTO dto = service.makeIdAndPwByEmailForKakao(name,email);
         model.addAttribute("id",dto.getMemberId());
+        itemService.newUser(dto);
         return "index";
     }
 
@@ -93,7 +102,7 @@ public class MemberController {
 
         MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
        model.addAttribute("id",dto.getMemberId());
-
+        itemService.newUser(dto);
         return "index";
     }
     @RequestMapping("goMypage")

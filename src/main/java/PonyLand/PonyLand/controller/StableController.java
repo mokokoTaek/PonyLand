@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/stable/")
@@ -113,12 +115,17 @@ public class StableController {
         public String toStable(Model model,String id){
             String horse = "horse";
             String bg = "background";
+            //String f = "furniture";
             model.addAttribute("id",id);
             model.addAttribute("dto",service1.findById(id));
             model.addAttribute("itemlist",service2.findHorseById(id));
             model.addAttribute("bglist",service2.findBgById(id));
+            //model.addAttribute("furniturelist",service2.findFurnitureById(id));
             model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
             model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
+            //model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,f));
+
+            //model.addAttribute("nowbgdto", service2.findByItemStatus(id,f));
             return "stable";
         }
 
@@ -138,6 +145,18 @@ public class StableController {
             System.out.println(stringDto);
             return stringDto;
         }
+
+    @RequestMapping("updateFurniture")
+    @ResponseBody
+    public String updateFurniture(String jsoncheckimgseq){
+
+        System.out.println(jsoncheckimgseq);
+        Gson g = new Gson();
+        List list =g.fromJson(jsoncheckimgseq, ArrayList.class);
+        System.out.println(service2.furnitureListControl(list));
+        return g.toJson(service2.furnitureListControl(list));
+
+    }
 
         @RequestMapping("coordinate")
         @ResponseBody

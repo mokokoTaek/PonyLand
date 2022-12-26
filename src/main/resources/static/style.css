@@ -583,7 +583,7 @@ button:hover {
 
 .gbtext {
     display: flex;
-    width: 70%;
+    width: 100%;
     font-size: 24px;
     color: #5a3d2b;
     /*align-items: center;*/
@@ -666,8 +666,11 @@ button:hover {
 }
 
 .gbwtype{
-    height: 200px;
-    width: 400px;
+    text-align: center;
+    height: 150px;
+    width: 350px;
+    font-size: 24px;
+    color: #5a3d2b;
 }
 
 /*--------------------------------album*/

@@ -18,8 +18,6 @@
     </div>
 
     <div class="bg1">
-
-
         <div class="bg2">
             <div th:if="${id} != null">
                 <div class="profile0" th:text="${id}">님의 마구간</div>
@@ -59,13 +57,30 @@
         <form action="/Guestbook/insert">
             <div class="bg3">
                 <div class="bg3in">
-                    <div class="gbwcontent">
-<!--                        <div class="gbprofile">-->
-<!--                            프로필이미지-->
-<!--                        </div>-->
-                        <div class="gbtext" >
-                            <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
-                                   placeholder="내용을 입력하세요">
+                    <div class="bgcontent">
+                        <div class="gbtitle">
+                            <div style="margin-left: 10px"></th></div>
+                            <div></div>
+                            <div></div>
+                            <div style="margin-right: 10px">
+                                <a class="anchor" >삭제</a>
+                                <span> | </span>
+                                <button class="gowrite" type="button" style="padding: 0px">작성</button>
+                            </div>
+                        </div>
+
+                        <div class="gbcontent">
+                            <div class="gbprofile">
+                                <div class="gbprofle1">
+                                    <div class="gbprofile2">
+                                    </div>
+                                </div>
+                                <div class="gbtext">
+                                    <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
+                                           placeholder="내용을 입력하세요">
+                                </div>
+                            </div>
+                            <hr>
                         </div>
                     </div>
                     <button class="profilebtn" type="submit" id="writee">글쓰기완료</button>
@@ -74,6 +89,8 @@
             </div>
         </form>
     </div>
+
+</div>
 </div>
 
 <div class="side">

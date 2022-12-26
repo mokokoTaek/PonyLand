@@ -15,6 +15,6 @@ public interface GuestbookMapper {
     int update(GuestbookDTO dto);
 
     List<GuestbookDTO> select();
-    int count();
+    int count(String Guestbook_writer);
 
 }

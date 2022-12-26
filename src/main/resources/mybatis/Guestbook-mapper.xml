@@ -24,7 +24,7 @@
     </select>
 
     <select id="count" resultType="int">
-        select count(*) as count from guestbook
+        select count(*) as count from guestbook where guestbook_writer = #{value}
     </select>
 
 

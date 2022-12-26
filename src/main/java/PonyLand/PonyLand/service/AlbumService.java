@@ -28,8 +28,8 @@ public class AlbumService {
         return dao.update(Album_title,Album_contents,Album_seq);
     }
 
-    public int count() {  //게시글 총 갯수
-        return dao.count();
+    public int count(String Album_writer) {  //게시글 총 갯수
+        return dao.count(Album_writer);
     }
     public List<AlbumDTO> select() {
         return dao.select();

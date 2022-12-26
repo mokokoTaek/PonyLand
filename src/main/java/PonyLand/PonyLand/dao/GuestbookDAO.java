@@ -23,7 +23,7 @@ public class GuestbookDAO {
 
     public List<GuestbookDTO> select() {return GuestbookMapper.select(); }
 
-    public int count() {
-        return GuestbookMapper.count();
+    public int count(String Guestbook_writer) {
+        return GuestbookMapper.count(Guestbook_writer);
     }
 }

@@ -247,6 +247,48 @@ body {
     font-size: 20px;
 }
 
+.modifybtn{
+    width: 100px;
+    height: 30px;
+    background: #5a3d2b;
+    font-size: 20px;
+    color: rgba(244, 161, 39, 1);
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modifybtn2{
+    width: 100px;
+    height: 30px;
+    background: #5a3d2b;
+    font-size: 20px;
+    color: rgba(244, 161, 39, 1);
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#cancel-button{
+    width: 100px;
+    height: 30px;
+    background: #5a3d2b;
+    font-size: 20px;
+    color: rgba(244, 161, 39, 1);
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .profile3{
     display: flex;
     flex-direction: row;
@@ -310,10 +352,10 @@ body {
     font-size: 25px;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     color: #F4A127;
     height: 30%;
-    width: 100%;
+    width: 500px;
 }
 
 .updatednews{
@@ -321,10 +363,7 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     font-size: 25px;
-
     color: #5a3d2b;
-
-    /*gap: 10px;*/
 }
 
 .updatednews2{
@@ -352,8 +391,6 @@ body {
     color: #F4A127;
     flex-wrap: wrap;
     gap: 10px;
-
-
 }
 
 .bg3-2-1-title{

@@ -33,7 +33,7 @@
                 <div class="gameset">
                     <div>
                         <span>보유금액 : </span>
-                        <span th:text="${dto.getMember_coin()}"></span>
+                        <span th:text="${dto.getMember_coin()}" id="myMoney"></span>
                         <input type="number" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin" onkeyup="Coin()">
                     </div>
 
@@ -52,7 +52,7 @@
                     </div>
 
                     <div>
-                        <span>배팅 성공시 예상금액 : </span>
+                        <span>배팅 성공 시 예상 수령 금액 : </span>
                         <span id="resultCoin"></span>
                     </div>
                     <div>
@@ -146,7 +146,7 @@
 
         $("#gameRun").on("click", function () {
             if( parseInt($("#bettingCoin").val())  >  parseInt($("#myMoney").html())   ){
-                alert("배팅 값을 다시 입력하세요.");
+                alert("배팅 값을 보유금액 보다 적게 다시 입력하세요.");
             }else{
                 $("#form").attr("action","/game/gameRun");
                 $("#form").submit();

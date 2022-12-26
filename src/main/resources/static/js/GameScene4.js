@@ -1,3 +1,4 @@
+/*
 class GameScene4 extends Phaser.Scene {
     preload() { //게임이 실행하자마자 이미지나 사운드 제이슨이나 데이터를 로딩해준다.
         this.load.setPath('/static/assets');
@@ -229,3 +230,4 @@ class GameScene4 extends Phaser.Scene {
 
 
 
+*/

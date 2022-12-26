@@ -66,7 +66,7 @@ public class MemberDAO {
     }
 
     //racin table에 값들 넣은 코드문
-    public void bettingCoin(Map<String, Object> map) {gameMapper.bettingCoin(map);}
+    public void insertCoin(Map<String, Object> map) {gameMapper.insertCoin(map);}
 
 
     //게임 시작 버튼 클릭시 member_Coin에서 배팅금액 먼저 뺴는 코드

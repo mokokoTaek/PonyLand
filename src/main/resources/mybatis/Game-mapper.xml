@@ -7,8 +7,8 @@
 <mapper namespace="PonyLand.PonyLand.Mapper.GameMapper">
 
     <!--코인 배팅 racing 테이블 insert 문-->
-    <insert id="bettingCoin">
-        insert  into racing values (#{racing_id},#{racing_seq},#{racing_coin},#{bettingCoin})
+    <insert id="insertCoin">
+        insert  into racing values (#{racing_id},#{racing_horse_seq},#{racing_coin},#{bettingCoin})
     </insert>
 
     <!--게임 시작 버튼 클릭시 member_Coin에서 배팅금액 먼저 뺴는 코드-->

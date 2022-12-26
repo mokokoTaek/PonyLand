@@ -9,7 +9,7 @@ import java.util.Map;
 public interface GameMapper {
 
     //코인 배팅 금약 insert문
-    void bettingCoin(Map<String, Object> map);
+    void insertCoin(Map<String, Object> map);
 
     //배팅 후 racing 쿼리 날리는 문
     void deleteBet(String id);

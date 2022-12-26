@@ -147,23 +147,17 @@
     history.back(); // 뒤로가기 버튼
   })
 
-
+  // 이미지 썸네일
   function previewImage(event) {
-    // Get a reference to the selected file
     let file = event.target.files[0];
 
-    // Create a new FileReader object
     let reader = new FileReader();
 
-    // Read the contents of the file as a data URL
     reader.readAsDataURL(file);
 
-    // Add an onload event listener to the FileReader object
     reader.onload = function(event) {
-      // Get the data URL from the event object
       let dataURL = event.target.result;
 
-      // Update the image preview element with the data URL
       document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '">';
     };
   }

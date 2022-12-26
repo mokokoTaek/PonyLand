@@ -17,6 +17,9 @@
 
           <tr>
 
+            <img th:src="|/static/img/${imagelist.get(listStat.index)}|" style="width: 50px; height: 50px">
+<!--            <th th:src="|static/img/${imagelist.get(listStat.index)}|">-->
+<!--            <th th:text="${imagelist.get(listStat.index)}">-->
             <th th:text="|${list.familyProposerName} 님을|"></th>
             <th th:text="|${list.familyProposedName} 님의|"></th>
             <th th:text="|${list.familyMe} 로 |"></th> <br>

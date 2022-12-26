@@ -57,6 +57,7 @@ public class AlbumCommentController {
 
     @RequestMapping("delete") //댓글 삭제
     public String delete(int Album_Comment_seq, String Album_host) {
+//        html에서 댓글 번호랑, host가져옴.
 //        AlbumCommentDTO dto = service.selectParent(Album_Comment_seq);
 //
 //        String Album_host1 = AlbumService.selectHost(dto.getAlbum_Comment_parent_seq());
@@ -64,7 +65,7 @@ public class AlbumCommentController {
 //        System.out.println("호스트값은? :" + Album_host);
         service.delete(Album_Comment_seq);
         AlbumDTO dto = new AlbumDTO();
-        dto.setAlbum_host(Album_host);
+        dto.setAlbum_host(Album_host);  //Album_host를 dto에 셋팅.
 
 
 

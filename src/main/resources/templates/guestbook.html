@@ -184,16 +184,17 @@
             let a = $(this).closest().children().val();
             console.log(a);
 
-            // $.ajax({
-            //     url: "/GuestbookComment/insert",
-            //     type: "post",
-            //     data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents}
-            // }).done(function (data) {
-            //     $(".gbcmt2").load(location.href+".gbcmt2")
-            //
-            // }).fail(function (data) {
-            //     console.log("ㅋㅋ 실패")
-            // })
+            $.ajax({
+                url: "/GuestbookComment/insert",
+                type: "post",
+                data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents}
+            }).done(function (data) {
+                location.reload();
+                $(".gbcmt").prev().find('input').focus("");
+
+            }).fail(function (data) {
+                console.log("ㅋㅋ 실패")
+            })
 
         })
     })

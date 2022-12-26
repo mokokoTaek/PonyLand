@@ -119,10 +119,10 @@
                                     <input type="hidden" th:value="${list1.getAlbum_Comment_writer()}" >
                                     <th th:text="${list1.getAlbum_Comment_writer()}" >작성자</th>
                                 </div>
-                                    <a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>
                                                                                         <!--컨트롤러에 경로 2개 보냄. ,사용-->  <!--댓글작성자랑 Album_host랑 같으면 x가보이게함.-->
                                 <div style="font-size: 10px; color: darkgrey">
                                     <th th:text="${#dates.format(list1.getAlbum_Comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                                    <a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>
                                 </div>
                             </div>
                             <div style="font-size: 18px;">

@@ -97,13 +97,18 @@
     </a>
 </div>
 <script>
+    $(document).ready(function(){
+        $('.modifybtn2,.modifybtn1').hide(); //취소,변경이 숨어있다가
     $(".modifybtn").on("click",function (){
+        $('.modifybtn2,.modifybtn1').show(); // 수정하기 버튼을 누르면 취소 변경이 다시나타남.
         $("input").removeAttr("readonly"); //수정하기버튼누르면 readonly가 해체
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
         $(".modifybtn1").on("click",function (){ //취소누르면 reload
             location.reload();
         })
     })
+    });
+
 
 
 
@@ -117,9 +122,11 @@
         }
     }
 
+    $(document).ready(function(){
+
+    $('.profilebtn1,.profilebtn2').hide(); //취소,변경이 숨어있다가
 
     $("#profile_img").on("change",function(e){
-
         if($("#profile_img").val()==""){
             $("#profile").val();
             return;
@@ -138,6 +145,8 @@
         }
 
         fileToBase64(document.getElementById("profile_img").files[0]);
+        $('.profilebtn').on("click",function(){
+            $('.profilebtn1,.profilebtn2').show(); //취소,변경이 숨어있다가
 
 
 
@@ -146,6 +155,8 @@
     $(".profilebtn1").on("click",function (){
         location.reload();
     })
+    });
+    });
 
 
 

@@ -14,4 +14,6 @@ public interface AlbumCommentMapper {
     List<AlbumCommentDTO> selectComment();
 
     int delete(int Album_Comment_seq);
+
+//    AlbumCommentDTO selectParent(int Album_Comment_seq);
 }

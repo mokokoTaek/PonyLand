@@ -63,7 +63,7 @@
         <div th:each="list:${dto}">
             <div>
                 <input type="hidden" th:value="${list.Album_seq}" name = "Album_seq"/>
-                <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
+                <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title" >
             </div>
             <!--    <input type="file" name="files" multiple>-->
             <div id="text">

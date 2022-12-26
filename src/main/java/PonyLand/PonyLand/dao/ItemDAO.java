@@ -37,7 +37,17 @@ public class ItemDAO {
 
         return sdjr.findByItemMemberIdAndItemStatusAndItemCategory(id,itemStatus,itemCategory);
     }
+    public List<ItemDTO> findFurnitureByItemStatus(String id, int itemStatus, String itemCategory){
+
+        return sdjr.findAllByItemMemberIdAndItemStatusAndItemCategory(id,itemStatus,itemCategory);
+    }
     public void updateCoordinate(ItemDTO dto){
         sdjr.save(dto);
     }
+
+    public void newUser(ItemDTO horse, ItemDTO bg){
+        sdjr.save(horse);
+        sdjr.save(bg);
+    }
+
 }

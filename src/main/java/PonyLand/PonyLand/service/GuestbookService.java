@@ -26,4 +26,8 @@ public class GuestbookService {
         return dao.count(Guestbook_writer);
     }
 
+    public int selectByDate(String Guestbook_writer){  //방명록 하루안에 올린 글 갯수
+        return dao.selectByDate(Guestbook_writer);
+    }
+
 }

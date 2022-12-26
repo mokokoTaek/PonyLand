@@ -5,6 +5,7 @@ import PonyLand.PonyLand.dto.AlbumDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -32,6 +33,9 @@ public class AlbumDAO {
     }
     public List<AlbumDTO> select(){
         return albumMapper.select();
+    }
+    public int selectByDate(String Album_writer) { // 사진첩 하루안에 올린 글 갯수
+        return albumMapper.selectByDate(Album_writer);
     }
 
 //    public  String selectHost(int album_seq) {

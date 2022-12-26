@@ -3,6 +3,7 @@ package PonyLand.PonyLand.Mapper;
 import PonyLand.PonyLand.dto.AlbumDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -21,6 +22,8 @@ public interface AlbumMapper {
     List<AlbumDTO> select();
 
 //    List<AlbumDTO> replycount();
+    int selectByDate(String Album_writer); // 사진첩 하루안에 올린 글 갯수
+
 
 
 }

@@ -26,4 +26,8 @@ public class GuestbookDAO {
     public int count(String Guestbook_writer) {
         return GuestbookMapper.count(Guestbook_writer);
     }
+
+    public int selectByDate(String Guestbook_writer) {
+        return GuestbookMapper.selectByDate(Guestbook_writer);  //방명록 하루안에 올린 글 갯수
+    }
 }

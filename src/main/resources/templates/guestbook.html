@@ -105,9 +105,8 @@
                         </div>
 
 
-
+                        <!-- 댓글 -->
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
-                            <div class="gbcmttitle" th:text="${list1.getGuestbook_comment_contents()}">
                                 <div style="font-size: 13px">
                                     <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
                                 </div>
@@ -187,10 +186,23 @@
             $.ajax({
                 url: "/GuestbookComment/insert",
                 type: "post",
-                data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents}
+                data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents},
+                dataType: "json",
             }).done(function (data) {
-                location.reload();
-                $(".gbcmt").prev().find('input').focus("");
+
+                let div = $("<div>");
+
+                let divWriter = $("<div>");
+                divWriter.attr("style")
+            //     <div className="gbcmttitle" th:text="${list1.getGuestbook_comment_contents()}">
+            //     <div style="font-size: 13px">
+            //         <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+            //     </div>
+            //     <div style="font-size: 10px; color: darkgrey">
+            //         <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+            //     </div>
+            // </div>
+            //     <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
 
             }).fail(function (data) {
                 console.log("ㅋㅋ 실패")

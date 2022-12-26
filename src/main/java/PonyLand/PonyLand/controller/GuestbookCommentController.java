@@ -31,7 +31,7 @@ public class GuestbookCommentController {
     public String commentFrm(String parent_seq, String guestbook_comment_contents) {
         String Guestbook_comment_writer = (String) session.getAttribute("sessionID");
         service.insert(new GuestbookCommentDTO(0,Guestbook_comment_writer,guestbook_comment_contents,null,Integer.parseInt(parent_seq)));
-        return "Guestbook";
+        return "";
     }
 
     @RequestMapping("delete")

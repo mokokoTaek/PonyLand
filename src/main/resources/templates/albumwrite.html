@@ -78,11 +78,12 @@
               <input type="hidden" name="Album_writer">
               <input type="hidden" th:value="${id}" name="Album_host">
               <div id="text">
+                <div id="image-preview"></div>
                 <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents" ></textarea>
               </div>
               <div id="div1">
                 <tr>
-                  <input type="file" name="file" multiple accept=".jpg, .png, .gif">
+                  <input type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="previewImage(event)">
                   <div>
                     <button type="button" class="alwrbtn" id="back">목록으로</button>
                     <button type="submit" class="alwrbtn" id="btn">작성완료</button>
@@ -145,6 +146,27 @@
   $("#back").on("click", function() {
     history.back(); // 뒤로가기 버튼
   })
+
+
+  function previewImage(event) {
+    // Get a reference to the selected file
+    let file = event.target.files[0];
+
+    // Create a new FileReader object
+    let reader = new FileReader();
+
+    // Read the contents of the file as a data URL
+    reader.readAsDataURL(file);
+
+    // Add an onload event listener to the FileReader object
+    reader.onload = function(event) {
+      // Get the data URL from the event object
+      let dataURL = event.target.result;
+
+      // Update the image preview element with the data URL
+      document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '">';
+    };
+  }
 </script>
 
 </body>

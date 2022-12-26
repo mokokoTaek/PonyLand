@@ -20,6 +20,9 @@
         .detail:hover {
             cursor: pointer;
         }
+        .small-font {
+            font-size: 15px;
+        }
 
     </style>
 </head>
@@ -42,65 +45,46 @@
                     <div class="recent_heading">
                         <h4>Recent</h4>
                     </div>
-                    <!-- 메세지 검색 -->
-                    <div class="srch_bar">
-                        <div class="stylish-input-group">
-                            <input type="text" class="search-bar" placeholder="Search">
-                            <span class="input-group-addon">
-	                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-	                </span>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- 메세지 리스트 -->
                 <!--                <form action="/message/detail?${no}" id="see">-->
                 <div class="inbox_chat">
                     <div th:each="item : ${list}">
-                        <!--                            <a th:href="@{/message/detail?(no=${item.no})}">-->
-                        <!--                          <input type="hidden" th:value="${item.no}" name="no" value="${item.no}">-->
-                        <div>
-                            <div th:text="${item.no}"/>
-                            <!--<input type="hidden" class="no" name="no" th: value="${item.no}">-->
-                            <div>보낸이: <span th:text="${item.send_nick}"/></div>
-                            <!--                            <div>제목:<a href="@{#}" th:onclick="detail()"> <span th:text="${item.title}"/> </a></div> <button type="button" class="detailBtn"> -->
-                            <button th:text="${item.title}" class="detailBtn" type="button"></button>
+<!--                        <div class="detailBtn" type="button">-->
+                        <a class="detailBtn" type="button">
+                            <div><span th:text="'보낸이 : ' + ${item.send_nick}"/></div>
+                            <div th:text="'제목 : ' + ${item.title}"></div></a>
                             <input type="hidden" name="no" class="no" th:value="${item.no}"
                                    th:attrappend="id=${itemStat.index}">
-
                             <br/>
                             <!-- 새로운 div 태그 추가 -->
                             <div style="border: 1px solid; border-color: black;">
                             </div>
                         </div>
-                        <!--                            </a>-->
                     </div>
                     </a>
-                </div>
-                <!--                </form>-->
                 <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-                    <button>쪽지 보내기</button>
-                    <a/>
-
+                    <button>쪽지 보내기</button></a>
+                </div>
             </div>
+    </div>
             <!-- 메세지 내용 영역 -->
             <div class="mesgs">
                 <!-- 메세지 내용 목록 -->
                 <div class="msg_history" name="contentList">
                 </div>
+
                 <div class="send_message">
                 </div>
                 <!-- 메세지 입력란이 올자리 -->
             </div>
-        </div>
 
-    </div>
 </div>
-
 <script>
 
     $(".detailBtn").on("click",function (){
-        // let no = $('no').eq(index).text;
+
         $(".msg_history").empty();
         let no = $(this).next().val();
         $.ajax({
@@ -109,32 +93,52 @@
             data: {
                 "no": no
             },
+            success: function (data) {
+
+                // Remove the replyBtn element if it exists
+                $(".mesgs button").remove();
+
+                // Add the replyBtn element
+            }
+
         }).done(function (data) {
                 let target = JSON.parse(data)
             console.log(target);
                 let div = $("<div>");
 
-                let p1 = $("<p>");
-                p1.append(target.no);
-
                 let p2 = $("<p>");
-                p2.append(target.send_nick);
-
+                p2.append("보낸이 : " + target.send_nick);
+                p2.addClass("small-font");
+                p2.css("color", "grey");
                 let p3 = $("<p>");
-                p3.append(target.recv_nick);
-
+                p3.append("받는이 : " + target.recv_nick);
+                p3.addClass("small-font");
+                p3.css("color", "grey");
                 let p4 = $("<p>");
-                p4.append(target.send_time);
-
+                p4.append("보낸 시간 : " + target.send_time);
+                p4.addClass("small-font");
+                p4.css("color", "grey");
                 let p5 = $("<p>");
+                p5.append("<label>내용</label><br/><br/>");
                 p5.append(target.content);
+                p5.addClass("small-font");
 
-                div.append(p1);
                 div.append(p2);
                 div.append(p3);
                 div.append(p4);
                 div.append(p5);
                 $(".msg_history").append(div);
+
+                // let replyBtn = $("<button>");
+                // replyBtn.text("답장하기");
+                // $(".mesgs").append(replyBtn);
+
+            let replyBtn = $("<button>");
+            replyBtn.text("답장하기");
+            $(".mesgs").append(replyBtn);
+            replyBtn.on("click", function() {
+                window.open("/message/write?replyTo=" + target.send_nick, "", "width=550, height=502");
+            });
         });
     });
 

@@ -27,7 +27,7 @@ public class MessageController {
     private HttpServletResponse response;
 
     @GetMapping("message")
-    public String message(MemberDTO dto, Model model){
+    public String message(Model model){
        String id = (String)session.getAttribute("sessionID");
         model.addAttribute("id", id);
         List<MessageDTO> list = service.selectAll(id);

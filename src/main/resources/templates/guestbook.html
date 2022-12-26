@@ -83,7 +83,7 @@
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
                         <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
                         <div style="margin-right: 10px">
-                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">삭제</a>
+                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host})}">삭제</a>
                             <span> | </span>
                             <button class="gowrite" type="button" style="padding: 0px">작성</button>
                         </div>

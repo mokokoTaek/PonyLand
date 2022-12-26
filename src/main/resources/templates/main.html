@@ -36,11 +36,11 @@
             <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
         </div>
         <div class="">
-<!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
-<!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
-<!--                            Your browser does not support the audio element.-->
-<!--                        </audio>-->
-<!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+            <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+            <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+            <!--                            Your browser does not support the audio element.-->
+            <!--                        </audio>-->
+            <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
         </div>
     </div>
 
@@ -59,13 +59,13 @@
 
             <div class="profile2">
                 <form action="/member/message">
-
-                    <div><textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                    <div style="margin-bottom: 10px"><textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
                     <button class="modifybtn" type="button" >수정하기</button>
                     <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
                     <button class="modifybtn2" type="button" >변경</button>
                 </form>
             </div>
+
 
             <div class="profile3">
                 <div>
@@ -110,15 +110,15 @@
         <div class="bg3">
             <div class="bg3-1">
                 <div class="updatednews">
-                    <div style="font-size: 30px; color: #F4A127" >사진첩 최근글</div>
+                    <div style="font-size: 30px; color: #F4A127;" >사진첩 최근글</div>
                     <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 0 /  <div  th:text="${list2}"></div>
+                        방명록 <div th:text="${list5}"></div>/<div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 0/ <div   th:text="${list1}" ></div>
+                        사진첩 <div th:text="${list4}"></div>/<div   th:text="${list1}" ></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64
@@ -130,12 +130,12 @@
                     MiniRoom
                 </div>
                 <div class="bg3-2-1" id="bg4">
-<!--                    여기서부터 미니룸 div-->
-<!--                    <div class="bg4"  >-->
+                    <!--                    여기서부터 미니룸 div-->
+                    <!--                    <div class="bg4"  >-->
 
                     <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
 
-<!--                    </div>-->
+                    <!--                    </div>-->
                 </div>
                 <div class="bg3-2-2">
                     >내마구간

@@ -41,6 +41,7 @@
 .gameset{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
     font-size: 35px;
@@ -65,3 +66,27 @@ input[type="number"]::-webkit-inner-spin-button {
     appearance: none;
 }
 
+/*.gameset1{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    !*align-items: ;*!*/
+/*}*/
+
+#bettingCoin{
+    border: transparent;
+    border-radius: 4px;
+    font-size: 30px;
+    color: #F4A127;
+}
+
+#choose{
+    border-radius: 4px;
+    font-size: 30px;
+    color: #5a3d2b;
+}
+
+#resultCoin{
+    font-size: 40px;
+    color: blue;
+}

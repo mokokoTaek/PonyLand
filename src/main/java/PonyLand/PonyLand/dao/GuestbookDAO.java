@@ -23,7 +23,11 @@ public class GuestbookDAO {
 
     public List<GuestbookDTO> select() {return GuestbookMapper.select(); }
 
-    public int count() {
-        return GuestbookMapper.count();
+    public int count(String Guestbook_writer) {
+        return GuestbookMapper.count(Guestbook_writer);
+    }
+
+    public int selectByDate(String Guestbook_writer) {
+        return GuestbookMapper.selectByDate(Guestbook_writer);  //방명록 하루안에 올린 글 갯수
     }
 }

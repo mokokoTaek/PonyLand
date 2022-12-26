@@ -25,4 +25,8 @@ public class AlbumCommentDAO {
     public int delete(int Album_Comment_seq) {
         return AlbumCommentmapper.delete(Album_Comment_seq);
     }
+
+//    public AlbumCommentDTO selectParent(int Album_Comment_seq) {
+//        return AlbumCommentmapper.selectParent(Album_Comment_seq);
+//    }
 }

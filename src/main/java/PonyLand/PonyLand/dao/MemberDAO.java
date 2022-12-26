@@ -58,11 +58,11 @@ public class MemberDAO {
         return MemberMapper.update(dto);
     }
 
-    public String imgupdate(MemberDTO dto) {
-        return MemberMapper.imgupdate(dto);
+    public void imgupdate(MemberDTO dto) {
+         MemberMapper.imgupdate(dto);
     }
-    public String message(MemberDTO dto) {
-        return MemberMapper.message(dto);
+    public void message(MemberDTO dto) {
+         MemberMapper.message(dto);
     }
 
     //racin table에 값들 넣은 코드문

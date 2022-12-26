@@ -22,8 +22,12 @@ public class GuestbookService {
 
     public List<GuestbookDTO> select() {return dao.select();}
 
-    public int count() {
-        return dao.count();
+    public int count(String Guestbook_writer) {
+        return dao.count(Guestbook_writer);
+    }
+
+    public int selectByDate(String Guestbook_writer){  //방명록 하루안에 올린 글 갯수
+        return dao.selectByDate(Guestbook_writer);
     }
 
 }

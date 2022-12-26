@@ -26,19 +26,24 @@ public class FamilyController {
     @RequestMapping("getFamily")
     @ResponseBody
     public String getFamily(String familyProposerId, String familyProposedId, String familyMe, String familyOther,Model model) throws IOException {
-        System.out.println(familyProposerId);
-        System.out.println(familyProposedId);
-                System.out.println(familyMe);
-        System.out.println(familyOther);
+//        System.out.println(familyProposerId);
+//        System.out.println(familyProposedId);
+//                System.out.println(familyMe);
+//        System.out.println(familyOther);
 
         return String.valueOf(service.getFamily(service.areTheyFamily(familyProposerId,familyProposedId),familyProposerId,familyProposedId,familyMe,familyOther));
     }
 
     @RequestMapping("checkNewFamily")
     public String checkNewFamily(Model model){
+        List<FamilyDTO> list = service.checkNewFamily((String)session.getAttribute("sessionID"),0);
+        List<String> imagelist = service.getProposerImage(list);
 
-        model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
-        System.out.println(service.checkNewFamily((String)session.getAttribute("sessionID"),0).size());
+
+        model.addAttribute("list",list);
+        model.addAttribute("imagelist",imagelist);
+
+//        System.out.println(service.checkNewFamily((String)session.getAttribute("sessionID"),0).size());
         return "checkNewFamilyList";
     }
 
@@ -47,17 +52,34 @@ public class FamilyController {
 
         service.agreeFamily(familySeq).setFamilyStatus(1);
 
-        model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
+        List<FamilyDTO> list = service.checkNewFamily((String)session.getAttribute("sessionID"),0);
+        List<String> imagelist = service.getProposerImage(list);
+
+        model.addAttribute("list",list);
+        model.addAttribute("imagelist",imagelist);
 
         return "checkNewFamilyList";
     }
 
     @RequestMapping("refuseFamily")
     public String refuseFamily(int familySeq,Model model){
+        System.out.println("컨트롤러는 왔음");
         service.deleteByFamilySeq(familySeq);
-        model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
+        System.out.println("서비스 동작 완료");
 
+        List<FamilyDTO> list = service.checkNewFamily((String)session.getAttribute("sessionID"),0);
+        List<String> imagelist = service.getProposerImage(list);
+
+        model.addAttribute("list",list);
+        model.addAttribute("imagelist",imagelist);
         return "checkNewFamilyList";
+    }
+
+    @RequestMapping("deleteFamily")
+    public String deleteFamily(int targetSeq){
+        System.out.println(targetSeq);
+        service.deleteByFamilySeq(targetSeq);
+        return "redirect:/family/familyListOpen";
     }
 
     @RequestMapping("familyListOpen")

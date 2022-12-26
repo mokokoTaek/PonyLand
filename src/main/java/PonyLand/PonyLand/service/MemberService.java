@@ -183,14 +183,13 @@ public class MemberService {
     public int update(MemberDTO dto) {
         return dao.update(dto);
     }
-    public String imgupdate(MemberDTO dto) {
+    public void imgupdate(MemberDTO dto) {
         System.out.println(dto);
-        return dao.imgupdate(dto);
+        dao.imgupdate(dto);
 
     }
-    public String message(MemberDTO dto) {
-        System.out.println(dto);
-        return dao.message(dto);
+    public void message(MemberDTO dto) {
+         dao.message(dto);
     }
 
 

@@ -19,7 +19,9 @@
 
     <delete id="delete">
         delete from Album_Comment where Album_Comment_seq = #{value}
-
-
     </delete>
+
+<!--    <select id="selectParent" resultType="PonyLand.PonyLand.dto.AlbumCommentDTO">-->
+<!--        select * from Album_Comment where Album_comment_seq = #{value}-->
+<!--    </select>-->
 </mapper>

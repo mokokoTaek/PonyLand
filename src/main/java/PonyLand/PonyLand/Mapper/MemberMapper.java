@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberMapper {
 
     int update(MemberDTO dto);
-    String imgupdate(MemberDTO dto);
+    void imgupdate(MemberDTO dto);
 
     int duplCheck(String memberId);
 
-    String message(MemberDTO dto);
+    void message(MemberDTO dto);
 
 }

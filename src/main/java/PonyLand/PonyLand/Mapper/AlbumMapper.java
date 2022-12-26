@@ -15,8 +15,9 @@ public interface AlbumMapper {
 
     int update(String Album_title, String Album_contents, int Album_seq);
 
-    int count();   //게시글 총 갯수
+    int count(String Album_writer);   //게시글 총 갯수
 
+//    String selectHost(int album_seq);
     List<AlbumDTO> select();
 
 //    List<AlbumDTO> replycount();

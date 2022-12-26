@@ -25,13 +25,18 @@
     </update>
 
     <select id="count" resultType="int">
-        select count(*) as count from album
+        select count(*) as count from album where album_writer = #{value}
+
     </select>
 
     <select id="select" resultType="PonyLand.PonyLand.dto.AlbumDTO">
         SELECT * FROM album WHERE rownum <![CDATA[ <= ]]> 5 ORDER BY album_seq DESC
 
     </select>
+
+<!--    <select id="selectHost" resultType="PonyLand.PonyLand.dto.AlbumDTO">-->
+<!--            select album_host from album where album_seq = #{Album_seq}-->
+<!--    </select>-->
 
 <!--    <select id="replycount" resultType="int">-->
 

@@ -26,10 +26,10 @@ public class FamilyController {
     @RequestMapping("getFamily")
     @ResponseBody
     public String getFamily(String familyProposerId, String familyProposedId, String familyMe, String familyOther,Model model) throws IOException {
-        System.out.println(familyProposerId);
-        System.out.println(familyProposedId);
-                System.out.println(familyMe);
-        System.out.println(familyOther);
+//        System.out.println(familyProposerId);
+//        System.out.println(familyProposedId);
+//                System.out.println(familyMe);
+//        System.out.println(familyOther);
 
         return String.valueOf(service.getFamily(service.areTheyFamily(familyProposerId,familyProposedId),familyProposerId,familyProposedId,familyMe,familyOther));
     }
@@ -38,7 +38,7 @@ public class FamilyController {
     public String checkNewFamily(Model model){
 
         model.addAttribute("list",service.checkNewFamily((String)session.getAttribute("sessionID"),0));
-        System.out.println(service.checkNewFamily((String)session.getAttribute("sessionID"),0).size());
+//        System.out.println(service.checkNewFamily((String)session.getAttribute("sessionID"),0).size());
         return "checkNewFamilyList";
     }
 

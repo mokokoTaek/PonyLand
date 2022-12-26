@@ -63,6 +63,7 @@
                     <button class="modifybtn" type="button" >수정하기</button>
                     <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
                     <button class="modifybtn2" type="button" >변경</button>
+                </form>
             </div>
 
 
@@ -85,7 +86,7 @@
                     <div th:if="${id}== ${sessionID}">
 
                         <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
-                        </form>
+<!--                        </form>-->
                     </div>
                 </div>
                 <div>
@@ -117,7 +118,7 @@
                         방명록 0 /  <div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 0/ <div   th:text="${list1}"></div>
+                        사진첩 0/ <div   th:text="${list1}" ></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64

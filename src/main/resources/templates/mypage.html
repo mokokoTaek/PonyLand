@@ -10,6 +10,12 @@
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
+
+<style>
+    label.profileimg:hover {
+        color: #ffffff;
+    }
+</style>
 <body>
 <div class="container">
 
@@ -45,7 +51,9 @@
                 <div class="mypage">
                     <div>
                         <div>아이디</div>
-                        <input type="text" class="loginbg" placeholder="" th:value="${list.getMemberId()}"  name="memberId" readonly>
+                        <input type="text" class="loginbg" placeholder="" th:value="${list.getMemberId()}"  name="memberId" disabled>
+                        <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
+                        <!--disabled 하면 값이 안넘어가서 hidden을 만들어서 값 넘겨준다.-->
                     </div>
                     <div>
                         <div>닉네임</div>

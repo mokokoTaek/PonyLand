@@ -36,12 +36,13 @@ img{ max-width:100%;}
     overflow: hidden;
     width: 40%; border-right:1px solid #f7f7f7;
 }
-.inbox_msg {
-    border: 1px solid #f7f7f7;
-    border-radius: 15px;
-    clear: both;
-    overflow: hidden;
-}
+/*.inbox_msg {*/
+/*    border: 1px solid #f7f7f7;*/
+/*    border-radius: 15px;*/
+/*    float: left;*/
+/*    clear: both;*/
+/*    overflow: hidden;*/
+/*}*/
 .top_spac{ margin: 20px 0 0;}
 
 

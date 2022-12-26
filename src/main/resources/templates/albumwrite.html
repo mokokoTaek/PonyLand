@@ -67,6 +67,7 @@
       <div class="albg3">
         <div class="bg3in">
           <div style="margin-top: 30px"></div>
+
           <div class="gbtitle">
             <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
           </div>
@@ -80,6 +81,7 @@
                 <div id="image-preview"></div>
               </div>
               <div id="text">
+                <div id="image-preview"></div>
                 <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents" ></textarea>
               </div>
               <div id="div1">
@@ -146,23 +148,17 @@
     history.back(); // 뒤로가기 버튼
   })
 
-
+  // 이미지 썸네일
   function previewImage(event) {
-    // Get a reference to the selected file
     let file = event.target.files[0];
 
-    // Create a new FileReader object
     let reader = new FileReader();
 
-    // Read the contents of the file as a data URL
     reader.readAsDataURL(file);
 
-    // Add an onload event listener to the FileReader object
     reader.onload = function(event) {
-      // Get the data URL from the event object
       let dataURL = event.target.result;
 
-      // Update the image preview element with the data URL
       document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '"style="max-width: 523px; max-height: 300px;">';
     };
   }

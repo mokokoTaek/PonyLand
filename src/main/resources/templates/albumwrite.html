@@ -77,6 +77,9 @@
             <div class=container>
               <input type="hidden" name="Album_writer">
               <input type="hidden" th:value="${id}" name="Album_host">
+              <div class="alpic">
+                <div id="image-preview"></div>
+              </div>
               <div id="text">
                 <div id="image-preview"></div>
                 <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents" ></textarea>
@@ -96,8 +99,6 @@
       </div>
     </form>
   </div>
-
-  <div class="alcontext"></div>
 </div>
 
 
@@ -158,7 +159,7 @@
     reader.onload = function(event) {
       let dataURL = event.target.result;
 
-      document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '">';
+      document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '"style="max-width: 523px; max-height: 300px;">';
     };
   }
 </script>

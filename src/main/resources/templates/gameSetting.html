@@ -5,6 +5,10 @@
     <title>Game</title>
     <!--        <link rel="stylesheet" href="../static/style.css"/>-->
     <link rel="stylesheet" href="../static/stable.css"/>
+    <link rel="stylesheet" href="../static/game.css"/>
+
+    <!--    구글 아이콘 불러오는거-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -23,32 +27,50 @@
     </div>
     <form action="/game/gameRun">
         <div class="bg1">
-            <div class="bg2">
-                <div style="font-size: 100px; text-align: center">게임세팅</div>
-                <div style="text-align: center">
-                    <span>보유금액 : </span><span th:text="${dto.getMember_coin()}"></span><br>
-                    <span>
-                      <input type="text" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin"
-                             onkeyup="Coin()">
-                    </span> <br>
-                    <span>Pony의 수</span>
-                    <button onclick="count('minus'),Coin()" type="button">-</button>
-                    <span id="horseCount">2</span>
-                    <input type="hidden" value="2" name="horseCount" id="hiddenCount">
-                    <button type="button" onclick="count('plus'),Coin()">+</button>
-                    <br>
-                    <span>배팅 성공시 예상금액 : </span> <span id="resultCoin"></span><br>
-                    <span th:text="${dto.getMember_name()}"></span><span>님이 배팅하실 말 :</span>
-                    <span>
+            <div class="gamebg2">
+                <div class="minigame">게임세팅</div>
+                <div class="gameset">
+                    <div>
+                        <span>보유금액 : </span>
+                        <span th:text="${dto.getMember_coin()}"></span>
+                        <input type="number" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin" onkeyup="Coin()">
+                    </div>
+
+                    <div>
+                        <span>참여 말 :</span>
+
+                        <button class="plusbtn" onclick="count('minus'),Coin()" type="button">
+                            <span style="display: flex; justify-content: center; align-items: center"  class="material-symbols-outlined">remove</span>
+                        </button>
+                        <span id="horseCount">2</span>
+                        <input type="hidden" value="2" name="horseCount" id="hiddenCount">
+
+                        <button class="plusbtn" type="button" onclick="count('plus'),Coin()">
+                            <span style="display: flex; justify-content: center; align-items: center"  class="material-symbols-outlined">add</span>
+                        </button>
+                    </div>
+
+                    <div>
+                        <span>배팅 성공시 예상금액 : </span>
+                        <span id="resultCoin"></span>
+                    </div>
+                    <div>
+                        <span style="color: #F4A127" th:text="${dto.getMember_name()}"></span>
+                        <span>님이 배팅하실 말 :</span>
+
+                        <span>
                         <select name="betHorse" id="choose">
                              <option value="1">1번말</option>
                              <option value="2">2번말</option>
                              <option value="3" id="three" style="display: none">3번말</option>
                              <option value="4" id="four" style="display: none">4번말</option>
                         </select>
-                    </span>
-                    <br>
-                    <span><button id="gameRun" type="submit">게임시작</button></span>
+                         </span>
+                    </div>
+
+                    <div>
+                        <span><button class="gamestart" id="gameRun" type="submit">게임시작</button></span>
+                    </div>
                     <input type="hidden" th:value="${dto.getMemberId()}" name="id">
                     <script>
                         function count(type) {
@@ -87,6 +109,7 @@
         </div>
     </form>
 </div>
+
 </div>
 <div class="side">
     <button class="btnmain2">마구간</button>

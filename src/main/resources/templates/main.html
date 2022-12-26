@@ -132,7 +132,7 @@
 <!--                    여기서부터 미니룸 div-->
 <!--                    <div class="bg4"  >-->
 
-                        <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
 
 <!--                    </div>-->
                 </div>
@@ -159,8 +159,8 @@
 <script>
     $(".modifybtn").on("click",function(){
         $('textarea').removeAttr("readonly");
-            $(this).hide();
-            $('<button id="cancel-button">취소</button>').insertAfter(this);
+        $(this).hide();
+        $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
     })
 </script>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,5 +74,17 @@ public class FamilyService {
 
     public List<FamilyDTO> getFamilyListByProposedId(String id){
         return dao.getFamilyListByProposedId(id);
+    }
+
+    public List<String> getProposerImage(List<FamilyDTO> list){
+
+        List<String> imagelist = new ArrayList<String>();
+
+        for(int i=0;i<list.size();i++){
+            System.out.println(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
+            imagelist.add(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
+
+        }
+        return imagelist;
     }
 }

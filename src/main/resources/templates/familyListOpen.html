@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 <div class="bg3">
@@ -14,8 +15,8 @@
 
                     <tr>
 
-                        <th th:text="|${list1.familyMe} |"></th> <br>
-                        <th th:text="|${list1.familyProposedName} |"></th>
+                        <th th:text="|${list1.familyMe} (${list1.familyProposedName})|"></th>
+<!--                        <th th:text="|${list1.familyProposedName} |"></th>-->
                         <br>
                         <button type="button" class="deleteBtn">삭제</button>
                         <input type="hidden" class="hiddenSeq" th:value="${list1.familySeq}">
@@ -32,8 +33,8 @@
 
                     <tr>
 
-                        <th th:text="|${list2.familyOther} |"></th> <br>
-                        <th th:text="|${list2.familyProposerName} |"></th>
+                        <th th:text="|${list2.familyOther} (${list2.familyProposerName})|"></th>
+<!--                        <th th:text="|${list2.familyProposerName} |"></th>-->
                         <br>
                         <button type="button" class="deleteBtn">삭제</button>
                         <input type="hidden" class="hiddenSeq" th:value="${list2.familySeq}">
@@ -45,10 +46,30 @@
             </div>
         </form>
 
-        <div th:if="${list1.size()}==0 or ${list2.size()}==0">
+        <div th:if="${list1.size()}==0 and ${list2.size()}==0">
             아직 일촌 목록에 사람들을 추가하지 않으셨습니다. 지금 바로 추가해보세요!
         </div>
     </div>
 </div>
+
+<script>
+
+    $(".deleteBtn").click(function(){
+        let reallyDel = confirm("정말로 삭제하시겠습니까?");
+        if(reallyDel){
+
+            let targetSeq = $(this).next().val();
+            location.href="/family/deleteFamily?targetSeq="+targetSeq+"";
+            // $("#frm").attr("action","/family/deleteFamily?targetSeq="+targetSeq+"");
+            // $("#frm").submit();
+
+        }else{
+            return;
+        }
+
+
+    })
+
+</script>
 </body>
 </html>

@@ -583,7 +583,7 @@ button:hover {
 
 .gbtext {
     display: flex;
-    width: 70%;
+    width: 100%;
     font-size: 24px;
     color: #5a3d2b;
     /*align-items: center;*/
@@ -666,8 +666,11 @@ button:hover {
 }
 
 .gbwtype{
-    height: 200px;
-    width: 400px;
+    text-align: center;
+    height: 150px;
+    width: 350px;
+    font-size: 24px;
+    color: #5a3d2b;
 }
 
 /*--------------------------------album*/
@@ -684,7 +687,6 @@ button:hover {
 }
 
 .alpic{
-    display: flex;
     height: 300px;
     /*border: 1px solid black;*/
     border-radius: 4px;
@@ -694,16 +696,49 @@ button:hover {
     margin-top: 10px;
 }
 
-.alcontext{
+.gbtitle > input{
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border: transparent;
+    font-size: 20px;
+}
+
+
+#div1{
     display: flex;
-    height: 100px;
-    /*border: 1px solid black;*/
-    font-size: 24px;
-    color: #5a3d2b;
-    /*border-radius: 4px;*/
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.alwrbtn{
+    width: 100px;
+    height: 30px;
+    background: rgba(90, 61, 43, 1);
+    font-size: 20px;
+    color: rgba(244, 161, 39, 1);
+    border-top: 1px solid rgba(90, 61, 43, 1);
+    border-right: 1px solid rgba(90, 61, 43, 1);
+    border-left: 3px solid rgba(244, 161, 39, 1);
+    border-bottom: 3px solid rgba(244, 161, 39, 1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#text{
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+}
+
+#altextarea{
+    width: 100%;
+    height: 300px;
+    resize: none;
+    border: 1px solid #5a3d2b;
+    border-radius: 4px;
+    font-size: 24px;
+    color: #5a3d2b;
 }
 
 .alwritebtn{

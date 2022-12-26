@@ -67,7 +67,6 @@
       <div class="albg3">
         <div class="bg3in">
           <div style="margin-top: 30px"></div>
-
           <div class="gbtitle">
             <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
           </div>
@@ -77,8 +76,10 @@
             <div class=container>
               <input type="hidden" name="Album_writer">
               <input type="hidden" th:value="${id}" name="Album_host">
-              <div id="text">
+              <div class="alpic">
                 <div id="image-preview"></div>
+              </div>
+              <div id="text">
                 <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents" ></textarea>
               </div>
               <div id="div1">
@@ -96,8 +97,6 @@
       </div>
     </form>
   </div>
-
-  <div class="alcontext"></div>
 </div>
 
 
@@ -164,7 +163,7 @@
       let dataURL = event.target.result;
 
       // Update the image preview element with the data URL
-      document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '">';
+      document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '"style="max-width: 523px; max-height: 300px;">';
     };
   }
 </script>

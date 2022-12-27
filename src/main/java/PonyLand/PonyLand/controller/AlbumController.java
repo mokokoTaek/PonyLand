@@ -116,13 +116,20 @@ public class AlbumController {
     }
 
     @RequestMapping("update") //수정
-    public String update(String Album_title, String Album_contents, int Album_seq, Model model) {
+    public String update(String Album_title, String Album_contents, int Album_seq, Model model ,String Album_host) {
+        MemberDTO dto = memberService.findById(Album_host);
         System.out.println(Album_title);
+        System.out.println("11111");
+        System.out.println(Album_contents);
+        System.out.println("2222");
+        System.out.println(Album_seq);
+        System.out.println("333");
+        model.addAttribute("list",dto);
         service.update(Album_title, Album_contents, Album_seq);
 
-//       수정.
-//        List<AlbumDTO> list= service.selectAll();
-//        model.addAttribute("date",list);
+       //수정.
+        List<AlbumDTO> list= service.selectAll();
+        model.addAttribute("date",list);
         return "redirect:toAlbumPage";
 
     }

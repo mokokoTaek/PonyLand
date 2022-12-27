@@ -38,7 +38,7 @@
                         </div>
                         <div>
                             <span>배팅금액 : </span>
-                            <input type="number" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin" onkeyup="Coin()">
+                            <input type="number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="배팅할 금액을 입력하시오" name="bettingCoin" id="bettingCoin" onkeyup="Coin() ">
                         </div>
                     </div>
 

@@ -41,14 +41,14 @@ public class GuestbookController {
         dto.setGuestbook_writer(guestbook_writer);
         GuestbookService.insert(dto);
 
-        return "redirect:goGuestbook";
+        return "redirect:/Guestbook/goGuestbook?&guestbook_host="+dto.getGuestbook_host();
     }
 
     @RequestMapping("delete")
-    public String delete(int Guestbook_seq) {
+    public String delete(int Guestbook_seq,GuestbookDTO dto) {
         GuestbookService.delect(Guestbook_seq);
         System.out.println(Guestbook_seq);
-        return "redirect:goGuestbook";
+        return "redirect:/Guestbook/goGuestbook?&guestbook_host="+dto.getGuestbook_host();
     }
 
     @RequestMapping("update")
@@ -60,10 +60,10 @@ public class GuestbookController {
     //미니홈피에서 방명록으로 가는 코트
     @RequestMapping("goGuestbook")
     public String goGuestbook(String guestbook_host, Model model) {
-
         MemberDTO dto = memberService.findById(guestbook_host);
         List<GuestbookDTO> list = GuestbookService.select();
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
+        System.out.println(list1);
         model.addAttribute("id", guestbook_host);
         model.addAttribute("dto", list);
         model.addAttribute("list1", list1);
@@ -75,6 +75,8 @@ public class GuestbookController {
     //방명록에서 글작성으로 가는 코드
     @RequestMapping("gowrite")
     public String gowrite(String guestbook_host, Model model) {
+        MemberDTO dto = memberService.findById(guestbook_host);
+        model.addAttribute("list",dto);
         model.addAttribute("id", guestbook_host);
         return "guesbookwrite";
     }

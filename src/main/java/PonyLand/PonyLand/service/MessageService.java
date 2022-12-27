@@ -28,5 +28,8 @@ public class MessageService {
         return dao.selectBySeq(seq);
     }
 
+    public List<MessageDTO> sentMailAll(String id) {
+        return dao.sentMailAll(id);
+    }
 
 }

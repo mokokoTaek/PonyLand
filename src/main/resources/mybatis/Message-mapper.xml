@@ -16,5 +16,9 @@
     <select id="selectBySeq" resultType="PonyLand.PonyLand.dto.MessageDTO">
         select * from message where no = #{value}
     </select>
+
+    <select id="sentMailAll" resultType="PonyLand.PonyLand.dto.MessageDTO">
+        select * from message where send_nick = #{value}
+    </select>
 </mapper>
 

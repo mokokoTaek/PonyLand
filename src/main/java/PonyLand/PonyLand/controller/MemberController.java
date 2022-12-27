@@ -49,13 +49,13 @@ public class MemberController {
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
 
-
         return "main";
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){
         service.insert(dto);
         itemService.newUser(dto);
+        System.out.println(dto.getMemberPw());
         return "redirect:/";
     }
 

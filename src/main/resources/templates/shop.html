@@ -25,12 +25,38 @@
         <div class="shopbg1">
             <div class="">
                 <div style="text-align: center">
-                    포니
+                    말
                 </div>
                 <div class="shopbox">
                     <div class="carrotbox2">
                         <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
+                            <input type="hidden" value="horse">
+                            <input type="hidden" value=80000>
+                            <button class="shopimage" type="button"><img src="/static/img/horse1.gif"></button>
+                            <input type="hidden" value="horse1.gif">
+                        </div>
+
+                        <div class="shopname">
+                            80000당근
+                        </div>
+                    </div>
+
+                    <div class="carrotbox2">
+                        <div class="carrotprice">
+                            <input type="hidden" value="horse">
+                            <input type="hidden" value=200>
+                            <button class="shopimage" type="button">테스트이미지2</button>
+                            <input type="hidden" value="horse1.png">
+                        </div>
+
+                        <div class="shopname">
+                            200당근
+                        </div>
+                    </div>
+
+                    <div class="carrotbox2">
+                        <div class="carrotprice">
+                            <button class="shopimage" type="button">이미지</button>
                         </div>
                         <div class="shopname">
                             상품이름
@@ -39,25 +65,7 @@
 
                     <div class="carrotbox2">
                         <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
-                        </div>
-                        <div class="shopname">
-                            상품이름
-                        </div>
-                    </div>
-
-                    <div class="carrotbox2">
-                        <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
-                        </div>
-                        <div class="shopname">
-                            상품이름
-                        </div>
-                    </div>
-
-                    <div class="carrotbox2">
-                        <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
+                            <button class="shopimage" type="button">이미지</button>
                         </div>
                         <div class="shopname">
                             상품이름
@@ -70,12 +78,24 @@
         <div class="shopbg1">
             <div class="">
                 <div style="text-align: center">
-                    포니
+                    배경
                 </div>
                 <div class="shopbox">
                     <div class="carrotbox2">
                         <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
+                            <input type="hidden" value="background">
+                            <input type="hidden" value=300>
+                            <button class="shopimage" type="button">테스트이미지3</button>
+                            <input type="hidden" value="bg1.png">
+                        </div>
+                        <div class="shopname">
+                            300당근
+                        </div>
+                    </div>
+
+                    <div class="carrotbox2">
+                        <div class="carrotprice">
+                            <button class="shopimage" type="button">이미지</button>
                         </div>
                         <div class="shopname">
                             상품이름
@@ -84,7 +104,7 @@
 
                     <div class="carrotbox2">
                         <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
+                            <button class="shopimage" type="button">이미지</button>
                         </div>
                         <div class="shopname">
                             상품이름
@@ -93,20 +113,12 @@
 
                     <div class="carrotbox2">
                         <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
+                            <button class="shopimage" type="button">이미지</button>
                         </div>
                         <div class="shopname">
                             상품이름
                         </div>
-                    </div>
 
-                    <div class="carrotbox2">
-                        <div class="carrotprice">
-                            <button class="shopimage">이미지</button>
-                        </div>
-                        <div class="shopname">
-                            상품이름
-                        </div>
                     </div>
                 </div>
             </div>
@@ -115,19 +127,22 @@
         <div class="shopbg2">
             <div class="shopbalance">
 
+                <input type="hidden" value="" id="targetproduct">
+                <input type="hidden" value="" id="targetprice">
+                <input type="hidden" value="" id="targetcategory">
                 <div class="balancebox">
                     <div class="coinbalance">보유금액</div>
-                    <div class="coinprice">700 당근코인</div>
+                    <div class="coinprice" th:text="|${memberdto.member_coin} 당근코인|"></div>
                 </div>
 
                 <div class="balancebox">
                     <div class="coinbalance">결제금액</div>
-                    <div class="coinprice">100 당근코인</div>
+                    <div class="coinprice" id="totalprice">0 당근코인</div>
                 </div>
 
                 <div class="balancebox">
                     <div class="coinbalance">잔액</div>
-                    <div class="coinprice">600 당근코인</div>
+                    <div class="coinbalance" id="afterprice" th:text="|${memberdto.member_coin} 당근코인|"></div>
                 </div>
 
                 <div class="balancebox">
@@ -144,7 +159,7 @@
     <a th:href="@{/game/gameStart(id=${id})}">
         <button class="btnmain2" type="button" id="adc">게임</button>
     </a>
-    <a th:href="@{}">
+    <a th:href="@{/shop/toShop}">
         <button class="btnmain1">상점</button>
     </a>
     <a th:href="@{/stable/charge}">
@@ -152,6 +167,70 @@
     </a>
 </div>
 
+<script th:inline="javascript">
+    $(".shopimage").click(function(){
+
+        let product = $(this).next().val();
+        let price  =$(this).prev().val();
+        let category = $(this).prev().prev().val();
+        $.ajax({
+            url:"/shop/wish",
+            data:{"product":product,"price":price},
+            type:"post"
+        }).done(function(resp){
+            // console.log(resp);
+            $("#totalprice").html(resp + " 당근코인")
+            $("#afterprice").html(([[${memberdto.member_coin}]]-resp)  + " 당근코인")
+            $("#targetproduct").val(product);
+            $("#targetprice").val(price);
+            $("#targetcategory").val(category);
+            // console.log($("#targetproduct").val())
+        }).fail(function(resp){
+            console.log("실패");
+
+        })
+    })
+
+    $("#result").click(function(){
+
+        let reallybuy = confirm("구매하시겠습니까?");
+
+        if(reallybuy){
+
+            let product = $("#targetproduct").val();
+            let price =  $("#targetprice").val();
+            let category =  $("#targetcategory").val();
+
+            if (price==""){
+                alert("상품을 선택해주세요.");
+                return;
+            }
+            $.ajax({
+                url:"/shop/buy",
+                data:{"product":product,"price":price,"category":category},
+                type:"post"
+            }).done(function(resp){
+
+                if(resp){
+                    alert("구매에 성공했습니다!");
+                    location.reload();
+                }else{
+                    alert("이미 구입한 상품이거나 보유금액이 부족합니다.");
+                }
+
+                // $("#totalprice").html("0 당근코인")
+                // $("#afterprice").html([[${memberdto.member_coin}]]  + " 당근코인")
+                // $("#targetproduct").val("");
+                // $("#targetprice").val(0);
+                // console.log($("#targetproduct").val())
+            }).fail(function(resp){
+                console.log("실패");
+
+            })
+        }
+
+    })
+</script>
 </body>
 
 </html>

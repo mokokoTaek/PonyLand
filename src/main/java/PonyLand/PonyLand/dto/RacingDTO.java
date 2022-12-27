@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RacingDTO {
     private String racing_id;
-    private String racing_horse_seq;
-    private int racing_coin;
+    private int racing_horse_seq;
+    private double racing_coin;
     private int bettingCoin;
 
 }

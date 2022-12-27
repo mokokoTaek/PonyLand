@@ -10,6 +10,12 @@
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
+
+<style>
+    label.profileimg:hover {
+        color: #ffffff;
+    }
+</style>
 <body>
 <div class="container">
 
@@ -45,7 +51,9 @@
                 <div class="mypage">
                     <div>
                         <div>아이디</div>
-                        <input type="text" class="loginbg" placeholder="" th:value="${list.getMemberId()}"  name="memberId" readonly>
+                        <input type="text" class="loginbg" placeholder="" th:value="${list.getMemberId()}"  name="memberId" disabled>
+                        <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
+                        <!--disabled 하면 값이 안넘어가서 hidden을 만들어서 값 넘겨준다.-->
                     </div>
                     <div>
                         <div>닉네임</div>
@@ -64,7 +72,9 @@
                         <input type="text" class="loginbg" placeholder="" th:value="${list.getMemberPw()}"   name="memberPw" readonly>
                     </div>
                 </div>
-                <button class="modifybtn" type="button">수정하기</button>
+                <div style="margin-top: 20px">
+                    <button class="modifybtn" type="button">수정하기</button>
+                </div>
                 <div>
                     <button class="modifybtn1" type="button">취소</button>
                     <button class="modifybtn2" type="button">변경</button>
@@ -89,13 +99,19 @@
     </a>
 </div>
 <script>
-    $(".modifybtn").on("click",function (){
-        $("input").removeAttr("readonly"); //수정하기버튼누르면 readonly가 해체
-        $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
-        $(".modifybtn1").on("click",function (){ //취소누르면 reload
-            location.reload();
+    $(document).ready(function(){
+        $('.modifybtn2,.modifybtn1').hide(); //취소,변경이 숨어있다가
+        $(".modifybtn").on("click",function (){
+            $('.modifybtn').hide();
+            $('.modifybtn2,.modifybtn1').show(); // 수정하기 버튼을 누르면 취소 변경이 다시나타남.
+            $("input").removeAttr("readonly"); //수정하기버튼누르면 readonly가 해체
+            $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+            $(".modifybtn1").on("click",function (){ //취소누르면 reload
+                location.reload();
+            })
         })
-    })
+    });
+
 
 
 
@@ -109,35 +125,37 @@
         }
     }
 
+    $(document).ready(function(){
 
-    $("#profile_img").on("change",function(e){
+        $('.profilebtn1,.profilebtn2').hide(); //취소,변경이 숨어있다가
 
-        if($("#profile_img").val()==""){
-            $("#profile").val();
-            return;
-        }
-        let ext = $("#profile_img").val().split(".").pop().toLowerCase(); //배열의 pop은 가장 마지막요소를 꺼내옴.
-
-
-        let accept = ["png","jpg","jpeg","gif"]; //담고싶은 확장자만 담아둔다.
-
-        let result = $.inArray(ext,accept); // 첫 번째 인자값이, 두번째 인자 배열안에 존재 한다면 0, 존재하지 않는다면 -1을 반환.
-
-        if(result == -1) {
-            alert("이미지만 사용 가능합니다.")//png,jpg,jpeg,gif
-            $("#profile_img").val(""); //선택한 파일이 무효시킴.
-
-        }
-
-        fileToBase64(document.getElementById("profile_img").files[0]);
+        $("#profile_img").on("change",function(e){
+            if($("#profile_img").val()==""){
+                $("#profile").val();
+                return;
+            }
+            let ext = $("#profile_img").val().split(".").pop().toLowerCase(); //배열의 pop은 가장 마지막요소를 꺼내옴.
 
 
+            let accept = ["png","jpg","jpeg","gif"]; //담고싶은 확장자만 담아둔다.
 
+            let result = $.inArray(ext,accept); // 첫 번째 인자값이, 두번째 인자 배열안에 존재 한다면 0, 존재하지 않는다면 -1을 반환.
+
+            if(result == -1) {
+                alert("이미지만 사용 가능합니다.")//png,jpg,jpeg,gif
+                $("#profile_img").val(""); //선택한 파일이 무효시킴.
+            }
+
+            fileToBase64(document.getElementById("profile_img").files[0]);
+            $('.profilebtn').on("click",function(){
+                $('.profilebtn1,.profilebtn2').show(); //취소,변경이 숨어있다가
+            });
+
+            $(".profilebtn1").on("click",function (){
+                location.reload();
+            })
+        });
     });
-
-    $(".profilebtn1").on("click",function (){
-        location.reload();
-    })
 
 
 

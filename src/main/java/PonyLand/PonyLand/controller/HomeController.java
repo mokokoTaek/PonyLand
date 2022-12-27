@@ -45,11 +45,15 @@ public class HomeController {
 
         MemberDTO dto =service.findById(id);
 
-        int dto1 = albumService.count();  //album 게시글 총 갯수 가져오기
+        int dto1 = albumService.count(id);  //album 게시글 총 갯수 가져오기 , 사진첩은 나밖에못쓰므로 writer랑,id이 값 같아서 id로 가져옴.
 
-        int dto2 = guestbookService.count();//Guestbook  게시글 총 갯수 가져오기
+        int dto2 = guestbookService.count(id);//Guestbook  게시글 총 갯수 가져오기 ,id값 받아서 가져옴.
 
         List<AlbumDTO> dto3 = albumService.select(); //main에 최근 사진첩 게시글 제목 뽑아오기
+
+        int dto4  = albumService.selectByDate(id);  // 사진첩 하루안에 올린 글 갯수
+
+        int dto5 = guestbookService.selectByDate(id);// 방명록 하루안에 올리 글 갯수
 
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        Calendar cal = Calendar.getInstance();
@@ -60,7 +64,7 @@ public class HomeController {
 
         String horse = "horse";
         String bg = "background";
-
+        //String furniture = "furniture";
 
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
@@ -69,9 +73,13 @@ public class HomeController {
         model.addAttribute("list1",dto1);  //album 게시글 총 갯수 뿌림.
         model.addAttribute("list2",dto2); //Guestbook 게시글 총 갯수 뿌림.
         model.addAttribute("list3",dto3);  //main에 최근 사진첩 게시글 제목 뿌리기.
+        model.addAttribute("list4",dto4);// 사진첩 하루안에 올린 글 갯수
+        model.addAttribute("list5",dto5); //방명록 하루안에 올린 글 갯수
         model.addAttribute("miniroomdto",service.findById(id));
         model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
         model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
+        //model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,furniture));
+
         return "main";
     }
 

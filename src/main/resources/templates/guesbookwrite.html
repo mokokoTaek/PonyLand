@@ -10,6 +10,9 @@
             crossorigin="anonymous"></script>
 
 </head>
+<style>
+
+</style>
 <body>
 <div class="container">
     <div class="top">
@@ -18,21 +21,18 @@
     </div>
 
     <div class="bg1">
-
-
         <div class="bg2">
             <div th:if="${id} != null">
                 <div class="profile0" th:text="${id}">님의 마구간</div>
             </div>
 
             <div class="profile1">
-                테스트입니다.
+                <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|">
             </div>
 
             <div class="profile2">
-                상태메시지<br>
-                상태메시지<br>
-                상태메시지<br>
+                <div><textarea class="textareabg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea></div>
+                <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
             </div>
 
             <div class="profile3">
@@ -59,16 +59,37 @@
         <form action="/Guestbook/insert">
             <div class="bg3">
                 <div class="bg3in">
-                    <div class="gbwcontent">
-<!--                        <div class="gbprofile">-->
-<!--                            프로필이미지-->
-<!--                        </div>-->
-                        <div class="gbtext" >
-                            <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
-                                   placeholder="내용을 입력하세요">
+                    <div class="bgcontent">
+                        <div class="gbtitle">
+                            <div style="margin-left: 10px"></th></div>
+                            <div></div>
+                            <div></div>
+                            <div style="margin-right: 10px">
+                                <!--                                <a class="anchor" >삭제</a>-->
+                                <!--                                <span> | </span>-->
+                                <!--                                <button class="gowrite" type="button" style="padding: 0px">작성</button>-->
+                            </div>
+                        </div>
+
+                        <div class="gbcontent">
+                            <div class="gbprofile">
+                                <div class="gbprofle1">
+                                    <div class="gbprofile2">
+                                        <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|">
+                                    </div>
+                                </div>
+                                <div class="gbtext">
+                                    <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
+                                           placeholder="내용을 입력하세요">
+                                </div>
+                            </div>
+                            <hr>
+                            <div style="float: right">
+                                <button class="profilebtn" type="submit" id="writee">작성하기</button>
+                            </div>
                         </div>
                     </div>
-                    <button class="profilebtn" type="submit" id="writee">글쓰기완료</button>
+
                     <input type="hidden" th:value="${id}" name="guestbook_host" id="host">
                 </div>
             </div>
@@ -76,28 +97,65 @@
     </div>
 </div>
 
+
 <div class="side">
-    <div class="side1">
+    <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
-    </div>
-    <div class="side2">
-        <a th:href="@{/Guestbook/goGuestbook}">
-            <button class="btnmain1">방명록</button>
-        </a>
-    </div>
-    <div class="side3">
+    </a>
+    <button class="btnmain1">방명록</button>
+    <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
         <button class="btnmain2">사진첩</button>
-    </div>
-    <div class="side4">
-        <button class="btnmain2">다이어리</button>
-    </div>
-
+    </a>
+    <a th:href="@{/member/goMypage?(memberId=${id})}">
+        <button class="btnmain2">내정보</button>
+    </a>
 </div>
-
 <script>
     $("#writee").on("click", function () {
         console.log($("#host").val());
     })
+
+
+
+    //xss 공격 막기 코드
+    onGetEscapeXSS : function (inputText)
+    {
+        var targetText = inputText;
+        if (targetText != '' )
+        {
+            var source = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
+            var target = ["&amp;","&lt;","&gt;","&quot;","&#39;","&#47;","&#40;","&#41;","&#37;","&#45;"];
+
+            for(var i = 0; i < source.length; i++)
+            {
+                targetText = targetText.replace(source[i], target[i]);
+            }
+        }
+        return targetText;
+    },
+
+    /**
+     * XSS 공격 방지를 위해 변환된 문자를 원본 문자로 복원한다.
+     */
+    onGetUnescapeXSS : function (inputText)
+    {
+        var plainText = inputText;
+        if (plainText != '')
+        {
+            var source = ["&amp;","&lt;","&gt;","&quot;","&#39;","&#47;","&#40;","&#41;","&#37;","&#45;"];
+            var target = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
+
+            for(var  i = 0; i < source.length; i++)
+            {
+                if(plainText.indexOf(source[i]) > -1)
+                {
+                    plainText = plainText.replace(source[i], target[i]);
+                }
+            }
+        }
+        return plainText;
+    }
+
 </script>
 </body>
 </html>

@@ -58,16 +58,19 @@ public class MemberDAO {
         return MemberMapper.update(dto);
     }
 
-    public String imgupdate(MemberDTO dto) {
-        return MemberMapper.imgupdate(dto);
+    public void imgupdate(MemberDTO dto) {
+         MemberMapper.imgupdate(dto);
     }
-    public String message(MemberDTO dto) {
-        return MemberMapper.message(dto);
+    public void message(MemberDTO dto) {
+         MemberMapper.message(dto);
     }
 
-    public void bettingCoin(Map<String, Object> map) {gameMapper.bettingCoin(map);}
+    //racin table에 값들 넣은 코드문
+    public void insertCoin(Map<String, Object> map) {gameMapper.insertCoin(map);}
 
-//    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
+
+    //게임 시작 버튼 클릭시 member_Coin에서 배팅금액 먼저 뺴는 코드
+    public void updateCoin(Map<String, Object> map) {gameMapper.updateCoin(map);}
 
     public boolean duplCheck(String memberId) {
         int count = MemberMapper.duplCheck(memberId);
@@ -80,8 +83,8 @@ public class MemberDAO {
     public void updateWin(RacingDTO dto) {gameMapper.updateWin(dto);
     }
 
-    public void updateLose(RacingDTO dto) {gameMapper.updateLose(dto);
-    }
+    /*public void updateLose(RacingDTO dto) {gameMapper.updateLose(dto);
+    }*/
 
     public void deleteBet(String id) {gameMapper.deleteBet(id);}
 }

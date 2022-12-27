@@ -1,6 +1,7 @@
 package PonyLand.PonyLand.controller;
 
 import PonyLand.PonyLand.dto.GuestbookCommentDTO;
+import PonyLand.PonyLand.dto.GuestbookDTO;
 import PonyLand.PonyLand.service.GuestbookCommentService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,15 @@ public class GuestbookCommentController {
 
     @ResponseBody
     @RequestMapping("insert")
-    public String commentFrm(String parent_seq, String guestbook_comment_contents) { //String 형이야
-        System.out.println("파라미터 값들 들어오는지 ? :"+parent_seq+":"+guestbook_comment_contents);
+    public String commentFrm(String parent_seq, String guestbook_comment_contents) {
         String Guestbook_comment_writer = (String) session.getAttribute("sessionID");
         service.insert(new GuestbookCommentDTO(0,Guestbook_comment_writer,guestbook_comment_contents,null,Integer.parseInt(parent_seq)));
-        return "Guestbook";
+        return "";
     }
 
+    @RequestMapping("delete")
+    public String guestbook_comment_delete(int guestbook_comment_seq, String host){
+        service.delete(guestbook_comment_seq);
+        return "redirect:/Guestbook/goGuestbook?&guestbook_host="+host;
+    }
 }

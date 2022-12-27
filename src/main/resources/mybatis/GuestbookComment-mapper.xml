@@ -10,16 +10,12 @@
         insert into guestbook_comment values(guestbook_comment_seq.nextval,#{guestbook_comment_writer},#{guestbook_comment_contents},sysdate,#{parent_seq})
     </insert>
 
-
     <select id="select" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
         select * from guestbook_comment order by guestbook_comment_seq desc
     </select>
 
-
-    <!--
-          <delete id="">
-
-
-          </delete>-->
+    <delete id="delete">
+        delete from guestbook_comment where guestbook_comment_seq = #{value}
+    </delete>
 
 </mapper>

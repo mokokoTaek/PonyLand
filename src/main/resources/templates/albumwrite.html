@@ -6,79 +6,162 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
           integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
           crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../static/style.css"/>
 </head>
 <style>
-  * {
-    box-sizing: border-box;
-  }
 
-  div {
-    border: 1px solid black;
-  }
-
-  .container {
-    text-align: center;
-    margin: auto;
-    width: 60%;
-    height: 100%;
-  }
-
-  #Album_title {
-    float: left;
-    width: 100%;
-  }
-
-  #text {
-    width: 100%;
-    height: 300px;
-  }
-
-  .btn {
-    float: right;
-  }
-
-  #div1 {
-    height: 25px;
-  }
-  .line-del:hover{
-    cursor:pointer;
-    background-color:red;
-    color:white;
-  }
-  #fileAdd:hover{
-    cursor:pointer;
-  }
 </style>
 <body>
-<form action = "/Album/insert" method = "post"  accept-charset="utf-8" enctype="multipart/form-data" >
-  <!--enctype="multipart/form-data"-->
-  <div class=container>
-    <div>자유게시판 글 작성하기</div>
-<!--            <input type="hidden" name="Album_writer" value="${sessionID }">-->
+<div ></div>
 
-<!--        <div>-->
-<!--          <input type="text" placeholder="글 번호을 입력하세요" id="Album_seq" name="Album_seq">-->
-<!--        </div>-->
-    <div>
-      <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
-      <input type="hidden" name="Album_writer">
-      <input type="hidden" th:value="${id}" name="Album_host">
-    </div>
-        <input type="file" name="file" multiple accept=".jpg, .png, .gif">
-    <div id="text">
-				<textarea placeholder="글 내용을 입력하세요." name="Album_contents"
-                          style="width: 100%; height: 90%; resize: none;"></textarea>
-    </div>
-    <div id="div1">
-      <button type="button" class="btn" id="back">목록으로</button>
-      <button type="submit" class="btn" id="btn">작성완료</button>
-    </div>
+
+<div class="container">
+  <div class="top">
+    <div class="">Today : 245</div>
+    <div class="">뮤직플레이어 부분</div>
   </div>
-</form>
+
+  <div class="bg1">
+    <div class="bg2">
+      <div >
+        <div class="profile0" th:text="${id}">님의 마구간</div>
+      </div>
+
+      <div class="profile1">
+        <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|">
+      </div>
+
+      <div class="profile2">
+        <div><textarea class="textareabg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea></div>
+        <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
+      </div>
+
+      <div class="profile3">
+        <div>
+          <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+        </div>
+        <div>
+          <a th:href="@{/family/areTheyFamily}">
+            <button class="profilebtn" type="button">일촌확인</button>
+          </a>
+        </div>
+        <div>
+          <a th:href="@{/member/wave}">
+            <button class="profilebtn" type="button" id="wave">파도타기</button>
+          </a>
+        </div>
+      </div>
+
+      <div class="profile4">
+        <div class="profile4-1">
+          History
+        </div>
+        <div class="profile4-2">
+          <div>윤성민(개굴개굴)</div>
+          <div>임근혁(개굴개굴)</div>
+          <div>이진혁(개굴개굴)</div>
+        </div>
+      </div>
+    </div>
+    <form action = "/Album/insert" method = "post"  accept-charset="utf-8" enctype="multipart/form-data" >
+      <div class="albg3">
+        <div class="bg3in">
+          <div style="margin-top: 30px"></div>
+
+          <div class="gbtitle">
+            <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
+          </div>
+
+          <div class="alpic">
+            <!--앨범 작성 부분-->
+            <div class=container>
+              <input type="hidden" name="Album_writer">
+              <input type="hidden" th:value="${id}" name="Album_host">
+              <div class="alpic">
+                <div id="image-preview"></div>
+              </div>
+              <div id="text">
+                <div id="image-preview"></div>
+                <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents" ></textarea>
+              </div>
+              <div id="div1">
+                <tr>
+                  <input type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="previewImage(event)">
+                  <div>
+                    <button type="button" class="alwrbtn" id="back">목록으로</button>
+                    <button type="submit" class="alwrbtn" id="btn">작성완료</button>
+                  </div>
+                </tr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="side">
+  <a th:href="@{/toMiniPage(id = ${id})}">
+    <button class="btnmain2">메인</button>
+  </a>
+  <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}">
+    <button class="btnmain2">방명록</button>
+  </a>
+  <button class="btnmain1">사진첩</button>
+  <a th:href="@{/member/goMypage?(memberId=${id})}">
+    <button class="btnmain2">내정보</button>
+  </a>
+</div>
+
+
+
+
+
+
+<!--&lt;!&ndash;앨범 작성 부분&ndash;&gt;-->
+<!--<form action = "/Album/insert" method = "post"  accept-charset="utf-8" enctype="multipart/form-data" >-->
+<!--  <div class=container>-->
+<!--    <div>자유게시판 글 작성하기</div>-->
+<!--    <div>-->
+<!--      <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">-->
+<!--      <input type="hidden" name="Album_writer">-->
+<!--      <input type="hidden" th:value="${id}" name="Album_host">-->
+<!--    </div>-->
+<!--    <input type="file" name="file" multiple accept=".jpg, .png, .gif">-->
+<!--    <div id="text">-->
+<!--				<textarea placeholder="글 내용을 입력하세요." name="Album_contents"-->
+<!--                          style="width: 100%; height: 90%; resize: none;"></textarea>-->
+<!--    </div>-->
+<!--    <div id="div1">-->
+<!--      <button type="button" class="btn" id="back">목록으로</button>-->
+<!--      <button type="submit" class="btn" id="btn">작성완료</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->
+
+
 <script>
   $("#back").on("click", function() {
     history.back(); // 뒤로가기 버튼
   })
+
+  // 이미지 썸네일
+  function previewImage(event) {
+    let file = event.target.files[0];
+
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = function(event) {
+      let dataURL = event.target.result;
+
+      document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '"style="max-width: 523px; max-height: 300px;">';
+    };
+  }
 </script>
 
 </body>

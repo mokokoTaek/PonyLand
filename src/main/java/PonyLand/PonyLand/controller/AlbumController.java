@@ -56,13 +56,14 @@ public class AlbumController {
 
 //        model.addAttribute(session.getAttribute("sessionID").toString());
 //        System.out.println(session);
-
+        MemberDTO dto = memberService.findById(Album_host);
+        model.addAttribute("list",dto);
         model.addAttribute("id",Album_host);
         return "albumwrite";
     }
 
     @RequestMapping("insert")   //게시글 입력
-    public String insert(AlbumDTO dto, MultipartFile file) {
+    public String insert(AlbumDTO dto, MultipartFile file,String Album_host) {
         try {
             System.out.println(dto.getAlbum_contents() + ":" + dto.getAlbum_title());
 
@@ -83,13 +84,15 @@ public class AlbumController {
             //			현재시간과 겹치지않는 문자열을 자동생성
             Album_oriName= new String(Album_oriName.getBytes("utf8"),"ISO-8859-1");
             file.transferTo(new File(filePath+"/"+Album_sysName));
+            dto.setAlbum_host(Album_host);
             service.insert(dto);
+
 
         } catch (Exception e) {
             return "error";
         }
 
-        return "redirect:toAlbumpage";
+        return "redirect:/Album/toAlbumPage?&Album_host="+dto.getAlbum_host();
     }
 
     @RequestMapping("view")
@@ -104,18 +107,29 @@ public class AlbumController {
 
 
     @RequestMapping("delete")  //삭제
-    public String delete(int Album_seq) {
-        service.delete(Album_seq);
+    public String delete(int Album_seq,String Album_host) {  //html에서 가져옴 Album_host.
+        service.delete(Album_seq); //글번호로 삭제.
+        AlbumDTO dto = new AlbumDTO();
+        dto.setAlbum_host(Album_host); //삭제했을때 , 모든 정보들을 다 불러오기 위해 Album_host를 셋팅함.
 
-        return "redirect:toAlbumPage";
+        return "redirect:/Album/toAlbumPage?&Album_host="+dto.getAlbum_host();  //사진첩눌렀을때경로를 삭제했을때 경로랑 같게함.
     }
 
     @RequestMapping("update") //수정
-    public String update(String Album_title, String Album_contents, int Album_seq, Model model) {
+    public String update(String Album_title, String Album_contents, int Album_seq, Model model ,String Album_host) {
+        MemberDTO dto = memberService.findById(Album_host);
+        System.out.println(Album_title);
+        System.out.println("11111");
+        System.out.println(Album_contents);
+        System.out.println("2222");
+        System.out.println(Album_seq);
+        System.out.println("333");
+        model.addAttribute("list",dto);
         service.update(Album_title, Album_contents, Album_seq);
-//       수정.
-//        List<AlbumDTO> list= service.selectAll();
-//        model.addAttribute("date",list);
+
+       //수정.
+        List<AlbumDTO> list= service.selectAll();
+        model.addAttribute("date",list);
         return "redirect:toAlbumPage";
 
     }

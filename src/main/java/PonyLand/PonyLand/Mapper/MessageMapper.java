@@ -11,7 +11,10 @@ import java.util.List;
 @Mapper
 public interface MessageMapper {
     int insert(MessageDTO dto);
+
     List<MessageDTO> selectAll(String id);
 
     MessageDTO selectBySeq(int seq);
+
+    List<MessageDTO> sentMailAll(String id);
 }

@@ -25,4 +25,7 @@ public interface SpringDataJpaItemRepository extends JpaRepository<ItemDTO, Inte
 
     @Transactional
     ItemDTO findByItemMemberIdAndItemStatusAndItemCategory(String itemMemberId, int itemStatus, String itemCategory);
+
+    @Transactional
+    List<ItemDTO> findAllByItemMemberIdAndItemStatusAndItemCategory(String itemMemberId, int itemStatus, String itemCategory);
 }

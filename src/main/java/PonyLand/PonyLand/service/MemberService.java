@@ -183,20 +183,20 @@ public class MemberService {
     public int update(MemberDTO dto) {
         return dao.update(dto);
     }
-    public String imgupdate(MemberDTO dto) {
+    public void imgupdate(MemberDTO dto) {
         System.out.println(dto);
-        return dao.imgupdate(dto);
+        dao.imgupdate(dto);
 
     }
-    public String message(MemberDTO dto) {
-        System.out.println(dto);
-        return dao.message(dto);
+    public void message(MemberDTO dto) {
+         dao.message(dto);
     }
 
 
-    // 코인 배팅 racing 테이블에 insert
-    public void bettingCoin(String id, int bettingCoin, int horseCount, String betHorse) {
+    // 게임시작 누르면 배팅금액 먼저 차감 코드
+    public double bettingCoin(String id, int bettingCoin, int horseCount, String betHorse) {
         Map<String, Object> map = new HashMap<>();
+
         map.put("racing_id", id);
         map.put("racing_seq", betHorse);
         map.put("bettingCoin",bettingCoin);
@@ -204,23 +204,22 @@ public class MemberService {
         if (horseCount == 2) {
             double sum = bettingCoin * 1.25;
             map.put("racing_coin", sum);
-            dao.bettingCoin(map);
-
+            dao.updateCoin(map);
+            return sum;
         } else if (horseCount == 3) {
             double sum = bettingCoin * 1.5;
             map.put("racing_coin", sum);
-            dao.bettingCoin(map);
+            dao.updateCoin(map);
+            return sum;
 
-            //dao.updateCoin(id,sum);
-        } else if (horseCount == 4) {
+        } else {
             double sum = bettingCoin * 2;
             map.put("racing_coin", sum);
-            dao.bettingCoin(map);
-
-            //dao.updateCoin(id,sum);
+            dao.updateCoin(map);
+            return sum;
         }
-    }
 
+    }
     // 배팅할 금액 입력시 ajax로 실시간 예상금액 출력
     public double add(int bettingCoin, int horseCount) {
         double sum;
@@ -249,9 +248,9 @@ public class MemberService {
     }
 
     // 졌을때 member문에 coin 업데이트 위한 문
-    public void updateLose(RacingDTO dto) {
+   /* public void updateLose(RacingDTO dto) {
         dao.updateLose(dto);
-    }
+    }*/
 
     // 쿼리문 하나씩만 조회하기 위한 삭제 문
     public void deleteBet(String id) {
@@ -261,6 +260,16 @@ public class MemberService {
         return dao.duplCheck(memberId);
     }
 
+
+    //racing 테이블에 insert하는 코드
+    public void insertRacing(String racingId, int racingHorseSeq, double racingCoin, int bettingCoin) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("racing_id",racingId);
+        map.put("racing_horse_seq", racingHorseSeq);
+        map.put("racing_coin",racingCoin);
+        map.put("bettingCoin",bettingCoin);
+        dao.insertCoin(map);
+    }
 }
 
 

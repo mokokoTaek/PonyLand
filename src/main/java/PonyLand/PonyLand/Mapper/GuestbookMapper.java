@@ -15,6 +15,8 @@ public interface GuestbookMapper {
     int update(GuestbookDTO dto);
 
     List<GuestbookDTO> select();
-    int count();
+    int count(String Guestbook_writer);
+
+    int selectByDate(String Guestbook_writer); //방명록 하루안에 올린 글 갯수
 
 }

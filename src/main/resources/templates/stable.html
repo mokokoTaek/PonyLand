@@ -23,6 +23,11 @@
         display: flex;
     }
 
+    .furnitureimg{
+        position:absolute;
+        z-index: 5;
+        display: flex;
+    }
 
     /* .floor .player {
         position: absolute;
@@ -154,7 +159,11 @@
                 </div>
                 <div class="bg3-2-1" id="bg4">
                     <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" ondrag="drag_handler(event);">
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" ondrag="drag_handler(event);" ondragend="dragend_handler(event)">
+                    <div th:each="i : ${nowfurniturelist}">
+                        <img class="furnitureimg" th:src="|/static/img/@{${i.itemName}}|" ondrag="drag_handler(event)" ondragend="dragend_handler(event)">
+                    </div>
+
                 </div>
             </div>
 
@@ -166,7 +175,7 @@
                     <div th:each="i : ${itemlist}" style="width: 100%; height: 100px;">
                         <input type="hidden" th:value="${i.itemSeq}">
                         <input type="radio" name="radioBtn" class="radioBtn">
-                        <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true" ondrag="drag_handler(event)">
+                        <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">
                     </div>
                 </div>
             </div>
@@ -195,17 +204,18 @@
                 <div th:each="i : ${bglist}" style="width: 100%; height: 100px">
                     <input type="hidden" th:value="${i.itemSeq}">
                     <input type="radio" name="radioBtn" class="radioBtn">
-                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true" ondrag="drag_handler(event)">
+                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">
                 </div>
             </div>
             <div style="margin-bottom: 50px"></div>
-            <div class="furniture">
-                <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">
-                    <input type="hidden" th:value="${i.itemSeq}">
-                    <input type="radio" name="radioBtn" class="radioBtn">
-                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true" ondrag="drag_handler(event)">
-                </div>
-            </div>
+
+<!--            <div class="furniture">-->
+<!--                <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">-->
+<!--                    <input type="hidden" th:value="${i.itemSeq}">-->
+<!--                    <input type="checkbox" name="checkboxes" class="checkboxes">-->
+<!--                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">-->
+<!--                </div>-->
+<!--            </div>-->
 
             <div>
                 <button type="button" id = "modifyOn">수정합시다</button>
@@ -238,6 +248,17 @@
             // If it is, disable dragging
             event.target.draggable = false;
         }
+
+    }
+
+    function dragend_handler(event) {
+        // Check if the element is outside of bg4
+        if (!event.target.closest('#bg4')) {
+            // If it is, disable dragging
+            event.target.draggable = false;
+        }
+
+
     }
 
     function dragover_handler(event) {
@@ -246,12 +267,13 @@
 
     function drop_handler(event) {
         // Check if the element is within the boundaries of bg4
+        //console.log(event.target.className);
+
         if (event.target.closest('#bg4')) {
             // If it is, update the position of the element
             let x = event.offsetX;
             let y = event.offsetY;
-            console.log(x);
-            console.log(y);
+
             document.getElementById("target").style.left = x + 'px';
             document.getElementById("target").style.top = y + 'px';
 
@@ -260,12 +282,13 @@
                 data:{"x":x, "y":y},
                 type: "post"
             }).done(function(resp){
-                console.log("완료")
 
             }).fail(function(resp){
-                console.log("실패")
+
             })
         }
+
+
     }
     $(document).on("click",".radioBtn",function(){
         let imgseq = $(this).prev().val();
@@ -291,6 +314,35 @@
         })
     })
 
+    $(document).on("click","#modifyOff",function(){
+
+        let checkimgseq = [];
+
+        $("input[name=checkboxes]:checked").each(function(){
+            let imgseq = $(this).prev().val();
+            checkimgseq.push(imgseq);
+        })
+        let jsoncheckimgseq = JSON.stringify(checkimgseq);
+        console.log(checkimgseq)
+
+        // $.ajax({
+        //     url:"/stable/updateFurniture",
+        //     data: {
+        //         "jsoncheckimgseq":jsoncheckimgseq},
+        //     type:"post"
+        // }).done(function(resp){
+        //     let furniturelist = JSON.parse(resp);
+        //
+        //
+        //
+        // }).fail(function(resp){
+        //     console.log("실패")
+        // })
+
+        $(this).hide();
+        $("#modifyOn").show();
+    })
+
 
     $("#modifyOff").hide();
 
@@ -298,11 +350,20 @@
         $($(".radioBtn")[i]).hide();
     }
 
+    for(let i =0; i<$(".checkboxes").length;i++){
+        $($(".checkboxes")[i]).hide();
+    }
+
     $("#modifyOn").click(function(){
 
         for(let i=0; i<$(".itemimg").length;i++){
             $($(".radioBtn")[i]).show();
         }
+
+        for(let i =0; i<$(".checkboxes").length;i++){
+            $($(".checkboxes")[i]).show();
+        }
+
         $(this).hide();
         $("#modifyOff").show();
 
@@ -315,6 +376,10 @@
         for(let i=0; i<$(".itemimg").length;i++){
             $($(".radioBtn")[i]).hide();
         }
+        for(let i=0; i<$(".checkboxes").length;i++){
+            $($(".checkboxes")[i]).hide();
+        }
+
         $(this).hide();
         $("#modifyOn").show();
     })

@@ -102,6 +102,6 @@ public class GameController {
         model.addAttribute("winner", winner);
         model.addAttribute("betNumber", betNumber);
 
-        return "gameResult";
+        return "gameResult" ;
     }
 }

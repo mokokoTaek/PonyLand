@@ -4,6 +4,7 @@ import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.dto.RacingDTO;
 import PonyLand.PonyLand.service.GameService;
 import PonyLand.PonyLand.service.MemberService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,7 +63,8 @@ public class GameController {
     // ajax 실시간 배팅예상 금액 코드
     @ResponseBody
     @RequestMapping("estimatedAmount")
-    public double estimatedAmount(int bettingCoin, int horseCount) {
+    public double estimatedAmount(int bettingCoin, int horseCount, String member_coin) {
+
 
         return service.add(bettingCoin, horseCount);
     }
@@ -102,6 +104,4 @@ public class GameController {
 
         return "gameResult" ;
     }
-
-
 }

@@ -10,8 +10,7 @@ public interface GuestbookCommentMapper {
 
     int insert(GuestbookCommentDTO dto);
 
-
-    int delete(int guestbook_Comment_Seq);
+    int delete(int guestbook_comment_seq);
 
     List<GuestbookCommentDTO> select();
 }

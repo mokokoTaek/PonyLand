@@ -409,10 +409,8 @@ body {
     /*margin: auto;*/
 }
 
-.bg3-2-2{
-    /*margin: auto;*/
-    /*width: 600px;*/
-    /*margin-top: 10px;*/
+.bg3-2-2>a:hover{
+    color: #5a3d2b;
 }
 
 

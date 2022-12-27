@@ -9,6 +9,7 @@
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
+
 <body>
 
 <div class="container">
@@ -30,7 +31,7 @@
 
             <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>
             <button class="loginbtn" onclick="kakaoLogout();" type="button">카카오 로그아웃</button>
-            <button class="loginbtn" id="naver_id_login">네이버 로그인</button>
+            <button class="loginbtn" id="naver_id_login" style="">네이버 로그인</button>
             <a href="/">
                 <button class="loginbtn">메인으로</button>
             </a>
@@ -42,7 +43,7 @@
 <script type="text/javascript">
     var naver_id_login = new naver_id_login("4FNXn3NTIyg4Fd8TKvLF", "http://127.0.0.1/");
     var state = naver_id_login.getUniqState();
-    //naver_id_login.setButton("white", 2,40);
+    naver_id_login.setButton("green",50);
     naver_id_login.setDomain("http://localhost/login");
     naver_id_login.setState(state);
     naver_id_login.setPopup();

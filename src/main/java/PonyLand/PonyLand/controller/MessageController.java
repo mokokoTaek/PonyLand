@@ -63,6 +63,7 @@ public class MessageController {
     @ResponseBody
     @RequestMapping("detail")
     public String detail(String no) {
+        System.out.println(no);
         MessageDTO dto = service.selectBySeq(Integer.parseInt(no));
         Gson g = new Gson();
         return g.toJson(dto);

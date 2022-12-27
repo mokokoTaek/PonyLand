@@ -54,7 +54,9 @@ public class MemberController {
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){
+        System.out.println(dto.getMemberPw());
         service.insert(dto);
+        System.out.println(dto.getMemberPw());
         itemService.newUser(dto);
         System.out.println(dto.getMemberPw());
         return "redirect:/";

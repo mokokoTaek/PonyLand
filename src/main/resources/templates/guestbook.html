@@ -42,7 +42,7 @@
             </div>
 
             <div class="profile2">
-                <textarea class="textareabg"  th:text="${list2.getMember_message()}"  name="member_message" readonly ></textarea>
+                   <textarea class="textareabg"  th:text="${list2.getMember_message()}"  name="member_message" readonly ></textarea>
             </div>
 
             <div class="profile3">
@@ -83,7 +83,7 @@
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
                         <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
                         <div style="margin-right: 10px">
-                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host})}">삭제</a>
+                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">삭제</a>
                             <span> | </span>
                             <button class="gowrite" type="button" style="padding: 0px">작성</button>
                         </div>
@@ -96,7 +96,7 @@
 
                             <div class="gbprofle1">
                                 <div class="gbprofile2">
-                                    <img style="width: 100%; height: 100%;" th:src="|/img/@{${list2.getMember_sysname()}}|" id = profile >
+                                       <img style="width: 100%; height: 100%;" th:src="|/img/@{${list2.getMember_sysname()}}|" id = profile >
                                 </div>
                             </div>
                             <div class="gbtext">
@@ -107,6 +107,7 @@
 
                         <!-- 댓글 -->
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
+                            <div class="gbcmttitle">
                                 <div style="font-size: 13px">
                                     <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
                                 </div>
@@ -115,10 +116,10 @@
                                 </div>
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
-
+                            <div th:if="${list1.getGuestbook_comment_writer()==id}">
                             <button type="button" class="guestbook_comment_deleteBtn">삭제</button>
                             <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
-
+                            </div>
                         </div>
 
 
@@ -159,8 +160,9 @@
 
     // 방명록 댓들 삭제 기능
     $(".guestbook_comment_deleteBtn").on("click", function(){
+        let host = $("#host").val();
        let guestbook_comment_seq = $(this).next().val();
-       location.href = "/GuestbookComment/delete?guestbook_comment_seq="+guestbook_comment_seq;
+       location.href = "/GuestbookComment/delete?guestbook_comment_seq="+guestbook_comment_seq+"&host="+host;
     })
 
     // 방명록 글 삭제하는 코드
@@ -193,7 +195,10 @@
                 let div = $("<div>");
 
                 let divWriter = $("<div>");
-                divWriter.attr("style")
+                divWriter.attr("style","font-size: 13px")
+
+                let thWriter = $("")
+
             //     <div className="gbcmttitle" th:text="${list1.getGuestbook_comment_contents()}">
             //     <div style="font-size: 13px">
             //         <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>

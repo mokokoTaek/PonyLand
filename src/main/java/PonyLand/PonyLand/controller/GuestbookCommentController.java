@@ -35,8 +35,8 @@ public class GuestbookCommentController {
     }
 
     @RequestMapping("delete")
-    public String guestbook_comment_delete(int guestbook_comment_seq){
+    public String guestbook_comment_delete(int guestbook_comment_seq, String host){
         service.delete(guestbook_comment_seq);
-        return "redirect:/Guestbook/goGuestbook";
+        return "redirect:/Guestbook/goGuestbook?&guestbook_host="+host;
     }
 }

@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <div class="top">
-        <div class="">Today : 245</div>
+        <div class="" th:text="|Today : ${list.memberHomepageViewCount}|"></div>
         <div class="">뮤직플레이어 부분</div>
     </div>
 
@@ -84,7 +84,8 @@
                                 </div>
                             </div>
                             <hr>
-                            <div style="float: right">
+                            <div style="display: flex;justify-content: space-between">
+                                <button class="profilebtn" type="submit" id="back">뒤로가기</button>
                                 <button class="profilebtn" type="submit" id="writee">작성하기</button>
                             </div>
                         </div>
@@ -110,6 +111,11 @@
         <button class="btnmain2">내정보</button>
     </a>
 </div>
+<script>
+    $("#back").on("click", function() {
+        history.back(); // 뒤로가기
+    })
+</script>
 <script>
     $("#writee").on("click", function () {
         console.log($("#host").val());

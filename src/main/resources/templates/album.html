@@ -23,7 +23,7 @@
 
 <div class="container">
     <div class="top">
-        <div class="">Today : 245</div>
+        <div class="" th:text="|Today : ${list.memberHomepageViewCount}|"></div>
         <div class="">뮤직플레이어 부분</div>
     </div>
 
@@ -177,7 +177,6 @@
     //앨범 글쓰기로 가는 세션. (아이디 포함)
     $(".profilebtn2").on("click", function() {
         let Album_host = $("#host").val();
-
         location.href = "/Album/write?Album_host="+Album_host;
     })
 

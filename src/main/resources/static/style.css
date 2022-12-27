@@ -696,6 +696,12 @@ button:hover {
     margin-top: 10px;
 }
 
+.post_title{
+    margin-top: 10px;
+    font-size: 24px;
+    color: #5a3d2b;
+}
+
 .gbtitle > input{
     background-color: transparent;
     width: 100%;

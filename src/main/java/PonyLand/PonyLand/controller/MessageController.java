@@ -48,10 +48,11 @@ public class MessageController {
         service.insert(dto);
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<script>alert('전송 되었습니다.'); history.go(-1);</script>");
+        out.println("<script>alert('전송 되었습니다.'); window.close();</script>");
         out.flush();
         response.flushBuffer();
         out.close();
+
     }
 
 //    @RequestMapping("detail")

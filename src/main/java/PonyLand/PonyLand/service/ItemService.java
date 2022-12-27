@@ -34,6 +34,28 @@ public class ItemService {
         dao.updateItem(dto);
     }
 
+        public boolean addNewItem(ItemDTO dto){
+        List<ItemDTO> horseList = dao.findHorseById(dto.getItemMemberId(),dto.getItemCategory());
+        List<ItemDTO> bgList = dao.findBgById(dto.getItemMemberId(),dto.getItemCategory());
+
+        for(int i=0;i<horseList.size();i++) {
+            if (horseList.get(i).getItemName().equals(dto.getItemName())) {
+                return false;
+            }
+        }
+
+            for(int i=0;i<bgList.size();i++) {
+                if (horseList.get(i).getItemName().equals(dto.getItemName())) {
+                    return false;
+                }
+            }
+
+        dao.updateItem(dto);
+            return true;
+    }
+
+
+
     public List<ItemDTO> furnitureListControl(List list){
         List<ItemDTO> furnitureItemList = new ArrayList<ItemDTO>();
         for(int i=0;i<list.size();i++){

@@ -49,7 +49,6 @@ public class MemberController {
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
 
-
         return "main";
     }
     @PostMapping("insert")

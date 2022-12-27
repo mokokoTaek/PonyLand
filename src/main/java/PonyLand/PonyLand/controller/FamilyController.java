@@ -95,7 +95,6 @@ public class FamilyController {
     }
 
 
-
 //    @RequestMapping("areTheyFamily")
 //    public String areTheyFamily(String proposer, String proposed){
 //        Boolean areTheyFamily = service.areTheyFamily(proposer,proposed);

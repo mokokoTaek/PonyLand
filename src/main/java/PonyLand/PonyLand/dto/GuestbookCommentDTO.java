@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class GuestbookCommentDTO {
 
-    private int gusetbook_comment_seq;
+    private int guestbook_comment_seq;
     private String guestbook_comment_writer;
     private String guestbook_comment_contents;
     private Timestamp guestbook_comment_write_date;

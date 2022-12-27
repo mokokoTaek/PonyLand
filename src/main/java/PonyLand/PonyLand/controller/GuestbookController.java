@@ -60,10 +60,10 @@ public class GuestbookController {
     //미니홈피에서 방명록으로 가는 코트
     @RequestMapping("goGuestbook")
     public String goGuestbook(String guestbook_host, Model model) {
-
         MemberDTO dto = memberService.findById(guestbook_host);
         List<GuestbookDTO> list = GuestbookService.select();
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
+        System.out.println(list1);
         model.addAttribute("id", guestbook_host);
         model.addAttribute("dto", list);
         model.addAttribute("list1", list1);

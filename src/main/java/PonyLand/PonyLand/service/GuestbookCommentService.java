@@ -18,5 +18,8 @@ public class GuestbookCommentService {
         return dao.insert(dto);
     }
 
+    public int delete(int guestbook_comment_seq) {
+        return dao.delete(guestbook_comment_seq);
+    }
     public List<GuestbookCommentDTO> select() {return dao.select();}
 }

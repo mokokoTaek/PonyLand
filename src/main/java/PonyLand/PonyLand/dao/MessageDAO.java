@@ -30,5 +30,7 @@ public class MessageDAO {
         return MessageMapper.selectBySeq(seq);
     }
 
-    }
+    public List<MessageDTO> sentMailAll(String id) {
+        return MessageMapper.sentMailAll(id);}
+}
 

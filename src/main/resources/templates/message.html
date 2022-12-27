@@ -80,9 +80,27 @@
                 <!-- 메세지 입력란이 올자리 -->
             </div>
 
+
+            <!-- 내가 보낸 메세지함 sentMail -->
+            <div th:each="list2 : ${list2}">
+                쪽지번호
+                <p th:text="${list2.no}"></p>
+                <br>
+                받은 사람
+                <p th:text="${list2.recv_nick}"></p>
+                <br>
+                내용
+                <p th:text="${list2.content}"></p>
+                <br>
+                보낸 시간
+                <p th:text="${list2.send_time}"></p>
+            </div>
+        </div>
+
+    </div>
 </div>
 <script>
-
+    //쪽지 눌렀을 때 오른쪽에 나오는 쪽지 디테일
     $(".detailBtn").on("click",function (){
 
         $(".msg_history").empty();

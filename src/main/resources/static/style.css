@@ -435,8 +435,15 @@ body {
     /*margin: auto;*/
 }
 
-.bg3-2-2>a:hover{
+.bg3-2-2>span>a{
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+.bg3-2-2>span>a:hover{
     color: #5a3d2b;
+    cursor: pointer;
 }
 
 

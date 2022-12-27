@@ -38,6 +38,7 @@ public class AlbumDAO {
         return albumMapper.selectByDate(Album_writer);
     }
 
+
 //    public  String selectHost(int album_seq) {
 //        return albumMapper.selectHost(album_seq);
 //    }

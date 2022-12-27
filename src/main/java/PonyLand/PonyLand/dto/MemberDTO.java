@@ -2,10 +2,12 @@ package PonyLand.PonyLand.dto;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @DynamicInsert
+@DynamicUpdate
 @Setter
 @Getter
 @NoArgsConstructor

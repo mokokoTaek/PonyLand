@@ -24,26 +24,26 @@
         <div class="">뮤직플레이어 부분</div>
     </div>
     <div class="bg1">
-        <div class="bg2" style="text-align: center">
+        <div class="gameresultbg2">
             <div style="font-size: 100px">게임결과</div>
             <div>
-                <button type="button" id="showResult">과연 누가 우승했을 까요?!</button>
+                <button type="button" class="gameresultbtn1" id="showResult">과연 누가 우승했을까요?!</button>
             </div>
-            <div id="resultDiv" style="display: none">
-                <div>
+            <div class="resultDiv" id="resultDiv" style="display: none">
+                <div style="font-size: 40px">
                     <span th:text="${winner}" id="winner" th:name="winner"></span><span>번 말이 우승하였습니다 !</span> <br>
                     <span th:text="${dto.getMember_name()}"></span><span>님은</span>
-                    <span th:text="${betNumber}" id="betNumber" th:name="betNumber"></span><span>번 말에 배팅하여</span><br>
+                    <span th:text="${betNumber}" id="betNumber" th:name="betNumber"></span><span>번 말을 선택하여</span><br>
                     <span class="betting"></span>
                 </div>
 
-                <div>
-                    <span th:text="${dto.getMember_name()}"></span><span>님의 coin 보유금액은 </span><span
-                        th:text="${dto.getMember_coin()}"></span><span>원 입니다.</span>
+                <div style="font-size: 40px; margin-top: 20px">
+                    <span th:text="${dto.getMember_name()}"></span><span>님의 보유 당근은 </span><span
+                        th:text="${dto.getMember_coin()}"></span><span>개 입니다.</span>
                 </div>
 
                 <div>
-                    <button id="oneMore" type="button">한판 더 하기</button>
+                    <button class="gameresultbtn1" id="oneMore" type="button" style="margin-top: 20px">다시하기</button>
                 </div>
             </div>
         </div>

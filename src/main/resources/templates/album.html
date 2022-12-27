@@ -136,15 +136,17 @@
                                         <a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>
                                     </div>
                                 </div>
-                                <div style="font-size: 18px;">
+                                <div style="font-size: 18px;" >
                                     <th th:text="${list1.getAlbum_Comment_contents()}">작성내용</th>
+
                                 </div>
                             </div>
 
                             <div class="gbcmtinput" >
                                 <div class="gbcmt">
                                     <!--                       <tr th:each="list1:${dto1}">-->
-                                    <input class="gbcmt" type="text" id="Album_Comment_contents">
+                                    <input class="gbcmt" type="text" id="Album_Comment_contents" maxlength="80">
+                                                                                                    <!--글자수제한-->
                                 </div>
 
 
@@ -225,144 +227,26 @@
                     $(".comment").append(div);
 
 
-
-
-
-
                 }
 
 
+
+
             }).fail(function (data) {
+
 
             })
         });
 
     })
 
+    $(".gbcmt").on("keydown", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            $(this).next().focus();
+        }
+    });  //엔터누르면 전송
 
-
-
-
-
-
-
-    // $("#modifyBtn").on("click", function() {
-    //     if (confirm("수정하시겠습니까?")) {
-    //         $("#Album_contents").removeAttr("readonly");
-    //         $("textarea").removeAttr("readonly")
-    //         $("#updateBtn").css("display", "inline");
-    //         $("#modifyBtn").css("display", "none");
-    //     }
-    // })
-
-    // $("#comment").on("click", function () {
-    //     $("#form").attr("action", "/Comment/write");
-    //     $("#form").submit();
-    // })
-    // $("#modifyBtn").on("click", function() {
-    //     if (confirm("수정하시겠습니까?")) {
-    //         $("#title").removeAttr("readonly");
-    //         $("textarea").removeAttr("readonly")
-    //         $("#updateBtn").css("display", "inline");
-    //         $("#modifyBtn").css("display", "none");
-    //     }
-    // })
-    // 댓글 확인 버튼 클릭시 name에 Album_comment_contents 넣고 ,
-    // $(".gbbutton").on("click", function () {
-    //     $(this).next().attr("name", "Album_Comment_parent_seq");
-    //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
-    //     $("#form").submit();
-    // })
-
-
-
-
-    // $(".gbbutton").on("click", function () {
-    //
-    //     $(this).prev().find('input').attr("name", "Album_Comment_contents");
-    //     let Album_Comment_parent_seq = $(this).next().val();
-    //     let Album_Comment_contents = $(this).prev().find('input').val();
-    //
-    //     $.ajax({
-    //         url: "/Comment/write",
-    //         type: "post",
-    //         data: {
-    //             "Album_Comment_parent_seq": Album_Comment_parent_seq,
-    //             "Album_Comment_contents": Album_Comment_contents
-    //         }
-    //     }).done(function (data) {
-    //         let json = JSON.parse(data.list);
-    //         for (let i = 0; i < json.length; i++) {
-    //
-    //             let tr = $("<tr>");
-    //
-    //             let tdAlbum_Comment_seq = $("<td>");
-    //             tdAlbum_Comment_seq.append(i+1);
-    //
-    //             let tdAlbum_Comment_contents = $("<td>");
-    //             tdAlbum_Comment_contents.append(i+1);
-    //
-    //
-    //             tr.append(tdAlbum_Comment_seq);
-    //             tr.append(tdAlbum_Comment_contents);
-    //
-    //            $(".abc").append(tr);
-    //
-    //
-    //
-    //         }
-    //
-    //
-    //
-    //
-    //     }).fail(function (data) {
-    //         console.log("ㅋㅋ 뭘봐")
-    //     })
-    //
-    // $(function(){
-    //     $(".gbbutton").on("click", function () {
-    //
-    //         $(this).prev().find('input').attr("name", "Album_Comment_contents");
-    //         let Album_Comment_parent_seq = $(this).next().val();
-    //         let Album_Comment_contents = $(this).prev().find('input').val();
-    //
-    //         $.ajax({
-    //             url: "/Comment/write",
-    //             type: "post",
-    //             data: {
-    //                 "Album_Comment_parent_seq": Album_Comment_parent_seq,
-    //                 "Album_Comment_contents": Album_Comment_contents
-    //             }
-    //         }).done(function (data) {
-    //             let target = JSON.parse(data);
-    //             for (let i = 0; i < target.length; i++) {
-    //
-    //                 let div1 = $("<div>");
-    //
-    //
-    //                 let divAlbum_Comment_seq = $("<span>");
-    //                 divAlbum_Comment_seq.append(target[i].Album_Comment_parent_seq);
-    //
-    //                 let divAlbum_Comment_contents = $("<span>");
-    //                 divAlbum_Comment_contents.append(target[i].Album_Comment_contents);
-    //
-    //                 div1.append(divAlbum_Comment_seq)
-    //                 div1.append(divAlbum_Comment_contents);
-    //
-    //
-    //                 $(".abc").append(div1);
-    //
-    //
-    //             }
-    //
-    //
-    //         }).fail(function (data) {
-    //             console.log("ㅋㅋ 뭘봐")
-    //         })
-    //     });
-    //
-    // })
-    //
 
 
 

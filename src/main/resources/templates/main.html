@@ -121,7 +121,7 @@
                         방명록 <div th:text="${list5}"></div>/<div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 <div th:text="${list4}"> <img th:if="${list4!=null}" th:src="@{/static/img/new1.jpg}"></div>/<div   th:text="${list1}" ></div>
+                        사진첩 <div th:text="${list4}"> <img th:src="@{/static/img/new1.jpg}"></div>/<div   th:text="${list1}" ></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64
@@ -163,11 +163,17 @@
     </a>
 </div>
 <script>
+
+    $(document).ready(function(){
+        $('.modifybtn2').hide();
+
     $(".modifybtn").on("click",function(){
+        $('.modifybtn2').show();
         $('textarea').removeAttr("readonly");
         $(this).hide();
         $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+    })
     })
 </script>
 

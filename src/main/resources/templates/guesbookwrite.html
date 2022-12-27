@@ -110,11 +110,52 @@
     </div>
 
 </div>
-
 <script>
     $("#writee").on("click", function () {
         console.log($("#host").val());
     })
+
+
+
+    //xss 공격 막기 코드
+    onGetEscapeXSS : function (inputText)
+    {
+        var targetText = inputText;
+        if (targetText != '' )
+        {
+            var source = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
+            var target = ["&amp;","&lt;","&gt;","&quot;","&#39;","&#47;","&#40;","&#41;","&#37;","&#45;"];
+
+            for(var i = 0; i < source.length; i++)
+            {
+                targetText = targetText.replace(source[i], target[i]);
+            }
+        }
+        return targetText;
+    },
+
+    /**
+     * XSS 공격 방지를 위해 변환된 문자를 원본 문자로 복원한다.
+     */
+    onGetUnescapeXSS : function (inputText)
+    {
+        var plainText = inputText;
+        if (plainText != '')
+        {
+            var source = ["&amp;","&lt;","&gt;","&quot;","&#39;","&#47;","&#40;","&#41;","&#37;","&#45;"];
+            var target = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
+
+            for(var  i = 0; i < source.length; i++)
+            {
+                if(plainText.indexOf(source[i]) > -1)
+                {
+                    plainText = plainText.replace(source[i], target[i]);
+                }
+            }
+        }
+        return plainText;
+    }
+
 </script>
 </body>
 </html>

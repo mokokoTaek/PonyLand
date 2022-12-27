@@ -118,7 +118,7 @@
                         방명록 <div th:text="${list5}"></div>/<div  th:text="${list2}"></div>
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 <div th:text="${list4}"></div>/<div   th:text="${list1}" ></div>
+                        사진첩 <div th:text="${list4}"> <img th:if="${list4!=null}" th:src="@{/static/img/new1.jpg}"></div>/<div   th:text="${list1}" ></div>
                     </div>
                     <div class="updatednews2-1">
                         다이어리 0/64

@@ -397,9 +397,9 @@ bgimg > img{
 
 
 /*GAME*/
-.paybutton{
+.gameresultbtn1{
     width: 250px;
-    height: 40px;
+    height: 60px;
     background: #FFECB4;
     font-size: 25px;
     color: #5a3d2b;
@@ -408,4 +408,8 @@ bgimg > img{
     border-right: 1px solid #F4A127;
     border-left: 4px solid #F4A127;
     border-bottom: 4px solid #F4A127;
+}
+
+.resultDiv{
+text-align: center;
 }

@@ -24,6 +24,11 @@
             font-size: 15px;
         }
 
+        .detailBtn, .inbox_chat {
+            cursor: pointer;
+        }
+
+
     </style>
 </head>
 
@@ -43,7 +48,7 @@
             <div class="inbox_people">
                 <div class="headind_srch">
                     <div class="recent_heading">
-                        <h4>Recent</h4>
+                        <h4>받은 쪽지함</h4>
                     </div>
                 </div>
 
@@ -59,7 +64,7 @@
                                    th:attrappend="id=${itemStat.index}">
                             <br/>
                             <!-- 새로운 div 태그 추가 -->
-                            <div style="border: 1px solid; border-color: black;">
+                            <div style="border: 1px solid; border-color: lightgrey;">
                             </div>
                         </div>
                     </div>

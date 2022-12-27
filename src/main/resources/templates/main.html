@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Main</title>
     <link rel="stylesheet" href="../static/style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
     <style>
@@ -141,9 +142,11 @@
                     <!--                    </div>-->
                 </div>
                 <div class="bg3-2-2">
-                    <a th:href="@{/stable/toStable(id = ${id})}">
-                        >내마구간
+                    <span><a th:href="@{/stable/toStable(id = ${id})}">
+                        <i class="material-symbols-outlined" style="font-size:36px; margin-bottom: 0px;">door_open</i>
+                        마구간
                     </a>
+                        </span>
                 </div>
             </div>
         </div>

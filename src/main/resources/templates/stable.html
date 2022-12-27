@@ -149,7 +149,8 @@
         <div class="">뮤직플레이어 부분 </div>
     </div>
     <div class="bg1">
-        <div class="bg4" ondragover="dragover_handler(event);" ondrop="drop_handler(event);" >
+        <!--        ondrop="drop_handler(event);"-->
+        <div class="bg4" ondragover="dragover_handler(event);" ondrop="drop_handler(event)">
             <!--            <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">-->
             <!--            <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" ondrag="drag_handler(event);">-->
 
@@ -209,13 +210,13 @@
             </div>
             <div style="margin-bottom: 50px"></div>
 
-<!--            <div class="furniture">-->
-<!--                <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">-->
-<!--                    <input type="hidden" th:value="${i.itemSeq}">-->
-<!--                    <input type="checkbox" name="checkboxes" class="checkboxes">-->
-<!--                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="furniture">
+                <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">
+                    <input type="hidden" th:value="${i.itemSeq}">
+                    <input type="checkbox" name="checkboxes" class="checkboxes">
+                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">
+                </div>
+            </div>
 
             <div>
                 <button type="button" id = "modifyOn">수정합시다</button>
@@ -242,6 +243,15 @@
 </div>
 
 <script>
+
+    // $("#target").draggable({
+    //     containment: 'parent'
+    // })
+
+    // $(".furnitureimg").draggable({
+    //     containment: '#bg4'
+    // })
+
     function drag_handler(event) {
         // Check if the element is outside of bg4
         if (!event.target.closest('#bg4')) {
@@ -253,10 +263,10 @@
 
     function dragend_handler(event) {
         // Check if the element is outside of bg4
-        if (!event.target.closest('#bg4')) {
-            // If it is, disable dragging
-            event.target.draggable = false;
-        }
+        // if (!event.target.closest('#bg4')) {
+        //     // If it is, disable dragging
+        //     event.target.draggable = false;
+        // }
 
 
     }
@@ -325,19 +335,19 @@
         let jsoncheckimgseq = JSON.stringify(checkimgseq);
         console.log(checkimgseq)
 
-        // $.ajax({
-        //     url:"/stable/updateFurniture",
-        //     data: {
-        //         "jsoncheckimgseq":jsoncheckimgseq},
-        //     type:"post"
-        // }).done(function(resp){
-        //     let furniturelist = JSON.parse(resp);
-        //
-        //
-        //
-        // }).fail(function(resp){
-        //     console.log("실패")
-        // })
+        $.ajax({
+            url:"/stable/updateFurniture",
+            data: {
+                "jsoncheckimgseq":jsoncheckimgseq},
+            type:"post"
+        }).done(function(resp){
+            let furniturelist = JSON.parse(resp);
+
+
+
+        }).fail(function(resp){
+            console.log("실패")
+        })
 
         $(this).hide();
         $("#modifyOn").show();
@@ -400,6 +410,17 @@
         $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.itemName}]]+")","background-repeat":"no-repeat",
             "background-size":"cover"})
         // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+
+        for(let i=0; i<[[${nowfurniturelist}]].length;i++){
+            // console.log([[${nowfurniturelist}]][i]);
+
+            let onloadFx = [[${nowfurniturelist}]][i].itemX;
+            let onloadFy = [[${nowfurniturelist}]][i].itemY;
+            console.log(document.getElementsByClassName("furnitureimg")[i]);
+            document.getElementsByClassName("furnitureimg")[i].style.left = onloadFx + 'px';
+            document.getElementsByClassName("furnitureimg")[i].style.top = onloadFy + 'px';
+        }
+
     })
 
 </script>

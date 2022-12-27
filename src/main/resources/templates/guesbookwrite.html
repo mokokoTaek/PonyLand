@@ -10,6 +10,9 @@
             crossorigin="anonymous"></script>
 
 </head>
+<style>
+
+</style>
 <body>
 <div class="container">
     <div class="top">
@@ -62,9 +65,9 @@
                             <div></div>
                             <div></div>
                             <div style="margin-right: 10px">
-                                <a class="anchor" >삭제</a>
-                                <span> | </span>
-                                <button class="gowrite" type="button" style="padding: 0px">작성</button>
+                                <!--                                <a class="anchor" >삭제</a>-->
+                                <!--                                <span> | </span>-->
+                                <!--                                <button class="gowrite" type="button" style="padding: 0px">작성</button>-->
                             </div>
                         </div>
 
@@ -81,34 +84,31 @@
                                 </div>
                             </div>
                             <hr>
+                            <div style="float: right">
+                                <button class="profilebtn" type="submit" id="writee">작성하기</button>
+                            </div>
                         </div>
                     </div>
-                    <button class="profilebtn" type="submit" id="writee">글쓰기완료</button>
+
                     <input type="hidden" th:value="${id}" name="guestbook_host" id="host">
                 </div>
             </div>
         </form>
     </div>
+</div>
 
-</div>
-</div>
 
 <div class="side">
-    <div class="side1">
+    <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
-    </div>
-    <div class="side2">
-        <a th:href="@{/Guestbook/goGuestbook}">
-            <button class="btnmain1">방명록</button>
-        </a>
-    </div>
-    <div class="side3">
+    </a>
+    <button class="btnmain1">방명록</button>
+    <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
         <button class="btnmain2">사진첩</button>
-    </div>
-    <div class="side4">
-        <button class="btnmain2">다이어리</button>
-    </div>
-
+    </a>
+    <a th:href="@{/member/goMypage?(memberId=${id})}">
+        <button class="btnmain2">내정보</button>
+    </a>
 </div>
 
 <script>

@@ -42,12 +42,8 @@
 <div th:unless="${id} != null">
     <div class="mainsection">
         <button class="ponyland">포니랜드</button>
-
             <button class="ponyland" type="button" id="miniHome">미니홈피</button>
-
-        <a th:href="@{/stable/toStable(id = ${id})}">
-            <button class="ponyland" type="button">마구간</button>
-        </a>
+            <button class="ponyland" type="button" id="horseHome">마구간</button>
         <a th:href="@{/login}">
             <button class="login">로그인</button>
         </a>
@@ -126,6 +122,12 @@
 <script>
     $("#miniHome").on("click",function (){
        alert("로그인 후 이용 가능합니다.")
+        location.href="/login";
+    })
+
+
+    $("#horseHome").on("click",function (){
+        alert("로그인 후 이용 가능합니다.")
         location.href="/login";
     })
 </script>

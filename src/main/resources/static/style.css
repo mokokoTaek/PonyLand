@@ -30,6 +30,18 @@ body {
     justify-content: center;
 }
 
+
+
+/*GOOGLE ICON*/
+.material-symbols-outlined {
+    font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+}
+
+
 /* index*/
 
 .mainsection{
@@ -330,6 +342,20 @@ body {
     border-right: 1px solid rgba(90, 61, 43, 1);
     border-left: 3px solid rgba(244, 161, 39, 1);
     border-bottom: 3px solid rgba(244, 161, 39, 1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profilebtn2 {
+    width: auto;
+    height: auto;
+    font-size: 18px;
+    background: #FFECB4;
+    color: #5a3d2b;
+    border-top: #FFECB4;
+    border-right: #FFECB4;
+    border-left: 2px solid #F4A127;
+    border-bottom: 2px solid #F4A127;
     border-radius: 8px;
     overflow: hidden;
 }

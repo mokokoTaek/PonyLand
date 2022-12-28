@@ -17,4 +17,6 @@ public interface MessageMapper {
     MessageDTO selectBySeq(int seq);
 
     List<MessageDTO> sentMailAll(String id);
+
+    int delete(int seq);
 }

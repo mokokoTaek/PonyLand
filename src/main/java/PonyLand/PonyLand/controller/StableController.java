@@ -160,14 +160,22 @@ public class StableController {
         @RequestMapping("coordinate")
         @ResponseBody
         public String coordinate(String x, String y){
+
+            System.out.println(x);
+            System.out.println(y);
+
             int intx = Integer.parseInt(x);
             int inty = Integer.parseInt(y);
+
+            System.out.println(intx);
+            System.out.println(inty);
 
             String itemCategory = "horse";
 
             String id =(String)session.getAttribute("sessionID");
 
             ItemDTO dto = service2.findByItemStatus(id,itemCategory);
+
 
             dto.setItemX(intx);
             dto.setItemY(inty);

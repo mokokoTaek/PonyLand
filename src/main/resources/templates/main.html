@@ -129,10 +129,11 @@
                             <!--                        <i class="material-symbols-outlined" style="font-size:22px; margin-bottom: 10px; color: darkgreen">fiber_new</i>-->
                         </div>
                         <div>
+                            <span th:if="${list5}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list5}"></span>
+                            <span th:text="${list5 < 10 ? '0' + list5 : list5}"></span></span> <!--10보다 크면 0제거 작으면 0 붙임-->
                             /
-                            <span  th:text="${list2}"></span>
+                            <span  th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
                         </div>
 
                     </div>
@@ -141,10 +142,11 @@
                             사진첩        <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
                         </div>
                         <div>
+                            <span th:if="${list4}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list4}"></span>
+                            <span th:text="${list4 < 10 ? '0' + list4 : list4}"></span></span>
                             /
-                            <span th:text="${list1}" ></span>
+                            <span th:text="${list1 < 10 ? '0' + list1 : list1}" ></span>
                         </div>
                     </div>
 <!--                    <div class="updatednews2-1">-->

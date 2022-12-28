@@ -66,6 +66,7 @@
                     <div style="display: flex; justify-content: space-between">
                         <button class="modifybtn" type="button" >수정하기</button>
                         <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
+                        <button class="cancel-button" id="cancel-button" type="button">취소</button>
                         <button class="modifybtn2" type="button" >변경</button>
                     </div>
                 </form>
@@ -175,14 +176,17 @@
 <script>
 
     $(document).ready(function(){
-        $('.modifybtn2').hide();
+        $('.modifybtn2,.cancel-button').hide();
+
 
     $(".modifybtn").on("click",function(){
-        $('.modifybtn2').show();
+        $('.modifybtn2,.cancel-button').show();
         $('textarea').removeAttr("readonly");
         $(this).hide();
-        $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+        $("#cancel-button").on("click",function(){
+            location.reload();
+        })
     })
     })
 </script>

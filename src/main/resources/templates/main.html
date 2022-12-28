@@ -8,7 +8,11 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
     <style>
-
+        @keyframes blink-effect {
+            50% {
+                opacity: 0;
+            }
+        }
         #target {
             position:absolute;
             z-index: 5;
@@ -120,17 +124,28 @@
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 <span th:if="${list5}">             <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
-                        <img th:src="@{/static/img/new1.jpg}" width="30px" height="30px"  th:text="${list5}"></span>
-                        /
-                        <span  th:text="${list2}"></span>
+                        <div>
+                            방명록   <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
+                            <!--                        <i class="material-symbols-outlined" style="font-size:22px; margin-bottom: 10px; color: darkgreen">fiber_new</i>-->
+                        </div>
+                        <div>
+                            <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
+                            <span th:text="${list5}"></span>
+                            /
+                            <span  th:text="${list2}"></span>
+                        </div>
 
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 <span th:if="${list4}">         <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
-                        <img th:src="@{/static/img/new1.jpg}" width="30px" height="30px" th:text="${list4}"></span>
-                        /
-                        <span th:text="${list1}" ></span>
+                        <div>
+                            사진첩        <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
+                        </div>
+                        <div>
+                            <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
+                            <span th:text="${list4}"></span>
+                            /
+                            <span th:text="${list1}" ></span>
+                        </div>
                     </div>
 <!--                    <div class="updatednews2-1">-->
 <!--                        다이어리 0/64-->

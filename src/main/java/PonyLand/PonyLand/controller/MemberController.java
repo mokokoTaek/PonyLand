@@ -88,7 +88,9 @@ public class MemberController {
 
         MemberDTO dto = service.makeIdAndPwByEmailForKakao(name,email);
         model.addAttribute("id",dto.getMemberId());
-        itemService.newUser(dto);
+//        if(itemService.findBgById(dto.getMemberId())==null){
+//            itemService.newUser(dto);
+//        }
         return "index";
     }
 
@@ -104,7 +106,10 @@ public class MemberController {
 
         MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
        model.addAttribute("id",dto.getMemberId());
-        itemService.newUser(dto);
+
+        if(itemService.findBgById(dto.getMemberId())==null){
+            itemService.newUser(dto);
+        }
         return "index";
     }
     @RequestMapping("goMypage")

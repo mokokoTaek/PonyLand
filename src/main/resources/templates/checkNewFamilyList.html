@@ -4,76 +4,100 @@
   <meta charset="UTF-8">
   <title>Main</title>
   <link rel="stylesheet" href="../static/style.css"/>
+  <link rel="stylesheet" href="../static/family.css"/>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 </head>
 <body>
-<div class="bg3">
-  <div class="bg3in">
-
-    <form action="" method="post" id="frm">
-      <div th:if="${list}!=null">
-      <div th:each="list:${list}">
-
-          <tr>
-
-            <img th:src="|/static/img/${imagelist.get(listStat.index)}|" style="width: 50px; height: 50px">
-<!--            <th th:src="|static/img/${imagelist.get(listStat.index)}|">-->
-<!--            <th th:text="${imagelist.get(listStat.index)}">-->
-            <th th:text="|${list.familyProposerName} 님을|"></th>
-            <th th:text="|${list.familyProposedName} 님의|"></th>
-            <th th:text="|${list.familyMe} 로 |"></th> <br>
-              <th th:text="|${list.familyProposedName} 님을|"></th>
-              <th th:text="|${list.familyProposerName} 님의|"></th>
-            <th th:text="|${list.familyOther} 로 |"></th> <br><br>
-              일촌 신청합니다! <br><br>
-              <button type="button" class="agreeBtn">수락</button>
-            <input type="hidden" class="hiddenSeq" th:value="${list.familySeq}">
-              <button type="button" class="refuseBtn">거절</button>
-              <br><br>
 
 
-          </tr>
+<!--<form action="" method="post" id="frm">-->
+<!--  <div style="border: solid 1px blue">-->
+<!--    <div th:if="${list}!=null">-->
+<!--      <div th:each="list:${list}">-->
+<!--        <tr>-->
+<!--          <img th:src="|/static/img/${imagelist.get(listStat.index)}|" style="width: 50px; height: 50px">-->
+<!--          &lt;!&ndash;            <th th:src="|static/img/${imagelist.get(listStat.index)}|">&ndash;&gt;-->
+<!--          &lt;!&ndash;            <th th:text="${imagelist.get(listStat.index)}">&ndash;&gt;-->
+<!--          <th th:text="|${list.familyProposerName} 님을|"></th>-->
+<!--          <th th:text="|${list.familyProposedName} 님의|"></th>-->
+<!--          <th th:text="|${list.familyMe} 로 |"></th> <br>-->
+<!--          <th th:text="|${list.familyProposedName} 님을|"></th>-->
+<!--          <th th:text="|${list.familyProposerName} 님의|"></th>-->
+<!--          <th th:text="|${list.familyOther} 로 |"></th> <br><br>-->
+<!--          일촌 신청합니다! <br><br>-->
+<!--          <button type="button" class="agreeBtn">수락</button>-->
+<!--          <input type="hidden" class="hiddenSeq" th:value="${list.familySeq}">-->
+<!--          <button type="button" class="refuseBtn">거절</button>-->
+<!--          <br><br>-->
+<!--        </tr>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->
 
+
+<form action="" method="post" id="frm">
+  <div th:if="${list}!=null">
+    <div th:each="list:${list}">
+      <div class="familybg">
+        <div class="familybg2">
+          <div class="familyprofle">
+            <img th:src="|/static/img/${imagelist.get(listStat.index)}|">
+          </div>
+          <div class="familycontent">
+            <th th:text="|${list.familyProposerName} 님이|"></th>
+            <th th:text="|${list.familyProposedName} 님을|"></th><br>
+            <th th:text="|${list.familyMe}으로, |"></th><br>
+            <th th:text="|${list.familyProposedName} 님을|"></th>
+            <th th:text="|${list.familyProposerName} 님의|"></th><br>
+            <th th:text="|${list.familyOther}으로 |"></th>
+            일촌 신청합니다!
+          </div>
+        </div>
+        <div>
+          <button type="button" class="agreeBtn">수락</button>
+          <input type="hidden" class="hiddenSeq" th:value="${list.familySeq}">
+          <button type="button" class="refuseBtn">거절</button>
         </div>
       </div>
-    </form>
-
-    <div th:if="${list.size()}==0">
-        새로운 일촌 신청이 없습니다!
     </div>
-</div>
+  </div>
+</form>
+
+<div th:if="${list.size()}==0">
+  새로운 일촌 신청이 없습니다!
 </div>
 
 <script>
 
-    $(".agreeBtn").click(function(){
+  $(".agreeBtn").click(function(){
 
-      let really = confirm("일촌 신청을 수락하시겠습니까?");
+    let really = confirm("일촌 신청을 수락하시겠습니까?");
 
-      if(really){
+    if(really){
 
-        $("#frm").attr("action","/family/agreeFamily");
-        $(this).next().attr("name","familySeq");
-        $("#frm").submit();
-      }
-      return;
+      $("#frm").attr("action","/family/agreeFamily");
+      $(this).next().attr("name","familySeq");
+      $("#frm").submit();
+    }
+    return;
 
-    })
+  })
 
-    $(".refuseBtn").click(function(){
+  $(".refuseBtn").click(function(){
 
-      let really = confirm("일촌 신청을 거절하시겠습니까?");
+    let really = confirm("일촌 신청을 거절하시겠습니까?");
 
-      if(really){
+    if(really){
 
-        $("#frm").attr("action","/family/refuseFamily");
-        $(this).prev().attr("name","familySeq");
-        $("#frm").submit();
-      }
-      return;
+      $("#frm").attr("action","/family/refuseFamily");
+      $(this).prev().attr("name","familySeq");
+      $("#frm").submit();
+    }
+    return;
 
-    })
+  })
 
 </script>
 </body>

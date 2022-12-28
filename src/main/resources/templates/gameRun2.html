@@ -142,15 +142,19 @@
 
     hitCactusPlayer2(){
       alert("1번말 우승 !");
-      //window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","hi","width=700px,height=800px,scrollbars=yes")
-      location.href = "/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      let popup =window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=700px,height=800px,scrollbars=yes")
+      popup.opener.close();
+      //location.href = "/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      //window.open('/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+""','new','width=790, height=870');
     }
+
 
     hitCactusPlayer1(){
       alert("2번말 우승 !");
-      console.log("2번말 우승")
-      //window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","hi","width=700px,height=800px,scrollbars=yes")
-      location.href = "/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      let popup = window.open("/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=700px,height=800px,scrollbars=yes")
+      popup.opener.close();
+      //location.href = "/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      //window.open('/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+""','new','width=790, height=870');
     }
   }
 </script>

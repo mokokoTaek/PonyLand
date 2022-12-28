@@ -8,6 +8,9 @@
 
     <insert id="insert">
         insert into guestbook_comment values(guestbook_comment_seq.nextval,#{guestbook_comment_writer},#{guestbook_comment_contents},sysdate,#{parent_seq})
+        <selectKey order="AFTER"  keyProperty="guestbookComment" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
+            select * from guestbook_comment where guestbook_comment_seq = guestbook_comment_seq.currval
+        </selectKey>
     </insert>
 
     <select id="select" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">

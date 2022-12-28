@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>쪽지 보내기</title>
@@ -57,7 +60,7 @@
 </head>
 <body>
 <div class="mesgs">
-    <form action="/message/insert" method="post">
+    <form action="/message/insert" id="frm" method="post" enctype="multipart/form-data">
         <br/>
         <br/>
 
@@ -67,15 +70,16 @@
         </div>
 
         <div th:if="${param.replyTo == null}" class="field half second">
-            받는이 : <input type="text" placeholder="받는 사람" name="recv_nick"> 에게
+            받는이 : <input type="text" placeholder="받는 사람" name="recv_nick" id="recv"> 에게
         </div>
 
         <div th:if="${param.replyTo != null}" class="field half second">
             받는이 : <input type="text" placeholder="받는 사람" name="recv_nick" th:value="${param.replyTo}" th:if="${param.replyTo != null}"> 에게
         </div>
+
         <br/><br/>
         <div class="title">
-            <input type="text" placeholder="제목" name="title">
+            <input type="text" placeholder="제목" name="title" id="title">
         </div>
 
         <br>
@@ -84,13 +88,58 @@
             <textarea rows="10" cols="50" name="content" id="content"></textarea>
         </div>
         <ul class="actions">
-            <input type="submit" value="전송">
+            <button type="submit"><i class="fa-regular fa-paper-plane"></i> 전송</button>
         </ul>
         <br/>
         <br/>
         <br/>
     </form>
 </div>
+<script>
+
+    let inputrecv = document.getElementById("recv")
+    let inputtitle= document.getElementById("title")
+    let inputcontent = document.getElementById("content")
+    let frm = document.getElementById("frm")
+
+    frm.onsubmit = function () {
+        let recv = inputrecv.value;
+        let title = inputtitle.value;
+        let content = inputcontent.value;
+        if (recv == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '받는 사람을 입력해 주세요',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputrecv.focus();
+            })
+            return false;
+        }
+        else if (title == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '제목을 입력해 주세요',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputrecv.focus();
+            })
+            return false;
+        }else if (content == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '내용을 입력해 주세요',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputrecv.focus();
+            })
+            return false;
+        }
+    }
+</script>
 
 </body>
 </html>

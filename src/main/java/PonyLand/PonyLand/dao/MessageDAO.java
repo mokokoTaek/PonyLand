@@ -32,5 +32,9 @@ public class MessageDAO {
 
     public List<MessageDTO> sentMailAll(String id) {
         return MessageMapper.sentMailAll(id);}
+
+    public int delete(int seq){
+        return MessageMapper.delete(seq);
+    }
 }
 

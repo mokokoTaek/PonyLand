@@ -32,4 +32,8 @@ public class MessageService {
         return dao.sentMailAll(id);
     }
 
+    public int delete(int seq){
+        return dao.delete(seq);
+    }
+
 }

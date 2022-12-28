@@ -20,5 +20,9 @@
     <select id="sentMailAll" resultType="PonyLand.PonyLand.dto.MessageDTO">
         select * from message where send_nick = #{value}
     </select>
+
+    <delete id="delete" >
+        delete message where no = #{value}
+    </delete>
 </mapper>
 

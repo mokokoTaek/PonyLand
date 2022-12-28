@@ -70,6 +70,7 @@
                     <div style="display: flex; justify-content: space-between">
                         <button class="modifybtn" type="button" >수정하기</button>
                         <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
+                        <button class="cancel-button" id="cancel-button" type="button">취소</button>
                         <button class="modifybtn2" type="button" >변경</button>
                     </div>
                 </form>
@@ -108,8 +109,8 @@
                 <div class="profile4-1">
                     History
                 </div>
-                <div class="profile4-2">
-                    <div>윤성민(개굴개굴)</div>
+                <div class="profile4-2" th:each="list: ${list}">
+                    <div th:text="${list}"></div>
                     <div>임근혁(개굴개굴)</div>
                     <div>이진혁(개굴개굴)</div>
                 </div>
@@ -128,10 +129,11 @@
                             <!--                        <i class="material-symbols-outlined" style="font-size:22px; margin-bottom: 10px; color: darkgreen">fiber_new</i>-->
                         </div>
                         <div>
+                            <span th:if="${list5}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list5}"></span>
+                            <span th:text="${list5 < 10 ? '0' + list5 : list5}"></span></span> <!--10보다 크면 0제거 작으면 0 붙임-->
                             /
-                            <span  th:text="${list2}"></span>
+                            <span  th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
                         </div>
 
                     </div>
@@ -140,15 +142,16 @@
                             사진첩        <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
                         </div>
                         <div>
+                            <span th:if="${list4}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list4}"></span>
+                            <span th:text="${list4 < 10 ? '0' + list4 : list4}"></span></span>
                             /
-                            <span th:text="${list1}" ></span>
+                            <span th:text="${list1 < 10 ? '0' + list1 : list1}" ></span>
                         </div>
                     </div>
-                    <!--                    <div class="updatednews2-1">-->
-                    <!--                        다이어리 0/64-->
-                    <!--                    </div>-->
+<!--                    <div class="updatednews2-1">-->
+<!--                        다이어리 0/64-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="bg3-2">
@@ -190,15 +193,18 @@
 <script>
 
     $(document).ready(function(){
-        $('.modifybtn2').hide();
+        $('.modifybtn2,.cancel-button').hide();
 
-        $(".modifybtn").on("click",function(){
-            $('.modifybtn2').show();
-            $('textarea').removeAttr("readonly");
-            $(this).hide();
-            $('<button id="cancel-button">취소</button>').insertAfter(this);
-            $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+
+    $(".modifybtn").on("click",function(){
+        $('.modifybtn2,.cancel-button').show();
+        $('textarea').removeAttr("readonly");
+        $(this).hide();
+        $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+        $("#cancel-button").on("click",function(){
+            location.reload();
         })
+    })
     })
 </script>
 

@@ -119,10 +119,17 @@
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 <div th:text="${list5}"></div>/<div  th:text="${list2}"></div>
+                        방명록 <span th:if="${list5}">
+                        <img th:src="@{/static/img/new1.jpg}" width="30px" height="30px"  th:text="${list5}"></span>
+                        /
+                        <span  th:text="${list2}"></span>
+
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 <div th:text="${list4}"> <img th:src="@{/static/img/new1.jpg}"></div>/<div   th:text="${list1}" ></div>
+                        사진첩 <span th:if="${list4}">
+                        <img th:src="@{/static/img/new1.jpg}" width="30px" height="30px" th:text="${list4}"></span>
+                        /
+                        <span th:text="${list1}" ></span>
                     </div>
 <!--                    <div class="updatednews2-1">-->
 <!--                        다이어리 0/64-->

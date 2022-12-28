@@ -5,9 +5,10 @@
     <title>쪽지함</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- CSS File -->
     <link href="../static/message.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
     <!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet"/>
@@ -28,15 +29,26 @@
             cursor: pointer;
         }
 
+        .highlighted {
+            background-color: darkgray;
+        }
+
+        .highlighted2 {
+            background-color: darkgray;
+        }
+
+        .recent_heading h4 {
+            text-align: center;
+        }
+
+
+
+
 
     </style>
 </head>
 
 <body>
-
-<!-- 메뉴바
-   현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->
-
 
 <br/>
 <br/><br/>
@@ -48,11 +60,12 @@
             <div class="inbox_people">
                 <div class="headind_srch">
                     <div class="recent_heading" onclick="displayDescription('inbox')">
-                        <h4>받은 편지함</h4>
+                        <h4>받은 쪽지함</h4>
                     </div>
                     <div class="recent_heading" onclick="displayDescription('sent')">
-                        <h4>보낸 편지함</h4>
+                        <h4>보낸 쪽지함</h4>
                     </div>
+
                 </div>
 
                 <!-- 메세지 리스트 -->
@@ -86,7 +99,7 @@
                     </div>
                    </div>
                 <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-                    <button>쪽지 보내기</button></a>
+                    <button><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
                 </div>
             </div>
     </div>
@@ -106,6 +119,45 @@
     </div>
 </div>
 <script>
+
+    const detailBtns = document.querySelectorAll('.detailBtn');
+    const detailBtns2 = document.querySelectorAll('.detailBtn2');
+    const divs = document.querySelectorAll('div');
+
+    detailBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            divs.forEach((div) => {
+                div.classList.remove('highlighted');
+            });
+            btn.parentElement.classList.toggle('highlighted');
+        });
+    });
+
+    detailBtns2.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            divs.forEach((div) => {
+                div.classList.remove('highlighted');
+            });
+            btn.parentElement.classList.toggle('highlighted');
+        });
+    });
+
+
+
+
+
+    const inboxHeading = document.querySelector('.recent_heading:nth-of-type(1)');
+    const sentHeading = document.querySelector('.recent_heading:nth-of-type(2)');
+
+    inboxHeading.addEventListener('click', () => {
+        inboxHeading.classList.toggle('highlighted2');
+        sentHeading.classList.remove('highlighted2');
+    });
+
+    sentHeading.addEventListener('click', () => {
+        sentHeading.classList.toggle('highlighted2');
+        inboxHeading.classList.remove('highlighted2');
+    });
 
 
     $(document).ready(function() {
@@ -141,11 +193,12 @@
             }
 
         }).done(function (data) {
+
                 let target = JSON.parse(data)
             console.log(target);
                 let div = $("<div>");
                 let h1 = $("<h3>");
-                h1.text("받은 편지");
+                h1.text("받은 쪽지");
                 div.append(h1);
 
                 let p2 = $("<p>");
@@ -176,11 +229,32 @@
 
 
             let replyBtn = $("<button>");
-            replyBtn.text("답장하기");
+             replyBtn.text("답장하기");
                 $(".mesgs").append(replyBtn);
+            let replyBtn2 = $("<button>");
+            replyBtn2.text("삭제하기");
+            $(".mesgs").append(replyBtn2);
             replyBtn.on("click", function() {
                 window.open("/message/write?replyTo=" + target.send_nick, "", "width=550, height=502");
             });
+            replyBtn2.click(function() {
+                // Send a DELETE request to the /message/delete URL
+                $.ajax({
+                    url: '/message/delete',
+                    type: "POST",
+                    data: {
+                        "seq": no
+                    },
+                    success: function(result) {
+                        // Display the alert
+                        alert("삭제 되었습니다."); // "Deleted" in Korean
+
+                        // Refresh the page
+                        location.reload();
+                    }
+                });
+            });
+
 
         });
     });
@@ -206,7 +280,7 @@
             console.log(target);
             let div = $("<div>");
             let h1 = $("<h3>");
-            h1.text("보낸 편지");
+            h1.text("보낸 쪽지");
             div.append(h1);
             let p2 = $("<p>");
             p2.append("보낸이 : " + target.send_nick);
@@ -234,6 +308,26 @@
             div.append(p6);
             $(".msg_history").append(div);
 
+            let replyBtn2 = $("<button>");
+            replyBtn2.text("삭제하기");
+            $(".mesgs").append(replyBtn2);
+            replyBtn2.click(function() {
+                // Send a DELETE request to the /message/delete URL
+                $.ajax({
+                    url: '/message/delete',
+                    type: "POST",
+                    data: {
+                        "seq": no
+                    },
+                    success: function(result) {
+                        // Display the alert
+                        alert("삭제 되었습니다."); // "Deleted" in Korean
+
+                        // Refresh the page
+                        location.reload();
+                    }
+                });
+            });
 
         });
     });

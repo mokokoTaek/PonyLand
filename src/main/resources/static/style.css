@@ -20,7 +20,19 @@ a{
 }
 
 
+div::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
 
+div::-webkit-scrollbar-thumb {
+    height: 5%; /* 스크롤바의 길이 */
+    background: #FFECB4; /* 스크롤바의 색상 */
+    border-radius: 10px;
+}
+
+div::-webkit-scrollbar-track {
+    background: transparent;  /*스크롤바 뒷 배경 색상*/
+}
 
 body {
     height: 100%;
@@ -28,7 +40,12 @@ body {
     margin: 50px;
     display: flex;
     justify-content: center;
+    /*background-image: radial-gradient(circle, #fdfcfb 0%, #e2d1c3 100%);*/
+    /*background-image: radial-gradient(circle, #fcb69f 0%, #ffecd2 100%);*/
+    background-image: radial-gradient(circle, #fdfcfb 0%, #e2d1c3 100%);
 }
+
+
 
 
 
@@ -401,7 +418,7 @@ body {
 
 .updatednews2-1{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     border: 1px solid #5a3d2b;
     border-radius: 8px;
     width: 200px;

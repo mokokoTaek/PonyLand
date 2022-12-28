@@ -127,11 +127,6 @@
                             </div>
                         </div>
 
-
-
-
-
-
                         <div class="gbcmtinput">
                             <div class="gbcmt">
                                 <input class="gbcmt" type="text" maxlength="45" placeholder="댓글을 입력하세요(최대45자)">
@@ -198,53 +193,59 @@
             }).done(function (data) {
 
                 let div = $("<div>");
+                div.attr("class", "gbcmttitle");
 
                 let divWriter = $("<div>");
-                divWriter.attr("style","font-size: 13px")
+                divWriter.attr("style", "font-size: 13px");
+                let thWriter = $("<th>");
+                thWriter.attr("th:text", "${list1.getGuestbook_comment_writer()}");
+                divWriter.append(thWriter);
 
-                let thWriter = $("")
+                let divWritedate = $("<div>");
+                divWritedate.attr("style", "font-size: 10px").attr("color", "darkgrey");
+                let thWritedate = $("<th>");
+                thWritedate.attr("th:text","${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}")
+                divWritedate.append(thWritedate);
 
-                //     <div className="gbcmttitle" th:text="${list1.getGuestbook_comment_contents()}">
-                //     <div style="font-size: 13px">
-                //         <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
-                //     </div>
-                //     <div style="font-size: 10px; color: darkgrey">
-                //         <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
-                //     </div>
-                // </div>
-                //     <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
+                let divContents = $("<div>");
+                divContents.attr("style", "font-size: 18px");
+                let thContents = $("<th>");
+                thContents.attr("th:text", "${list1.getGuestbook_comment_contents()}");
+                divContents.append(thContents);
+
+                let button = $("<button>");
+                button.attr("type", "button").attr("class", "guestbook_comment_deleteBtn").attr("th:if","${list1.getGuestbook_comment_writer()==id}");
+
+                let input = $("<input>");
+                input.attr("type", "hidden").attr("th:value", "${list1.getGuestbook_comment_seq}");
+
+                div.append(divWriter);
+                div.append(divWritedate);
+                div.append(divContents);
+                div.append(button);
+                div.append(input);
+
+                $(".gbcmt2").append(div);
 
             }).fail(function (data) {
                 console.log("ㅋㅋ 실패")
-            })
+            });
 
         })
     })
 
-</script>
-
-<script>
 
     // Load the current song from local storage
     var currentSong = localStorage.getItem("currentSong");
 
+
     // Update the audio element to play the current song
     document.getElementById("myAudio").src = currentSong;
-</script>
-
-
-
-<script>
     $(document).ready(function() {
         if ( sessionStorage.getItem('played') != "true" ) {
             $('#music').get(0).play();
             sessionStorage.setItem('played', "true");
         }
     });
-
 </script>
-
-
-
-
 </html>

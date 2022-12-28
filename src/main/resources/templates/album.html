@@ -184,10 +184,12 @@
         location.href = "/Album/write?Album_host="+Album_host;
     })
 
+
     $(function(){
         $(".gbbutton").on("click", function () {
 
             location.reload();
+
 
             $(this).prev().find('input').attr("name", "Album_Comment_contents");
             let Album_seq = $(this).next().val();
@@ -231,6 +233,7 @@
 
 
 
+
                 }
 
 
@@ -241,7 +244,7 @@
             })
         });
 
-    })
+    });
 
     $(".gbcmt").on("keydown", function(event) {
         if (event.keyCode === 13) {

@@ -119,14 +119,14 @@
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 <span th:if="${list5}">
+                        방명록 <span th:if="${list5}">             <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
                         <img th:src="@{/static/img/new1.jpg}" width="30px" height="30px"  th:text="${list5}"></span>
                         /
                         <span  th:text="${list2}"></span>
 
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 <span th:if="${list4}">
+                        사진첩 <span th:if="${list4}">         <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
                         <img th:src="@{/static/img/new1.jpg}" width="30px" height="30px" th:text="${list4}"></span>
                         /
                         <span th:text="${list1}" ></span>

@@ -109,7 +109,7 @@
           cactus1.destroy();
         }.bind(this)
       })
-      this.physics.add.overlap(this.cactusGroup1 ,this.player1,this.hitCactusPlayer1,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+      this.physics.add.overlap(this.cactusGroup1 ,this.player1,this.hitCactusPlayer2,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
     //2번 레인
@@ -133,24 +133,28 @@
           cactus2.destroy();
         }.bind(this)
       })
-      this.physics.add.overlap(this.cactusGroup2 ,this.player2,this.hitCactusPlayer2,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+      this.physics.add.overlap(this.cactusGroup2 ,this.player2,this.hitCactusPlayer1,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
     update(){
       this.bg1.tilePositionX +=5;
-      this.bg2.tilePositionX +=7;
-    }
-
-    hitCactusPlayer2(){
-      alert("1번말 우승 !");
-      //window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","hi","width=700px,height=800px,scrollbars=yes")
-      location.href = "/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      this.bg2.tilePositionX +=5;
     }
 
     hitCactusPlayer1(){
+      alert("1번말 우승 !");
+      //let popup =window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=1100px,height=800px,scrollbars=yes")
+      //popup.opener.close();
+      location.href = "/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      //window.open('/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+""','new','width=790, height=870');
+    }
+
+
+    hitCactusPlayer2(){
       alert("2번말 우승 !");
-      console.log("2번말 우승")
-      //window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","hi","width=700px,height=800px,scrollbars=yes")
+      //let popup = window.open("/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=1100px,height=800px,scrollbars=yes")
+      //popup.opener.close();
       location.href = "/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      //window.open('/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+""','new','width=790, height=870');
     }
   }
 </script>

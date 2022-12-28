@@ -1,5 +1,5 @@
 package PonyLand.PonyLand.controller;
-
+import java.util.Collections;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.dto.MessageDTO;
 import PonyLand.PonyLand.service.MessageService;
@@ -33,6 +33,8 @@ public class MessageController {
         model.addAttribute("id", id);
         List<MessageDTO> list = service.selectAll(id);
         List<MessageDTO> list2 = service.sentMailAll(id);
+        Collections.reverse(list);
+        Collections.reverse(list2);
         model.addAttribute("list",list);
         model.addAttribute("list2", list2);
         return "message";
@@ -52,11 +54,10 @@ public class MessageController {
         service.insert(dto);
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<script>alert('전송 되었습니다.'); window.close();</script>");
+        out.println("<script>alert('전송 되었습니다.'); window.opener.location.reload(); window.close();</script>");
         out.flush();
         response.flushBuffer();
         out.close();
-
     }
 
     //쪽지 디테일에 정보 뿌리기
@@ -67,5 +68,17 @@ public class MessageController {
         MessageDTO dto = service.selectBySeq(Integer.parseInt(no));
         Gson g = new Gson();
         return g.toJson(dto);
+    }
+
+    @RequestMapping("delete" )
+    public void delete(int seq) throws Exception{
+        System.out.println(seq);
+        service.delete(seq);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('삭제 되었습니다.'); location.reload(); </script>");
+        out.flush();
+        response.flushBuffer();
+        out.close();
     }
 }

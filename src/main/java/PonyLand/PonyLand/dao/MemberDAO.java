@@ -44,8 +44,6 @@ public class MemberDAO {
         return sdjr.findByMemberId(member_id);
     }
 
-
-
     public String getIdByRowNum(int rn){
         return sdjr.getIdByRowNum(rn);
     }

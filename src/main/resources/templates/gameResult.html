@@ -79,13 +79,18 @@
     })
 
     function doNotReload(){
-        if( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116) ) {
+        if( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116)) {
             event.keyCode = 0;
             event.cancelBubble = true;
             event.returnValue = false;
         }
     }
     document.onkeydown = doNotReload;
+
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
 
    /* function onload(){
         if ("${winner}".equals("${betNumber}")) {

@@ -15,6 +15,12 @@
             display: flex;
         }
 
+        .usingfurnitureimg{
+            position:absolute;
+            z-index: 5;
+            display: flex;
+        }
+
         #bg4 {
             position:relative;
         }
@@ -140,6 +146,9 @@
                     <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
 
                     <!--                    </div>-->
+                    <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
+                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                    </span>
                 </div>
                 <div class="bg3-2-2">
                     <span><a th:href="@{/stable/toStable(id = ${id})}">
@@ -226,6 +235,20 @@
         $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.getItemName()}]]+")","background-repeat":"no-repeat",
             "background-size":"cover"})
         // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+
+        for(let i=0; i<[[${nowfurniturelist}]].length;i++){
+            // console.log([[${nowfurniturelist}]][i]);
+
+            let onloadFx = [[${nowfurniturelist}]][i].itemX;
+            let onloadFy = [[${nowfurniturelist}]][i].itemY;
+            // console.log(document.getElementsByClassName("usingfurnitureimg")[i]);
+            console.log(onloadFx);
+            console.log(onloadFy);
+            // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFx+"px");
+            // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFy+"px");
+            document.getElementsByClassName("usingfurnitureimg")[i].style.left = onloadFx + 'px';
+            document.getElementsByClassName("usingfurnitureimg")[i].style.top = onloadFy + 'px';
+        }
     })
 
 

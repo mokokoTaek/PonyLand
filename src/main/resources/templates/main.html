@@ -100,8 +100,8 @@
                 <div class="profile4-1">
                     History
                 </div>
-                <div class="profile4-2">
-                    <div>윤성민(개굴개굴)</div>
+                <div class="profile4-2" th:each="list: ${list}">
+                    <div th:text="${list}"></div>
                     <div>임근혁(개굴개굴)</div>
                     <div>이진혁(개굴개굴)</div>
                 </div>

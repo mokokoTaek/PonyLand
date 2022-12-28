@@ -29,6 +29,11 @@ public class MemberService {
     @Autowired
     private HttpSession session;
 
+    public List<String> selectId(String id){
+        List<String> list = new ArrayList<>();
+        list.add(0,id);
+        return list;
+    }
 
     public Long getWave() {
         return dao.countMember();

@@ -28,7 +28,12 @@ body {
     margin: 50px;
     display: flex;
     justify-content: center;
+    /*background-image: radial-gradient(circle, #fdfcfb 0%, #e2d1c3 100%);*/
+    /*background-image: radial-gradient(circle, #fcb69f 0%, #ffecd2 100%);*/
+    background-image: radial-gradient(circle, #fdfcfb 0%, #e2d1c3 100%);
 }
+
+
 
 
 

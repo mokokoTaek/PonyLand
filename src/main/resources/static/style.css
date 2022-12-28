@@ -401,7 +401,7 @@ body {
 
 .updatednews2-1{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     border: 1px solid #5a3d2b;
     border-radius: 8px;
     width: 200px;

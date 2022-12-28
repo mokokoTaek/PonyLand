@@ -86,28 +86,28 @@
 
       //캐릭터1
       this.player1 = this.physics.add.sprite(50, HEIGHT - 30); //physics를 넣으면 충돌을 체크할 수 있고 빼면 충돌 없이 그냥 간다.
-      this.player1.body.setSize(20, 50); // 충돌영역이 애매하기 때문에 충돌영역 크기를 설정해야 한다.
+      this.player1.body.setSize(2, 50); // 충돌영역이 애매하기 때문에 충돌영역 크기를 설정해야 한다.
       this.player1.play('run1');
 
       //캐릭터2
       this.player2 = this.physics.add.sprite(50, HEIGHT - 110);
-      this.player2.body.setSize(20, 50);
+      this.player2.body.setSize(2, 50);
       this.player2.play('run2');
 
       //캐릭터3
       this.player3 = this.physics.add.sprite(50, HEIGHT - 190);
-      this.player3.body.setSize(20, 50);
+      this.player3.body.setSize(2, 50);
       this.player3.play('run3');
 
       //캐릭터4
       this.player4 = this.physics.add.sprite(50, HEIGHT - 270);
-      this.player4.body.setSize(20, 50);
+      this.player4.body.setSize(2, 50);
       this.player4.play('run4');
 
-      this.delay = 3000; //장애물 나오는 시간 3000 = 3초마다 나오게 하겠다.
+      this.delay = 4000; //장애물 나오는 시간 3000 = 3초마다 나오게 하겠다.
       this.timer = this.time.addEvent({
         delay: this.delay,
-        callback: this.onTimerEvent, callbackScope: this, loop: true
+        callback: this.onTimerEvent, callbackScope: this
       });
 
       // //점프기능
@@ -133,13 +133,13 @@
     //1번 레인
     addCactus1() {
       this.cactusGroup1 = this.physics.add.group();
-      let randomX = Phaser.Math.Between(100, 200); //장애물 크기 랜덤으로 생성 100~200사이
+      let randomX = Phaser.Math.Between(0, 0); //장애물 크기 랜덤으로 생성 100~200사이
 
       let cactus1 = this.physics.add.sprite(WIDTH + randomX, HEIGHT - 30, 'cactus').setScale(0.5); //랜덤을 더해서 크기 조절
-      cactus1.body.setSize(20, 50);
+      cactus1.body.setSize(1, 50);
       this.cactusGroup1.add(cactus1);
 
-      const rand = Math.floor(Math.random() * 5000 + 1000);
+      const rand = Math.floor(Math.random() * 3500 + 2500);
 
       this.tweens.add({
         targets: cactus1,
@@ -155,13 +155,13 @@
     //2번 레인
     addCactus2() {
       this.cactusGroup2 = this.physics.add.group();
-      let randomX = Phaser.Math.Between(100, 200); //장애물 크기 랜덤으로 생성 100~200사이
+      let randomX = Phaser.Math.Between(0, 0); //장애물 크기 랜덤으로 생성 100~200사이
 
       let cactus2 = this.physics.add.sprite(WIDTH + randomX, HEIGHT - 110, 'cactus').setScale(0.5); //랜덤을 더해서 크기 조절
-      cactus2.body.setSize(20, 50);
+      cactus2.body.setSize(1, 50);
       this.cactusGroup2.add(cactus2);
 
-      const rand = Math.floor(Math.random() * 5000 + 1000);
+      const rand = Math.floor(Math.random() * 3500 + 2500);
 
       this.tweens.add({
         targets: cactus2,
@@ -177,13 +177,13 @@
     //3번 레인
     addCactus3() {
       this.cactusGroup3 = this.physics.add.group();
-      let randomX = Phaser.Math.Between(100, 200);
+      let randomX = Phaser.Math.Between(0, 0);
 
       let cactus3 = this.physics.add.sprite(WIDTH + randomX, HEIGHT - 190, 'cactus').setScale(0.5); //랜덤을 더해서 크기 조절
-      cactus3.body.setSize(20, 50);
+      cactus3.body.setSize(1, 50);
       this.cactusGroup3.add(cactus3);
 
-      const rand = Math.floor(Math.random() * 5000 + 1000);
+      const rand = Math.floor(Math.random() * 3500 + 2500);
 
       this.tweens.add({
         targets: cactus3,
@@ -199,13 +199,13 @@
     //4번 레인
     addCactus4() {
       this.cactusGroup4 = this.physics.add.group();
-      let randomX = Phaser.Math.Between(100, 200);
+      let randomX = Phaser.Math.Between(0, 0);
 
       let cactus4 = this.physics.add.sprite(WIDTH + randomX, HEIGHT - 270, 'cactus').setScale(0.5); //랜덤을 더해서 크기 조절
-      cactus4.body.setSize(20, 50);
+      cactus4.body.setSize(1, 50);
       this.cactusGroup2.add(cactus4);
 
-      const rand = Math.floor(Math.random() * 5000 + 1000);
+      const rand = Math.floor(Math.random() * 3500 + 2500);
 
       this.tweens.add({
         targets: cactus4,
@@ -218,35 +218,33 @@
       this.physics.add.overlap(this.cactusGroup4, this.player4, this.hitCactusPlayer1, null, this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
+    //땅 지면이 지나가는 속도
     update() {
       this.bg1.tilePositionX += 5;
-      this.bg2.tilePositionX += 7;
-      this.bg3.tilePositionX += 9;
-      this.bg4.tilePositionX += 11;
+      this.bg2.tilePositionX += 5;
+      this.bg3.tilePositionX += 5;
+      this.bg4.tilePositionX += 5;
     }
 
 
 
     hitCactusPlayer1() {
       alert("1번말 우승 !");
-      console.log("1번말 우승")
       location.href = "/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
     }
 
     hitCactusPlayer2() {
       alert("2번말 우승 !");
-      console.log("2번말 우승")
       location.href = "/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
     }
 
     hitCactusPlayer3() {
       alert("3번말 우승 !");
-      console.log("3번말 우승")
-      location.href = "/game/goGameResult?winner="+3+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      location.href = "/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
     }
+
     hitCactusPlayer4() {
       alert("4번말 우승 !");
-      console.log("4번말 우승")
       location.href = "/game/goGameResult?winner="+4+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
     }
 

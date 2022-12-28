@@ -25,7 +25,8 @@ public class MemberService {
     private MemberDAO dao;
     @Autowired
     private Random random;
-
+    @Autowired
+    private ItemService itemService;
     @Autowired
     private HttpSession session;
 
@@ -88,6 +89,9 @@ public class MemberService {
 
         if(dao.loginForKakao(newId)==null){
             dao.insert(dto);
+
+            itemService.newUser(dto);
+
         }
         session.setAttribute("sessionID",dto.getMemberId());
         return dto;
@@ -112,6 +116,9 @@ public class MemberService {
 
         if(dao.loginForKakao(newId)==null){
             dao.insert(dto);
+
+            itemService.newUser(dto);
+
         }
         session.setAttribute("sessionID",dto.getMemberId());
         return dto;

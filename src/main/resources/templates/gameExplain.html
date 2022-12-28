@@ -16,27 +16,34 @@
 
 
 <div class="container">
-
   <div class="top">
     <div class="">Today : 245</div>
     <div class="">뮤직플레이어 부분</div>
   </div>
   <div class="bg1">
-    <div class="bg2">
+    <div class="gameexplainbg2">
       <div style="font-size: 100px">게임설명</div>
+      <div style="font-size: 30px">
+        1. 자신이 보유한 당근 보다 적은 금액을 배팅 입력칸에 입력한다.<br>
+        2. 참여 말의 수를 정한다.<br>(2마리는 1.25배 , 3마리는 1.5배 , 4마리는 2배) <br>
+        3. 자신이 배팅할 말의 번호를 선택한다. <br>
+        4. 모든 선택을 완료 한 후 게임 시작 버튼을 누른다 !
+      </div>
     </div>
   </div>
 </div>
 </div>
 <div class="side">
   <button class="btnmain2">마구간</button>
-  <a th:href="@{/}">
+  <a th:href="@{/game/gameStart(id=${id})}">
     <button class="btnmain1">게임</button>
   </a>
   <a th:href="@{/}">
     <button class="btnmain2">상점</button>
   </a>
+  <a th:href="@{/stable/charge}">
   <button class="btnmain2">충전</button>
+  </a>
 </div>
 
 </body>

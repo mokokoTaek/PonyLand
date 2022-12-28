@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <title>Stable</title>
     <link rel="stylesheet" href="../static/stable.css"/>
+    <link
+            href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet"
+    />
+
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+            integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    ></script>
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
             charset="utf-8"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+
 </head>
 <style>
 
@@ -149,7 +163,8 @@
         <div class="">뮤직플레이어 부분 </div>
     </div>
     <div class="bg1">
-        <div class="bg4" ondragover="dragover_handler(event);" ondrop="drop_handler(event);" >
+
+        <div class="bg4" ondragover="dragover_handler(event);" ondrop="drop_handler(event);">
             <!--            <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">-->
             <!--            <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" ondrag="drag_handler(event);">-->
 
@@ -159,7 +174,8 @@
                 </div>
                 <div class="bg3-2-1" id="bg4">
                     <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" ondrag="drag_handler(event);" ondragend="dragend_handler(event)">
+<!--                    ondrag="drag_handler(event);"-->
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target"  ondragend="dragend_handler(event)">
                     <div th:each="i : ${nowfurniturelist}">
                         <img class="furnitureimg" th:src="|/static/img/@{${i.itemName}}|" ondrag="drag_handler(event)" ondragend="dragend_handler(event)">
                     </div>
@@ -209,13 +225,13 @@
             </div>
             <div style="margin-bottom: 50px"></div>
 
-<!--            <div class="furniture">-->
-<!--                <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">-->
-<!--                    <input type="hidden" th:value="${i.itemSeq}">-->
-<!--                    <input type="checkbox" name="checkboxes" class="checkboxes">-->
-<!--                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="furniture">
+                <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">
+                    <input type="hidden" th:value="${i.itemSeq}">
+                    <input type="checkbox" name="checkboxes" class="checkboxes">
+                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">
+                </div>
+            </div>
 
             <div>
                 <button type="button" id = "modifyOn">수정합시다</button>
@@ -242,6 +258,42 @@
 </div>
 
 <script>
+
+    $("#target").draggable({
+        containment: '#bg4'
+    })
+
+    $(".furnitureimg").draggable({
+        containment: '#bg4'
+    })
+
+    $("#target").on("dragstop",function(event){
+
+        // if (event.target.closest('#bg4')) {
+        //     // If it is, update the position of the element
+        //
+        // }
+
+        let x = parseInt($(this).position().left);
+        let y = parseInt($(this).position().top);
+
+        console.log(x)
+        console.log(y)
+
+        document.getElementById("target").style.left = x + 'px';
+        document.getElementById("target").style.top = y + 'px';
+
+        $.ajax({
+            url:"/stable/coordinate",
+            data:{"x":x, "y":y},
+            type: "post"
+        }).done(function(resp){
+
+        }).fail(function(resp){
+
+        })
+    })
+
     function drag_handler(event) {
         // Check if the element is outside of bg4
         if (!event.target.closest('#bg4')) {
@@ -249,30 +301,47 @@
             event.target.draggable = false;
         }
 
+        // if (event.target.closest('#bg4')) {
+        //     // If it is, update the position of the element
+        //     let x = event.pageX;
+        //     let y = event.pageY;
+        //
+        //     console.log(x)
+        //     console.log(y)
+        //
+        //     document.getElementById("target").style.left = x + 'px';
+        //     document.getElementById("target").style.top = y + 'px';
+        //
+        //     $.ajax({
+        //         url:"/stable/coordinate",
+        //         data:{"x":x, "y":y},
+        //         type: "post"
+        //     }).done(function(resp){
+        //
+        //     }).fail(function(resp){
+        //
+        //     })
+        // }
+
     }
 
     function dragend_handler(event) {
         // Check if the element is outside of bg4
-        if (!event.target.closest('#bg4')) {
-            // If it is, disable dragging
-            event.target.draggable = false;
-        }
+        // if (!event.target.closest('#bg4')) {
+        //     // If it is, disable dragging
+        //     event.target.draggable = false;
+        // }
 
+        console.log("드래그 종료!");
 
-    }
-
-    function dragover_handler(event) {
-        event.preventDefault();
-    }
-
-    function drop_handler(event) {
-        // Check if the element is within the boundaries of bg4
-        //console.log(event.target.className);
 
         if (event.target.closest('#bg4')) {
             // If it is, update the position of the element
             let x = event.offsetX;
             let y = event.offsetY;
+
+            console.log(x)
+            console.log(y)
 
             document.getElementById("target").style.left = x + 'px';
             document.getElementById("target").style.top = y + 'px';
@@ -287,6 +356,37 @@
 
             })
         }
+
+
+    }
+
+    function dragover_handler(event) {
+        event.preventDefault();
+    }
+
+    function drop_handler(event) {
+        // Check if the element is within the boundaries of bg4
+        //console.log(event.target.className);
+
+        console.log("드랍 완료!");
+        // if (event.target.closest('#bg4')) {
+        //     // If it is, update the position of the element
+        //     let x = event.offsetX;
+        //     let y = event.offsetY;
+        //
+        //     document.getElementById("target").style.left = x + 'px';
+        //     document.getElementById("target").style.top = y + 'px';
+        //
+        //     $.ajax({
+        //         url:"/stable/coordinate",
+        //         data:{"x":x, "y":y},
+        //         type: "post"
+        //     }).done(function(resp){
+        //
+        //     }).fail(function(resp){
+        //
+        //     })
+        // }
 
 
     }
@@ -325,19 +425,19 @@
         let jsoncheckimgseq = JSON.stringify(checkimgseq);
         console.log(checkimgseq)
 
-        // $.ajax({
-        //     url:"/stable/updateFurniture",
-        //     data: {
-        //         "jsoncheckimgseq":jsoncheckimgseq},
-        //     type:"post"
-        // }).done(function(resp){
-        //     let furniturelist = JSON.parse(resp);
-        //
-        //
-        //
-        // }).fail(function(resp){
-        //     console.log("실패")
-        // })
+        $.ajax({
+            url:"/stable/updateFurniture",
+            data: {
+                "jsoncheckimgseq":jsoncheckimgseq},
+            type:"post"
+        }).done(function(resp){
+            let furniturelist = JSON.parse(resp);
+
+
+
+        }).fail(function(resp){
+            console.log("실패")
+        })
 
         $(this).hide();
         $("#modifyOn").show();
@@ -399,7 +499,19 @@
         console.log(onloady)
         $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.itemName}]]+")","background-repeat":"no-repeat",
             "background-size":"cover"})
+        console.log($("#target"))
         // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+
+        for(let i=0; i<[[${nowfurniturelist}]].length;i++){
+            // console.log([[${nowfurniturelist}]][i]);
+
+            let onloadFx = [[${nowfurniturelist}]][i].itemX;
+            let onloadFy = [[${nowfurniturelist}]][i].itemY;
+            console.log(document.getElementsByClassName("furnitureimg")[i]);
+            document.getElementsByClassName("furnitureimg")[i].style.left = onloadFx + 'px';
+            document.getElementsByClassName("furnitureimg")[i].style.top = onloadFy + 'px';
+        }
+
     })
 
 </script>

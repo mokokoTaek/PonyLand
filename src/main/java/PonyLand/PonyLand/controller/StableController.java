@@ -115,16 +115,15 @@ public class StableController {
         public String toStable(Model model,String id){
             String horse = "horse";
             String bg = "background";
-            //String f = "furniture";
+            String f = "furniture";
             model.addAttribute("id",id);
             model.addAttribute("dto",service1.findById(id));
             model.addAttribute("itemlist",service2.findHorseById(id));
             model.addAttribute("bglist",service2.findBgById(id));
-            //model.addAttribute("furniturelist",service2.findFurnitureById(id));
+            model.addAttribute("furniturelist",service2.findFurnitureById(id));
             model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
             model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
-            //model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,f));
-
+            model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,f));
             //model.addAttribute("nowbgdto", service2.findByItemStatus(id,f));
             return "stable";
         }
@@ -161,14 +160,22 @@ public class StableController {
         @RequestMapping("coordinate")
         @ResponseBody
         public String coordinate(String x, String y){
+
+            System.out.println(x);
+            System.out.println(y);
+
             int intx = Integer.parseInt(x);
             int inty = Integer.parseInt(y);
+
+            System.out.println(intx);
+            System.out.println(inty);
 
             String itemCategory = "horse";
 
             String id =(String)session.getAttribute("sessionID");
 
             ItemDTO dto = service2.findByItemStatus(id,itemCategory);
+
 
             dto.setItemX(intx);
             dto.setItemY(inty);

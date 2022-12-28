@@ -68,18 +68,18 @@
 
       //캐릭터1
       this.player1 = this.physics.add.sprite(50, HEIGHT -30); //physics를 넣으면 충돌을 체크할 수 있고 빼면 충돌 없이 그냥 간다.
-      this.player1.body.setSize(20,50); // 충돌영역이 애매하기 때문에 충돌영역 크기를 설정해야 한다.
+      this.player1.body.setSize(2,50); // 충돌영역이 애매하기 때문에 충돌영역 크기를 설정해야 한다.
       this.player1.play('run1');
 
       //캐릭터2
       this.player2 = this.physics.add.sprite(50, HEIGHT -110);
-      this.player2.body.setSize(20,50);
+      this.player2.body.setSize(2,50);
       this.player2.play('run2');
 
 
-      this.delay = 3000; //장애물 나오는 시간 3000 = 3초마다 나오게 하겠다.
+      this.delay = 4000; //장애물 나오는 시간 3000 = 3초마다 나오게 하겠다.
       this.timer = this.time.addEvent({ delay: this.delay,
-        callback: this.onTimerEvent, callbackScope: this, loop: true });
+        callback: this.onTimerEvent, callbackScope: this });
     }
 
 
@@ -93,13 +93,13 @@
 
 
       this.cactusGroup1 =this.physics.add.group();
-      let randomX=Phaser.Math.Between(100,200); //장애물 크기 랜덤으로 생성 100~200사이
+      let randomX=Phaser.Math.Between(0,0); //장애물 크기 랜덤으로 생성 100~200사이
 
       let cactus1 = this.physics.add.sprite(WIDTH+randomX,HEIGHT -30,'cactus').setScale(0.5); //랜덤을 더해서 크기 조절
-      cactus1.body.setSize(20,50);
+      cactus1.body.setSize(1,50);
       this.cactusGroup1.add(cactus1);
 
-      const rand = Math.floor(Math.random() * 5000+1000);
+      const rand = Math.floor(Math.random() * 3500+2500);
 
       this.tweens.add({
         targets:cactus1,
@@ -109,7 +109,7 @@
           cactus1.destroy();
         }.bind(this)
       })
-      this.physics.add.overlap(this.cactusGroup1 ,this.player1,this.hitCactusPlayer1,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+      this.physics.add.overlap(this.cactusGroup1 ,this.player1,this.hitCactusPlayer2,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
 
     //2번 레인
@@ -117,44 +117,44 @@
 
 
       this.cactusGroup2 =this.physics.add.group();
-      let randomX=Phaser.Math.Between(100,200); //장애물 크기 랜덤으로 생성 100~200사이
+      let randomX=Phaser.Math.Between(0,0); //장애물 크기 랜덤으로 생성 100~200사이
 
       let cactus2 = this.physics.add.sprite(WIDTH+randomX,HEIGHT -110,'cactus').setScale(0.5); //랜덤을 더해서 크기 조절
-      cactus2.body.setSize(20,50);
+      cactus2.body.setSize(1,50);
       this.cactusGroup2.add(cactus2);
 
-      const rand = Math.floor(Math.random() * 5000+1000);
+      const rand = Math.floor(Math.random() * 3500+2500);
 
       this.tweens.add({
         targets:cactus2,
-        x:300,
-        duration: 3000 ,
+        x:0,
+        duration: rand ,
         onComplete:function(tween,targets){
           cactus2.destroy();
         }.bind(this)
       })
-      this.physics.add.overlap(this.cactusGroup2 ,this.player2,this.hitCactusPlayer2,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
+      this.physics.add.overlap(this.cactusGroup2 ,this.player2,this.hitCactusPlayer1,null,this); //overlap으로 선인장과 캐릭터가 충돌되면 hitCactusPlayer을 띄어줘라
     }
     update(){
       this.bg1.tilePositionX +=5;
-      this.bg2.tilePositionX +=7;
-    }
-
-    hitCactusPlayer2(){
-      alert("1번말 우승 !");
-      console.log(racing_coin);
-      console.log(racing_id);
-      //window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","hi","width=700px,height=800px,scrollbars=yes")
-      location.href = "/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      this.bg2.tilePositionX +=5;
     }
 
     hitCactusPlayer1(){
+      alert("1번말 우승 !");
+      //let popup =window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=1100px,height=800px,scrollbars=yes")
+      //popup.opener.close();
+      location.href = "/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      //window.open('/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+""','new','width=790, height=870');
+    }
+
+
+    hitCactusPlayer2(){
       alert("2번말 우승 !");
-      console.log("2번말 우승")
-      console.log(racing_coin);
-      console.log(racing_id);
-      //window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","hi","width=700px,height=800px,scrollbars=yes")
+      //let popup = window.open("/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=1100px,height=800px,scrollbars=yes")
+      //popup.opener.close();
       location.href = "/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"";
+      //window.open('/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+""','new','width=790, height=870');
     }
   }
 </script>

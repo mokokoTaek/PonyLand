@@ -53,13 +53,15 @@ public class MemberController {
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
 
-
         return "main";
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){
+        System.out.println(dto.getMemberPw());
         service.insert(dto);
+        System.out.println(dto.getMemberPw());
         itemService.newUser(dto);
+        System.out.println(dto.getMemberPw());
         return "redirect:/";
     }
 
@@ -90,7 +92,9 @@ public class MemberController {
 
         MemberDTO dto = service.makeIdAndPwByEmailForKakao(name,email);
         model.addAttribute("id",dto.getMemberId());
-        itemService.newUser(dto);
+//        if(itemService.findBgById(dto.getMemberId())==null){
+//            itemService.newUser(dto);
+//        }
         return "index";
     }
 
@@ -106,7 +110,10 @@ public class MemberController {
 
         MemberDTO dto =service.makeIdAndPwByEmailForNaver(name,email);
        model.addAttribute("id",dto.getMemberId());
-        itemService.newUser(dto);
+
+        if(itemService.findBgById(dto.getMemberId())==null){
+            itemService.newUser(dto);
+        }
         return "index";
     }
     @RequestMapping("goMypage")

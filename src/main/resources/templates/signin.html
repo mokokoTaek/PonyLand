@@ -35,8 +35,8 @@
 
         <div class="signinform">
             비밀번호
-            <input type="password" class="signinbg" placeholder="숫자, 영문, 특수문자 조합 최소 8자" id="passwd" name="passwd"><br>
-            <input type="password" class="signinbg" placeholder="비밀번호 재입력" id ="passwdck" name="member_pw"><br>
+            <input type="password" class="signinbg" placeholder="숫자, 영문, 특수문자 조합 최소 8자" id="passwd" name="memberPw" style="font-size: 0.95em"><br>
+            <input type="password" class="signinbg" placeholder="비밀번호 재입력" id ="passwdck" name="member_pw2" style="font-size: 0.95em"><br>
             <div id="div3"></div>
         </div>
 
@@ -171,6 +171,8 @@
     let inputphone = document.getElementById("number")
     let inputid = document.getElementById("member_id")
     let inputmail = document.getElementById("mail")
+    let inputpasswd2 = document.getElementById("passwd")
+    let inputpasswdck2 = document.getElementById("passwdck")
     let frm = document.getElementById("frm")
 
     frm.onsubmit = function () {
@@ -178,6 +180,9 @@
         let name = inputname.value;
         let id = inputid.value;
         let mail = inputmail.value;
+        let passwd3 = inputpasswd2.value;
+        let passwdck3 = inputpasswdck2.value;
+
         if (id == "") {
             Swal.fire({
                 icon: 'error',
@@ -198,7 +203,30 @@
                 inputname.focus();
             })
             return false;
-        } else if (str == "") {
+        }
+        else if (passwd3 == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '패스워드를 입력해 주세요!',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputpasswd2.focus();
+            })
+            return false;
+        }
+        else if (passwdck3 != passwd3) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '패스워드를 확인해 주세요!',
+                confirmButtonText: '확인'
+            }).then(function () {
+                inputpasswdck2.focus();
+            })
+            return false;
+        }
+        else if (str == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

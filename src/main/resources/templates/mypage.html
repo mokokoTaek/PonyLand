@@ -20,7 +20,7 @@
 <div class="container">
 
     <div class="top">
-        <div class="">Today : 245</div>
+        <div class="" th:text="|Today : ${list.memberHomepageViewCount}|"></div>
         <div class="">뮤직플레이어 부분 </div>
     </div>
     <div class="bg1">
@@ -38,9 +38,11 @@
                 </div>
 
                 <button class="profilebtn" type="button">프로필수정</button>
-                <button class="profilebtn1" type="button">취소</button>
-                <button class="profilebtn2" type="sumbit">변경</button>
 
+                <div style="margin-top: 10px">
+                    <button class="profilebtn1" type="button">취소</button>
+                    <button class="profilebtn2" type="sumbit">변경</button>
+                </div>
             </div>
         </form>
 
@@ -76,7 +78,9 @@
                         <div id="div3"></div>
                     </div>
                 </div>
-                <button class="modifybtn" type="button">수정하기</button>
+                <div style="margin-top: 20px">
+                    <button class="modifybtn" type="button">수정하기</button>
+                </div>
                 <div>
                     <button class="modifybtn1" type="button">취소</button>
                     <button class="modifybtn2" type="button">변경</button>

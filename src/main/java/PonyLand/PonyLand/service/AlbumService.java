@@ -46,4 +46,5 @@ public class AlbumService {
     public int selectByDate(String Album_writer) { // 사진첩 하루안에 올린 글 갯수
         return dao.selectByDate(Album_writer);
     }
+
 }

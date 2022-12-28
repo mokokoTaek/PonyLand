@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -19,6 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/Guestbook/")
 public class GuestbookController {
+
 
     @Autowired
     private HttpSession session;

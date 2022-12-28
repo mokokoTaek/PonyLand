@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <title>Main</title>
     <link rel="stylesheet" href="../static/style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
     <style>
-
+        @keyframes blink-effect {
+            50% {
+                opacity: 0;
+            }
+        }
         #target {
             position:absolute;
             z-index: 5;
@@ -59,10 +64,15 @@
 
             <div class="profile2">
                 <form action="/member/message">
-                    <div style="margin-bottom: 10px"><textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea></div>
-                    <button class="modifybtn" type="button" >수정하기</button>
-                    <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
-                    <button class="modifybtn2" type="button" >변경</button>
+                    <div style="margin-bottom: 10px">
+                        <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea>
+                    </div>
+                    <div style="display: flex; justify-content: space-between">
+                        <button class="modifybtn" type="button" >수정하기</button>
+                        <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
+                        <button class="cancel-button" id="cancel-button" type="button">취소</button>
+                        <button class="modifybtn2" type="button" >변경</button>
+                    </div>
                 </form>
             </div>
 
@@ -73,20 +83,19 @@
                         <button class="profilebtn" type="button" onclick="checkNewFamily();">일촌신청알림</button>
                     </div>
                 </div>
-                <div>
-                    <div th:if="${id}!= ${sessionID}">
-
-                        <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
-                        <input type="hidden" th:value="${id}" id="hiddenProposed">
-                        <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
-                        </form>
-                    </div>
+                <!--                <div>-->
+                <div th:if="${id}!= ${sessionID}">
+                    <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
+                    <input type="hidden" th:value="${id}" id="hiddenProposed">
+                    <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
+                    </form>
                 </div>
+                <!--                </div>-->
                 <div>
                     <div th:if="${id}== ${sessionID}">
 
                         <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
-<!--                        </form>-->
+                        <!--                        </form>-->
                     </div>
                 </div>
                 <div>
@@ -115,14 +124,34 @@
                 </div>
                 <div class="updatednews2">
                     <div class="updatednews2-1">
-                        방명록 <div th:text="${list5}"></div>/<div  th:text="${list2}"></div>
+                        <div>
+                            방명록   <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
+                            <!--                        <i class="material-symbols-outlined" style="font-size:22px; margin-bottom: 10px; color: darkgreen">fiber_new</i>-->
+                        </div>
+                        <div>
+                            <span th:if="${list5}">
+                            <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
+                            <span th:text="${list5 < 10 ? '0' + list5 : list5}"></span></span> <!--10보다 크면 0제거 작으면 0 붙임-->
+                            /
+                            <span  th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
+                        </div>
+
                     </div>
                     <div class="updatednews2-1">
-                        사진첩 <div th:text="${list4}"> <img th:if="${list4!=null}" th:src="@{/static/img/new1.jpg}"></div>/<div   th:text="${list1}" ></div>
+                        <div>
+                            사진첩        <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
+                        </div>
+                        <div>
+                            <span th:if="${list4}">
+                            <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
+                            <span th:text="${list4 < 10 ? '0' + list4 : list4}"></span></span>
+                            /
+                            <span th:text="${list1 < 10 ? '0' + list1 : list1}" ></span>
+                        </div>
                     </div>
-                    <div class="updatednews2-1">
-                        다이어리 0/64
-                    </div>
+<!--                    <div class="updatednews2-1">-->
+<!--                        다이어리 0/64-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="bg3-2">
@@ -138,7 +167,11 @@
                     <!--                    </div>-->
                 </div>
                 <div class="bg3-2-2">
-                    >내마구간
+                    <span><a th:href="@{/stable/toStable(id = ${id})}">
+                        <i class="material-symbols-outlined" style="font-size:36px; margin-bottom: 0px;">door_open</i>
+                        마구간
+                    </a>
+                        </span>
                 </div>
             </div>
         </div>
@@ -158,11 +191,20 @@
     </a>
 </div>
 <script>
+
+    $(document).ready(function(){
+        $('.modifybtn2,.cancel-button').hide();
+
+
     $(".modifybtn").on("click",function(){
+        $('.modifybtn2,.cancel-button').show();
         $('textarea').removeAttr("readonly");
         $(this).hide();
-        $('<button id="cancel-button">취소</button>').insertAfter(this);
         $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+        $("#cancel-button").on("click",function(){
+            location.reload();
+        })
+    })
     })
 </script>
 

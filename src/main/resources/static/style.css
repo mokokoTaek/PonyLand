@@ -30,6 +30,18 @@ body {
     justify-content: center;
 }
 
+
+
+/*GOOGLE ICON*/
+.material-symbols-outlined {
+    font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+}
+
+
 /* index*/
 
 .mainsection{
@@ -334,6 +346,20 @@ body {
     overflow: hidden;
 }
 
+.profilebtn2 {
+    width: auto;
+    height: auto;
+    font-size: 18px;
+    background: #FFECB4;
+    color: #5a3d2b;
+    border-top: #FFECB4;
+    border-right: #FFECB4;
+    border-left: 2px solid #F4A127;
+    border-bottom: 2px solid #F4A127;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .bg3 {
     display: flex;
     width: 582px;
@@ -375,7 +401,7 @@ body {
 
 .updatednews2-1{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     border: 1px solid #5a3d2b;
     border-radius: 8px;
     width: 200px;
@@ -409,10 +435,15 @@ body {
     /*margin: auto;*/
 }
 
-.bg3-2-2{
-    /*margin: auto;*/
-    /*width: 600px;*/
-    /*margin-top: 10px;*/
+.bg3-2-2>span>a{
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+.bg3-2-2>span>a:hover{
+    color: #5a3d2b;
+    cursor: pointer;
 }
 
 

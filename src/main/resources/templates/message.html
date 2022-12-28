@@ -5,9 +5,10 @@
     <title>쪽지함</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- CSS File -->
     <link href="../static/message.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
     <!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet"/>
@@ -24,14 +25,30 @@
             font-size: 15px;
         }
 
+        .detailBtn, .inbox_chat, .recent_heading {
+            cursor: pointer;
+        }
+
+        .highlighted {
+            background-color: darkgray;
+        }
+
+        .highlighted2 {
+            background-color: darkgray;
+        }
+
+        .recent_heading h4 {
+            text-align: center;
+        }
+
+
+
+
+
     </style>
 </head>
 
 <body>
-
-<!-- 메뉴바
-   현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->
-
 
 <br/>
 <br/><br/>
@@ -42,14 +59,18 @@
             <!-- 메세지 목록 영역 -->
             <div class="inbox_people">
                 <div class="headind_srch">
-                    <div class="recent_heading">
-                        <h4>Recent</h4>
+                    <div class="recent_heading" onclick="displayDescription('inbox')">
+                        <h4>받은 쪽지함</h4>
                     </div>
+                    <div class="recent_heading" onclick="displayDescription('sent')">
+                        <h4>보낸 쪽지함</h4>
+                    </div>
+
                 </div>
 
                 <!-- 메세지 리스트 -->
                 <!--                <form action="/message/detail?${no}" id="see">-->
-                <div class="inbox_chat">
+                <div class="inbox_chat" id="inbox2">
                     <div th:each="item : ${list}">
 <!--                        <div class="detailBtn" type="button">-->
                         <a class="detailBtn" type="button">
@@ -59,13 +80,26 @@
                                    th:attrappend="id=${itemStat.index}">
                             <br/>
                             <!-- 새로운 div 태그 추가 -->
-                            <div style="border: 1px solid; border-color: black;">
+                            <div style="border: 1px solid; border-color: lightgrey;">
                             </div>
                         </div>
+                     </div>
+
+                    <!-- 내가 보낸 메세지함 sentMail -->
+                   <div class="inbox_chat" id="sendbox">
+                      <div th:each="list2 : ${list2}">
+                          <a class="detailBtn2" type="button">
+                          <div><span th:text="'받은이 : ' + ${list2.recv_nick}"/></div>
+                          <div><span th:text="'제목 : ' + ${list2.title}"/></div></a>
+                          <input type="hidden" name="no" class="no" th:value="${list2.no}"
+                                 th:attrappend="id=${list2Stat.index}">
+                          <br/>
+                          <div style="border: 1px solid; border-color: lightgrey;">
+                          </div>
                     </div>
-                    </a>
+                   </div>
                 <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-                    <button>쪽지 보내기</button></a>
+                    <button><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
                 </div>
             </div>
     </div>
@@ -80,29 +114,69 @@
                 <!-- 메세지 입력란이 올자리 -->
             </div>
 
-
-            <!-- 내가 보낸 메세지함 sentMail -->
-            <div th:each="list2 : ${list2}">
-                쪽지번호
-                <p th:text="${list2.no}"></p>
-                <br>
-                받은 사람
-                <p th:text="${list2.recv_nick}"></p>
-                <br>
-                내용
-                <p th:text="${list2.content}"></p>
-                <br>
-                보낸 시간
-                <p th:text="${list2.send_time}"></p>
-            </div>
         </div>
 
     </div>
 </div>
 <script>
-    //쪽지 눌렀을 때 오른쪽에 나오는 쪽지 디테일
-    $(".detailBtn").on("click",function (){
 
+    const detailBtns = document.querySelectorAll('.detailBtn');
+    const detailBtns2 = document.querySelectorAll('.detailBtn2');
+    const divs = document.querySelectorAll('div');
+
+    detailBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            divs.forEach((div) => {
+                div.classList.remove('highlighted');
+            });
+            btn.parentElement.classList.toggle('highlighted');
+        });
+    });
+
+    detailBtns2.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            divs.forEach((div) => {
+                div.classList.remove('highlighted');
+            });
+            btn.parentElement.classList.toggle('highlighted');
+        });
+    });
+
+
+
+
+
+    const inboxHeading = document.querySelector('.recent_heading:nth-of-type(1)');
+    const sentHeading = document.querySelector('.recent_heading:nth-of-type(2)');
+
+    inboxHeading.addEventListener('click', () => {
+        inboxHeading.classList.toggle('highlighted2');
+        sentHeading.classList.remove('highlighted2');
+    });
+
+    sentHeading.addEventListener('click', () => {
+        sentHeading.classList.toggle('highlighted2');
+        inboxHeading.classList.remove('highlighted2');
+    });
+
+
+    $(document).ready(function() {
+        $('#sendbox').hide();
+    });
+
+    function displayDescription(folder) {
+        if (folder == 'inbox') {
+            $('#inbox2').show();
+            $('#sendbox').hide();
+        } else if (folder == 'sent') {
+            $('#inbox2').hide();
+            $('#sendbox').show();
+        }
+    }
+
+
+
+    $(".detailBtn").on("click",function (){
         $(".msg_history").empty();
         let no = $(this).next().val();
         $.ajax({
@@ -113,16 +187,19 @@
             },
             success: function (data) {
 
-                // Remove the replyBtn element if it exists
+                // 답장하기 버튼 중복생성 방지
                 $(".mesgs button").remove();
 
-                // Add the replyBtn element
             }
 
         }).done(function (data) {
+
                 let target = JSON.parse(data)
             console.log(target);
                 let div = $("<div>");
+                let h1 = $("<h3>");
+                h1.text("받은 쪽지");
+                div.append(h1);
 
                 let p2 = $("<p>");
                 p2.append("보낸이 : " + target.send_nick);
@@ -136,29 +213,125 @@
                 p4.append("보낸 시간 : " + target.send_time);
                 p4.addClass("small-font");
                 p4.css("color", "grey");
-                let p5 = $("<p>");
-                p5.append("<label>내용</label><br/><br/>");
-                p5.append(target.content);
-                p5.addClass("small-font");
+                let p5 = $("<h3>");
+                p5.text("내용");
+                div.append(p5);
+                let p6 = $("<p>");
+                p6.append(target.content);
+                p6.addClass("small-font");
 
                 div.append(p2);
                 div.append(p3);
                 div.append(p4);
                 div.append(p5);
+                div.append(p6);
                 $(".msg_history").append(div);
 
-                // let replyBtn = $("<button>");
-                // replyBtn.text("답장하기");
-                // $(".mesgs").append(replyBtn);
 
             let replyBtn = $("<button>");
-            replyBtn.text("답장하기");
-            $(".mesgs").append(replyBtn);
+             replyBtn.text("답장하기");
+                $(".mesgs").append(replyBtn);
+            let replyBtn2 = $("<button>");
+            replyBtn2.text("삭제하기");
+            $(".mesgs").append(replyBtn2);
             replyBtn.on("click", function() {
                 window.open("/message/write?replyTo=" + target.send_nick, "", "width=550, height=502");
             });
+            replyBtn2.click(function() {
+                // Send a DELETE request to the /message/delete URL
+                $.ajax({
+                    url: '/message/delete',
+                    type: "POST",
+                    data: {
+                        "seq": no
+                    },
+                    success: function(result) {
+                        // Display the alert
+                        alert("삭제 되었습니다."); // "Deleted" in Korean
+
+                        // Refresh the page
+                        location.reload();
+                    }
+                });
+            });
+
+
         });
     });
+
+    $(".detailBtn2").on("click",function (){
+        $(".msg_history").empty();
+        let no = $(this).next().val();
+        $.ajax({
+            url: "/message/detail",
+            type: "POST",
+            data: {
+                "no": no
+            },
+            success: function (data) {
+
+                // 답장하기 버튼 중복생성 방지
+                $(".mesgs button").remove();
+
+            }
+
+        }).done(function (data) {
+            let target = JSON.parse(data)
+            console.log(target);
+            let div = $("<div>");
+            let h1 = $("<h3>");
+            h1.text("보낸 쪽지");
+            div.append(h1);
+            let p2 = $("<p>");
+            p2.append("보낸이 : " + target.send_nick);
+            p2.addClass("small-font");
+            p2.css("color", "grey");
+            let p3 = $("<p>");
+            p3.append("받는이 : " + target.recv_nick);
+            p3.addClass("small-font");
+            p3.css("color", "grey");
+            let p4 = $("<p>");
+            p4.append("보낸 시간 : " + target.send_time);
+            p4.addClass("small-font");
+            p4.css("color", "grey");
+            let p5 = $("<h3>");
+            p5.text("내용");
+            div.append(p5);
+            let p6 = $("<p>");
+            p6.append(target.content);
+            p6.addClass("small-font");
+
+            div.append(p2);
+            div.append(p3);
+            div.append(p4);
+            div.append(p5);
+            div.append(p6);
+            $(".msg_history").append(div);
+
+            let replyBtn2 = $("<button>");
+            replyBtn2.text("삭제하기");
+            $(".mesgs").append(replyBtn2);
+            replyBtn2.click(function() {
+                // Send a DELETE request to the /message/delete URL
+                $.ajax({
+                    url: '/message/delete',
+                    type: "POST",
+                    data: {
+                        "seq": no
+                    },
+                    success: function(result) {
+                        // Display the alert
+                        alert("삭제 되었습니다."); // "Deleted" in Korean
+
+                        // Refresh the page
+                        location.reload();
+                    }
+                });
+            });
+
+        });
+    });
+
 
 </script>
 </body>

@@ -124,6 +124,17 @@
                 </div>
                 <div class="updatednews2">
 
+
+                    <div class="updatednews2-1">
+                        <div>
+                            검색
+                        </div>
+                        <div>
+                            <input type="text" placeholder="검색어를입력하세요" name="id" id="id"> <button type="button" onclick="selectById()" style="width: 10px">확인</button>
+                        </div>
+
+                    </div>
+
                     <div class="updatednews2-1">
                         <div>
                             방명록   <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
@@ -248,6 +259,10 @@
 
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
+    }
+    function selectById(){
+        let id = document.getElementById("id").value; //id값.
+        let popup = window.open(`/toMiniPage?id=${id}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
     }
 
     $(function(){

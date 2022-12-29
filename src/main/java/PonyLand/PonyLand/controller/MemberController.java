@@ -49,6 +49,7 @@ public class MemberController {
 
         model.addAttribute("nowdto", itemService.findByItemStatus(id,"horse"));
         model.addAttribute("nowbgdto", itemService.findByItemStatus(id,"background"));
+        model.addAttribute("nowfurniturelist", itemService.findFurnitureByItemStatus(id,"furniture"));
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));

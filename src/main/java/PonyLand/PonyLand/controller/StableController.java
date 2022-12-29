@@ -183,5 +183,32 @@ public class StableController {
             return "";
         }
 
+    @RequestMapping("coordinateFurniture")
+    @ResponseBody
+    public String coordinateFurniture(String x, String y,String furnitureSeq){
+
+//        System.out.println(x);
+//        System.out.println(y);
+
+        int intx = Integer.parseInt(x);
+        int inty = Integer.parseInt(y);
+
+
+//        System.out.println(intx);
+//        System.out.println(inty);
+
+        String itemCategory = "furniture";
+
+        String id =(String)session.getAttribute("sessionID");
+
+        ItemDTO dto = service2.findByItemSeq(furnitureSeq);
+
+
+        dto.setItemX(intx);
+        dto.setItemY(inty);
+        service2.updateCoordinate(dto);
+        return "";
+    }
+
 
 }

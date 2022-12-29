@@ -62,7 +62,7 @@ public class HomeController {
 
         String horse = "horse";
         String bg = "background";
-        //String furniture = "furniture";
+        String furniture = "furniture";
 
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
@@ -76,7 +76,7 @@ public class HomeController {
         model.addAttribute("miniroomdto",service.findById(id));
         model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
         model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
-        //model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,furniture));
+        model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,furniture));
 
         return "main";
     }

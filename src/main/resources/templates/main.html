@@ -131,7 +131,7 @@
                 <div class="updatednews2">
 
 
-                    <div class="updatednews2-1">
+                    <div class="updatednews2-1">  <!--검색-->
                         <div>
                             검색
                         </div>
@@ -269,7 +269,7 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
-    function selectById(){
+    function selectById(){ //검색기능.
         let id = document.getElementById("id").value; //id값.
         let popup = window.open(`/toMiniPage?id=${id}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
     }

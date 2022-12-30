@@ -242,10 +242,10 @@
             $(".msg_history").append(div);
 
 
-            let replyBtn = $("<button>");
+            let replyBtn = $("<button class='msgbtn'>");
             replyBtn.text("답장하기");
             $(".mesgs").append(replyBtn);
-            let replyBtn2 = $("<button>");
+            let replyBtn2 = $("<button class='msgbtn'>");
             replyBtn2.text("삭제하기");
             $(".mesgs").append(replyBtn2);
             replyBtn.on("click", function() {
@@ -322,7 +322,7 @@
             div.append(p6);
             $(".msg_history").append(div);
 
-            let replyBtn2 = $("<button>");
+            let replyBtn2 = $("<button class='msgbtn'>");
             replyBtn2.text("삭제하기");
             $(".mesgs").append(replyBtn2);
             replyBtn2.click(function() {

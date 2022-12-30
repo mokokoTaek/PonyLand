@@ -13,7 +13,7 @@ public class HistoryDAO {
     @Autowired
     private HistoryMapper historyMapper;
 
-    public HistoryDTO selectId(){
-        return historyMapper.selectId();
-    }
+//    public HistoryDTO selectId(){
+//        return historyMapper.selectId();
+//    }
 }

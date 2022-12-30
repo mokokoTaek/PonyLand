@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface HistoryMapper {
-    HistoryDTO selectId();
+    //HistoryDTO selectId();
 }

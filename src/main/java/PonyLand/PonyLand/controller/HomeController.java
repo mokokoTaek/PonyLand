@@ -56,8 +56,8 @@ public class HomeController {
 
         int dto5 = guestbookService.selectByDate(id);// 방명록 하루안에 올리 글 갯수
 
-        HistoryDTO historyDTO = historyService.selectId(); // History 목록 뿌리기
-
+//        HistoryDTO historyDTO = historyService.selectId(); // History 목록 뿌리기
+//
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        Calendar cal = Calendar.getInstance();
 //        cal.add(Calendar.DAY_OF_MONTH, -7); //7일간 보이도록 하기위해서.

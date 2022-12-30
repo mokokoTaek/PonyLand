@@ -213,6 +213,10 @@
                 p4.append("보낸 시간 : " + target.send_time);
                 p4.addClass("small-font");
                 p4.css("color", "grey");
+                let p7 = $("<p>");
+                p7.append("제목 : " + target.title);
+                p7.addClass("small-font");
+                p7.css("color", "grey");
                 let p5 = $("<h3>");
                 p5.text("내용");
                 div.append(p5);
@@ -225,6 +229,7 @@
                 div.append(p4);
                 div.append(p5);
                 div.append(p6);
+                div.append(p7);
                 $(".msg_history").append(div);
 
 
@@ -294,6 +299,10 @@
             p4.append("보낸 시간 : " + target.send_time);
             p4.addClass("small-font");
             p4.css("color", "grey");
+            let p7 = $("<p>");
+            p7.append("제목 : " + target.title);
+            p7.addClass("small-font");
+            p7.css("color", "grey");
             let p5 = $("<h3>");
             p5.text("내용");
             div.append(p5);
@@ -306,6 +315,7 @@
             div.append(p4);
             div.append(p5);
             div.append(p6);
+            div.append(p7);
             $(".msg_history").append(div);
 
             let replyBtn2 = $("<button>");
@@ -331,6 +341,15 @@
 
         });
     });
+    function XSSCheck(str, level) {
+        if (level == undefined || level == 0) {
+            str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
+        } else if (level != undefined && level == 1) {
+            str = str.replace(/\</g, "&lt;");
+            str = str.replace(/\>/g, "&gt;");
+        }
+        return str;
+    }
 
 
 </script>

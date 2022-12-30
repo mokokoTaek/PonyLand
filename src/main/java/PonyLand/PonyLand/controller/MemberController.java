@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
@@ -75,9 +77,20 @@ public class MemberController {
 
     @RequestMapping("login")
     public String login(MemberDTO dto, Model model) throws Exception{
+        try{
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
         model.addAttribute("id", dto.getMemberId());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('패스워드가 일치하지 않습니다.'); history.go(-1);</script>");
+            out.flush();
+            response.flushBuffer();
+            out.close();
+        }
         return "index";
     }
 

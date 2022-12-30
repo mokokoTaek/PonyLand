@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -88,7 +89,7 @@
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
                         <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
                         <div style="margin-right: 10px">
-                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">삭제</a>
+                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host()})}">삭제</a>
                             <!--                            <span> | </span>-->
                             <!--                            <button class="gowrite" type="button" style="padding: 0px">작성</button>-->
                         </div>
@@ -122,7 +123,7 @@
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
                             <div th:if="${list1.getGuestbook_comment_writer()==id}">
-                                <!--<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq="+guestbook_comment_seq+"&host="+host;}"-->
+                                <!--<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>-->
                                 <button type="button" class="guestbook_comment_deleteBtn">x</button>
                                 <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
                             </div>

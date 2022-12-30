@@ -268,24 +268,29 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
-    function selectById(){ //검색기능.
-        let id = document.getElementById("id").value; //id값.
-        $.ajax({
-            url :"/toMiniPage",
-            data : {
-                "id" : id
-            }
-        }).done(function(resp){
-            if(id =="" ) {
-                alert("아이디를 입력하세요")
-            }else {
-                let popup = window.open(`/toMiniPage?id=${id}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
-            }
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
 
-        })
-
-
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
     }
+
 
     $(function(){
 

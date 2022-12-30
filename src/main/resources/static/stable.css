@@ -114,6 +114,8 @@ button:hover {
     gap: 10px;
 }
 
+
+
 .bg2{
     width: 980px;
     height: 730px;
@@ -261,6 +263,7 @@ bgimg > img{
     justify-content: center;
     margin-top: 10px;
     gap: 20px;
+    overflow:scroll;
 }
 
 .shopimage{

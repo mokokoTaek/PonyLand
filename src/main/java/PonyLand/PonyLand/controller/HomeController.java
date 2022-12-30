@@ -41,6 +41,8 @@ public class HomeController {
     @GetMapping("/toMiniPage")
     public String miniHome(String id, Model model){
 
+
+
         MemberDTO dto =service.findById(id);
 
         int dto1 = albumService.count(id);  //album 게시글 총 갯수 가져오기 , 사진첩은 나밖에못쓰므로 writer랑,id이 값 같아서 id로 가져옴.
@@ -110,5 +112,6 @@ public class HomeController {
 
     @RequestMapping("/toFamilyListOpen")
     public String toFamilyListOpen(){return "redirect:/family/familyListOpen";}
+
 
 }

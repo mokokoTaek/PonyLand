@@ -74,10 +74,13 @@
                         <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea>
                     </div>
                     <div style="display: flex; justify-content: space-between">
-                        <button class="modifybtn" type="button" >수정하기</button>
-                        <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
-                        <button class="cancel-button" id="cancel-button" type="button">취소</button>
-                        <button class="modifybtn2" type="button" >변경</button>
+                        <input type="hidden" th:value="${id}">
+                        <th:block th:if="${id.equals(sessionID)}">
+                            <button class="modifybtn" type="button" >수정하기</button>
+                            <input type="hidden" th:value="${dto.getMemberId()}" name="memberId" id="memberId">
+                            <button class="cancel-button" id="cancel-button" type="button">취소</button>
+                            <button class="modifybtn2" type="button" >변경</button>
+                        </th:block>
                     </div>
                 </form>
             </div>
@@ -210,10 +213,8 @@
     </a>
 </div>
 <script>
-
     $(document).ready(function(){
         $('.modifybtn2,.cancel-button').hide();
-
 
         $(".modifybtn").on("click",function(){
             $('.modifybtn2,.cancel-button').show();
@@ -267,10 +268,29 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
-    function selectById(){ //검색기능.
-        let id = document.getElementById("id").value; //id값.
-        let popup = window.open(`/toMiniPage?id=${id}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
+
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
     }
+
 
     $(function(){
 

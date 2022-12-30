@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -81,17 +82,17 @@
                         방명록 작성하기
                     </button>
                 </div>
-                <div class="bgcontent" th:each="list:${dto}">
+                <div class="bgcontent" th:each="list:${dto}" th:if="${id==list.getGuestbook_host()}">
 
                     <div class="gbtitle">
                         <div style="margin-left: 10px"><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
                         <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
+                        <th:block th:if="${list.getGuestbook_writer().equals(sessionID)}">
                         <div style="margin-right: 10px">
-                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq})}">삭제</a>
-                            <!--                            <span> | </span>-->
-                            <!--                            <button class="gowrite" type="button" style="padding: 0px">작성</button>-->
+                            <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host()})}">삭제</a>
                         </div>
+                        </th:block>
                     </div>
 
 
@@ -121,10 +122,13 @@
                                 </div>
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
-                            <div th:if="${list1.getGuestbook_comment_writer()==id}">
-                                <button type="button" class="guestbook_comment_deleteBtn">삭제</button>
+                            <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">
+                            <div>
+                                <!--<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>-->
+                                <button type="button" class="guestbook_comment_deleteBtn">x</button>
                                 <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
                             </div>
+                            </th:block>
                         </div>
 
                         <div class="gbcmtinput">
@@ -180,6 +184,9 @@
     $(function () {
         // 방명록 댓글 : insert 기능
         $(".gbbutton").on("click", function () {
+
+            location.reload();
+
             let guestbook_seq = $(this).next().val();
             let guestbook_comment_contents = $(this).prev().find('input').val();
             let a = $(this).closest().children().val();

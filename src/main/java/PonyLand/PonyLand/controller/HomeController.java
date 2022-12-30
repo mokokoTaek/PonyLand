@@ -1,11 +1,9 @@
 package PonyLand.PonyLand.controller;
 
 import PonyLand.PonyLand.dto.AlbumDTO;
+import PonyLand.PonyLand.dto.HistoryDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
-import PonyLand.PonyLand.service.AlbumService;
-import PonyLand.PonyLand.service.GuestbookService;
-import PonyLand.PonyLand.service.ItemService;
-import PonyLand.PonyLand.service.MemberService;
+import PonyLand.PonyLand.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +31,9 @@ public class HomeController {
     @Autowired
     private GuestbookService guestbookService;
 
+    @Autowired
+    private HistoryService historyService;
+
     @RequestMapping("/")
     public String home(){
         return "index";
@@ -54,6 +55,8 @@ public class HomeController {
         int dto4  = albumService.selectByDate(id);  // 사진첩 하루안에 올린 글 갯수
 
         int dto5 = guestbookService.selectByDate(id);// 방명록 하루안에 올리 글 갯수
+
+        HistoryDTO historyDTO = historyService.selectId(); // History 목록 뿌리기
 
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        Calendar cal = Calendar.getInstance();

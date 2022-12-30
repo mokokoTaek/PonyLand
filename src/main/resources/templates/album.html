@@ -72,8 +72,8 @@
         <form id="form">
             <div class="albg3">
                 <div class="bg3in">
-                    <div style="margin-top: 15px">
-                        <button class="profilebtn2" type="button" style="float:right;" >
+                    <div style="margin-top: 15px"  >
+                        <button class="profilebtn2" type="button" style="float:right;" th:if="${sessionID==dto1.getAlbum_host()}">
                             사진첩 작성하기
                         </button>
                     </div>
@@ -131,7 +131,7 @@
                                     <!--컨트롤러에 경로 2개 보냄. ,사용-->  <!--댓글작성자랑 Album_host랑 같으면 x가보이게함.-->
                                     <div style="font-size: 10px; color: darkgrey">
                                         <th th:text="${#dates.format(list1.getAlbum_Comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
-                                        <a  th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>
+                                        <a  th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list1.getAlbum_Comment_writer()==sessionID}">x</a>
                                     </div>
                                 </div>
                                 <div style="font-size: 18px;">

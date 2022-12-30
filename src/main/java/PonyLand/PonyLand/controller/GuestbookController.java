@@ -66,6 +66,7 @@ public class GuestbookController {
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
         System.out.println(list1);
         model.addAttribute("id", guestbook_host);
+        model.addAttribute("sessionID",session.getAttribute("sessionID"));
         model.addAttribute("dto", list);
         model.addAttribute("list1", list1);
         model.addAttribute("list2",dto);

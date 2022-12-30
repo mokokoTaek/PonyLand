@@ -6,6 +6,7 @@ import PonyLand.PonyLand.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,9 @@ public class ItemService {
 
     @Autowired
     private ItemDAO dao;
+
+    @Autowired
+    private HttpSession session;
 
     public List<ItemDTO> findHorseById(String itemMeberId){
         String itemCategory = "horse";
@@ -57,10 +61,28 @@ public class ItemService {
 
 
     public List<ItemDTO> furnitureListControl(List list){
+        String id = (String)session.getAttribute("sessionID");
+
+        List<ItemDTO> alreadyUsing = this.findFurnitureByItemStatus(id,"furniture");
+        List<ItemDTO> newFurniture = this.findFurnitureById(id);
+        for(int i=0; i<alreadyUsing.size();i++){
+            alreadyUsing.get(i).setItemStatus(0);
+        }
+
         List<ItemDTO> furnitureItemList = new ArrayList<ItemDTO>();
         for(int i=0;i<list.size();i++){
             furnitureItemList.add(this.findByItemSeq((String)list.get(i)));
+
+            for(int j=0;j<newFurniture.size();j++){
+                if(newFurniture.get(j).getItemName().equals(furnitureItemList.get(i).getItemName())){
+                    newFurniture.get(i).setItemStatus(1);
+                    this.updateItem(newFurniture.get(i));
+                }
+            }
+
+//            System.out.println(furnitureItemList.get(i).getItemName());
         }
+
         return furnitureItemList;
     }
     public ItemDTO findByItemSeq(String itemSeq){
@@ -78,6 +100,7 @@ public class ItemService {
         return dao.findByItemStatus(id,itemStatus,itemCategory);
     }
 
+
     public List<ItemDTO> findFurnitureByItemStatus(String id, String itemCategory){
         int itemStatus = 1;
         return dao.findFurnitureByItemStatus(id,itemStatus,itemCategory);
@@ -87,9 +110,11 @@ public class ItemService {
         dao.updateCoordinate(dto);
     }
 
+
     public void newUser(MemberDTO dto){
         ItemDTO itemHorseDto = new ItemDTO(0,"thumbmokoko.png",dto.getMemberId(),"horse",206,179,1);
         ItemDTO itemBgDto = new ItemDTO(0,"snow.gif",dto.getMemberId(),"background",0,0,1);
-        dao.newUser(itemHorseDto,itemBgDto);
+        ItemDTO itemFurnitureDto = new ItemDTO(0,"defaultfurniture.png",dto.getMemberId(),"furniture",100,100,1);
+        dao.newUser(itemHorseDto,itemBgDto,itemFurnitureDto);
     }
 }

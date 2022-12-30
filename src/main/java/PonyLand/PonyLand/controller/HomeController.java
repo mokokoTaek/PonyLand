@@ -42,6 +42,8 @@ public class HomeController {
     @GetMapping("/toMiniPage")
     public String miniHome(String id, Model model){
 
+
+
         MemberDTO dto =service.findById(id);
 
         int dto1 = albumService.count(id);  //album 게시글 총 갯수 가져오기 , 사진첩은 나밖에못쓰므로 writer랑,id이 값 같아서 id로 가져옴.
@@ -65,7 +67,7 @@ public class HomeController {
 
         String horse = "horse";
         String bg = "background";
-        //String furniture = "furniture";
+        String furniture = "furniture";
 
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
@@ -79,7 +81,7 @@ public class HomeController {
         model.addAttribute("miniroomdto",service.findById(id));
         model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
         model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
-        //model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,furniture));
+        model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,furniture));
 
         return "main";
     }
@@ -113,5 +115,6 @@ public class HomeController {
 
     @RequestMapping("/toFamilyListOpen")
     public String toFamilyListOpen(){return "redirect:/family/familyListOpen";}
+
 
 }

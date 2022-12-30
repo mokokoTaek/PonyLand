@@ -89,7 +89,7 @@
                   <input type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="previewImage(event)">
                   <div>
                     <button type="button" class="alwrbtn" id="back">목록으로</button>
-                    <button type="submit" class="alwrbtn" id="btn">작성완료</button>
+                    <button type="submit" class="alwrbtn" id="btn" >작성완료</button>
                   </div>
                 </tr>
               </div>
@@ -162,6 +162,16 @@
       document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '"style="max-width: 523px; max-height: 300px;">';
     };
   }
+//submit 클릭버튼 한번으로 막기.
+  let buttonClicked = false;
+
+  $("#btn").click(function(event) {
+    if (buttonClicked) {
+      event.preventDefault();
+      return;
+    }
+    buttonClicked = true;
+  });
 
 
 </script>

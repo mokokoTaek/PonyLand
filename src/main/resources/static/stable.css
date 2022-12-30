@@ -8,12 +8,31 @@
     font-family: font;
 }
 
+div::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
+
+div::-webkit-scrollbar-thumb {
+    height: 5%; /* 스크롤바의 길이 */
+    background: #FFECB4; /* 스크롤바의 색상 */
+    border-radius: 10px;
+}
+
+div::-webkit-scrollbar-track {
+    background: transparent;  /*스크롤바 뒷 배경 색상*/
+}
+
+
+
 body {
     height: 100%;
     width: 100%;
     margin: 50px;
     display: flex;
     justify-content: center;
+    background-image: radial-gradient(circle, #fdfcfb 0%, #e2d1c3 100%);
+
+
 }
 
 button:hover {
@@ -94,6 +113,8 @@ button:hover {
     flex-wrap: wrap;
     gap: 10px;
 }
+
+
 
 .bg2{
     width: 980px;
@@ -240,8 +261,9 @@ bgimg > img{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
     gap: 20px;
+    overflow:scroll;
 }
 
 .shopimage{
@@ -364,13 +386,57 @@ bgimg > img{
 }
 
 .shopbg1{
-    display: flex;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     justify-content: center;
     align-items: center;
-    width: 336px;
+    /*width: 679px;*/
+    /*height: 730px;*/
+    /*!*background: white;*!*/
+    /*border-radius: 8px;*/
+    /*!*overflow: scroll;*!*/
+
+    display: flex;
+    flex-direction: column;
+    width: 679px;
     height: 730px;
-    background: white;
+    /*background: white;*/
     border-radius: 8px;
+}
+
+.shopbg1-1{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*overflow: scroll;*/
+    /*height: 360px;*/
+    /*text-align: center;*/
+    /*background-color: white;*/
+    /*margin-bottom: 10px;*/
+    /*border-radius: 8px;*/
+
+    display: flex;
+    height: 360px;
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-direction: column;
+    width: 679px;
+
+}
+
+.shopbg1-2{
+    display: flex;
+    height: 360px;
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .shopbg2{
@@ -411,5 +477,5 @@ bgimg > img{
 }
 
 .resultDiv{
-text-align: center;
+    text-align: center;
 }

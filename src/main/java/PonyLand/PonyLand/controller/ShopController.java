@@ -33,6 +33,7 @@ public class ShopController {
     public String toShop(Model model){
         String id = (String)session.getAttribute("sessionID");
         model.addAttribute("memberdto",memberService.findById(id));
+        model.addAttribute("id",id);
         return "shop";
     }
 

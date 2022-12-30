@@ -23,7 +23,7 @@
 
 <div class="container">
     <div class="top">
-        <div class="">Today : 245</div>
+        <div class="" th:text="|Today : ${list.getMemberHomepageViewCount()}|"></div>  <!--Today 가져오기-->
         <div class="">뮤직플레이어 부분</div>
     </div>
 
@@ -73,7 +73,7 @@
             <div class="albg3">
                 <div class="bg3in">
                     <div style="margin-top: 15px">
-                        <button class="profilebtn2" type="button" style="float:right;">
+                        <button class="profilebtn2" type="button" style="float:right;" >
                             사진첩 작성하기
                         </button>
                     </div>
@@ -127,11 +127,11 @@
                                         <input type="hidden" th:value="${list1.getAlbum_Comment_writer()}" >
                                         <th th:text="${list1.getAlbum_Comment_writer()}" >작성자</th>
                                     </div>
-                                    <a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>
+<!--                                    <a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>-->
                                     <!--컨트롤러에 경로 2개 보냄. ,사용-->  <!--댓글작성자랑 Album_host랑 같으면 x가보이게함.-->
                                     <div style="font-size: 10px; color: darkgrey">
                                         <th th:text="${#dates.format(list1.getAlbum_Comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
-                                        <a th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>
+                                        <a  th:href="@{/Comment/delete?(Album_Comment_seq=${list1.getAlbum_Comment_seq()},Album_host=${list.getAlbum_host()})}" th:if="${list.getAlbum_host()==list1.getAlbum_Comment_writer()}">x</a>
                                     </div>
                                 </div>
                                 <div style="font-size: 18px;">
@@ -191,8 +191,8 @@
 
 
             $(this).prev().find('input').attr("name", "Album_Comment_contents");
-            let Album_seq = $(this).next().val();
-            let Album_Comment_contents = $(this).prev().find('input').val();
+            let Album_seq = $(this).next().val();    //gbbutton 후에 있는 Album_seq값을 받음
+            let Album_Comment_contents = $(this).prev().find('input').val(); //전에있는 input타입을 찾아서 Album_Comment_contents값 받음.
 
 
             $("#Album_Comment_contents").val("");
@@ -202,7 +202,7 @@
                 type: "post",
                 data: {
                     "Album_seq": Album_seq,
-                    "Album_Comment_contents": Album_Comment_contents
+                    "Album_Comment_contents": Album_Comment_contents   //컨트롤러로 보낸다. 앞에있는게 name으로 받음.
                 }
             }).done(function (data) {
                 let target = JSON.parse(data);
@@ -244,6 +244,9 @@
         });
 
     });
+
+
+
 
     $(".gbcmt").on("keydown", function(event) {
         if (event.keyCode === 13) {

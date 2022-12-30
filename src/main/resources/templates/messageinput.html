@@ -3,10 +3,22 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
+
 <head>
     <meta charset="UTF-8">
     <title>쪽지 보내기</title>
     <style>
+
+        @font-face {
+            font-family: font;
+            src: url("/static/hssaemaulfont.woff") format("woff");
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: font;
+        }
+
         .mesgs {
             width: 500px;
             margin: 0 auto;
@@ -55,6 +67,19 @@
             margin: 0 auto;
         }
 
+        .sendbtn{
+            color: #5a3d2b;
+            background-color: #FFECB4;
+            border-color: transparent;
+
+        }
+
+        .sendbtn:hover{
+            cursor: pointer;
+            background-color: #5a3d2b;
+            color: #FFECB4;
+        }
+
 
     </style>
 </head>
@@ -88,8 +113,12 @@
             <textarea rows="10" cols="50" name="content" id="content"></textarea>
         </div>
         <ul class="actions">
-            <button type="submit"><i class="fa-regular fa-paper-plane"></i> 전송</button>
+            <button class="sendbtn" type="submit" >
+                <i class="fa-regular fa-paper-plane"></i> 전송
+            </button>
         </ul>
+
+
         <br/>
         <br/>
         <br/>

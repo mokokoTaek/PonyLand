@@ -23,4 +23,7 @@
         update member set member_message = #{member_message} where member_id=#{memberId}
     </update>
 
+
+
+
 </mapper>

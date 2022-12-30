@@ -168,6 +168,17 @@
             return false;
         }
     }
+
+    const textarea = document.getElementById('content');
+    const title = document.getElementById('title');
+    textarea.addEventListener('input', function() {
+        textarea.value = textarea.value.replace(/<script>/g, '');
+    });
+    title.addEventListener('input', function() {
+        title.value = title.value.replace(/<script>/g, '');
+    });
+
+
 </script>
 
 </body>

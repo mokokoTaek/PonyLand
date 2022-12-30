@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../static/style.css"/>
+    <link rel="stylesheet" href="../static/family.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
@@ -12,7 +14,8 @@
         <form action="" method="post" id="frm">
             <div th:if="${list1}!=null">
                 <div th:each="list1:${list1}">
-
+                <div class="familybg">
+                <div class="familybg2">
                     <tr>
 
                         <th th:text="|${list1.familyMe} (${list1.familyProposedName})|"></th>
@@ -43,6 +46,8 @@
                     </tr>
 
                 </div>
+            </div>
+            </div>
             </div>
         </form>
 

@@ -125,9 +125,9 @@
         <!-- 메세지 입력란이 올자리 -->
     </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 </div>
 <script>
 
@@ -205,43 +205,43 @@
 
         }).done(function (data) {
 
-            let target = JSON.parse(data)
+                let target = JSON.parse(data)
             console.log(target);
-            let div = $("<div>");
-            let h1 = $("<h3>");
-            h1.text("받은 쪽지");
-            div.append(h1);
+                let div = $("<div>");
+                let h1 = $("<h3>");
+                h1.text("받은 쪽지");
+                div.append(h1);
 
-            let p2 = $("<p>");
-            p2.append("보낸이 : " + target.send_nick);
-            p2.addClass("small-font");
-            p2.css("color", "grey");
-            let p3 = $("<p>");
-            p3.append("받는이 : " + target.recv_nick);
-            p3.addClass("small-font");
-            p3.css("color", "grey");
-            let p4 = $("<p>");
-            p4.append("보낸 시간 : " + target.send_time);
-            p4.addClass("small-font");
-            p4.css("color", "grey");
-            let p5 = $("<h3>");
-            p5.text("내용");
-            div.append(p5);
-            let p6 = $("<p>");
-            p6.append(target.content);
-            p6.addClass("small-font");
+                let p2 = $("<p>");
+                p2.append("보낸이 : " + target.send_nick);
+                p2.addClass("small-font");
+                p2.css("color", "grey");
+                let p3 = $("<p>");
+                p3.append("받는이 : " + target.recv_nick);
+                p3.addClass("small-font");
+                p3.css("color", "grey");
+                let p4 = $("<p>");
+                p4.append("보낸 시간 : " + target.send_time);
+                p4.addClass("small-font");
+                p4.css("color", "grey");
+                let p5 = $("<h3>");
+                p5.text("내용");
+                div.append(p5);
+                let p6 = $("<p>");
+                p6.append(target.content);
+                p6.addClass("small-font");
 
-            div.append(p2);
-            div.append(p3);
-            div.append(p4);
-            div.append(p5);
-            div.append(p6);
-            $(".msg_history").append(div);
+                div.append(p2);
+                div.append(p3);
+                div.append(p4);
+                div.append(p5);
+                div.append(p6);
+                $(".msg_history").append(div);
 
 
             let replyBtn = $("<button>");
-            replyBtn.text("답장하기");
-            $(".mesgs").append(replyBtn);
+             replyBtn.text("답장하기");
+                $(".mesgs").append(replyBtn);
             let replyBtn2 = $("<button>");
             replyBtn2.text("삭제하기");
             $(".mesgs").append(replyBtn2);

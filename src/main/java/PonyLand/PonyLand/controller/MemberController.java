@@ -81,7 +81,6 @@ public class MemberController {
         return "index";
     }
 
-
     @GetMapping ("logout")
     public String logout() throws Exception{
         service.logout();

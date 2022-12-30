@@ -36,11 +36,13 @@
 </div>
 <div class="side">
 
-    <button class="btnmain2">마구간</button>
+    <a th:href="@{/stable/toStable(id=${id})}">
+        <button class="btnmain2">마구간</button>
+    </a>
 
     <button class="btnmain1" type="button" id="adc">게임</button>
 
-    <a th:href="@{/}">
+    <a th:href="@{/shop/toShop(id=${id})}">
         <button class="btnmain2">상점</button>
     </a>
     <a th:href="@{/stable/charge}">

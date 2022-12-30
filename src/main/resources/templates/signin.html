@@ -64,7 +64,7 @@
 
     document.getElementById("member_id").onkeyup = function() {
         let id = document.getElementById("member_id").value;
-        let regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+        let regExp = /^[a-z]+[a-z0-9]{4,10}$/g;
         let answer = regExp.test(id);
 
         $.ajax({

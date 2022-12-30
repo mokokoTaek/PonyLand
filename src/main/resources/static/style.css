@@ -424,6 +424,35 @@ body {
     width: 200px;
     height: 30px;
 }
+.searchbox1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+    /*border: 1px solid #5a3d2b;*/
+    border-radius: 8px;
+    width: 200px;
+    height: 30px;
+}
+
+.searchbox2{
+    border: transparent;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.searchbtn{
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 8px;
+    font-size: 20px;
+    color: #F4A127;
+}
+
+.searchbtn:hover{
+    color: #5a3d2b;
+    background-color: #FFECB4;
+}
 
 
 .bg3-2{
@@ -567,6 +596,7 @@ button:hover {
     border-radius: 8px;
     font-size: 25px;
 }
+
 
 
 

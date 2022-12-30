@@ -39,6 +39,7 @@ public class StableController {
         int coin = dto.getMember_coin();
         System.out.println(id + ":" + coin);
         model.addAttribute("coin", coin);
+        model.addAttribute("id",id);
         return "carrot";
     }
 

@@ -24,11 +24,11 @@
 <div th:if="${id} != null">
     <div class="mainsection">
         <button class="ponyland">포니랜드</button>
-        <a th:href="@{/toMiniPage(id = ${id})}">
-            <button class="ponyland" type="button">
+<!--        <a th:href="@{/toMiniPage(id = ${id})}">-->
+            <button class="ponyland" type="button" id="toMiniPage">
                 <span th:text="${id}"></span> 입장하기
             </button>
-        </a>
+<!--        </a>-->
 <!--        <a th:href="@{/stable/toStable(id = ${id})}">-->
             <button class="ponyland" type="button" id="toStable">마구간</button>
 <!--        </a>-->
@@ -132,8 +132,16 @@
     })
 
     $("#toStable").click(function(){
-        let popup = window.open("/stable/toStable?id="+[[${id}]]+"","새로받은 일촌 신청 확인","width=700px,height=800px,scrollbars=yes");
+        let popup = window.open("/stable/toStable?id="+[[${id}]]+"","마구간","width=700px,height=800px,scrollbars=yes");
     })
+
+    $("#toMiniPage").click(function(){
+        let popup = window.open("/toMiniPage?id = "+[[${id}]]+"","미니룸","width=700px,height=800px,scrollbars=yes");
+    })
+    $("#toMiniPage").click(function(){
+        let popup = window.open("/toMiniPage?id="+[[${id}]]+"","미니룸","width=700px,height=800px,scrollbars=yes");
+    })
+
 </script>
 
 

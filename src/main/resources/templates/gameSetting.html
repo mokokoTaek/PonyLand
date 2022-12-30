@@ -152,6 +152,8 @@
         $("#gameRun").on("click", function () {
             if( parseInt($("#bettingCoin").val())  >  parseInt($("#myMoney").html())   ){
                 alert("배팅 값을 보유금액 보다 적게 다시 입력하세요.");
+            }else if($("#bettingCoin").val()==""){
+                alert("배팅 값을 입력하세요.");
             }else{
                 $("#form").attr("action","/game/gameRun");
                 $("#form").submit();

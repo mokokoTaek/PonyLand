@@ -137,14 +137,21 @@ public class AlbumController {
 //사진첩으로 가는길 ,
     @RequestMapping("toAlbumPage")  //전체 목록 뷰
     public String goGuestbook(Model model,String Album_host){
+
+        AlbumDTO dto1 =new AlbumDTO();
+        dto1.setAlbum_host(Album_host);
+
+
         List<AlbumDTO> list = service.selectAll();
         MemberDTO dto = memberService.findById(Album_host);
         List<AlbumCommentDTO> list1 = albumCommentService.selectComment();  //list로 묶은 댓글목록들을 여기서 가져온다.
         model.addAttribute("dto", list);
 //세션담아서 가줌.
+        model.addAttribute("sessionID",session.getAttribute("sessionID"));
         model.addAttribute("id",Album_host);
         model.addAttribute("list1",list1);
         model.addAttribute("list",dto);
+        model.addAttribute("dto1",dto1);
 
 
 

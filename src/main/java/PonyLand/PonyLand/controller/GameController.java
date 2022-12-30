@@ -28,7 +28,8 @@ public class GameController {
 
     // 경마장으로 가는 코드
     @RequestMapping("gameStart")
-    public String gameStart() {
+    public String gameStart(Model model) {
+        model.addAttribute("id",session.getAttribute("sessionID"));
         return "gameStart";
     }
 

@@ -35,8 +35,8 @@ div::-webkit-scrollbar-track {
 }
 
 body {
-    height: 100%;
-    width: 100%;
+    /*height: 100%;*/
+    /*width: 100%;*/
     margin: 50px;
     display: flex;
     justify-content: center;
@@ -148,12 +148,41 @@ body {
     margin-top: 20px;
 }
 
+.loginbox{
+    /*display: flex;*/
+    /*justify-content: center;*/
+}
+
+.kakaologinbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+    width: 250px;
+    height: 40px;
+    background: #FFECB4;
+    border-top: 1px solid #FFECB4;
+    border-right: 1px solid #FFECB4;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
+    color: #5a3d2b;
+    border-radius: 8px;
+    font-size: 25px;
+}
+
+#naver_id_login{
+ /*position: absolute;*/
+
+}
+
 .loginfind {
     color: rgba(244, 161, 39, 1);
     display: flex;
-    flex-direction: row;
+    /*flex-direction: row;*/
     justify-content: space-between;
     margin-top: 10px;
+
 }
 
 .loginbg {

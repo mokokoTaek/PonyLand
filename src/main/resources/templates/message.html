@@ -10,8 +10,8 @@
     <link href="../static/message.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
     <!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
-          rel="stylesheet"/>
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
 
         @font-face {
@@ -110,7 +110,13 @@
                     </div>
                 </div>
                 <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-                    <button class="sendbtn"><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
+<!--                    <button class="sendbtn"><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button>-->
+                    <button class="sendbtn" style="display: flex; align-items: center">
+                        <i class="material-symbols-outlined" style="font-size:24px;">send</i>
+                        <span>쪽지 보내기</span>
+                    </button>
+                </a>
+
             </div>
         </div>
     </div>
@@ -125,9 +131,6 @@
         <!-- 메세지 입력란이 올자리 -->
     </div>
 
-        </div>
-
-    </div>
 </div>
 <script>
 
@@ -205,43 +208,43 @@
 
         }).done(function (data) {
 
-                let target = JSON.parse(data)
+            let target = JSON.parse(data)
             console.log(target);
-                let div = $("<div>");
-                let h1 = $("<h3>");
-                h1.text("받은 쪽지");
-                div.append(h1);
+            let div = $("<div>");
+            let h1 = $("<h3>");
+            h1.text("받은 쪽지");
+            div.append(h1);
 
-                let p2 = $("<p>");
-                p2.append("보낸이 : " + target.send_nick);
-                p2.addClass("small-font");
-                p2.css("color", "grey");
-                let p3 = $("<p>");
-                p3.append("받는이 : " + target.recv_nick);
-                p3.addClass("small-font");
-                p3.css("color", "grey");
-                let p4 = $("<p>");
-                p4.append("보낸 시간 : " + target.send_time);
-                p4.addClass("small-font");
-                p4.css("color", "grey");
-                let p5 = $("<h3>");
-                p5.text("내용");
-                div.append(p5);
-                let p6 = $("<p>");
-                p6.append(target.content);
-                p6.addClass("small-font");
+            let p2 = $("<p>");
+            p2.append("보낸이 : " + target.send_nick);
+            p2.addClass("small-font");
+            p2.css("color", "grey");
+            let p3 = $("<p>");
+            p3.append("받는이 : " + target.recv_nick);
+            p3.addClass("small-font");
+            p3.css("color", "grey");
+            let p4 = $("<p>");
+            p4.append("보낸 시간 : " + target.send_time);
+            p4.addClass("small-font");
+            p4.css("color", "grey");
+            let p5 = $("<h3>");
+            p5.text("내용");
+            div.append(p5);
+            let p6 = $("<p>");
+            p6.append(target.content);
+            p6.addClass("small-font");
 
-                div.append(p2);
-                div.append(p3);
-                div.append(p4);
-                div.append(p5);
-                div.append(p6);
-                $(".msg_history").append(div);
+            div.append(p2);
+            div.append(p3);
+            div.append(p4);
+            div.append(p5);
+            div.append(p6);
+            $(".msg_history").append(div);
 
 
             let replyBtn = $("<button>");
-             replyBtn.text("답장하기");
-                $(".mesgs").append(replyBtn);
+            replyBtn.text("답장하기");
+            $(".mesgs").append(replyBtn);
             let replyBtn2 = $("<button>");
             replyBtn2.text("삭제하기");
             $(".mesgs").append(replyBtn2);

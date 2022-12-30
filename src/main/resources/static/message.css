@@ -31,7 +31,7 @@ img{
 }
 
 p {
-    font-family: 'Noto Sans KR', sans-serif;
+    /*font-family: 'Noto Sans KR', sans-serif;*/
     font-size: 20px;
 }
 
@@ -41,7 +41,10 @@ p {
 
 
 
-.msg-container{max-width:1170px; margin:auto;}
+.msg-container{
+    max-width:1170px; margin:auto;
+
+}
 img{ max-width:100%;}
 .inbox_people {
     display: flex;
@@ -61,7 +64,11 @@ img{ max-width:100%;}
 .top_spac{ margin: 20px 0 0;}
 
 
-.recent_heading {float: left; width:40%;}
+.recent_heading {
+    float: left;
+    width:40%;
+    margin-bottom: 20px;
+}
 .srch_bar {
     display: inline-block;
     text-align: right;
@@ -209,7 +216,7 @@ img{ max-width:100%;}
     background: #5fcd58 none repeat scroll 0 0;
 }
 
-.messaging { padding: 0 0 50px 0;}
+/*.messaging { padding: 0 0 50px 0;}*/
 .msg_history {
     height: 516px;
     overflow-y: auto;

@@ -10,7 +10,7 @@ public class HistoryService {
 
     @Autowired
     private HistoryDAO historyDAO;
-    public HistoryDTO selectId(){
-        return historyDAO.selectId();
-    }
+//    public HistoryDTO selectId(){
+//        return historyDAO.selectId();
+//    }
 }

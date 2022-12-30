@@ -72,47 +72,47 @@
                 <!--                <form action="/message/detail?${no}" id="see">-->
                 <div class="inbox_chat" id="inbox2">
                     <div th:each="item : ${list}">
-<!--                        <div class="detailBtn" type="button">-->
+                        <!--                        <div class="detailBtn" type="button">-->
                         <a class="detailBtn" type="button">
                             <div><span th:text="'보낸이 : ' + ${item.send_nick}"/></div>
                             <div th:text="'제목 : ' + ${item.title}"></div></a>
-                            <input type="hidden" name="no" class="no" th:value="${item.no}"
-                                   th:attrappend="id=${itemStat.index}">
-                            <br/>
-                            <!-- 새로운 div 태그 추가 -->
-                            <div style="border: 1px solid; border-color: lightgrey;">
-                            </div>
+                        <input type="hidden" name="no" class="no" th:value="${item.no}"
+                               th:attrappend="id=${itemStat.index}">
+                        <br/>
+                        <!-- 새로운 div 태그 추가 -->
+                        <div style="border: 1px solid; border-color: lightgrey;">
                         </div>
-                     </div>
-
-                    <!-- 내가 보낸 메세지함 sentMail -->
-                   <div class="inbox_chat" id="sendbox">
-                      <div th:each="list2 : ${list2}">
-                          <a class="detailBtn2" type="button">
-                          <div><span th:text="'받은이 : ' + ${list2.recv_nick}"/></div>
-                          <div><span th:text="'제목 : ' + ${list2.title}"/></div></a>
-                          <input type="hidden" name="no" class="no" th:value="${list2.no}"
-                                 th:attrappend="id=${list2Stat.index}">
-                          <br/>
-                          <div style="border: 1px solid; border-color: lightgrey;">
-                          </div>
                     </div>
-                   </div>
-                <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-                    <button><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
-                </div>
-            </div>
-    </div>
-            <!-- 메세지 내용 영역 -->
-            <div class="mesgs">
-                <!-- 메세지 내용 목록 -->
-                <div class="msg_history" name="contentList">
                 </div>
 
-                <div class="send_message">
+                <!-- 내가 보낸 메세지함 sentMail -->
+                <div class="inbox_chat" id="sendbox">
+                    <div th:each="list2 : ${list2}">
+                        <a class="detailBtn2" type="button">
+                            <div><span th:text="'받은이 : ' + ${list2.recv_nick}"/></div>
+                            <div><span th:text="'제목 : ' + ${list2.title}"/></div></a>
+                        <input type="hidden" name="no" class="no" th:value="${list2.no}"
+                               th:attrappend="id=${list2Stat.index}">
+                        <br/>
+                        <div style="border: 1px solid; border-color: lightgrey;">
+                        </div>
+                    </div>
                 </div>
-                <!-- 메세지 입력란이 올자리 -->
+                <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
+                    <button class="sendbtn"><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
             </div>
+        </div>
+    </div>
+    <!-- 메세지 내용 영역 -->
+    <div class="mesgs">
+        <!-- 메세지 내용 목록 -->
+        <div class="msg_history" name="contentList">
+        </div>
+
+        <div class="send_message">
+        </div>
+        <!-- 메세지 입력란이 올자리 -->
+    </div>
 
         </div>
 
@@ -213,10 +213,6 @@
                 p4.append("보낸 시간 : " + target.send_time);
                 p4.addClass("small-font");
                 p4.css("color", "grey");
-                let p7 = $("<p>");
-                p7.append("제목 : " + target.title);
-                p7.addClass("small-font");
-                p7.css("color", "grey");
                 let p5 = $("<h3>");
                 p5.text("내용");
                 div.append(p5);
@@ -229,7 +225,6 @@
                 div.append(p4);
                 div.append(p5);
                 div.append(p6);
-                div.append(p7);
                 $(".msg_history").append(div);
 
 
@@ -299,10 +294,6 @@
             p4.append("보낸 시간 : " + target.send_time);
             p4.addClass("small-font");
             p4.css("color", "grey");
-            let p7 = $("<p>");
-            p7.append("제목 : " + target.title);
-            p7.addClass("small-font");
-            p7.css("color", "grey");
             let p5 = $("<h3>");
             p5.text("내용");
             div.append(p5);
@@ -315,7 +306,6 @@
             div.append(p4);
             div.append(p5);
             div.append(p6);
-            div.append(p7);
             $(".msg_history").append(div);
 
             let replyBtn2 = $("<button>");
@@ -341,15 +331,6 @@
 
         });
     });
-    function XSSCheck(str, level) {
-        if (level == undefined || level == 0) {
-            str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
-        } else if (level != undefined && level == 1) {
-            str = str.replace(/\</g, "&lt;");
-            str = str.replace(/\>/g, "&gt;");
-        }
-        return str;
-    }
 
 
 </script>

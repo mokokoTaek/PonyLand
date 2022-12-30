@@ -153,7 +153,7 @@
     <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
         <button class="btnmain2">사진첩</button>
     </a>
-    <a th:href="@{/member/goMypage?(memberId=${id})}">
+    <a  th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
 </div>

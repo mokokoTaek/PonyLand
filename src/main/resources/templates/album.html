@@ -169,7 +169,7 @@
         <button class="btnmain2">방명록</button>
     </a>
     <button class="btnmain1">사진첩</button>
-    <a th:href="@{/member/goMypage?(memberId=${id})}">
+    <a   th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
 </div>

@@ -150,9 +150,12 @@
                         <div>
                             <span th:if="${list5}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list5 < 10 ? '0' + list5 : list5}"></span></span> <!--10보다 크면 0제거 작으면 0 붙임-->
+                           <span th:if="${list5 == null}">0</span>
+                            <span th:if="${list5 != null}" th:text="${list5 < 10 ? '0' + list5 : list5}"></span>
+                            </span> <!--10보다 크면 0제거 작으면 0 붙임-->
                             /
-                            <span  th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
+                            <span th:if="${list2 == null}">0</span>
+                            <span th:if="${list2 != null}" th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
                         </div>
 
                     </div>
@@ -163,9 +166,12 @@
                         <div>
                             <span th:if="${list4}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list4 < 10 ? '0' + list4 : list4}"></span></span>
+                           <span th:if="${list4 == null}">0</span>
+                            <span th:if="${list4 != null}" th:text="${list4 < 10 ? '0' + list4 : list4}"></span>
+                            </span>
                             /
-                            <span th:text="${list1 < 10 ? '0' + list1 : list1}" ></span>
+                            <span th:if="${list1 == null}">0</span>
+                            <span th:if="${list1 != null}" th:text="${list1 < 10 ? '0' + list1 : list1}"></span>
                         </div>
                     </div>
                     <!--                    <div class="updatednews2-1">-->
@@ -208,7 +214,7 @@
 
         <button class="btnmain2">사진첩</button>
     </a>
-    <a th:href="@{/member/goMypage?(memberId=${id})}">
+    <a  th:if="${id==sessionID}"  th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
 </div>

@@ -74,10 +74,13 @@
         <form id="form">
             <div class="albg3">
                 <div class="bg3in">
-                    <div style="margin-top: 15px"  >
+                    <div style="margin-top: 15px" >
+                        <input type="hidden" th:value="${dto1.getAlbum_host()}" id="host1"/>
+
                         <button class="profilebtn2" type="button" style="float:right;" th:if="${sessionID==dto1.getAlbum_host()}">
                             사진첩 작성하기
                         </button>
+
                     </div>
                     <div th:each="list:${dto}" style="margin-bottom: 50px" th:if="${id==list.getAlbum_host()}">
                         <!--                                                                                 원래 {list.getAlbum_writer()}               -->
@@ -153,10 +156,10 @@
                               <button class="gbbutton" type="button" name="comment" >확인</button>
                                 <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
+
         </form>
     </div>
 </div>
@@ -180,7 +183,9 @@
 
     //앨범 글쓰기로 가는 세션. (아이디 포함)
     $(".profilebtn2").on("click", function() {
-        let Album_host = $("#host").val();
+        let Album_host = $("#host1").val();
+
+        console.log(Album_host);
 
         location.href = "/Album/write?Album_host="+Album_host;
     })

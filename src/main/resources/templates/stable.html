@@ -26,6 +26,16 @@
 </head>
 <style>
 
+    .bg3-2-1-1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid #5a3d2b;
+        border-radius: 4px;
+        width: 500px;
+        height: 400px;
+        /*margin: auto;*/
+    }
 
     #bg4{
         position:relative;
@@ -34,120 +44,22 @@
     #target {
         position:absolute;
         z-index: 5;
-        display: flex;
+
     }
 
     .furnitureimg{
+        /*position:absolute;*/
+        /*z-index: 5;*/
+        display: flex;
+    }
+
+    .usingfurnitureimg{
         position:absolute;
         z-index: 5;
         display: flex;
     }
 
-    /* .floor .player {
-        position: absolute;
-        z-index: 1;
-        width: 47px;
-        height: 47px;
-        border-radius: 3px;
-        transform-style: preserve-3d;
-        -webkit-transition: all 250ms;
-        -moz-transition: all 250ms;
-        -ms-transition: all 250ms;
-        -o-transition: all 250ms;
-        transition: all 250ms;
-       opacity: 1;
-    } */
 
-    /* .floor .player.die{
-      animation: fallanddie 0.5s;
-      animation-fill-mode: forwards;
-    }
-
-    .floor .player div {
-        border: solid 1px rgba(0,0,0,.5);
-        position: absolute;
-        width: 47px;
-        height: 47px;
-        border-radius: 3px;
-        transform-style: preserve-3d;
-        -webkit-transform-style: preserve-3d;
-        -moz-transform-style: preserve-3d;
-        background: rgba(255, 255, 255, 0.5);
-    }
-
-    .floor .player .front {
-        transform-origin: 50% 100%;
-        -webkit-transform-origin: 50% 100%;
-        -moz-transform-origin: 50% 100%;
-        transform: rotateX(-90deg);
-        -webkit-transform: rotateX(-90deg);
-        -moz-transform: rotateX(-90deg);
-    }
-
-    .floor .player .top {
-        transform-origin: 50% 0%;
-        transform: rotateX(-90deg);
-        -webkit-transform-origin: 50% 0%;
-        -webkit-transform: rotateX(-90deg);
-        -moz-transform-origin: 50% 0%;
-        -moz-transform: rotateX(-90deg);
-    }
-
-    .floor .player .right {
-        transform-origin: 100% 50%;
-        transform: rotateY(90deg);
-        -webkit-transform-origin: 100% 50%;
-        -webkit-transform: rotateY(90deg);
-        -moz-transform-origin: 100% 50%;
-        -moz-transform: rotateY(90deg);
-    }
-
-
-    .floor .player.red div{
-        background: rgba(255, 0, 0, 0.5);
-    }
-
-    .floor .player.blue div{
-       I know it's not blue
-     background: rgba(255, 255, 255, 1);
-    } */
-
-    /* .floor .player.green div{
-        background: rgba(0, 255, 0, 0.5);
-    } */ *
-
-                 /* .youdied{
-                    color: gray;
-                 }
-                 .youdied:before{
-                    color: transparent;
-                    content: "* ";
-                 }
-
-                 @keyframes fallanddie {
-                   from {
-                     z-index: -1;
-                     opacity: 1;
-                     transform: translateZ(0);
-                   }
-                   to {
-                     opacity: 0;
-                     transform: translateZ(-150px);
-                   }
-                 } */
-
-                 /* .warning{
-                    position: absolute;
-                    top: 5px;
-                    left: 5px;
-                    font-size: 13px;
-                    color: rgba(150,50,50,1);
-                 } */
-
-             .tile:hover{
-                 background-color: red;
-
-             }
 </style>
 
 <body>
@@ -172,13 +84,14 @@
                 <div>
                     MiniRoom
                 </div>
-                <div class="bg3-2-1" id="bg4">
+                <div class="bg3-2-1-1" id="bg4">
                     <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">
 <!--                    ondrag="drag_handler(event);"-->
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target"  ondragend="dragend_handler(event)">
-                    <div th:each="i : ${nowfurniturelist}">
-                        <img class="furnitureimg" th:src="|/static/img/@{${i.itemName}}|" ondrag="drag_handler(event)" ondragend="dragend_handler(event)">
-                    </div>
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target"  >
+                    <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
+                        <input type="hidden" th:value="${i.itemSeq}">
+                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                    </span>
 
                 </div>
             </div>
@@ -200,27 +113,13 @@
 
         <div class="bg3" id="bg3">
 
-            <!--            <div th:each="i : ${itemlist}" style="width: 250px; display: flex; flex-direction: row">-->
-
-
-            <!--                <input type="hidden" th:value="${i.itemSeq}">-->
-            <!--                <input type="radio" name="radioBtn" class="radioBtn">-->
-            <!--                <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true" ondrag="drag_handler(event)">-->
-
-            <!--            </div>-->
-
             <span>여기는 배경 이미지</span>
-            <!--            <div th:each="i : ${bglist}" style="width: 250px; display: flex; flex-direction: row">-->
-            <!--                <input type="hidden" th:value="${i.itemSeq}">-->
-            <!--                <input type="radio" name="radioBtn" class="radioBtn">-->
-            <!--                <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true" ondrag="drag_handler(event)">-->
-            <!--            </div>-->
 
             <div class="bgimg">
                 <div th:each="i : ${bglist}" style="width: 100%; height: 100px">
                     <input type="hidden" th:value="${i.itemSeq}">
                     <input type="radio" name="radioBtn" class="radioBtn">
-                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">
+                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg">
                 </div>
             </div>
             <div style="margin-bottom: 50px"></div>
@@ -229,7 +128,7 @@
                 <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">
                     <input type="hidden" th:value="${i.itemSeq}">
                     <input type="checkbox" name="checkboxes" class="checkboxes">
-                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">
+                    <img  th:src="|/static/img/@{${i.itemName}}|" class="furnitureimg">
                 </div>
             </div>
 
@@ -247,7 +146,7 @@
         <button class="btnmain2" type="button" id="adc">게임</button>
     </a>
 
-    <a th:href="@{/}">
+    <a th:href="@{/shop/toShop(id=${id})}">
         <button class="btnmain2">상점</button>
     </a>
 
@@ -263,7 +162,7 @@
         containment: '#bg4'
     })
 
-    $(".furnitureimg").draggable({
+    $(".usingfurnitureimg").draggable({
         containment: '#bg4'
     })
 
@@ -294,6 +193,39 @@
         })
     })
 
+    $(".usingfurnitureimg").on("dragstop",function(event){
+
+        // if (event.target.closest('#bg4')) {
+        //     // If it is, update the position of the element
+        //
+        // }
+
+        let x = parseInt($(this).position().left);
+        let y = parseInt($(this).position().top);
+
+        console.log(x)
+        console.log(y)
+
+        // $(this).css("left",""+x+"px")
+        // $(this).css("top",""+y+"px")
+        // this.style.left = x + 'px';
+        // this.style.top = y + 'px';
+        // console.log($(this));
+
+        let furnitureSeq = $(this).children("input").val();
+          // console.log(furnitureSeq.val());
+
+        $.ajax({
+            url:"/stable/coordinateFurniture",
+            data:{"x":x, "y":y,"furnitureSeq" : furnitureSeq},
+            type: "post"
+        }).done(function(resp){
+
+        }).fail(function(resp){
+
+        })
+    })
+
     function drag_handler(event) {
         // Check if the element is outside of bg4
         if (!event.target.closest('#bg4')) {
@@ -301,64 +233,8 @@
             event.target.draggable = false;
         }
 
-        // if (event.target.closest('#bg4')) {
-        //     // If it is, update the position of the element
-        //     let x = event.pageX;
-        //     let y = event.pageY;
-        //
-        //     console.log(x)
-        //     console.log(y)
-        //
-        //     document.getElementById("target").style.left = x + 'px';
-        //     document.getElementById("target").style.top = y + 'px';
-        //
-        //     $.ajax({
-        //         url:"/stable/coordinate",
-        //         data:{"x":x, "y":y},
-        //         type: "post"
-        //     }).done(function(resp){
-        //
-        //     }).fail(function(resp){
-        //
-        //     })
-        // }
-
     }
 
-    function dragend_handler(event) {
-        // Check if the element is outside of bg4
-        // if (!event.target.closest('#bg4')) {
-        //     // If it is, disable dragging
-        //     event.target.draggable = false;
-        // }
-
-        console.log("드래그 종료!");
-
-
-        if (event.target.closest('#bg4')) {
-            // If it is, update the position of the element
-            let x = event.offsetX;
-            let y = event.offsetY;
-
-            console.log(x)
-            console.log(y)
-
-            document.getElementById("target").style.left = x + 'px';
-            document.getElementById("target").style.top = y + 'px';
-
-            $.ajax({
-                url:"/stable/coordinate",
-                data:{"x":x, "y":y},
-                type: "post"
-            }).done(function(resp){
-
-            }).fail(function(resp){
-
-            })
-        }
-
-
-    }
 
     function dragover_handler(event) {
         event.preventDefault();
@@ -387,7 +263,6 @@
         //
         //     })
         // }
-
 
     }
     $(document).on("click",".radioBtn",function(){
@@ -431,8 +306,9 @@
                 "jsoncheckimgseq":jsoncheckimgseq},
             type:"post"
         }).done(function(resp){
-            let furniturelist = JSON.parse(resp);
+            // let furniturelist = JSON.parse(resp);
 
+            location.reload();
 
 
         }).fail(function(resp){
@@ -507,9 +383,13 @@
 
             let onloadFx = [[${nowfurniturelist}]][i].itemX;
             let onloadFy = [[${nowfurniturelist}]][i].itemY;
-            console.log(document.getElementsByClassName("furnitureimg")[i]);
-            document.getElementsByClassName("furnitureimg")[i].style.left = onloadFx + 'px';
-            document.getElementsByClassName("furnitureimg")[i].style.top = onloadFy + 'px';
+            // console.log(document.getElementsByClassName("usingfurnitureimg")[i]);
+            console.log(onloadFx);
+            console.log(onloadFy);
+            // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFx+"px");
+            // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFy+"px");
+            document.getElementsByClassName("usingfurnitureimg")[i].style.left = onloadFx + 'px';
+            document.getElementsByClassName("usingfurnitureimg")[i].style.top = onloadFy + 'px';
         }
 
     })

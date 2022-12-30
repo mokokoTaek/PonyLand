@@ -85,7 +85,7 @@
                             </div>
                             <hr>
                             <div style="display: flex;justify-content: space-between">
-                                <button class="profilebtn" type="submit" id="back">뒤로가기</button>
+                                <button class="profilebtn" type="button" id="back">뒤로가기</button>
                                 <button class="profilebtn" type="submit" id="writee">작성하기</button>
                             </div>
                         </div>
@@ -117,12 +117,6 @@
     })
 </script>
 <script>
-    $("#writee").on("click", function () {
-        console.log($("#host").val());
-    })
-
-
-
     //xss 공격 막기 코드
     onGetEscapeXSS : function (inputText)
     {
@@ -161,6 +155,18 @@
         }
         return plainText;
     }
+
+    //submit 클릭버튼 한번으로 막기.
+    let buttonClicked = false;
+
+    $("#writee").click(function(event) {
+        if (buttonClicked) {
+            event.preventDefault();
+            return;
+        }
+        buttonClicked = true;
+    });
+
 
 </script>
 </body>

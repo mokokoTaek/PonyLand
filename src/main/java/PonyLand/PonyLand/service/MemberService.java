@@ -1,6 +1,8 @@
 package PonyLand.PonyLand.service;
 
+import PonyLand.PonyLand.Mapper.MemberMapper;
 import PonyLand.PonyLand.dao.MemberDAO;
+import PonyLand.PonyLand.dto.AlbumDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.dto.RacingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,11 @@ public class MemberService {
     @Autowired
     private HttpSession session;
 
+    public List<String> selectId(String id){
+        List<String> list = new ArrayList<>();
+        list.add(0,id);
+        return list;
+    }
 
     public Long getWave() {
         return dao.countMember();
@@ -277,6 +284,10 @@ public class MemberService {
         map.put("bettingCoin",bettingCoin);
         dao.insertCoin(map);
     }
+
+
+
+
 }
 
 

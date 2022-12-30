@@ -2,6 +2,7 @@ package PonyLand.PonyLand.controller;
 
 import PonyLand.PonyLand.dto.ItemDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
+import PonyLand.PonyLand.service.FamilyService;
 import PonyLand.PonyLand.service.ItemService;
 import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -28,8 +30,8 @@ public class MemberController {
     private HttpSession session;
     @Autowired
     private HttpServletResponse response;
-    @GetMapping("wave")
 
+    @GetMapping("wave")
     @RequestMapping("wave")
     public String getWave(Model model,HttpServletRequest request, HttpServletResponse response){
 
@@ -39,12 +41,15 @@ public class MemberController {
         String id = service.toWave(randomNumber);
         System.out.println("!!!!");
         System.out.println(id);
+
+
         service.addView(id,request,response);
 
         MemberDTO dto = service.findById(id);
 
         model.addAttribute("nowdto", itemService.findByItemStatus(id,"horse"));
         model.addAttribute("nowbgdto", itemService.findByItemStatus(id,"background"));
+        model.addAttribute("nowfurniturelist", itemService.findFurnitureByItemStatus(id,"furniture"));
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
@@ -75,7 +80,6 @@ public class MemberController {
         model.addAttribute("id", dto.getMemberId());
         return "index";
     }
-
 
     @GetMapping ("logout")
     public String logout() throws Exception{

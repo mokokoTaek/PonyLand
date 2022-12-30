@@ -45,9 +45,10 @@ public class ItemDAO {
         sdjr.save(dto);
     }
 
-    public void newUser(ItemDTO horse, ItemDTO bg){
+    public void newUser(ItemDTO horse, ItemDTO bg, ItemDTO furniture){
         sdjr.save(horse);
         sdjr.save(bg);
+        sdjr.save(furniture);
     }
 
 }

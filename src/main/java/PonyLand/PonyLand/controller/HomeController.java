@@ -41,13 +41,15 @@ public class HomeController {
     @GetMapping("/toMiniPage")
     public String miniHome(String id, Model model){
 
+
+
         MemberDTO dto =service.findById(id);
 
         int dto1 = albumService.count(id);  //album 게시글 총 갯수 가져오기 , 사진첩은 나밖에못쓰므로 writer랑,id이 값 같아서 id로 가져옴.
 
-        int dto2 = guestbookService.count(id);//Guestbook  게시글 총 갯수 가져오기 ,id값 받아서 가져옴.
+        int dto2 = guestbookService.count(id);// Guestbook  게시글 총 갯수 가져오기 ,id값 받아서 가져옴.
 
-        List<AlbumDTO> dto3 = albumService.select(); //main에 최근 사진첩 게시글 제목 뽑아오기
+        List<AlbumDTO> dto3 = albumService.select(); // main에 최근 사진첩 게시글 제목 뽑아오기
 
         int dto4  = albumService.selectByDate(id);  // 사진첩 하루안에 올린 글 갯수
 
@@ -62,7 +64,7 @@ public class HomeController {
 
         String horse = "horse";
         String bg = "background";
-        //String furniture = "furniture";
+        String furniture = "furniture";
 
         model.addAttribute("dto",dto);
         model.addAttribute("id",id);
@@ -76,11 +78,16 @@ public class HomeController {
         model.addAttribute("miniroomdto",service.findById(id));
         model.addAttribute("nowdto", service2.findByItemStatus(id,horse));
         model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
-        //model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,furniture));
+        model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,furniture));
 
         return "main";
     }
-
+    @RequestMapping("history")
+    public String history(String memberId, Model model){
+        List<String> list = service.selectId(memberId);
+        model.addAttribute("list", list);
+        return "main";
+    }
 
     @GetMapping("/toAlbumPage")
     public String AlbumPage(){
@@ -105,5 +112,6 @@ public class HomeController {
 
     @RequestMapping("/toFamilyListOpen")
     public String toFamilyListOpen(){return "redirect:/family/familyListOpen";}
+
 
 }

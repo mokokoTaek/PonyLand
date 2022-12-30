@@ -19,6 +19,12 @@
             display: flex;
         }
 
+        .usingfurnitureimg{
+            position:absolute;
+            z-index: 5;
+            display: flex;
+        }
+
         #bg4 {
             position:relative;
         }
@@ -68,9 +74,13 @@
                         <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea>
                     </div>
                     <div style="display: flex; justify-content: space-between">
-                        <button class="modifybtn" type="button" >수정하기</button>
-                        <input type="hidden" th:value="${dto.getMemberId()}" name="memberId">
-                        <button class="modifybtn2" type="button" >변경</button>
+                        <input type="hidden" th:value="${id}">
+                        <th:block th:if="${id.equals(sessionID)}">
+                            <button class="modifybtn" type="button" >수정하기</button>
+                            <input type="hidden" th:value="${dto.getMemberId()}" name="memberId" id="memberId">
+                            <button class="cancel-button" id="cancel-button" type="button">취소</button>
+                            <button class="modifybtn2" type="button" >변경</button>
+                        </th:block>
                     </div>
                 </form>
             </div>
@@ -108,8 +118,8 @@
                 <div class="profile4-1">
                     History
                 </div>
-                <div class="profile4-2">
-                    <div>윤성민(개굴개굴)</div>
+                <div class="profile4-2" th:each="list: ${list}">
+                    <div th:text="${list}"></div>
                     <div>임근혁(개굴개굴)</div>
                     <div>이진혁(개굴개굴)</div>
                 </div>
@@ -122,16 +132,27 @@
                     <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
                 </div>
                 <div class="updatednews2">
+
+
+                    <div class="searchbox1">  <!--검색-->
+                        <!--                        <div>-->
+                        <input type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+                        <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+                        <!--                        </div>-->
+
+                    </div>
+
                     <div class="updatednews2-1">
                         <div>
                             방명록   <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
                             <!--                        <i class="material-symbols-outlined" style="font-size:22px; margin-bottom: 10px; color: darkgreen">fiber_new</i>-->
                         </div>
                         <div>
+                            <span th:if="${list5}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list5}"></span>
+                            <span th:text="${list5 < 10 ? '0' + list5 : list5}"></span></span> <!--10보다 크면 0제거 작으면 0 붙임-->
                             /
-                            <span  th:text="${list2}"></span>
+                            <span  th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
                         </div>
 
                     </div>
@@ -140,10 +161,11 @@
                             사진첩        <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
                         </div>
                         <div>
+                            <span th:if="${list4}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list4}"></span>
+                            <span th:text="${list4 < 10 ? '0' + list4 : list4}"></span></span>
                             /
-                            <span th:text="${list1}" ></span>
+                            <span th:text="${list1 < 10 ? '0' + list1 : list1}" ></span>
                         </div>
                     </div>
                     <!--                    <div class="updatednews2-1">-->
@@ -162,6 +184,9 @@
                     <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
 
                     <!--                    </div>-->
+                    <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
+                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                    </span>
                 </div>
                 <div class="bg3-2-2">
                     <span><a th:href="@{/stable/toStable(id = ${id})}">
@@ -188,16 +213,17 @@
     </a>
 </div>
 <script>
-
     $(document).ready(function(){
-        $('.modifybtn2').hide();
+        $('.modifybtn2,.cancel-button').hide();
 
         $(".modifybtn").on("click",function(){
-            $('.modifybtn2').show();
+            $('.modifybtn2,.cancel-button').show();
             $('textarea').removeAttr("readonly");
             $(this).hide();
-            $('<button id="cancel-button">취소</button>').insertAfter(this);
             $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+            $("#cancel-button").on("click",function(){
+                location.reload();
+            })
         })
     })
 </script>
@@ -242,6 +268,29 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
+
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
+    }
+
 
     $(function(){
 
@@ -254,6 +303,20 @@
         $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.getItemName()}]]+")","background-repeat":"no-repeat",
             "background-size":"cover"})
         // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+
+        for(let i=0; i<[[${nowfurniturelist}]].length;i++){
+            // console.log([[${nowfurniturelist}]][i]);
+
+            let onloadFx = [[${nowfurniturelist}]][i].itemX;
+            let onloadFy = [[${nowfurniturelist}]][i].itemY;
+            // console.log(document.getElementsByClassName("usingfurnitureimg")[i]);
+            console.log(onloadFx);
+            console.log(onloadFy);
+            // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFx+"px");
+            // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFy+"px");
+            document.getElementsByClassName("usingfurnitureimg")[i].style.left = onloadFx + 'px';
+            document.getElementsByClassName("usingfurnitureimg")[i].style.top = onloadFy + 'px';
+        }
     })
 
 

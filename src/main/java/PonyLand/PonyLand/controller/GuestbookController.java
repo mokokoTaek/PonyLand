@@ -45,9 +45,10 @@ public class GuestbookController {
     }
 
     @RequestMapping("delete")
-    public String delete(int Guestbook_seq,GuestbookDTO dto) {
+    public String delete(int Guestbook_seq, String guestbook_host) {
         GuestbookService.delect(Guestbook_seq);
-        System.out.println(Guestbook_seq);
+        GuestbookDTO dto = new GuestbookDTO();
+        dto.setGuestbook_host(guestbook_host);
         return "redirect:/Guestbook/goGuestbook?&guestbook_host="+dto.getGuestbook_host();
     }
 
@@ -65,6 +66,7 @@ public class GuestbookController {
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
         System.out.println(list1);
         model.addAttribute("id", guestbook_host);
+        model.addAttribute("sessionID",session.getAttribute("sessionID"));
         model.addAttribute("dto", list);
         model.addAttribute("list1", list1);
         model.addAttribute("list2",dto);

@@ -45,9 +45,10 @@ public class GuestbookController {
     }
 
     @RequestMapping("delete")
-    public String delete(int Guestbook_seq,GuestbookDTO dto) {
+    public String delete(int Guestbook_seq, String guestbook_host) {
         GuestbookService.delect(Guestbook_seq);
-        System.out.println(Guestbook_seq);
+        GuestbookDTO dto = new GuestbookDTO();
+        dto.setGuestbook_host(guestbook_host);
         return "redirect:/Guestbook/goGuestbook?&guestbook_host="+dto.getGuestbook_host();
     }
 

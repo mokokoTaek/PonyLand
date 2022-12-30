@@ -35,8 +35,13 @@
                 <!--        <div>회원가입</div><div>아이디|비밀번호찾기</div>-->
             </div>
 
-            <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>
-            <button class="loginbtn" onclick="kakaoLogout();" type="button">카카오 로그아웃</button>
+<!--            <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>-->
+            <div style="display: flex; justify-content: center">
+            <a href="kakaoLogin()">
+            <img class="loginbtn"  src="/static/img/kakao_login_medium.png" style="width: 131px; height: 50px"  >
+            </a>
+            </div>
+<!--            <button class="loginbtn" onclick="kakaoLogout();" type="button">카카오 로그아웃</button>-->
 <!--            <button class="loginbtn" id="naver_id_login">네이버 로그인</button>-->
             <div id="naver_id_login" style="display: flex; justify-content: center; margin-top: 20px">네이버 로그인</div>
             <a href="/">
@@ -76,17 +81,17 @@
 
                         let kakao_account = response.kakao_account.email;
                         let kakao_name = response.kakao_account.profile.nickname;
-                        console.log(kakao_account);
-                        console.log(kakao_name);
+                        // console.log(kakao_account);
+                        // console.log(kakao_name);
                         location.href = "/member/signinForKakao?email=" + kakao_account + "&name=" + kakao_name + "";
                     },
                     fail: function (error) {
-                        console.log(error)
+                        // console.log(error)
                     },
                 })
             },
             fail: function (error) {
-                console.log(error)
+                // console.log(error)
             },
         })
     }
@@ -99,7 +104,7 @@
                 success: function (response) {
                 },
                 fail: function (error) {
-                    console.log(error)
+                    // console.log(error)
                 },
             })
             Kakao.Auth.setAccessToken(undefined)

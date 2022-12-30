@@ -13,6 +13,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet"/>
     <style>
+
+        @font-face {
+            font-family: font;
+            src: url("/static/hssaemaulfont.woff") format("woff");
+        }
+        * {
+            box-sizing: border-box;
+            font-family: font;
+        }
+
+
         a {
             text-decoration: none;
             color: black;
@@ -30,11 +41,11 @@
         }
 
         .highlighted {
-            background-color: darkgray;
+            background-color: #FFECB4;
         }
 
         .highlighted2 {
-            background-color: darkgray;
+            background-color: #FFECB4;
         }
 
         .recent_heading h4 {
@@ -72,47 +83,47 @@
                 <!--                <form action="/message/detail?${no}" id="see">-->
                 <div class="inbox_chat" id="inbox2">
                     <div th:each="item : ${list}">
-<!--                        <div class="detailBtn" type="button">-->
+                        <!--                        <div class="detailBtn" type="button">-->
                         <a class="detailBtn" type="button">
                             <div><span th:text="'보낸이 : ' + ${item.send_nick}"/></div>
                             <div th:text="'제목 : ' + ${item.title}"></div></a>
-                            <input type="hidden" name="no" class="no" th:value="${item.no}"
-                                   th:attrappend="id=${itemStat.index}">
-                            <br/>
-                            <!-- 새로운 div 태그 추가 -->
-                            <div style="border: 1px solid; border-color: lightgrey;">
-                            </div>
+                        <input type="hidden" name="no" class="no" th:value="${item.no}"
+                               th:attrappend="id=${itemStat.index}">
+                        <br/>
+                        <!-- 새로운 div 태그 추가 -->
+                        <div style="border: 1px solid; border-color: lightgrey;">
                         </div>
-                     </div>
-
-                    <!-- 내가 보낸 메세지함 sentMail -->
-                   <div class="inbox_chat" id="sendbox">
-                      <div th:each="list2 : ${list2}">
-                          <a class="detailBtn2" type="button">
-                          <div><span th:text="'받은이 : ' + ${list2.recv_nick}"/></div>
-                          <div><span th:text="'제목 : ' + ${list2.title}"/></div></a>
-                          <input type="hidden" name="no" class="no" th:value="${list2.no}"
-                                 th:attrappend="id=${list2Stat.index}">
-                          <br/>
-                          <div style="border: 1px solid; border-color: lightgrey;">
-                          </div>
                     </div>
-                   </div>
-                <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-                    <button><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
-                </div>
-            </div>
-    </div>
-            <!-- 메세지 내용 영역 -->
-            <div class="mesgs">
-                <!-- 메세지 내용 목록 -->
-                <div class="msg_history" name="contentList">
                 </div>
 
-                <div class="send_message">
+                <!-- 내가 보낸 메세지함 sentMail -->
+                <div class="inbox_chat" id="sendbox">
+                    <div th:each="list2 : ${list2}">
+                        <a class="detailBtn2" type="button">
+                            <div><span th:text="'받은이 : ' + ${list2.recv_nick}"/></div>
+                            <div><span th:text="'제목 : ' + ${list2.title}"/></div></a>
+                        <input type="hidden" name="no" class="no" th:value="${list2.no}"
+                               th:attrappend="id=${list2Stat.index}">
+                        <br/>
+                        <div style="border: 1px solid; border-color: lightgrey;">
+                        </div>
+                    </div>
                 </div>
-                <!-- 메세지 입력란이 올자리 -->
+                <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
+                    <button class="sendbtn"><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
             </div>
+        </div>
+    </div>
+    <!-- 메세지 내용 영역 -->
+    <div class="mesgs">
+        <!-- 메세지 내용 목록 -->
+        <div class="msg_history" name="contentList">
+        </div>
+
+        <div class="send_message">
+        </div>
+        <!-- 메세지 입력란이 올자리 -->
+    </div>
 
         </div>
 

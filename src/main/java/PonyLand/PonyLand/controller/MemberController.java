@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -80,6 +81,10 @@ public class MemberController {
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
         model.addAttribute("id", dto.getMemberId());
+            // Set the login information in a cookie
+            Cookie cookie = new Cookie("loginInfo", dto.getMemberId());
+            cookie.setMaxAge(60 * 60 * 24 * 30);  // Set the cookie to expire in 30 days
+            response.addCookie(cookie);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -93,10 +98,27 @@ public class MemberController {
         return "index";
     }
 
+    @RequestMapping("index")
+    public String index(Model model, HttpServletRequest request) {
+        // Check for the login information cookie
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("loginInfo")) {
+                    String loginInfo = cookie.getValue();
+                    // Do something with the login information, such as displaying the user's name or setting a session attribute
+                    model.addAttribute("loginInfo", loginInfo);
+                    return "index";
+                }
+            }
+        }
+        return "redirect:login";
+    }
+
     @GetMapping ("logout")
     public String logout() throws Exception{
         service.logout();
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping("signinForKakao")

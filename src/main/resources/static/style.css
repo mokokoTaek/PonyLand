@@ -425,6 +425,10 @@ body {
     height: 30px;
 }
 
+.searchbox{
+    /*border: ;*/
+}
+
 
 .bg3-2{
     display: flex;
@@ -567,6 +571,7 @@ button:hover {
     border-radius: 8px;
     font-size: 25px;
 }
+
 
 
 

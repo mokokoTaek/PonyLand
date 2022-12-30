@@ -132,12 +132,10 @@
 
 
                     <div class="updatednews2-1">  <!--검색-->
-                        <div>
-                            검색
-                        </div>
-                        <div>
-                            <input type="text" placeholder="검색어를입력하세요" name="id" id="id"> <button type="button" onclick="selectById()" style="width: 10px">확인</button>
-                        </div>
+                        <!--                        <div>-->
+                        <input type="text" class="searchbox" placeholder="아이디를 입력하세요" name="id" id="id">
+                        <button type="button" onclick="selectById()">검색</button>
+                        <!--                        </div>-->
 
                     </div>
 
@@ -167,9 +165,9 @@
                             <span th:text="${list1 < 10 ? '0' + list1 : list1}" ></span>
                         </div>
                     </div>
-<!--                    <div class="updatednews2-1">-->
-<!--                        다이어리 0/64-->
-<!--                    </div>-->
+                    <!--                    <div class="updatednews2-1">-->
+                    <!--                        다이어리 0/64-->
+                    <!--                    </div>-->
                 </div>
             </div>
             <div class="bg3-2">
@@ -217,15 +215,15 @@
         $('.modifybtn2,.cancel-button').hide();
 
 
-    $(".modifybtn").on("click",function(){
-        $('.modifybtn2,.cancel-button').show();
-        $('textarea').removeAttr("readonly");
-        $(this).hide();
-        $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
-        $("#cancel-button").on("click",function(){
-            location.reload();
+        $(".modifybtn").on("click",function(){
+            $('.modifybtn2,.cancel-button').show();
+            $('textarea').removeAttr("readonly");
+            $(this).hide();
+            $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+            $("#cancel-button").on("click",function(){
+                location.reload();
+            })
         })
-    })
     })
 </script>
 

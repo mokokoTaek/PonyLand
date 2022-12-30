@@ -271,7 +271,21 @@
     }
     function selectById(){ //검색기능.
         let id = document.getElementById("id").value; //id값.
-        let popup = window.open(`/toMiniPage?id=${id}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+        $.ajax({
+            url :"/toMiniPage",
+            data : {
+                "id" : id
+            }
+        }).done(function(resp){
+            if(id =="" ) {
+                alert("아이디를 입력하세요")
+            }else {
+                let popup = window.open(`/toMiniPage?id=${id}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+            }
+
+        })
+
+
     }
 
     $(function(){

@@ -171,11 +171,15 @@
 
     const textarea = document.getElementById('content');
     const title = document.getElementById('title');
+    const recv = document.getElementById('recv');
     textarea.addEventListener('input', function() {
         textarea.value = textarea.value.replace(/<script>/g, '');
     });
     title.addEventListener('input', function() {
         title.value = title.value.replace(/<script>/g, '');
+    });
+    recv.addEventListener('input', function() {
+        recv.value = recv.value.replace(/<script>/g, '');
     });
 
 

@@ -29,7 +29,10 @@
                 <div class="profile1">
                     <div class = "thumbnail">
                         <input type="hidden" name="memberId" th:value="${id}">
-                        <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|" id = profile >
+                        <!--null이 아니면 sysname을 불러오고 null값이면 img밑에있는 기본프로필사진을 불러온다.-->
+                        <img style="width: 100%; height: 100%;"  th:if="${list.getMember_sysname() != null}" th:src="|/img/@{${list.getMember_sysname()}}|" id="profile" />
+                        <img style="width: 100%; " height="100%;" th:if="${list.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
+
                     </div>
                 </div>
                 <div class = "control">

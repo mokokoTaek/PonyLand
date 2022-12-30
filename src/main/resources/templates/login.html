@@ -10,8 +10,12 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <style>
-    #naver_id_login{
-        /*display: none;*/
+    input[type=password] {
+        font-family: Arial;
+    }
+
+    ::placeholder{
+        font-family: HS새마을체;
     }
 
 </style>
@@ -24,22 +28,23 @@
         <div class="logincontainer">
             <form action="/member/login" method="post">
                 <div><input type="text" class="loginbg" placeholder="아이디" name="memberId"></div>
-                <div><input type="text" class="loginbg" placeholder="비밀번호" name="memberPw"></div>
+                <div><input type="password" class="loginbg" placeholder="비밀번호" name="memberPw"></div>
                 <div><button class="loginbtn">로그인</button></div>
             </form>
             <div class="loginfind">
                 <a th:href="@{/signin}">
                     회원가입
                 </a>
-                <span>아이디|비밀번호찾기</span>
+<!--                <span>아이디|비밀번호찾기</span>-->
                 <!--        <div>회원가입</div><div>아이디|비밀번호찾기</div>-->
             </div>
 
-<!--            <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>-->
+            <!--            <button class="loginbtn" onclick="kakaoLogin();" type="button">카카오 로그인</button>-->
             <div style="display: flex; justify-content: center">
-            <a href="javascript:kakaoLogin();">
-            <img class="loginbtn"  src="/static/img/kakao_login_medium.png" style="width: 131px; height: 50px"  >
-            </a>
+                <a  class="kakaologinbtn" href="javascript:kakaoLogin();">
+                    카카오 로그인
+<!--                    <img class="loginbtn"  src="/static/img/kakao_login_medium.png" style="width: 131px; height: 50px"  >-->
+                </a>
             </div>
 <!--            <button class="loginbtn" onclick="kakaoLogout();" type="button">카카오 로그아웃</button>-->
 <!--            <button class="loginbtn" id="naver_id_login">네이버 로그인</button>-->

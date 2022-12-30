@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
+
     <style>
         @keyframes blink-effect {
             50% {
@@ -46,12 +47,8 @@
         <div th:if="${id}!=null">
             <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
         </div>
-        <div class="">
-            <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
-            <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
-            <!--                            Your browser does not support the audio element.-->
-            <!--                        </audio>-->
-            <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+        <div class="player" id="player">
+            <div id="player-container"></div>
         </div>
     </div>
 
@@ -318,17 +315,34 @@
         }
     })
 
+    // var player = SCM.create({
+    //     container: '#player-container',
+    //     skin: 'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css',
+    //     volume: 50,
+    //     autoplay: true,
+    //     shuffle: false,
+    //     repeat: 1,
+    //     showplaylist: false,
+    //     playlist: [
+    //         { title: 'Y', url: 'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV' },
+    //         { title: 'Trip', url: 'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR' },
+    //         { title: 'Vain', url: 'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu' }
+    //     ]
+    // });
+
 
 </script>
 </body>
 
-<!--&lt;!&ndash; SCM Music Player https://www.scmplayer.net &ndash;&gt;-->
-<!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
-<!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
-<!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
-<!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
-<!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>-->
-<!--&lt;!&ndash; SCM Music Player script end &ndash;&gt;-->
+<!-- SCM Music Player https://www.scmplayer.net -->
+<script type="text/javascript" src="https://www.scmplayer.net/script.js"
+        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,
+        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}
+        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}
+        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>
+<!-- SCM Music Player script end -->
+
+
 
 
 </html>

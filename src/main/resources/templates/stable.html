@@ -150,7 +150,7 @@
         <button class="btnmain2">상점</button>
     </a>
 
-    <a th:href="@{/stable/charge}">
+    <a th:href="@{/stable/charge(id=${id})}">
         <button class="btnmain2">충전</button>
     </a>
 
@@ -362,6 +362,7 @@
 
 </script>
 
+
 <script th:inline="javascript">
 
     $(function(){
@@ -395,6 +396,8 @@
     })
 
 </script>
+
+
 
 </body>
 

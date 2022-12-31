@@ -156,7 +156,7 @@
 
 </div>
 
-<script>
+<script th:inline="javascript">
 
     $("#target").draggable({
         containment: '#bg4'
@@ -309,7 +309,7 @@
             // let furniturelist = JSON.parse(resp);
 
             location.reload();
-
+            // location.href="/stable/toStable?id="+[[${id}]]+""
 
         }).fail(function(resp){
             console.log("실패")

@@ -28,7 +28,7 @@
         </div>
         <div class="signinform">
             아이디
-            <input type="text" class="signinbg" placeholder="영문,숫자 5~11자" name="memberId" id="member_id"><br>
+            <input type="text" class="signinbg" placeholder="영문,숫자 5~11자" name="memberId" id="member_id" maxlength="11"><br>
             <div id=result2></div>
         </div>
         <div id ="div_id"></div>
@@ -64,7 +64,7 @@
 
     document.getElementById("member_id").onkeyup = function() {
         let id = document.getElementById("member_id").value;
-        let regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+        let regExp = /^[a-z]+[a-z0-9]{4,10}$/g;
         let answer = regExp.test(id);
 
         $.ajax({
@@ -249,7 +249,30 @@
             return false;
         }
     }
+    // Select the button element
+    const button = document.querySelector('.signinbtn');
 
+    // Add a click event listener to the button
+    button.addEventListener('click', (event) => {
+        // Prevent the form from submitting
+        event.preventDefault();
+
+        // Select the input fields
+        const nameField = document.querySelector('#div_name');
+        const idField = document.querySelector('#result2');
+        const passwordField = document.querySelector('#div3');
+        const emailField = document.querySelector('#div7');
+        const phoneField = document.querySelector('#div6');
+
+        // Check if any of the fields have a red color
+        if (nameField.style.color === 'red' || idField.style.color === 'red' || passwordField.style.color === 'red' || emailField.style.color === 'red' || phoneField.style.color === 'red') {
+            // Show the alert message
+            alert('회원 정보를 확인해 주세요.');
+        } else {
+            // Otherwise, submit the form
+            document.getElementById('frm').submit();
+        }
+    });
 
 
 </script>

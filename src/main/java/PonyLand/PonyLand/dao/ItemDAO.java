@@ -29,9 +29,10 @@ public class ItemDAO {
         return sdjr.findByItemSeq(itemSeq);
     }
 
-    public void updateOtherStatus(int itemSeq,String itemCateogry){
-        sdjr.updateOtherStatus(itemSeq,itemCateogry);
+    public void updateOtherStatus(int itemSeq,String itemMemberId,String itemCateogry){
+        sdjr.updateOtherStatus(itemSeq,itemMemberId,itemCateogry);
     }
+
 
     public ItemDTO findByItemStatus(String id, int itemStatus, String itemCategory){
 

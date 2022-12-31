@@ -150,13 +150,13 @@
         <button class="btnmain2">상점</button>
     </a>
 
-    <a th:href="@{/stable/charge}">
+    <a th:href="@{/stable/charge(id=${id})}">
         <button class="btnmain2">충전</button>
     </a>
 
 </div>
 
-<script>
+<script th:inline="javascript">
 
     $("#target").draggable({
         containment: '#bg4'
@@ -309,7 +309,7 @@
             // let furniturelist = JSON.parse(resp);
 
             location.reload();
-
+            // location.href="/stable/toStable?id="+[[${id}]]+""
 
         }).fail(function(resp){
             console.log("실패")
@@ -362,6 +362,7 @@
 
 </script>
 
+
 <script th:inline="javascript">
 
     $(function(){
@@ -395,6 +396,8 @@
     })
 
 </script>
+
+
 
 </body>
 

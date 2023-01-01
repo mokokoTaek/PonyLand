@@ -5,6 +5,7 @@ import PonyLand.PonyLand.dao.MemberDAO;
 import PonyLand.PonyLand.dto.AlbumDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.dto.RacingDTO;
+import org.hibernate.dialect.lock.PessimisticReadUpdateLockingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,8 @@ public class MemberService {
     private ItemService itemService;
     @Autowired
     private HttpSession session;
+
+    public MemberDTO getInfo(String memberId){return dao.getInfo(memberId);}
 
     public List<String> selectId(String id){
         List<String> list = new ArrayList<>();

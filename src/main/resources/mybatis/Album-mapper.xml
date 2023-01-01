@@ -7,7 +7,6 @@
 <mapper namespace="PonyLand.PonyLand.Mapper.AlbumMapper">
     <insert id="insert">
         insert into album values(album_seq.nextval,#{Album_title},#{Album_contents},#{Album_oriname},#{Album_sysname},sysdate,#{Album_writer},#{Album_host})
-
     </insert>
 
 
@@ -31,7 +30,6 @@
 
     <select id="select" resultType="PonyLand.PonyLand.dto.AlbumDTO">
         SELECT * FROM album WHERE rownum <![CDATA[ <= ]]> 5 ORDER BY album_seq DESC
-
     </select>
 
     <select id="selectByDate" resultType="int">   <!--1일안에 올린 글 개수-->

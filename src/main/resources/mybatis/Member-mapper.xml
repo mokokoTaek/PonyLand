@@ -6,6 +6,9 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.MemberMapper">
 
+    <select id="getInfo" resultType="PonyLand.PonyLand.dto.MemberDTO">
+        select * from member where member_id = #{memberId}
+    </select>
 
     <update id ="update">
         update member set member_pw =#{memberPw} ,member_name=#{member_name},member_phone=#{member_phone},member_email=#{member_email} where member_id=#{memberId}

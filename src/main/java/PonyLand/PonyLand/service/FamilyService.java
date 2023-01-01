@@ -22,6 +22,10 @@ public class FamilyService {
     @Autowired
     private MemberDAO mdao;
 
+    public FamilyDTO getInfo(String host, String guest){
+        return dao.getInfo(host,guest);
+    }
+
     public int getFamily(int result, String familyProposerId, String familyProposedId,String familyMe,String familyOther) throws IOException {
         int familyStatus = 0;
         if (result == 2) {

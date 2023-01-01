@@ -1,8 +1,10 @@
 package PonyLand.PonyLand.controller;
 
+import PonyLand.PonyLand.dto.FamilyDTO;
 import PonyLand.PonyLand.dto.ItemDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.service.FamilyService;
+import PonyLand.PonyLand.service.HistoryService;
 import PonyLand.PonyLand.service.ItemService;
 import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,12 @@ public class MemberController {
     @Autowired
     ItemService itemService;
     @Autowired
+    HistoryService historyService;
+    @Autowired
+    FamilyService FamilyService;
+    @Autowired
+    MemberService MemberService;
+    @Autowired
     private HttpSession session;
     @Autowired
     private HttpServletResponse response;
@@ -34,7 +42,7 @@ public class MemberController {
     @GetMapping("wave")
     @RequestMapping("wave")
     public String getWave(Model model,HttpServletRequest request, HttpServletResponse response){
-
+        String host = (String)session.getAttribute("sessionID");
         Long countMember = service.getWave();
         int randomNumber = service.getRandom(countMember);
 
@@ -42,6 +50,10 @@ public class MemberController {
         System.out.println("!!!!");
         System.out.println(id);
 
+        //History - 파도타기 누르면 history에 정보 넣기
+        MemberDTO MemberDto = MemberService.getInfo(id);
+        System.out.println("history 확인 >>>> " + "host : " + host + "// MemberDto.getMemberId() : " + MemberDto.getMemberId() + "// MemberDto.getMember_name() : " + MemberDto.getMember_name() );
+        historyService.historyInsert(host, id, MemberDto.getMember_name());
 
         service.addView(id,request,response);
 

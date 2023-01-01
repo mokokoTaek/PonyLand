@@ -10,9 +10,20 @@
     <link href="../static/message.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
     <!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
-          rel="stylesheet"/>
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
+
+        @font-face {
+            font-family: font;
+            src: url("/static/hssaemaulfont.woff") format("woff");
+        }
+        * {
+            box-sizing: border-box;
+            font-family: font;
+        }
+
+
         a {
             text-decoration: none;
             color: black;
@@ -30,11 +41,11 @@
         }
 
         .highlighted {
-            background-color: darkgray;
+            background-color: #FFECB4;
         }
 
         .highlighted2 {
-            background-color: darkgray;
+            background-color: #FFECB4;
         }
 
         .recent_heading h4 {
@@ -72,51 +83,54 @@
                 <!--                <form action="/message/detail?${no}" id="see">-->
                 <div class="inbox_chat" id="inbox2">
                     <div th:each="item : ${list}">
-<!--                        <div class="detailBtn" type="button">-->
+                        <!--                        <div class="detailBtn" type="button">-->
                         <a class="detailBtn" type="button">
                             <div><span th:text="'보낸이 : ' + ${item.send_nick}"/></div>
                             <div th:text="'제목 : ' + ${item.title}"></div></a>
-                            <input type="hidden" name="no" class="no" th:value="${item.no}"
-                                   th:attrappend="id=${itemStat.index}">
-                            <br/>
-                            <!-- 새로운 div 태그 추가 -->
-                            <div style="border: 1px solid; border-color: lightgrey;">
-                            </div>
+                        <input type="hidden" name="no" class="no" th:value="${item.no}"
+                               th:attrappend="id=${itemStat.index}">
+                        <br/>
+                        <!-- 새로운 div 태그 추가 -->
+                        <div style="border: 1px solid; border-color: lightgrey;">
                         </div>
-                     </div>
-
-                    <!-- 내가 보낸 메세지함 sentMail -->
-                   <div class="inbox_chat" id="sendbox">
-                      <div th:each="list2 : ${list2}">
-                          <a class="detailBtn2" type="button">
-                          <div><span th:text="'받은이 : ' + ${list2.recv_nick}"/></div>
-                          <div><span th:text="'제목 : ' + ${list2.title}"/></div></a>
-                          <input type="hidden" name="no" class="no" th:value="${list2.no}"
-                                 th:attrappend="id=${list2Stat.index}">
-                          <br/>
-                          <div style="border: 1px solid; border-color: lightgrey;">
-                          </div>
                     </div>
-                   </div>
+                </div>
+
+                <!-- 내가 보낸 메세지함 sentMail -->
+                <div class="inbox_chat" id="sendbox">
+                    <div th:each="list2 : ${list2}">
+                        <a class="detailBtn2" type="button">
+                            <div><span th:text="'받은이 : ' + ${list2.recv_nick}"/></div>
+                            <div><span th:text="'제목 : ' + ${list2.title}"/></div></a>
+                        <input type="hidden" name="no" class="no" th:value="${list2.no}"
+                               th:attrappend="id=${list2Stat.index}">
+                        <br/>
+                        <div style="border: 1px solid; border-color: lightgrey;">
+                        </div>
+                    </div>
+                </div>
                 <a href="/message/write" onClick="window.open(this.href, '', 'width=550, height=502'); return false;">
-                    <button><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button></a>
-                </div>
+<!--                    <button class="sendbtn"><i class="fa-solid fa-paper-plane"> 쪽지 보내기</i></button>-->
+                    <button class="sendbtn" style="display: flex; align-items: center">
+                        <i class="material-symbols-outlined" style="font-size:24px;">send</i>
+                        <span>쪽지 보내기</span>
+                    </button>
+                </a>
+
             </div>
+        </div>
     </div>
-            <!-- 메세지 내용 영역 -->
-            <div class="mesgs">
-                <!-- 메세지 내용 목록 -->
-                <div class="msg_history" name="contentList">
-                </div>
-
-                <div class="send_message">
-                </div>
-                <!-- 메세지 입력란이 올자리 -->
-            </div>
-
+    <!-- 메세지 내용 영역 -->
+    <div class="mesgs">
+        <!-- 메세지 내용 목록 -->
+        <div class="msg_history" name="contentList">
         </div>
 
+        <div class="send_message">
+        </div>
+        <!-- 메세지 입력란이 올자리 -->
     </div>
+
 </div>
 <script>
 
@@ -194,44 +208,44 @@
 
         }).done(function (data) {
 
-                let target = JSON.parse(data)
+            let target = JSON.parse(data)
             console.log(target);
-                let div = $("<div>");
-                let h1 = $("<h3>");
-                h1.text("받은 쪽지");
-                div.append(h1);
+            let div = $("<div>");
+            let h1 = $("<h3>");
+            h1.text("받은 쪽지");
+            div.append(h1);
 
-                let p2 = $("<p>");
-                p2.append("보낸이 : " + target.send_nick);
-                p2.addClass("small-font");
-                p2.css("color", "grey");
-                let p3 = $("<p>");
-                p3.append("받는이 : " + target.recv_nick);
-                p3.addClass("small-font");
-                p3.css("color", "grey");
-                let p4 = $("<p>");
-                p4.append("보낸 시간 : " + target.send_time);
-                p4.addClass("small-font");
-                p4.css("color", "grey");
-                let p5 = $("<h3>");
-                p5.text("내용");
-                div.append(p5);
-                let p6 = $("<p>");
-                p6.append(target.content);
-                p6.addClass("small-font");
+            let p2 = $("<p>");
+            p2.append("보낸이 : " + target.send_nick);
+            p2.addClass("small-font");
+            p2.css("color", "grey");
+            let p3 = $("<p>");
+            p3.append("받는이 : " + target.recv_nick);
+            p3.addClass("small-font");
+            p3.css("color", "grey");
+            let p4 = $("<p>");
+            p4.append("보낸 시간 : " + target.send_time);
+            p4.addClass("small-font");
+            p4.css("color", "grey");
+            let p5 = $("<h3>");
+            p5.text("내용");
+            div.append(p5);
+            let p6 = $("<p>");
+            p6.append(target.content);
+            p6.addClass("small-font");
 
-                div.append(p2);
-                div.append(p3);
-                div.append(p4);
-                div.append(p5);
-                div.append(p6);
-                $(".msg_history").append(div);
+            div.append(p2);
+            div.append(p3);
+            div.append(p4);
+            div.append(p5);
+            div.append(p6);
+            $(".msg_history").append(div);
 
 
-            let replyBtn = $("<button>");
-             replyBtn.text("답장하기");
-                $(".mesgs").append(replyBtn);
-            let replyBtn2 = $("<button>");
+            let replyBtn = $("<button class='msgbtn'>");
+            replyBtn.text("답장하기");
+            $(".mesgs").append(replyBtn);
+            let replyBtn2 = $("<button class='msgbtn'>");
             replyBtn2.text("삭제하기");
             $(".mesgs").append(replyBtn2);
             replyBtn.on("click", function() {
@@ -308,7 +322,7 @@
             div.append(p6);
             $(".msg_history").append(div);
 
-            let replyBtn2 = $("<button>");
+            let replyBtn2 = $("<button class='msgbtn'>");
             replyBtn2.text("삭제하기");
             $(".mesgs").append(replyBtn2);
             replyBtn2.click(function() {

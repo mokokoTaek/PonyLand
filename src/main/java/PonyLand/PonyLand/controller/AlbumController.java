@@ -57,6 +57,9 @@ public class AlbumController {
 //        model.addAttribute(session.getAttribute("sessionID").toString());
 //        System.out.println(session);
         MemberDTO dto = memberService.findById(Album_host);
+
+        System.out.println(Album_host);
+
         model.addAttribute("list",dto);
         model.addAttribute("id",Album_host);
         return "albumwrite";

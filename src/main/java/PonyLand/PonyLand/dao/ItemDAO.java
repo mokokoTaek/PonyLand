@@ -29,9 +29,10 @@ public class ItemDAO {
         return sdjr.findByItemSeq(itemSeq);
     }
 
-    public void updateOtherStatus(int itemSeq,String itemCateogry){
-        sdjr.updateOtherStatus(itemSeq,itemCateogry);
+    public void updateOtherStatus(int itemSeq,String itemMemberId,String itemCateogry){
+        sdjr.updateOtherStatus(itemSeq,itemMemberId,itemCateogry);
     }
+
 
     public ItemDTO findByItemStatus(String id, int itemStatus, String itemCategory){
 
@@ -46,6 +47,12 @@ public class ItemDAO {
     }
 
     public void newUser(ItemDTO horse, ItemDTO bg, ItemDTO furniture){
+
+        System.out.println("@@@@@@@@@@@@@@####");
+        System.out.println(horse.getItemStatus());
+        System.out.println(bg.getItemStatus());
+        System.out.println(furniture.getItemStatus());
+
         sdjr.save(horse);
         sdjr.save(bg);
         sdjr.save(furniture);

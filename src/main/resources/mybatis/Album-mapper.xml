@@ -29,7 +29,11 @@
     </select>
 
     <select id="select" resultType="PonyLand.PonyLand.dto.AlbumDTO">
-        SELECT * FROM album WHERE rownum <![CDATA[ <= ]]> 5 ORDER BY album_seq DESC
+        SELECT * FROM (
+        SELECT * FROM album ORDER BY album_seq DESC
+        ) WHERE rownum <![CDATA[ <= ]]> 5
+
+
     </select>
 
     <select id="selectByDate" resultType="int">   <!--1일안에 올린 글 개수-->

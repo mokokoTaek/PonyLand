@@ -126,6 +126,7 @@ public class StableController {
             model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
             model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,f));
             //model.addAttribute("nowbgdto", service2.findByItemStatus(id,f));
+            System.out.println("여긴 됩니다");
             return "stable";
         }
 
@@ -153,7 +154,11 @@ public class StableController {
         System.out.println(jsoncheckimgseq);
         Gson g = new Gson();
         List list =g.fromJson(jsoncheckimgseq, ArrayList.class);
-        System.out.println(service2.furnitureListControl(list));
+
+        for(int i=0;i<list.size();i++){
+            System.out.println(list.get(i));
+        }
+        service2.furnitureListControl(list);
         return g.toJson(service2.furnitureListControl(list));
 
     }

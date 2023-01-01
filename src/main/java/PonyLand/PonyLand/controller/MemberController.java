@@ -13,10 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
@@ -70,11 +73,10 @@ public class MemberController {
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){
-        System.out.println(dto.getMemberPw());
+
         service.insert(dto);
-        System.out.println(dto.getMemberPw());
         itemService.newUser(dto);
-        System.out.println(dto.getMemberPw());
+
         return "redirect:/";
     }
 
@@ -87,16 +89,48 @@ public class MemberController {
 
     @RequestMapping("login")
     public String login(MemberDTO dto, Model model) throws Exception{
+        try{
         service.login(dto.getMemberId(), dto.getMemberPw());
         session.setAttribute("sessionID", dto.getMemberId());
         model.addAttribute("id", dto.getMemberId());
+            // Set the login information in a cookie
+            Cookie cookie = new Cookie("loginInfo", dto.getMemberId());
+            cookie.setMaxAge(60 * 60 * 24 * 30);  // Set the cookie to expire in 30 days
+            response.addCookie(cookie);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('패스워드가 일치하지 않습니다.'); history.go(-1);</script>");
+            out.flush();
+            response.flushBuffer();
+            out.close();
+        }
         return "index";
+    }
+
+    @RequestMapping("index")
+    public String index(Model model, HttpServletRequest request) {
+        // Check for the login information cookie
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("loginInfo")) {
+                    String loginInfo = cookie.getValue();
+                    // Do something with the login information, such as displaying the user's name or setting a session attribute
+                    model.addAttribute("loginInfo", loginInfo);
+                    return "index";
+                }
+            }
+        }
+        return "redirect:login";
     }
 
     @GetMapping ("logout")
     public String logout() throws Exception{
         service.logout();
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping("signinForKakao")

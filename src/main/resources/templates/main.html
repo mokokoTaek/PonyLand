@@ -63,8 +63,9 @@
             </div>
 
             <div class="profile1">
-
-                <img style="width: 100%; height: 100%;" th:src="|/img/@{${dto.getMember_sysname()}}|" >
+                    <!--null이 아니면 sysname을 불러오고 null값이면 img밑에있는 기본프로필사진을 불러온다.-->
+                <img style="width: 100%; height: 100%;"  th:if="${dto.getMember_sysname() != null}" th:src="|/img/@{${dto.getMember_sysname()}}|" />
+                <img style="width: 100%; " height="100%;" th:if="${dto.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
 
             </div>
 
@@ -164,9 +165,12 @@
                         <div>
                             <span th:if="${list5}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${0<list5||list5 < 10 ? '0' + list5 : list5}"></span></span> <!--10보다 크면 0제거 작으면 0 붙임-->
+                           <span th:if="${list5 == null}">0</span>
+                            <span th:if="${list5 != null}" th:text="${list5 < 10 ? '0' + list5 : list5}"></span>
+                            </span> <!--10보다 크면 0제거 작으면 0 붙임-->
                             /
-                            <span  th:text="${0<list2||list2 < 10 ? '0' + list2 : list2}"></span>
+                            <span th:if="${list2 == null}">0</span>
+                            <span th:if="${list2 != null}" th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
                         </div>
 
                     </div>
@@ -177,9 +181,12 @@
                         <div>
                             <span th:if="${list4}">
                             <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
-                            <span th:text="${list4 < 10 ? '0' + list4 : list4}"></span></span>
+                           <span th:if="${list4 == null}">0</span>
+                            <span th:if="${list4 != null}" th:text="${list4 < 10 ? '0' + list4 : list4}"></span>
+                            </span>
                             /
-                            <span th:text="${list1 < 10 ? '0' + list1 : list1}" ></span>
+                            <span th:if="${list1 == null}">0</span>
+                            <span th:if="${list1 != null}" th:text="${list1 < 10 ? '0' + list1 : list1}"></span>
                         </div>
                     </div>
                     <!--                    <div class="updatednews2-1">-->
@@ -222,7 +229,7 @@
 
         <button class="btnmain2">사진첩</button>
     </a>
-    <a th:href="@{/member/goMypage?(memberId=${id})}">
+    <a  th:if="${id==sessionID}"  th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
 </div>
@@ -270,12 +277,12 @@
 
     }
     function openChild(){
-        let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=800px,scrollbars=yes");
+        let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=400px,scrollbars=yes");
 
     }
 
     function checkNewFamily(){
-        let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=800px,scrollbars=yes");
+        let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");
 
     }
 
@@ -306,7 +313,6 @@
             });
         }
     }
-
 
     $(function(){
 
@@ -339,13 +345,13 @@
 </script>
 </body>
 
-<!--&lt;!&ndash; SCM Music Player https://www.scmplayer.net &ndash;&gt;-->
+<!-- SCM Music Player https://www.scmplayer.net -->
 <!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
 <!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
 <!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
 <!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
 <!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}"></script>-->
-<!--&lt;!&ndash; SCM Music Player script end &ndash;&gt;-->
+<!-- SCM Music Player script end -->
 
 
 </html>

@@ -62,7 +62,7 @@
                     </div>
                     <div>
                         <div>이름</div>
-                        <input type="text" id="member_name" class="loginbg" placeholder="" th:value="${list.getMember_name()}" name="member_name" readonly>
+                        <input type="text" id="member_name" class="loginbg" placeholder="" th:maxlength="5" th:value="${list.getMember_name()}" name="member_name" readonly>
                         <div id="div_name"></div>
                     </div>
                     <div>

@@ -734,6 +734,12 @@ button:hover {
     color: #F4A127;
 }
 
+.guestbook_comment_deleteBtn{
+    border: none;
+    background-color: transparent;
+    color: #F4A127;
+}
+
 .gbcmt > input {
     /*border-radius: 8px;*/
     border-top-left-radius: 4px;
@@ -794,7 +800,6 @@ button:hover {
 }
 
 .alpic{
-
     height: 300px;
     width: max-content;
     /*border: 1px solid black;*/

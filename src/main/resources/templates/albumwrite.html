@@ -82,7 +82,7 @@
               </div>
               <div id="text">
                 <div id="image-preview"></div>
-                <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents" ></textarea>
+                <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents"  ></textarea>
               </div>
               <div id="div1">
                 <tr>
@@ -171,6 +171,27 @@
       return;
     }
     buttonClicked = true;
+  });
+
+
+  $("#btn").on("click", function() {
+    let Album_title = $("#Album_title").val();
+    let Album_contents = $("#altextarea").val();
+    if (Album_title == null || Album_title == "") {  //null이거나 빈칸이면
+      alert("제목을 입력해주세요.");
+      location.reload();
+      return false;
+
+    } else if (Album_contents == null || Album_contents == "") {
+      alert("내용을 입력해주세요.");
+      location.reload();
+      return false;
+
+    }else {
+      return;
+    }
+
+
   });
 
 

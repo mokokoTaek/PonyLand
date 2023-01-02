@@ -297,32 +297,38 @@
 
     $(document).on("click","#modifyOff",function(){
 
-        let checkimgseq = [];
+        let really = confirm("수정하시겠습니까?");
 
-        $("input[name=checkboxes]:checked").each(function(){
-            let imgseq = $(this).prev().val();
-            checkimgseq.push(imgseq);
-        })
-        let jsoncheckimgseq = JSON.stringify(checkimgseq);
-        console.log(checkimgseq)
+        if(really){
 
-        $.ajax({
-            url:"/stable/updateFurniture",
-            data: {
-                "jsoncheckimgseq":jsoncheckimgseq},
-            type:"post"
-        }).done(function(resp){
-            // let furniturelist = JSON.parse(resp);
+            let checkimgseq = [];
 
-            location.reload();
-            // location.href="/stable/toStable?id="+[[${id}]]+""
+            $("input[name=checkboxes]:checked").each(function(){
+                let imgseq = $(this).prev().val();
+                checkimgseq.push(imgseq);
+            })
+            let jsoncheckimgseq = JSON.stringify(checkimgseq);
+            console.log(checkimgseq)
 
-        }).fail(function(resp){
-            console.log("실패")
-        })
+            $.ajax({
+                url:"/stable/updateFurniture",
+                data: {
+                    "jsoncheckimgseq":jsoncheckimgseq},
+                type:"post"
+            }).done(function(resp){
+                // let furniturelist = JSON.parse(resp);
 
-        $(this).hide();
-        $("#modifyOn").show();
+                location.reload();
+                // location.href="/stable/toStable?id="+[[${id}]]+""
+
+            }).fail(function(resp){
+                console.log("실패")
+            })
+
+            $(this).hide();
+            $("#modifyOn").show();
+        }
+
     })
 
 

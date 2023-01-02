@@ -119,10 +119,12 @@
                             </tr>
                         </div>
                         <div class="alpic">
+<!--                            <div style="text-align: center">-->
                             <!--                            <th th:src="@{${file.oriname()}}">-->
-                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|" style="max-width: 523px; max-height: 300px;">
+                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|">
                             <!--사진 불러오기.-->
-                            </th>
+<!--                            </th>-->
+<!--                            </div>-->
                         </div>
 
                         <div class="alcontext">
@@ -276,6 +278,8 @@
             $(this).next().focus();
         }
     });  //엔터누르면 전송
+
+
 
 
 

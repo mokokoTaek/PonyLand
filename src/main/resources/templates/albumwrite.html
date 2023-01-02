@@ -86,7 +86,7 @@
               </div>
               <div id="div1">
                 <tr>
-                  <input type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="previewImage(event)">
+                  <input type="file" name="file" class="file" multiple accept=".jpg, .png, .gif" onchange="previewImage(event)">
                   <div>
                     <button type="button" class="alwrbtn" id="back">목록으로</button>
                     <button type="submit" class="alwrbtn" id="btn" >작성완료</button>
@@ -177,6 +177,7 @@
   $("#btn").on("click", function() {
     let Album_title = $("#Album_title").val();
     let Album_contents = $("#altextarea").val();
+    let file = $(".file").val();
     if (Album_title == null || Album_title == "") {  //null이거나 빈칸이면
       alert("제목을 입력해주세요.");
       location.reload();
@@ -187,9 +188,14 @@
       location.reload();
       return false;
 
+    }else if(file==null || file==""){
+      alert("사진을 첨부해주세요");
+      location.reload();
+      return false;
     }else {
       return;
     }
+
 
 
   });

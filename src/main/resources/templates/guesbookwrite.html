@@ -182,8 +182,7 @@
 
             let guestbook_seq = $(this).next().val();
             let guestbook_comment_contents = $(this).prev().find('input').val();
-            let a = $(this).closest().children().val();
-            console.log(a);
+
 
             $.ajax({
                 url: "/GuestbookComment/insert",
@@ -227,11 +226,14 @@
 
                 $(".gbcmt2").append(div);
 
+
+
             }).fail(function (data) {
                 console.log("ㅋㅋ 실패")
             });
-
+            $(this).prev().find('input').val("");
         })
+
     })
 
 

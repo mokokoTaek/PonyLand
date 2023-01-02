@@ -281,7 +281,7 @@
             div.append(input);
 
             btn.parent().prev().prepend(div);
-
+            btn.prev().find('input').val("");
         }).fail(function (data) {
             console.log("ㅋㅋ 실패")
         })

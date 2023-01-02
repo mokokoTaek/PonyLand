@@ -102,7 +102,7 @@ public class MemberController {
             e.printStackTrace();
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('패스워드가 일치하지 않습니다.'); history.go(-1);</script>");
+            out.println("<script>alert('로그인 정보를 확인해 주세요.'); history.go(-1);</script>");
             out.flush();
             response.flushBuffer();
             out.close();

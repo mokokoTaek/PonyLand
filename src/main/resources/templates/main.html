@@ -119,14 +119,28 @@
                 </div>
             </div>
 
-            <div class="profile4">
+            <!-- History 뿌려지는 곳 -->
+            <div class="profile4"  th:if="${id} == ${sessionID}">
                 <div class="profile4-1">
                     History
                 </div>
-                <div class="profile4-2" th:each="list: ${list}">
-                    <div th:text="${list}"></div>
-                    <div>임근혁(개굴개굴)</div>
-                    <div>이진혁(개굴개굴)</div>
+                <div class="profile4-2">
+                    <div th:each="historyDTOList : ${historyDTOList}">
+                        <a th:href="@{/toMiniPage?(id = ${historyDTOList.getHistory_id()})}">
+                        <span th:text="${historyDTOList.getHistory_name()}"></span>(<span th:text="${historyDTOList.getHistory_id()}"></span>)
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="profile4"  th:if="${id} != ${sessionID}">
+                <div class="profile4-1">
+                    <div>
+                        <a th:href="@{/toMiniPage?(id = ${sessionID})}">
+                            내 미니홈피로
+                        </a>
+                    </div>
+                </div>
+                <div class="profile4-2">
                 </div>
             </div>
         </div>
@@ -279,6 +293,8 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
+
+    //메인화면에서 검색기능
     function selectById(){
         let idElement = document.getElementById("id");
         if (idElement.value === "") {

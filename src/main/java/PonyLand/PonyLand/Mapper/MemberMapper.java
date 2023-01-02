@@ -9,6 +9,8 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
 
+    MemberDTO getInfo(String memberId);
+
     int update(MemberDTO dto);
     void imgupdate(MemberDTO dto);
 

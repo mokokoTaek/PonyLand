@@ -3,10 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="PonyLand.PonyLand.Mapper.GuestbookCommentMapper">
+<mapper namespace="PonyLand.PonyLand.Mapper.HistoryMapper">
 
-    <select id="selectId" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
-        select * from history where history_host = #{value}
+    <select id="selectId" resultType="PonyLand.PonyLand.dto.HistoryDTO">
+        select * from history where rownum <![CDATA[ <= ]]> 3 order by history_seq desc
     </select>
+
+    <insert id="historyInsert">
+        insert into history values(history_seq.nextval,#{history_host},#{history_id},#{history_name})
+    </insert>
 
 </mapper>

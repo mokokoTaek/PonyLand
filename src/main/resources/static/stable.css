@@ -179,6 +179,10 @@ button:hover {
     max-width: 290px;
 }
 
+.itembgimg{
+    max-width: 290px;
+}
+
 .furniture{
     display: flex;
     border: 3px solid #5a3d2b;

@@ -36,7 +36,6 @@ public class GuestbookController {
 
     @GetMapping("insert")
     public String insert(GuestbookDTO dto) throws Exception {
-
         String guestbook_writer = (String) session.getAttribute("sessionID");
         dto.setGuestbook_writer(guestbook_writer);
         GuestbookService.insert(dto);

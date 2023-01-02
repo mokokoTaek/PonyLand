@@ -4,8 +4,8 @@ const config = {
     scene: [GameScene2],
     scale: {
         mode: Phaser.Scale.FIT, //동적이미지
-        width: 500, //게임 화면 사이즈
-        height: 300,
+        width: 600, //게임 화면 사이즈
+        height: 400,
         autoCenter: Phaser.Scale.CENTER_BOTH // 화면 크기에 따라서 정중앙에 위치하게 만들기
     },
 

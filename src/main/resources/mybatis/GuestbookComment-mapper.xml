@@ -6,10 +6,14 @@
 
 <mapper namespace="PonyLand.PonyLand.Mapper.GuestbookCommentMapper">
 
+    <select id="selectComment" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
+        select * from guestbook_comment where guestbook_comment_seq = #{value}
+    </select>
+
     <insert id="insert">
         insert into guestbook_comment values(guestbook_comment_seq.nextval,#{guestbook_comment_writer},#{guestbook_comment_contents},sysdate,#{parent_seq})
-        <selectKey order="AFTER"  keyProperty="guestbookComment" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
-            select * from guestbook_comment where guestbook_comment_seq = guestbook_comment_seq.currval
+        <selectKey order="AFTER" keyProperty="guestbook_comment_seq" resultType="int">
+            select guestbook_comment_seq.currval from dual
         </selectKey>
     </insert>
 

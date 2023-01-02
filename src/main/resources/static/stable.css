@@ -298,6 +298,7 @@ bgimg > img{
     font-size: 35px;
     color: #5a3d2b;
     border: solid transparent;
+
 }
 
 .shopname{
@@ -307,6 +308,11 @@ bgimg > img{
     align-items: center;
     justify-content: center;
     /*border-bottom: 2px solid #F4A127;*/
+}
+
+.horseimg{
+    width: 100px;
+    height: 100px;
 }
 /*carrot--------------------------------------------------------------------------------------*/
 .carrotbg3{
@@ -453,6 +459,7 @@ bgimg > img{
     margin-bottom: 10px;
     flex-direction: column;
     width: 679px;
+    overflow: scroll;
 
 }
 

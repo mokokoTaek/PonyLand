@@ -87,10 +87,10 @@
                 <div class="bg3-2-1-1" id="bg4">
                     <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">
 <!--                    ondrag="drag_handler(event);"-->
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target"  >
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" style="width: 150px; height: 150px">
                     <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
                         <input type="hidden" th:value="${i.itemSeq}">
-                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                        <img  th:src="|/static/img/@{${i.itemName}}|" style="width:100px; height: 100px">
                     </span>
 
                 </div>

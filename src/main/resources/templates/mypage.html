@@ -197,6 +197,7 @@
             $("#profile_img").on("change", function (e) {
                 if ($("#profile_img").val() == "") {
                     $("#profile").val();
+
                     return;
                 }
                 let ext = $("#profile_img").val().split(".").pop().toLowerCase(); //배열의 pop은 가장 마지막요소를 꺼내옴.

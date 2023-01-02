@@ -30,7 +30,7 @@
                     <div class = "thumbnail">
                         <input type="hidden" name="memberId" th:value="${id}">
                         <!--null이 아니면 sysname을 불러오고 null값이면 img밑에있는 기본프로필사진을 불러온다.-->
-                        <img style="width: 100%; height: 100%;"  th:if="${list.getMember_sysname() != null}" th:src="|/img/@{${list.getMember_sysname()}}|" id="profile" />
+                        <img style="width: 100%; height: 100%;"  th:if="${list.getMember_sysname() != null}" th:src="|/img/@{${list.getMember_sysname()}}|" id="profile"  />
                         <img style="width: 100%; " height="100%;" th:if="${list.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
 
                     </div>
@@ -62,7 +62,7 @@
                     </div>
                     <div>
                         <div>이름</div>
-                        <input type="text" id="member_name" class="loginbg" placeholder="" th:value="${list.getMember_name()}" name="member_name" readonly>
+                        <input type="text" id="member_name" class="loginbg" placeholder="" th:maxlength="5" th:value="${list.getMember_name()}" name="member_name" readonly>
                         <div id="div_name"></div>
                     </div>
                     <div>
@@ -111,6 +111,7 @@
     $(document).ready(function() {
         $('.modifybtn2,.modifybtn1').hide(); //취소,변경이 숨어있다가
         $(".modifybtn").on("click", function () {
+            $(".modifybtn").hide();
             $('.modifybtn2,.modifybtn1').show(); // 수정하기 버튼을 누르면 취소 변경이 다시나타남.
             $("input").removeAttr("readonly"); //수정하기버튼누르면 readonly가 해체
 
@@ -224,6 +225,7 @@
             })
         })
     })
+
 
 
 

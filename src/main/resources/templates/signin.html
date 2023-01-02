@@ -24,7 +24,8 @@
     <div class="signinsection">
         <div class="signinform" style="margin-top: 30px">
             이름
-            <div id ="div_name"><input type="text" class="signinbg" placeholder="이름, 한글 3~5자" name="member_name" id="member_name"></div><br>
+            <input type="text" class="signinbg" placeholder="이름, 한글 3~5자" name="member_name" id="member_name"><br>
+            <div id ="div_name"></div>
         </div>
         <div class="signinform">
             아이디
@@ -94,10 +95,11 @@
         let regex3 = /^[가-힣]{2,5}$/;
         let answer3 = regex3.test(regi3);
         if (!answer3) {
-            document.getElementById("div_name").style.border = "2px solid red";
-            document.getElementById("div_name").style.borderRadius = "8px";
+            document.getElementById("div_name").innerHTML = "이름을 확인해 주세요. ";
+            $("#div_name").css("color","red")
         }else if (answer3) {
-            document.getElementById("div_name").style.border = "";
+            document.getElementById("div_name").innerHTML = "";
+            $("#div_name").css("color","green")
         }
 
     }
@@ -149,6 +151,7 @@
         let answer5 = regex5.test(regi5);
         if (answer5) {
             document.getElementById("div7").innerHTML = "";
+            $("#div7").css("color","green")
         } else {
             document.getElementById("div7").innerHTML = "메일 주소를 확인해 주세요.";
             $("#div7").css("color","red")
@@ -161,11 +164,35 @@
         let answer4 = regex4.test(regi4);
         if (answer4) {
             document.getElementById("div6").innerHTML = "";
+            $("#div6").css("color","green")
         } else {
             document.getElementById("div6").innerHTML = "번호를 확인해 주세요.";
             $("#div6").css("color","red")
         }
     }
+
+    document.querySelector('button.signinbtn').addEventListener('click', function(event) {
+        event.preventDefault(); // prevent the form from being submitted
+
+        // select the div elements with the specified ids
+        let divElements = document.querySelectorAll('#div_name, #div7, #div6, #result2, #div3');
+
+        // check if any of the div elements contain red text
+        let hasError = [].slice.call(divElements).some(function(divElement) {
+            console.log(divElement.style.color)
+            return divElement.style.color === 'red';
+        });
+
+        if (hasError) {
+            // display the alert message if any of the div elements contain red text
+            alert('회원 정보를 확인해 주세요.');
+        } else {
+            // otherwise, submit the form
+            document.getElementById('frm').submit();
+        }
+    });
+
+
 
     let inputname = document.getElementById("member_name")
     let inputphone = document.getElementById("number")
@@ -249,30 +276,6 @@
             return false;
         }
     }
-    // Select the button element
-    const button = document.querySelector('.signinbtn');
-
-    // Add a click event listener to the button
-    button.addEventListener('click', (event) => {
-        // Prevent the form from submitting
-        event.preventDefault();
-
-        // Select the input fields
-        const nameField = document.querySelector('#div_name');
-        const idField = document.querySelector('#result2');
-        const passwordField = document.querySelector('#div3');
-        const emailField = document.querySelector('#div7');
-        const phoneField = document.querySelector('#div6');
-
-        // Check if any of the fields have a red color
-        if (nameField.style.color === 'red' || idField.style.color === 'red' || passwordField.style.color === 'red' || emailField.style.color === 'red' || phoneField.style.color === 'red') {
-            // Show the alert message
-            alert('회원 정보를 확인해 주세요.');
-        } else {
-            // Otherwise, submit the form
-            document.getElementById('frm').submit();
-        }
-    });
 
 
 </script>

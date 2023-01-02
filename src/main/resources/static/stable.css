@@ -201,6 +201,20 @@ button:hover {
     text-align: center;
 }
 
+.stablebtn{
+    width: 100px;
+    height: 30px;
+    background: #FFECB4;
+    font-size: 20px;
+    color: #5a3d2b;
+    margin-top: 10px;
+    border-radius: 8px;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
+}
+
 
 
 bgimg > img{

@@ -1,23 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/style.css"/>
-    <title>GuestbookWrite</title>
-
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
             crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+    <title>Guestbook</title>
 </head>
 <style>
+    textarea{
+        resize:none;
+        border: solid transparent;
+    }
 
 </style>
+
 <body>
+
 <div class="container">
     <div class="top">
-        <div class="" th:text="|Today : ${list.memberHomepageViewCount}|"></div>
-        <div class="">뮤직플레이어 부분</div>
+        <div class=""  th:text="|Today : ${list2.memberHomepageViewCount}|"></div>
+    </div>
+    <div class="">
+        <!--            <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+        <!--                <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+        <!--                Your browser does not support the audio element.-->
+        <!--            </audio>-->
+        <!--            <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
     </div>
 
     <div class="bg1">
@@ -27,22 +40,29 @@
             </div>
 
             <div class="profile1">
-                <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|">
+                <!--null이 아니면 sysname을 불러오고 null값이면 img밑에있는 기본프로필사진을 불러온다.-->
+                <img style="width: 100%; height: 100%;"  th:if="${list2.getMember_sysname() != null}" th:src="|/img/@{${list2.getMember_sysname()}}|" />
+                <img style="width: 100%; " height="100%;" th:if="${list2.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
             </div>
 
             <div class="profile2">
-                <div><textarea class="textareabg"  th:text="${list.getMember_message()}"  name="member_message" readonly ></textarea></div>
-                <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
+                <textarea class="textareabg"  th:text="${list2.getMember_message()}"  name="member_message" readonly ></textarea>
             </div>
 
             <div class="profile3">
-                <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
-                <a th:href="@{/family/areTheyFamily}">
-                    <button class="profilebtn" type="button">일촌확인</button>
-                </a>
-                <a th:href="@{/member/wave}">
-                    <button class="profilebtn" type="button" id="wave">파도타기</button>
-                </a>
+                <div>
+                    <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+                </div>
+                <div>
+                    <a th:href="@{/family/areTheyFamily}">
+                        <button class="profilebtn" type="button">일촌확인</button>
+                    </a>
+                </div>
+                <div>
+                    <a th:href="@{/member/wave}">
+                        <button class="profilebtn" type="button" id="wave">파도타기</button>
+                    </a>
+                </div>
             </div>
 
             <div class="profile4">
@@ -50,55 +70,83 @@
                     History
                 </div>
                 <div class="profile4-2">
-                    <th>윤성민(개굴개굴)<br>
-                    <th>임근혁(시카고)<br>
-                    <th>이진혁(물리)
+                    <div>윤성민(개굴개굴)</div>
+                    <div>임근혁(개굴개굴)</div>
+                    <div>이진혁(개굴개굴)</div>
                 </div>
             </div>
         </div>
-        <form action="/Guestbook/insert">
-            <div class="bg3">
-                <div class="bg3in">
-                    <div class="bgcontent">
-                        <div class="gbtitle">
-                            <div style="margin-left: 10px"></th></div>
-                            <div></div>
-                            <div></div>
-                            <div style="margin-right: 10px">
-                                <!--                                <a class="anchor" >삭제</a>-->
-                                <!--                                <span> | </span>-->
-                                <!--                                <button class="gowrite" type="button" style="padding: 0px">작성</button>-->
-                            </div>
-                        </div>
+        <div class="albg3">
+            <input type="hidden" th:value="${id}" name="guestbook_host" id="host" >
+            <div class="bg3in">
+                <div style="margin-top: 15px">
+                    <button class="profilebtn2" type="button" style="float:right;margin-bottom: 20px">
+                        방명록 작성하기
+                    </button>
+                </div>
+                <div class="bgcontent" th:each="list:${dto}" th:if="${id==list.getGuestbook_host()}">
 
-                        <div class="gbcontent">
-                            <div class="gbprofile">
-                                <div class="gbprofle1">
-                                    <div class="gbprofile2">
-                                        <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|">
-                                    </div>
-                                </div>
-                                <div class="gbtext">
-                                    <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
-                                           placeholder="내용을 입력하세요">
-                                </div>
+                    <div class="gbtitle">
+                        <div style="margin-left: 10px"><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
+                        <div><th th:text="${list.getGuestbook_writer()}"></th></div>
+                        <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
+                        <th:block th:if="${list.getGuestbook_writer().equals(sessionID)}">
+                            <div style="margin-right: 10px">
+                                <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host()})}">삭제</a>
                             </div>
-                            <hr>
-                            <div style="display: flex;justify-content: space-between">
-                                <button class="profilebtn" type="button" id="back">뒤로가기</button>
-                                <button class="profilebtn" type="submit" id="writee">작성하기</button>
-                            </div>
-                        </div>
+                        </th:block>
                     </div>
 
-                    <input type="hidden" th:value="${id}" name="guestbook_host" id="host">
+
+                    <div class="gbcontent">
+                        <div th:each="dto: ${list2}"></div>
+                        <div class="gbprofile">
+
+                            <div class="gbprofle1">
+                                <div class="gbprofile2">
+                                    <img style="width: 100%; height: 100%;" th:src="|/img/@{${list2.getMember_sysname()}}|" id = profile >
+                                </div>
+                            </div>
+                            <div class="gbtext">
+                                <th th:text="${list.getGuestbook_contents()}" th:readonly>방명록내용</th>
+                            </div>
+                        </div>
+
+
+                        <!-- 댓글 -->
+                        <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
+                            <div class="gbcmttitle">
+                                <div style="font-size: 13px">
+                                    <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+                                </div>
+                                <div style="font-size: 10px; color: darkgrey">
+                                    <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                                </div>
+                            </div>
+                            <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
+                            <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">
+                                <div>
+                                    <!--<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>-->
+                                    <button type="button" class="guestbook_comment_deleteBtn">x</button>
+                                    <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
+                                </div>
+                            </th:block>
+                        </div>
+
+                        <div class="gbcmtinput">
+                            <div class="gbcmt">
+                                <input class="gbcmt" type="text" maxlength="45" placeholder="댓글을 입력하세요(최대45자)">
+                            </div>
+                            <button class="gbbutton" type="button">확인</button>
+                            <input type="hidden"  th:value="${list.getGuestbook_seq()}" >
+                        </div>
+                        <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
-
-
 <div class="side">
     <a th:href="@{/toMiniPage(id = ${id})}">
         <button class="btnmain2">메인</button>
@@ -107,67 +155,106 @@
     <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
         <button class="btnmain2">사진첩</button>
     </a>
-    <a th:href="@{/member/goMypage?(memberId=${id})}">
+    <a  th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
 </div>
-<script>
-    $("#back").on("click", function() {
-        history.back(); // 뒤로가기
-    })
-</script>
-<script>
-    //xss 공격 막기 코드
-    onGetEscapeXSS : function (inputText)
-    {
-        var targetText = inputText;
-        if (targetText != '' )
-        {
-            var source = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
-            var target = ["&amp;","&lt;","&gt;","&quot;","&#39;","&#47;","&#40;","&#41;","&#37;","&#45;"];
 
-            for(var i = 0; i < source.length; i++)
-            {
-                targetText = targetText.replace(source[i], target[i]);
-            }
-        }
-        return targetText;
-    },
-
-    /**
-     * XSS 공격 방지를 위해 변환된 문자를 원본 문자로 복원한다.
-     */
-    onGetUnescapeXSS : function (inputText)
-    {
-        var plainText = inputText;
-        if (plainText != '')
-        {
-            var source = ["&amp;","&lt;","&gt;","&quot;","&#39;","&#47;","&#40;","&#41;","&#37;","&#45;"];
-            var target = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
-
-            for(var  i = 0; i < source.length; i++)
-            {
-                if(plainText.indexOf(source[i]) > -1)
-                {
-                    plainText = plainText.replace(source[i], target[i]);
-                }
-            }
-        }
-        return plainText;
-    }
-
-    //submit 클릭버튼 한번으로 막기.
-    let buttonClicked = false;
-
-    $("#writee").click(function(event) {
-        if (buttonClicked) {
-            event.preventDefault();
-            return;
-        }
-        buttonClicked = true;
-    });
-
-
-</script>
 </body>
+
+<script>
+
+    // 방명록 댓들 삭제 기능
+    $(".guestbook_comment_deleteBtn").on("click", function(){
+        let host = $("#host").val();
+        let guestbook_comment_seq = $(this).next().val();
+        location.href = "/GuestbookComment/delete?guestbook_comment_seq="+guestbook_comment_seq+"&host="+host;
+    })
+
+    // 방명록 글 삭제하는 코드
+    $("#delete").on("click", function () {
+        let seq = $(this).attr("seq");
+        location.href = "/Guestbook/delete?Guestbook_seq=" + seq;
+    })
+
+    // 방명록에서 글쓰기 페이지로 가는 코드
+    $(".profilebtn2").on("click", function () {
+        let guestbook_host = $("#host").val();
+        location.href = "/Guestbook/gowrite?guestbook_host="+guestbook_host;
+    })
+
+    $(function () {
+        // 방명록 댓글 : insert 기능
+        $(".gbbutton").on("click", function () {
+
+            location.reload();
+
+            let guestbook_seq = $(this).next().val();
+            let guestbook_comment_contents = $(this).prev().find('input').val();
+            let a = $(this).closest().children().val();
+            console.log(a);
+
+            $.ajax({
+                url: "/GuestbookComment/insert",
+                type: "post",
+                data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents},
+                dataType: "json",
+            }).done(function (data) {
+
+                let div = $("<div>");
+                div.attr("class", "gbcmttitle");
+
+                let divWriter = $("<div>");
+                divWriter.attr("style", "font-size: 13px");
+                let thWriter = $("<th>");
+                thWriter.attr("th:text", "${list1.getGuestbook_comment_writer()}");
+                divWriter.append(thWriter);
+
+                let divWritedate = $("<div>");
+                divWritedate.attr("style", "font-size: 10px").attr("color", "darkgrey");
+                let thWritedate = $("<th>");
+                thWritedate.attr("th:text","${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}")
+                divWritedate.append(thWritedate);
+
+                let divContents = $("<div>");
+                divContents.attr("style", "font-size: 18px");
+                let thContents = $("<th>");
+                thContents.attr("th:text", "${list1.getGuestbook_comment_contents()}");
+                divContents.append(thContents);
+
+                let button = $("<button>");
+                button.attr("type", "button").attr("class", "guestbook_comment_deleteBtn").attr("th:if","${list1.getGuestbook_comment_writer()==id}");
+
+                let input = $("<input>");
+                input.attr("type", "hidden").attr("th:value", "${list1.getGuestbook_comment_seq}");
+
+                div.append(divWriter);
+                div.append(divWritedate);
+                div.append(divContents);
+                div.append(button);
+                div.append(input);
+
+                $(".gbcmt2").append(div);
+
+            }).fail(function (data) {
+                console.log("ㅋㅋ 실패")
+            });
+
+        })
+    })
+
+
+    // Load the current song from local storage
+    var currentSong = localStorage.getItem("currentSong");
+
+
+    // Update the audio element to play the current song
+    document.getElementById("myAudio").src = currentSong;
+    $(document).ready(function() {
+        if ( sessionStorage.getItem('played') != "true" ) {
+            $('#music').get(0).play();
+            sessionStorage.setItem('played', "true");
+        }
+    });
+</script>
 </html>

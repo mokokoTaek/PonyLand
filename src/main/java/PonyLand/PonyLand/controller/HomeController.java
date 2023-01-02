@@ -71,10 +71,10 @@ public class HomeController {
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
         model.addAttribute("list",dto);
-        model.addAttribute("list1",dto1);  //album 게시글 총 갯수 뿌림.
+        model.addAttribute("list1",dto1); //album 게시글 총 갯수 뿌림.
         model.addAttribute("list2",dto2); //Guestbook 게시글 총 갯수 뿌림.
-        model.addAttribute("list3",dto3);  //main에 최근 사진첩 게시글 제목 뿌리기.
-        model.addAttribute("list4",dto4);// 사진첩 하루안에 올린 글 갯수
+        model.addAttribute("list3",dto3); //main에 최근 사진첩 게시글 제목 뿌리기.
+        model.addAttribute("list4",dto4); // 사진첩 하루안에 올린 글 갯수
         model.addAttribute("list5",dto5); //방명록 하루안에 올린 글 갯수
         model.addAttribute("miniroomdto",service.findById(id));
         model.addAttribute("nowdto", service2.findByItemStatus(id,horse));

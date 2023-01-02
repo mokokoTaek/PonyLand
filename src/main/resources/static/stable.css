@@ -156,11 +156,16 @@ button:hover {
     justify-content: center;
 }
 
+.stabletitle{
+    color: #F4A127;
+    font-size: 30px;
+}
+
 .bgimg{
     display: flex;
     border: 3px solid #5a3d2b;
     border-radius: 4px;
-    width: 300px;
+    width: 330px;
     height: 300px;
     align-items: center;
     justify-content: center;
@@ -170,11 +175,19 @@ button:hover {
     overflow: scroll;
 }
 
+.itemimg{
+    max-width: 290px;
+}
+
+.itembgimg{
+    max-width: 290px;
+}
+
 .furniture{
     display: flex;
     border: 3px solid #5a3d2b;
     border-radius: 4px;
-    width: 300px;
+    width: 330px;
     height: 300px;
     align-items: center;
     justify-content: center;
@@ -182,6 +195,24 @@ button:hover {
     flex-wrap: wrap;
     gap: 20px;
     overflow: scroll;
+}
+
+.furnitureimg{
+    text-align: center;
+}
+
+.stablebtn{
+    width: 100px;
+    height: 30px;
+    background: #FFECB4;
+    font-size: 20px;
+    color: #5a3d2b;
+    margin-top: 10px;
+    border-radius: 8px;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
 }
 
 
@@ -208,6 +239,20 @@ bgimg > img{
     height: 65%;
     color: #F4A127;
     margin-top: 20px;
+}
+
+.stablebg3-3{
+    display: flex;
+    font-size: 30px;
+    flex-direction: column;
+    height: 65%;
+    color: #F4A127;
+    margin-top: 20px;
+    border: solid 3px #5a3d2b;
+    border-radius: 4px;
+    width: 500px;
+    height: 150px;
+    overflow: scroll;
 }
 
 .itembox{
@@ -263,7 +308,7 @@ bgimg > img{
     justify-content: center;
     margin-top: 10px;
     gap: 20px;
-    overflow:scroll;
+    /*overflow:scroll;*/
 }
 
 .shopimage{
@@ -271,6 +316,7 @@ bgimg > img{
     font-size: 35px;
     color: #5a3d2b;
     border: solid transparent;
+
 }
 
 .shopname{
@@ -279,7 +325,12 @@ bgimg > img{
     height: 30%;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid #F4A127;
+    /*border-bottom: 2px solid #F4A127;*/
+}
+
+.horseimg{
+    width: 100px;
+    height: 100px;
 }
 /*carrot--------------------------------------------------------------------------------------*/
 .carrotbg3{
@@ -422,10 +473,11 @@ bgimg > img{
     border-radius: 8px;
     text-align: center;
     align-items: center;
-    justify-content: center;
+    /*justify-content: center;*/
     margin-bottom: 10px;
     flex-direction: column;
     width: 679px;
+    overflow: scroll;
 
 }
 
@@ -435,9 +487,11 @@ bgimg > img{
     background-color: white;
     border-radius: 8px;
     text-align: center;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: center;
+    overflow: scroll;
 }
+
 
 .shopbg2{
     display: flex;
@@ -449,7 +503,10 @@ bgimg > img{
     border-radius: 8px;
 }
 
-.shopbalance{
+.shopbgtitle{
+    color: #F4A127;
+    margin-top: 20px;
+    font-size: 40px;
 
 }
 

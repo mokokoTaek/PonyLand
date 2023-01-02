@@ -64,26 +64,34 @@ public class ItemService {
         String id = (String)session.getAttribute("sessionID");
 
         List<ItemDTO> alreadyUsing = this.findFurnitureByItemStatus(id,"furniture");
-        List<ItemDTO> newFurniture = this.findFurnitureById(id);
+//        List<ItemDTO> newFurniture = this.findFurnitureById(id);
+
+
         for(int i=0; i<alreadyUsing.size();i++){
+            System.out.println(alreadyUsing.get(i).getItemSeq());
             alreadyUsing.get(i).setItemStatus(0);
+//            dao.updateFurnitureStatus(alreadyUsing.get(i));
+            dao.updateItem(alreadyUsing.get(i));
         }
 
-        List<ItemDTO> furnitureItemList = new ArrayList<ItemDTO>();
-        for(int i=0;i<list.size();i++){
-            furnitureItemList.add(this.findByItemSeq((String)list.get(i)));
+        List<ItemDTO> newFurnitureList = new ArrayList<ItemDTO>();
 
-            for(int j=0;j<newFurniture.size();j++){
-                if(newFurniture.get(j).getItemName().equals(furnitureItemList.get(i).getItemName())){
-                    newFurniture.get(i).setItemStatus(1);
-                    this.updateItem(newFurniture.get(i));
-                }
-            }
+        for(int i=0;i<list.size();i++){
+            ItemDTO dto = this.findByItemSeq((String)list.get(i));
+            newFurnitureList.add(dto);
+            newFurnitureList.get(i).setItemStatus(1);
+            dao.updateItem(dto);
+//            for(int j=0;j<newFurniture.size();j++){
+//                if(newFurniture.get(j).getItemName().equals(furnitureItemList.get(i).getItemName())){
+//                    newFurniture.get(i).setItemStatus(1);
+//                    this.updateItem(newFurniture.get(i));
+//                }
+//            }
 
 //            System.out.println(furnitureItemList.get(i).getItemName());
         }
 
-        return furnitureItemList;
+        return newFurnitureList;
     }
     public ItemDTO findByItemSeq(String itemSeq){
         int seq = Integer.parseInt(itemSeq);
@@ -92,7 +100,8 @@ public class ItemService {
 
     public void updateOtherStatus(String imgSeq,String itemCategory){
         int itemSeq = Integer.parseInt(imgSeq);
-        dao.updateOtherStatus(itemSeq,itemCategory);
+        String itemMemberId = (String)session.getAttribute("sessionID");
+        dao.updateOtherStatus(itemSeq,itemMemberId,itemCategory);
     }
 
     public ItemDTO findByItemStatus(String id,String itemCategory){
@@ -112,7 +121,7 @@ public class ItemService {
 
 
     public void     newUser(MemberDTO dto){
-        ItemDTO itemHorseDto = new ItemDTO(0,"thumbmokoko.png",dto.getMemberId(),"horse",206,179,1);
+        ItemDTO itemHorseDto = new ItemDTO(0,"1.gif",dto.getMemberId(),"horse",206,179,1);
         ItemDTO itemBgDto = new ItemDTO(0,"snow.gif",dto.getMemberId(),"background",0,0,1);
         ItemDTO itemFurnitureDto = new ItemDTO(0,"defaultfurniture.png",dto.getMemberId(),"furniture",100,100,1);
         dao.newUser(itemHorseDto,itemBgDto,itemFurnitureDto);

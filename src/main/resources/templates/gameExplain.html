@@ -5,6 +5,7 @@
   <title>Game</title>
   <!--        <link rel="stylesheet" href="../static/style.css"/>-->
   <link rel="stylesheet" href="../static/stable.css"/>
+  <link rel="stylesheet" href="../static/game.css"/>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -29,6 +30,7 @@
         3. 자신이 배팅할 말의 번호를 선택한다. <br>
         4. 모든 선택을 완료 한 후 게임 시작 버튼을 누른다 !
       </div>
+      <div><button class="gamestart" id="gameSetting">게임시작</button></div>
     </div>
   </div>
 </div>
@@ -46,6 +48,11 @@
   </a>
 </div>
 
+<script>
+  $("#gameSetting").on("click",function (){
+    location.href="/game/goGameSetting";
+  })
+</script>
 </body>
 
 </html>

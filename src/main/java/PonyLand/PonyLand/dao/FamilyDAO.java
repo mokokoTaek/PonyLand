@@ -16,6 +16,21 @@ public class FamilyDAO {
     @Autowired
     private SpringDataJpaFamilyRepository sdjr;
 
+
+    public FamilyDTO getInfo(String host, String guest) {
+
+        FamilyDTO dto = sdjr.findByFamilyProposerIdAndFamilyProposedId(host, guest);
+        FamilyDTO dto2 = sdjr.findByFamilyProposerIdAndFamilyProposedId(guest, host);
+
+        if (dto == null && dto2 != null) {
+            return dto2;
+        } else if(dto==null && dto2==null){
+            return dto;
+        }
+        return dto;
+    }
+
+
     public void getFamily(String familyProposerId, String familyProposedId,String familyMe, String familyOther,int familyStatus,String familyProposerName, String familyProposedName){
         FamilyDTO dto = new FamilyDTO();
         dto.setFamilyProposerId(familyProposerId);

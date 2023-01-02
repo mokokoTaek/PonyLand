@@ -179,6 +179,10 @@ button:hover {
     max-width: 290px;
 }
 
+.itembgimg{
+    max-width: 290px;
+}
+
 .furniture{
     display: flex;
     border: 3px solid #5a3d2b;
@@ -195,6 +199,20 @@ button:hover {
 
 .furnitureimg{
     text-align: center;
+}
+
+.stablebtn{
+    width: 100px;
+    height: 30px;
+    background: #FFECB4;
+    font-size: 20px;
+    color: #5a3d2b;
+    margin-top: 10px;
+    border-radius: 8px;
+    border-top: 1px solid #F4A127;
+    border-right: 1px solid #F4A127;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
 }
 
 
@@ -298,6 +316,7 @@ bgimg > img{
     font-size: 35px;
     color: #5a3d2b;
     border: solid transparent;
+
 }
 
 .shopname{
@@ -307,6 +326,11 @@ bgimg > img{
     align-items: center;
     justify-content: center;
     /*border-bottom: 2px solid #F4A127;*/
+}
+
+.horseimg{
+    width: 100px;
+    height: 100px;
 }
 /*carrot--------------------------------------------------------------------------------------*/
 .carrotbg3{
@@ -453,6 +477,7 @@ bgimg > img{
     margin-bottom: 10px;
     flex-direction: column;
     width: 679px;
+    overflow: scroll;
 
 }
 

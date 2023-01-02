@@ -12,6 +12,8 @@ public class GuestbookCommentDAO {
     @Autowired
     PonyLand.PonyLand.Mapper.GuestbookCommentMapper GuestbookCommentMapper;
 
+    public GuestbookCommentDTO selectComment(int questbook_comment_seq){return  GuestbookCommentMapper.selectComment(questbook_comment_seq);}
+
     public int insert(GuestbookCommentDTO dto) {return GuestbookCommentMapper.insert(dto);}
 
     public int delete(int guestbook_comment_seq) {
@@ -21,6 +23,4 @@ public class GuestbookCommentDAO {
 
     public List<GuestbookCommentDTO> select() {return GuestbookCommentMapper.select();}
 
-
-    //public int delete(int Guestbook_comment_Seq) {return GuestbookCommentMapper.delete(Guestbook_comment_Seq);}
 }

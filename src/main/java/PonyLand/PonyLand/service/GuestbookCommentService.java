@@ -14,12 +14,13 @@ public class GuestbookCommentService {
     @Autowired
     GuestbookCommentDAO dao;
 
-    public int insert(GuestbookCommentDTO dto) {
-        return dao.insert(dto);
-    }
+    public GuestbookCommentDTO selectComment(int questbook_comment_seq){return dao.selectComment(questbook_comment_seq);}
+
+    public int insert(GuestbookCommentDTO dto) {return dao.insert(dto);}
 
     public int delete(int guestbook_comment_seq) {
         return dao.delete(guestbook_comment_seq);
     }
+
     public List<GuestbookCommentDTO> select() {return dao.select();}
 }

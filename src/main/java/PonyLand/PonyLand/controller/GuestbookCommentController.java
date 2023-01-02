@@ -29,9 +29,14 @@ public class GuestbookCommentController {
     @ResponseBody
     @RequestMapping("insert")
     public String commentFrm(String parent_seq, String guestbook_comment_contents) {
+        Gson g = new Gson();
         String Guestbook_comment_writer = (String) session.getAttribute("sessionID");
-        service.insert(new GuestbookCommentDTO(0,Guestbook_comment_writer,guestbook_comment_contents,null,Integer.parseInt(parent_seq)));
-        return "";
+        GuestbookCommentDTO GuestbookCommentDto = new GuestbookCommentDTO(0,Guestbook_comment_writer,guestbook_comment_contents,null,Integer.parseInt(parent_seq));
+        service.insert(GuestbookCommentDto);
+
+        System.out.println("0102일 questbook_comment_seq 값 : " +  GuestbookCommentDto.getGuestbook_comment_seq());
+
+        return g.toJson(service.selectComment(GuestbookCommentDto.getGuestbook_comment_seq()));
     }
 
     @RequestMapping("delete")

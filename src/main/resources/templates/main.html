@@ -17,12 +17,16 @@
             position:absolute;
             z-index: 5;
             display: flex;
+            width: 200px;
+            height: 200px;
         }
 
         .usingfurnitureimg{
             position:absolute;
             z-index: 5;
             display: flex;
+            width: 100px;
+            height: 100px;
         }
 
         #bg4 {
@@ -104,7 +108,7 @@
                 <div>
                     <div th:if="${id}== ${sessionID}">
 
-                        <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
+                        <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
                         <!--                        </form>-->
                     </div>
                 </div>
@@ -115,14 +119,28 @@
                 </div>
             </div>
 
-            <div class="profile4">
+            <!-- History 뿌려지는 곳 -->
+            <div class="profile4"  th:if="${id} == ${sessionID}">
                 <div class="profile4-1">
                     History
                 </div>
-                <div class="profile4-2" th:each="list: ${list}">
-                    <div th:text="${list}"></div>
-                    <div>임근혁(개굴개굴)</div>
-                    <div>이진혁(개굴개굴)</div>
+                <div class="profile4-2">
+                    <div th:each="historyDTOList : ${historyDTOList}">
+                        <a th:href="@{/toMiniPage?(id = ${historyDTOList.getHistory_id()})}">
+                        <span th:text="${historyDTOList.getHistory_name()}"></span>(<span th:text="${historyDTOList.getHistory_id()}"></span>)
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="profile4"  th:if="${id} != ${sessionID}">
+                <div class="profile4-1">
+                    <div>
+                        <a th:href="@{/toMiniPage?(id = ${sessionID})}">
+                            내 미니홈피로
+                        </a>
+                    </div>
+                </div>
+                <div class="profile4-2">
                 </div>
             </div>
         </div>
@@ -188,7 +206,7 @@
                     <!--                    여기서부터 미니룸 div-->
                     <!--                    <div class="bg4"  >-->
 
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target" style="width:150px; height:150px;">
 
                     <!--                    </div>-->
                     <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
@@ -275,6 +293,8 @@
     function openFamilyList(){
         let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
     }
+
+    //메인화면에서 검색기능
     function selectById(){
         let idElement = document.getElementById("id");
         if (idElement.value === "") {
@@ -329,15 +349,15 @@
 </script>
 </body>
 
-<!--&lt;!&ndash; SCM Music Player https://www.scmplayer.net &ndash;&gt;-->
-<!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
-<!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
-<!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
-<!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
-<!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}">-->
+<!-- SCM Music Player https://www.scmplayer.net -->
+<script type="text/javascript" src="https://www.scmplayer.net/script.js"
+        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,
+        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}
+        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}
+        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}">
 
-<!--</script>-->
-<!--&lt;!&ndash; SCM Music Player script end &ndash;&gt;-->
+</script>
+<!-- SCM Music Player script end -->
 
 
 </html>

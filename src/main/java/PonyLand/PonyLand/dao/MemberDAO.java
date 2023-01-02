@@ -29,6 +29,8 @@ public class MemberDAO {
     @Autowired
     private SqlSession sqlSession;
 
+    public MemberDTO getInfo(String memberId){return MemberMapper.getInfo(memberId);}
+
     public Long countMember(){
         return sdjr.countBy();
     }

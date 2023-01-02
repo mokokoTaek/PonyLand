@@ -107,7 +107,7 @@
                                     <input type="hidden" th:value="${list.Album_title}" name="Album_title"/>
                                     <input type="hidden" th:value="${list.Album_contents}" name="Album_contents"/>
                                     <div style="margin-left: 10px"><th th:text="NO.+${list.Album_seq}">글번호</th></div>
-                                    <div><th th:text="${list.Album_title}"></th></div>
+                                    <div id="Album_title"><th th:text="${list.Album_title}" ></th></div>
                                     <!--                                <div><th th:text="${#dates.format(list.getAlbum_write_date(), 'yyyy-MM-dd HH:mm')}">시간</th></div>-->
                                     <div style="margin-right: 10px">
                                         <!--                                    <a class="anchor" th:href="@{/Album/UpdateAlbum?(Album_seq=${list.Album_seq},Album_title=${list.getAlbum_title()},Album_contents=${list.getAlbum_contents()})}">수정</a>-->
@@ -276,6 +276,8 @@
             $(this).next().focus();
         }
     });  //엔터누르면 전송
+
+
 
 
 

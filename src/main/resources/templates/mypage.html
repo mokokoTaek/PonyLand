@@ -59,10 +59,10 @@
                         <input type="text" class="loginbg" placeholder="" th:value="${list.getMemberId()}"  name="memberId" disabled>
                         <input type="hidden" th:value="${list.getMemberId()}" name="memberId">
                         <!--disabled 하면 값이 안넘어가서 hidden을 만들어서 값 넘겨준다.-->
+                        <div>
                     </div>
-                    <div>
                         <div>닉네임</div>
-                        <input type="text" id="member_name" class="loginbg" placeholder="" th:value="${list.getMember_name()}" name="member_name" readonly>
+                        <input type="text" id="member_name" class="loginbg" maxlength='5'  placeholder="" th:value="${list.getMember_name()}" name="member_name" readonly>
                         <div id="div_name"></div>
                     </div>
                     <div>

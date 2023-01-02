@@ -51,12 +51,10 @@
 
             <div class="profile3">
                 <div>
-                    <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+                    <button onclick="checkNewFamily();" class="profilebtn" type="button">일촌신청알림</button>
                 </div>
                 <div>
-                    <a th:href="@{/family/areTheyFamily}">
-                        <button class="profilebtn" type="button">일촌확인</button>
-                    </a>
+                        <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
                 </div>
                 <div>
                     <a th:href="@{/member/wave}">
@@ -263,5 +261,14 @@
             sessionStorage.setItem('played', "true");
         }
     });
+
+    function checkNewFamily(){
+        let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");
+    }
+
+    function openFamilyList(){
+        let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
+    }
+
 </script>
 </html>

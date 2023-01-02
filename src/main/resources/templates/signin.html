@@ -99,6 +99,7 @@
             $("#div_name").css("color","red")
         }else if (answer3) {
             document.getElementById("div_name").innerHTML = "";
+            $("#div_name").css("color","green")
         }
 
     }
@@ -150,6 +151,7 @@
         let answer5 = regex5.test(regi5);
         if (answer5) {
             document.getElementById("div7").innerHTML = "";
+            $("#div7").css("color","green")
         } else {
             document.getElementById("div7").innerHTML = "메일 주소를 확인해 주세요.";
             $("#div7").css("color","red")
@@ -162,32 +164,34 @@
         let answer4 = regex4.test(regi4);
         if (answer4) {
             document.getElementById("div6").innerHTML = "";
+            $("#div6").css("color","green")
         } else {
             document.getElementById("div6").innerHTML = "번호를 확인해 주세요.";
             $("#div6").css("color","red")
         }
     }
 
-    // // Select the form element
-    // const form = document.querySelector('form');
+    // document.querySelector('button.signinbtn').addEventListener('click', function(event) {
+    //     event.preventDefault(); // prevent the form from being submitted
     //
-    // // Add an event listener to the submit event
-    // form.addEventListener('submit', (event) => {
-    //     // Check if any of the error messages are not displayed
-    //     if (!document.querySelector('#div_name:not(.red)') &&
-    //         !document.querySelector('#div7:not(.red)') &&
-    //         !document.querySelector('#div6:not(.red)') &&
-    //         !document.querySelector('#result2:not(.red)') &&
-    //         !document.querySelector('#div3:not(.red)')) {
-    //         // Allow the form to be submitted
+    //     // select the div elements with the specified ids
+    //     let divElements = document.querySelectorAll('#div_name, #div7, #div6, #result2, #div3');
+    //
+    //     // check if any of the div elements contain red text
+    //     let hasError = [].slice.call(divElements).some(function(divElement) {
+    //         console.log(divElement.style.color)
+    //         return divElement.style.color === 'red';
+    //     });
+    //
+    //     if (hasError) {
+    //         // display the alert message if any of the div elements contain red text
+    //         alert('확인해주세요');
     //     } else {
-    //         // Prevent the form from being submitted
-    //         event.preventDefault();
-    //
-    //         // Show the alert message
-    //         alert('회원 정보를 확인해 주세요');
+    //         // otherwise, submit the form
+    //         document.getElementById('frm').submit();
     //     }
     // });
+
 
 
     let inputname = document.getElementById("member_name")

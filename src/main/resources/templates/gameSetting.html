@@ -91,21 +91,21 @@
                                     number = parseInt(number) + 1;
                                     hiddenCount.setAttribute("value", number);
                                     $("#three").css("display","block")
-                                }else if(number ==3){
-                                    number = parseInt(number) + 1;
-                                    hiddenCount.setAttribute("value", number);
-                                    $("#four").css("display","block")
-                                }
+                                }//else if(number ==3){
+                                  //  number = parseInt(number) + 1;
+                                   // hiddenCount.setAttribute("value", number);
+                                   // $("#four").css("display","block")
+                               // }
                             } else if (type === 'minus') {
                                 if (number == 3) {
                                     number = parseInt(number) - 1;
                                     hiddenCount.setAttribute("value", number);
                                     $("#three").css("display","none")
-                                }else if(number ==4){
-                                    number = parseInt(number) - 1;
-                                    hiddenCount.setAttribute("value", number);
-                                    $("#four").css("display","none")
-                                }
+                                }//else if(number ==4){
+                                 //   number = parseInt(number) - 1;
+                                 //   hiddenCount.setAttribute("value", number);
+                                 //   $("#four").css("display","none")
+                               // }
                             }
                             resultElement.innerText = number;
                         }

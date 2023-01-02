@@ -121,7 +121,7 @@ public class ItemService {
 
 
     public void     newUser(MemberDTO dto){
-        ItemDTO itemHorseDto = new ItemDTO(0,"thumbmokoko.png",dto.getMemberId(),"horse",206,179,1);
+        ItemDTO itemHorseDto = new ItemDTO(0,"1.gif",dto.getMemberId(),"horse",206,179,1);
         ItemDTO itemBgDto = new ItemDTO(0,"snow.gif",dto.getMemberId(),"background",0,0,1);
         ItemDTO itemFurnitureDto = new ItemDTO(0,"defaultfurniture.png",dto.getMemberId(),"furniture",100,100,1);
         dao.newUser(itemHorseDto,itemBgDto,itemFurnitureDto);

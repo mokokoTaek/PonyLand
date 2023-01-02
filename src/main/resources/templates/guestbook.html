@@ -16,6 +16,7 @@
         resize:none;
         border: solid transparent;
     }
+
 </style>
 
 <body>
@@ -50,12 +51,10 @@
 
             <div class="profile3">
                 <div>
-                    <button th:href="@{/family/getFamily}" class="profilebtn" type="button">일촌</button>
+                    <button onclick="checkNewFamily();" class="profilebtn" type="button">일촌신청알림</button>
                 </div>
                 <div>
-                    <a th:href="@{/family/areTheyFamily}">
-                        <button class="profilebtn" type="button">일촌확인</button>
-                    </a>
+                        <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
                 </div>
                 <div>
                     <a th:href="@{/member/wave}">
@@ -302,49 +301,14 @@
         }
     });
 
+    function checkNewFamily(){
+        let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");
+    }
 
-    //xss 공격 막기 코드
-    // onGetEscapeXSS : function (inputText) {
-    //     var targetText = inputText;
-    //     if (targetText != '') {
-    //         var source = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
-    //         var target = ["&amp;", "&lt;", "&gt;", "&quot;", "&#39;", "&#47;", "&#40;", "&#41;", "&#37;", "&#45;"];
-    //
-    //         for (var i = 0; i < source.length; i++) {
-    //             targetText = targetText.replace(source[i], target[i]);
-    //         }
-    //     }
-    //     return targetText;
-    // }
+    function openFamilyList(){
+        let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
+    }
 
-    /**
-     * XSS 공격 방지를 위해 변환된 문자를 원본 문자로 복원한다.
-     */
-    // onGetUnescapeXSS : function (inputText) {
-    //     var plainText = inputText;
-    //     if (plainText != '') {
-    //         var source = ["&amp;", "&lt;", "&gt;", "&quot;", "&#39;", "&#47;", "&#40;", "&#41;", "&#37;", "&#45;"];
-    //         var target = ["&", "<", ">", "\"", "'", "/", "(", ")", "%", "-"];
-    //
-    //         for (var i = 0; i < source.length; i++) {
-    //             if (plainText.indexOf(source[i]) > -1) {
-    //                 plainText = plainText.replace(source[i], target[i]);
-    //             }
-    //         }
-    //     }
-    //     return plainText;
-    // }
-
-    //submit 클릭버튼 한번으로 막기.
-    let buttonClicked = false;
-
-    $("#guestbook_comment_write_btn").click(function (event) {
-        if (buttonClicked) {
-            event.preventDefault();
-            return;
-        }
-        buttonClicked = true;
-    });
 </script>
 </body>
 </html>

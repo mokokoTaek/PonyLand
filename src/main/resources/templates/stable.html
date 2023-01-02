@@ -47,10 +47,16 @@
 
     }
 
+    .itemimg{
+        width: 100px;
+        height: 100px;
+
+    }
     .furnitureimg{
         /*position:absolute;*/
         /*z-index: 5;*/
         display: flex;
+
     }
 
     .usingfurnitureimg{
@@ -87,10 +93,10 @@
                 <div class="bg3-2-1-1" id="bg4">
                     <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">
 <!--                    ondrag="drag_handler(event);"-->
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target"  >
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" style="width: 200px; height: 200px;">
                     <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
                         <input type="hidden" th:value="${i.itemSeq}">
-                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                        <img  th:src="|/static/img/@{${i.itemName}}|" style="width:75px; height: 75px">
                     </span>
 
                 </div>
@@ -101,7 +107,7 @@
             </div>
             <div class="stablebg3-3">
                 <div class="horse">
-                    <div th:each="i : ${itemlist}" style="width: 100%; height: 100px;">
+                    <div th:each="i : ${itemlist}" style="width: 25%; height: 100px; float: left; margin-top: 30px" >
                         <input type="hidden" th:value="${i.itemSeq}">
                         <input type="radio" name="radioBtn" class="radioBtn">
                         <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg" draggable="true">
@@ -119,7 +125,7 @@
                 <div th:each="i : ${bglist}" style="max-width: 300px; height: auto">
                     <input type="hidden" th:value="${i.itemSeq}">
                     <input type="radio" name="radioBtn" class="radioBtn">
-                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg">
+                    <img  th:src="|/static/img/@{${i.itemName}}|" class="itembgimg">
                 </div>
             </div>
             <div style="margin-bottom: 20px"></div>
@@ -133,8 +139,8 @@
             </div>
 
             <div>
-                <button type="button" id = "modifyOn">수정합시다</button>
-                <button type="button" id = "modifyOff">수정완료</button>
+                <button type="button" id = "modifyOn">꾸미기</button>
+                <button type="button" id = "modifyOff">완료</button>
             </div>
 
         </div>
@@ -291,32 +297,38 @@
 
     $(document).on("click","#modifyOff",function(){
 
-        let checkimgseq = [];
+        let really = confirm("수정하시겠습니까?");
 
-        $("input[name=checkboxes]:checked").each(function(){
-            let imgseq = $(this).prev().val();
-            checkimgseq.push(imgseq);
-        })
-        let jsoncheckimgseq = JSON.stringify(checkimgseq);
-        console.log(checkimgseq)
+        if(really){
 
-        $.ajax({
-            url:"/stable/updateFurniture",
-            data: {
-                "jsoncheckimgseq":jsoncheckimgseq},
-            type:"post"
-        }).done(function(resp){
-            // let furniturelist = JSON.parse(resp);
+            let checkimgseq = [];
 
-            location.reload();
-            // location.href="/stable/toStable?id="+[[${id}]]+""
+            $("input[name=checkboxes]:checked").each(function(){
+                let imgseq = $(this).prev().val();
+                checkimgseq.push(imgseq);
+            })
+            let jsoncheckimgseq = JSON.stringify(checkimgseq);
+            console.log(checkimgseq)
 
-        }).fail(function(resp){
-            console.log("실패")
-        })
+            $.ajax({
+                url:"/stable/updateFurniture",
+                data: {
+                    "jsoncheckimgseq":jsoncheckimgseq},
+                type:"post"
+            }).done(function(resp){
+                // let furniturelist = JSON.parse(resp);
 
-        $(this).hide();
-        $("#modifyOn").show();
+                location.reload();
+                // location.href="/stable/toStable?id="+[[${id}]]+""
+
+            }).fail(function(resp){
+                console.log("실패")
+            })
+
+            $(this).hide();
+            $("#modifyOn").show();
+        }
+
     })
 
 

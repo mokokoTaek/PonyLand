@@ -17,12 +17,16 @@
             position:absolute;
             z-index: 5;
             display: flex;
+            width: 200px;
+            height: 200px;
         }
 
         .usingfurnitureimg{
             position:absolute;
             z-index: 5;
             display: flex;
+            width: 100px;
+            height: 100px;
         }
 
         #bg4 {
@@ -104,7 +108,7 @@
                 <div>
                     <div th:if="${id}== ${sessionID}">
 
-                        <button class="profilebtn" type="button"onclick="openFamilyList()">일촌목록</button>
+                        <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
                         <!--                        </form>-->
                     </div>
                 </div>
@@ -202,7 +206,7 @@
                     <!--                    여기서부터 미니룸 div-->
                     <!--                    <div class="bg4"  >-->
 
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target">
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target" style="width:150px; height:150px;">
 
                     <!--                    </div>-->
                     <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">

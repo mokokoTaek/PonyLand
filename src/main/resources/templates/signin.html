@@ -171,26 +171,26 @@
         }
     }
 
-    // document.querySelector('button.signinbtn').addEventListener('click', function(event) {
-    //     event.preventDefault(); // prevent the form from being submitted
-    //
-    //     // select the div elements with the specified ids
-    //     let divElements = document.querySelectorAll('#div_name, #div7, #div6, #result2, #div3');
-    //
-    //     // check if any of the div elements contain red text
-    //     let hasError = [].slice.call(divElements).some(function(divElement) {
-    //         console.log(divElement.style.color)
-    //         return divElement.style.color === 'red';
-    //     });
-    //
-    //     if (hasError) {
-    //         // display the alert message if any of the div elements contain red text
-    //         alert('확인해주세요');
-    //     } else {
-    //         // otherwise, submit the form
-    //         document.getElementById('frm').submit();
-    //     }
-    // });
+    document.querySelector('button.signinbtn').addEventListener('click', function(event) {
+        event.preventDefault(); // prevent the form from being submitted
+
+        // select the div elements with the specified ids
+        let divElements = document.querySelectorAll('#div_name, #div7, #div6, #result2, #div3');
+
+        // check if any of the div elements contain red text
+        let hasError = [].slice.call(divElements).some(function(divElement) {
+            console.log(divElement.style.color)
+            return divElement.style.color === 'red';
+        });
+
+        if (hasError) {
+            // display the alert message if any of the div elements contain red text
+            alert('회원 정보를 확인해 주세요.');
+        } else {
+            // otherwise, submit the form
+            document.getElementById('frm').submit();
+        }
+    });
 
 
 

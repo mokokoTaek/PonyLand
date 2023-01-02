@@ -87,19 +87,19 @@
                 <div class="bg3-2-1-1" id="bg4">
                     <input type="hidden" th:value="${nowdto.itemSeq}" id="hiddenImgSeq">
 <!--                    ondrag="drag_handler(event);"-->
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target"  >
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" draggable="true" id="target" style="width: 150px; height: 150px">
                     <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
                         <input type="hidden" th:value="${i.itemSeq}">
-                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                        <img  th:src="|/static/img/@{${i.itemName}}|" style="width:100px; height: 100px">
                     </span>
 
                 </div>
             </div>
 
-            <div class="bg3-3">
-                <div>
-                    보유 말
-                </div>
+            <div class="stabletitle">
+                보유 말
+            </div>
+            <div class="stablebg3-3">
                 <div class="horse">
                     <div th:each="i : ${itemlist}" style="width: 100%; height: 100px;">
                         <input type="hidden" th:value="${i.itemSeq}">
@@ -113,16 +113,16 @@
 
         <div class="bg3" id="bg3">
 
-            <span>여기는 배경 이미지</span>
+            <div class="stabletitle">보유 아이템</div>
 
             <div class="bgimg">
-                <div th:each="i : ${bglist}" style="width: 100%; height: 100px">
+                <div th:each="i : ${bglist}" style="max-width: 300px; height: auto">
                     <input type="hidden" th:value="${i.itemSeq}">
                     <input type="radio" name="radioBtn" class="radioBtn">
                     <img  th:src="|/static/img/@{${i.itemName}}|" class="itemimg">
                 </div>
             </div>
-            <div style="margin-bottom: 50px"></div>
+            <div style="margin-bottom: 20px"></div>
 
             <div class="furniture">
                 <div th:each="i : ${furniturelist}" style="width: 100%; height: 100px;">
@@ -156,7 +156,7 @@
 
 </div>
 
-<script>
+<script th:inline="javascript">
 
     $("#target").draggable({
         containment: '#bg4'
@@ -309,7 +309,7 @@
             // let furniturelist = JSON.parse(resp);
 
             location.reload();
-
+            // location.href="/stable/toStable?id="+[[${id}]]+""
 
         }).fail(function(resp){
             console.log("실패")

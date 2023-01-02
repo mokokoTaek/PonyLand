@@ -193,12 +193,17 @@
         $(document).ready(function () {
 
             $('.profilebtn1,.profilebtn2').hide(); //취소,변경이 숨어있다가
+            $(".profilebtn").hide(); //프로필 수정 사라짐.
 
             $("#profile_img").on("change", function (e) {
                 if ($("#profile_img").val() == "") {
                     $("#profile").val();
+
                     return;
                 }
+                $(".profileimg").hide(); //프로필 이미지 변경하기 누르면 사라짐. //클래스로 먹이니까 사라짐.
+                $('.profilebtn1,.profilebtn2').show(); //취소,변경이 나타남.
+
                 let ext = $("#profile_img").val().split(".").pop().toLowerCase(); //배열의 pop은 가장 마지막요소를 꺼내옴.
 
                 let accept = ["png", "jpg", "jpeg", "gif"]; //담고싶은 확장자만 담아둔다.
@@ -212,12 +217,6 @@
                 }
 
                 fileToBase64(document.getElementById("profile_img").files[0]);
-                $('.profilebtn').on("click", function () {
-                    $('.profileimg,.profilebtn').hide(); //프로필수정이랑, 프로필이미지 변경하기 사라짐.
-                    $('.profilebtn1,.profilebtn2').show(); //취소,변경이 나타남.
-
-
-                });
 
                 $(".profilebtn1").on("click", function () {
                     location.reload();

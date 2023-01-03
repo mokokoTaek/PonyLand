@@ -20,12 +20,18 @@
 <div class="container">
 
     <div class="top">
-        <div class="">Today : 245</div>
-        <div class="">뮤직플레이어 부분</div>
+        <!--        <div th:if="${id}!=null">-->
+        <!--            <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|" style="font-size: 20px">today</div>-->
+        <!--        </div>-->
+        <div class="topright">
+            <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+            <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+        </div>
     </div>
+
     <div class="bg1">
         <div class="bg4">
-            <div class="carrotboxtitle">사진 + 당근코인</div>
+            <div class="carrotboxtitle">당근코인</div>
             <div class="carrotbox1">
                 <div class="carrotbox2">
                     <div class="carrotamount">
@@ -210,7 +216,7 @@
 </div>
 <div class="side">
     <a th:href="@{/stable/toStable(id=${id})}">
-    <button class="btnmain2">마구간</button>
+        <button class="btnmain2">마구간</button>
     </a>
     <a th:href="@{/game/gameStart(id=${id})}">
         <button class="btnmain2" type="button" id="adc">게임</button>
@@ -321,6 +327,30 @@
                 location.reload();
             }
         });
+    }
+
+    //메인화면에서 검색기능
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
+
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
     }
 
 </script>

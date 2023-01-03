@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="../static/style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
     <style>
         @keyframes blink-effect {
             50% {
@@ -153,13 +154,13 @@
                 <div class="updatednews2">
 
 
-                    <div class="searchbox1">  <!--검색-->
-                        <!--                        <div>-->
-                        <input type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
-                        <button type="button" class="searchbtn" onclick="selectById()">검색</button>
-                        <!--                        </div>-->
+<!--                    <div class="searchbox1">  &lt;!&ndash;검색&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <div>&ndash;&gt;-->
+<!--                        <input type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">-->
+<!--                        <button type="button" class="searchbtn" onclick="selectById()">검색</button>-->
+<!--                        &lt;!&ndash;                        </div>&ndash;&gt;-->
 
-                    </div>
+<!--                    </div>-->
 
                     <div class="updatednews2-1">
                         <div>
@@ -241,6 +242,7 @@
     $(document).ready(function(){
         $('.modifybtn2,.cancel-button').hide();
         $(".modifybtn").on("click",function(){
+            $('textarea').css('background-color', 'floralwhite');
             $('.modifybtn2,.cancel-button').show();
             $('textarea').removeAttr("readonly");
             $(this).hide();

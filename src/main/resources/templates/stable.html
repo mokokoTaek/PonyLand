@@ -77,8 +77,13 @@
     <input type="hidden" name="id" th:value="${id}">
 
     <div class="top">
-        <div class="">Today : 245</div>
-        <div class="">뮤직플레이어 부분 </div>
+        <!--        <div th:if="${id}!=null">-->
+        <!--            <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|" style="font-size: 20px">today</div>-->
+        <!--        </div>-->
+        <div class="topright">
+            <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+            <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+        </div>
     </div>
     <div class="bg1">
 
@@ -383,7 +388,18 @@
 
         for(let i =0; i<$(".checkboxes").length;i++){
             $($(".checkboxes")[i]).show();
+            // let alreadyCheck = [[${nowfurniturelist}]][i].itemSeq;
+            // console.log(alreadyCheck);
+            // if(alreadyCheck==$($(".checkboxes")[i]).prev().val()){
+            //     $(".checkboxes")[i].prop("checked", true);
+            // }
         }
+
+        // for(let j=0; j<$(".checkboxes").length;j++){
+        //     if(alreadyCheck==$(".checkboxes")[j].prev().val()){
+        //         $(".checkboxes")[j].prop("checked", true);
+        //     }
+        // }
 
         $(this).hide();
         $("#modifyOff").show();
@@ -440,9 +456,41 @@
             // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFy+"px");
             document.getElementsByClassName("usingfurnitureimg")[i].style.left = onloadFx + 'px';
             document.getElementsByClassName("usingfurnitureimg")[i].style.top = onloadFy + 'px';
-        }
 
+            let alreadyCheck = [[${nowfurniturelist}]][i].itemSeq;
+
+            for(let j=0; j<$(".checkboxes").length;j++){
+                if(alreadyCheck==$($(".checkboxes")[j]).prev().val()){
+                    $($(".checkboxes")[j]).prop("checked", true);
+                }
+            }
+
+        }
     })
+
+    //메인화면에서 검색기능
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
+
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
+    }
 
 </script>
 

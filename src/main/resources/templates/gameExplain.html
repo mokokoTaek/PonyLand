@@ -18,8 +18,13 @@
 
 <div class="container">
   <div class="top">
-    <div class="">Today : 245</div>
-    <div class="">뮤직플레이어 부분</div>
+    <!--        <div th:if="${id}!=null">-->
+    <!--            <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|" style="font-size: 20px">today</div>-->
+    <!--        </div>-->
+    <div class="topright">
+      <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+      <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+    </div>
   </div>
   <div class="bg1">
     <div class="gameexplainbg2">
@@ -40,10 +45,10 @@
   <a th:href="@{/game/gameStart(id=${id})}">
     <button class="btnmain1">게임</button>
   </a>
-  <a th:href="@{/}">
+  <a th:href="@{/shop/toShop(id=${id})}">
     <button class="btnmain2">상점</button>
   </a>
-  <a th:href="@{/stable/charge}">
+  <a th:href="@{/stable/charge(id=${id})}">
   <button class="btnmain2">충전</button>
   </a>
 </div>
@@ -52,6 +57,30 @@
   $("#gameSetting").on("click",function (){
     location.href="/game/goGameSetting";
   })
+
+  //메인화면에서 검색기능
+  function selectById(){
+    let idElement = document.getElementById("id");
+    if (idElement.value === "") {
+      alert("아이디를 입력하세요");
+    } else {
+      $.ajax({
+        url :"/toMiniPage",
+        data : {
+          "id" : idElement.value
+        }
+      }).done(function(resp){
+        if(resp!==null) {
+          let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+        }else {
+          alert("아이디를 확인해주세요")
+        }
+
+      }).fail(function(error){
+        alert("아이디를 확인해주세요");
+      });
+    }
+  }
 </script>
 </body>
 

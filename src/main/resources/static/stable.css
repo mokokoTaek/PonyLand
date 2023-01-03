@@ -395,8 +395,8 @@ bgimg > img{
 }
 
 .shopimage>img{
-    width: 100px;
-    height: 100px;
+    /*width: 100px;*/
+    height: 110px;
 }
 /*carrot--------------------------------------------------------------------------------------*/
 .carrotbg3{

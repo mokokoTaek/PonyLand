@@ -593,7 +593,9 @@
 
 <script th:inline="javascript">
     $(".shopimage").click(function(){
-        console.log($(this).parent().parent())
+        for(let i=0; i<$(".carrotbox2").length;i++){
+            $($(".carrotbox2")[i]).css("border","none");
+        }
         $(this).parent().parent().css("border","5px solid").css("border-color","#5a3d2b")
 
         let product = $(this).next().val();

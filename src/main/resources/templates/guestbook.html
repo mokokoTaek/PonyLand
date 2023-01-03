@@ -119,7 +119,6 @@
                             <div class="gbprofle1">
                                 <div class="gbprofile2" >
                                     <input type="hidden">
-                                    <input type="hidden" th:value="${sessionID}" name="member_id">
                                     <img style="width: 100%; height: 100%;"  th:value="${sessionID}" th:if="${list2.getMember_sysname() != null}" th:src="|/img/@{${list2.getMember_sysname()}}|" />
                                     <img style="width: 100%;  height:100%;"  th:value="${sessionID}" th:if="${list2.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
 

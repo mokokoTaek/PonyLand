@@ -594,9 +594,9 @@
 <script th:inline="javascript">
     $(".shopimage").click(function(){
         for(let i=0; i<$(".carrotbox2").length;i++){
-            $($(".carrotbox2")[i]).css("border","none");
+            $($(".carrotbox2")[i]).css("border","2px solid").css("border-color","#F4A127").css("border-radius","8px");
         }
-        $(this).parent().parent().css("border","5px solid").css("border-color","#5a3d2b")
+        $(this).parent().parent().css("border","3px solid").css("border-color","#5a3d2b")
 
         let product = $(this).next().val();
         let price  =$(this).prev().val();

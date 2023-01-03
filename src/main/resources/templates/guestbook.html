@@ -48,10 +48,10 @@
                 <div class="profile0" th:text="${id}">님의 마구간</div>
             </div>
 
-            <div class="profile1">
+            <div class="profile1" >
                 <!--null이 아니면 sysname을 불러오고 null값이면 img밑에있는 기본프로필사진을 불러온다.-->
-                <img style="width: 100%; height: 100%;"  th:if="${list2.getMember_sysname() != null}" th:src="|/img/@{${list2.getMember_sysname()}}|" />
-                <img style="width: 100%; " height="100%;" th:if="${list2.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
+                <img style="width: 100%; height: 100%;"  th:value="${id}"  th:if="${list2.getMember_sysname() != null}" th:src="|/img/@{${list2.getMember_sysname()}}|" />
+                <img style="width: 100%; " height="100%;" th:value="${id}"  th:if="${list2.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
             </div>
 
             <div class="profile2">
@@ -117,8 +117,11 @@
                     <div class="gbcontent">
                         <div class="gbprofile">
                             <div class="gbprofle1">
-                                <div class="gbprofile2">
-<!--                                    <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|">-->
+                                <div class="gbprofile2" >
+                                    <input type="hidden">
+                                    <img style="width: 100%; height: 100%;"  th:value="${sessionID}" th:if="${list2.getMember_sysname() != null}" th:src="|/img/@{${list2.getMember_sysname()}}|" />
+                                    <img style="width: 100%;  height:100%;"  th:value="${sessionID}" th:if="${list2.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
+
                                 </div>
                             </div>
                             <div class="gbtext">
@@ -154,7 +157,8 @@
 
                             <div class="gbprofle1">
                                 <div class="gbprofile2">
-                                    <img style="width: 100%; height: 100%;" th:src="|/img/@{${list2.getMember_sysname()}}|" id = profile >
+                                    <img style="width: 100%; height: 100%;"  th:value="${list.getGuestbook_writer()}" th:if="${list.getGuestbook_sysname() != null}" th:src="|/img/@{${list.getGuestbook_sysname()}}|" />
+                                    <img style="width: 100%; " height="100%;" th:value="${list.getGuestbook_writer()}" th:if="${list.getGuestbook_sysname() == null}" src="/static/img/no_profile.jpg" >
                                 </div>
                             </div>
                             <div class="gbtext">
@@ -302,13 +306,13 @@
 
 
     // Update the audio element to play the current song
-    document.getElementById("myAudio").src = currentSong;
-    $(document).ready(function () {
-        if (sessionStorage.getItem('played') != "true") {
-            $('#music').get(0).play();
-            sessionStorage.setItem('played', "true");
-        }
-    });
+    // document.getElementById("myAudio").src = currentSong;
+    // $(document).ready(function () {
+    //     if (sessionStorage.getItem('played') != "true") {
+    //         $('#music').get(0).play();
+    //         sessionStorage.setItem('played', "true");
+    //     }
+    // });
 
     function checkNewFamily(){
         let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");
@@ -343,5 +347,7 @@
     }
 
 </script>
+
+
 </body>
 </html>

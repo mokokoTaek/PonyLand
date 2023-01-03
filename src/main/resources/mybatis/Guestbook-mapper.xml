@@ -7,7 +7,7 @@
 <mapper namespace="PonyLand.PonyLand.Mapper.GuestbookMapper">
 
     <insert id="insert">
-        insert into guestbook values (guestbook_seq.nextval,#{guestbook_writer},#{guestbook_contents},sysdate,#{guestbook_host})
+        insert into guestbook values (guestbook_seq.nextval,#{guestbook_writer},#{guestbook_contents},sysdate,#{guestbook_host},#{guestbook_sysname,jdbcType=VARCHAR})
     </insert>
 
     <!--인자값 하나는 value-->
@@ -24,13 +24,13 @@
     </select>
 
     <select id="count" resultType="int">
-        select count(*) as count from guestbook where guestbook_writer = #{value}
+        select count(*) as count from guestbook where guestbook_host = #{value}
     </select>
 
     <select id="selectByDate" resultType="int">   <!--1일안에 올린 글 개수-->
         SELECT count(*)
         FROM guestbook
-        WHERE guestbook_write_date >= (sysdate-1) and guestbook_writer = #{value}
+        WHERE guestbook_write_date >= (sysdate-1) and guestbook_host = #{value}
 
     </select>
 

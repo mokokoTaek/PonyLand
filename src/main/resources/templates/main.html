@@ -207,11 +207,11 @@
                     <!--                    여기서부터 미니룸 div-->
                     <!--                    <div class="bg4"  >-->
 
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target" style="width:150px; height:150px;">
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target" style="width:200px; height:200px;">
 
                     <!--                    </div>-->
                     <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
-                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                        <img  th:src="|/static/img/@{${i.itemName}}|" style="width: 75px; height: 75px;">
                     </span>
                 </div>
                 <div class="bg3-2-2">

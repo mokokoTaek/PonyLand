@@ -138,7 +138,7 @@
                             </div>
                         </th:block>
                     </div>
-
+                    <!-- 밤명록 뿌려지는 부분 -->
                     <div class="gbcontent">
                         <div th:each="dto: ${list2}"></div>
                         <div class="gbprofile">
@@ -157,7 +157,7 @@
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
                             <div class="gbcmttitle">
                                 <div style="font-size: 13px">
-                                    <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+                                    <th class="commentArea" th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
                                 </div>
                                 <div style="font-size: 10px; color: darkgrey">
                                     <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
@@ -171,13 +171,6 @@
                                 </div>
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
-<!--                            <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">-->
-<!--                                <div>-->
-<!--                                    &lt;!&ndash;<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>&ndash;&gt;-->
-<!--                                    <button type="button" class="guestbook_comment_deleteBtn">x</button>-->
-<!--                                    <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">-->
-<!--                                </div>-->
-<!--                            </th:block>-->
                         </div>
 
                         <div class="gbcmtinput">
@@ -243,45 +236,50 @@
             data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents},
             dataType: "json",
         }).done(function (data) {
-            let div = $("<div>");
 
-            let ddiv = $("<div>")
-            ddiv.attr("class", "gbcmttitle");
-
-            let divWriter = $("<div>");
-            divWriter.attr("style", "font-size: 13px");
             let thWriter = $("<th>");
             thWriter.append(data.guestbook_comment_writer);
-            divWriter.append(thWriter);
+            btn.closest(".gbcmtinput").prev().find(".commentArea").append(thWriter);
 
-            let divWritedate = $("<div>");
-            divWritedate.attr("style", "font-size: 10px").attr("color", "darkgrey");
-            let thWritedate = $("<th>");
-            thWritedate.append(data.guestbook_comment_write_date);
-            divWritedate.append(thWritedate);
-
-            let divContents = $("<div>");
-            divContents.attr("style", "font-size: 18px");
-            let thContents = $("<th>");
-            thContents.append(data.guestbook_comment_contents);
-            divContents.append(thContents);
-
-            let button = $("<button>");
-            button.attr("type", "button").attr("class", "guestbook_comment_deleteBtn");
-            button.html("x");
-
-            let input = $("<input>");
-            input.attr("type", "hidden").attr("value", "data.guestbook_comment_seq");
-
-            div.append(ddiv);
-            div.append(divWriter);
-            div.append(divWritedate);
-            div.append(divContents);
-            div.append(button);
-            div.append(input);
-
-            btn.parent().prev().prepend(div);
-            btn.prev().find('input').val("");
+            // let div = $("<div>");
+            //
+            // let ddiv = $("<div>")
+            // ddiv.attr("class", "gbcmttitle");
+            //
+            // let divWriter = $("<div>");
+            // divWriter.attr("style", "font-size: 13px");
+            // let thWriter = $("<th>");
+            // thWriter.append(data.guestbook_comment_writer);
+            // divWriter.append(thWriter);
+            //
+            // let divWritedate = $("<div>");
+            // divWritedate.attr("style", "font-size: 10px").attr("color", "darkgrey");
+            // let thWritedate = $("<th>");
+            // thWritedate.append(data.guestbook_comment_write_date);
+            // divWritedate.append(thWritedate);
+            //
+            // let divContents = $("<div>");
+            // divContents.attr("style", "font-size: 18px");
+            // let thContents = $("<th>");
+            // thContents.append(data.guestbook_comment_contents);
+            // divContents.append(thContents);
+            //
+            // let button = $("<button>");
+            // button.attr("type", "button").attr("class", "guestbook_comment_deleteBtn");
+            // button.html("x");
+            //
+            // let input = $("<input>");
+            // input.attr("type", "hidden").attr("value", "data.guestbook_comment_seq");
+            //
+            // div.append(ddiv);
+            // div.append(divWriter);
+            // div.append(divWritedate);
+            // div.append(divContents);
+            // div.append(button);
+            // div.append(input);
+            //
+            // btn.parent().prev().prepend(div);
+            // btn.prev().find('input').val("");
 
         }).fail(function (data) {
             console.log("ㅋㅋ 실패")

@@ -116,64 +116,92 @@
             $("input").removeAttr("readonly"); //수정하기버튼누르면 readonly가 해체
 
             //마이페이지 정규식
+            let nameResult = true;
             $("#member_name").keyup(function () {
                 let regi3 = $("#member_name").val();
                 let regex3 = /^[가-힣]{2,5}$/;
                 let answer3 = regex3.test(regi3);
                 if (!answer3) {
                     $("#div_name").html("이름은 2-5 글자로 설정해주세요.");
-                    $("#div_name").css("color", "red")
-
+                    $("#div_name").css("color", "red");
+                    nameResult = false;
                 } else {
-                    $("#div_name").html("사용 가능한 이름입니다.");
-                    $("#div_name").css("color", "blue")
+                    $("#div_name").html("");
+                    $("#div_name").css("color", "blue");
+                    nameResult = true;
                 }
             })
 
+            let passwdResult = true;
             $("#passwd").keyup(function () {
                 let passwd = $("#passwd").val();
                 let regex2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
                 let answer1 = regex2.test(passwd);
                 if (!answer1) {
                     $("#div3").html("영문 및 특수문자 숫자 포함, 8자 이상 20자 이하로 작성해주세요.");
-                    $("#div3").css("color", "red")
+                    $("#div3").css("color", "red");
+                    passwdResult = false;
                 } else {
-                    $("#div3").html("사용 가능한 비밀번호 입니다.");
-                    $("#div3").css("color", "blue")
+                    $("#div3").html("");
+                    $("#div3").css("color", "blue");
+                    passwdResult = true;
                 }
             })
-
+            let mailResult = true;
             $("#mail").keyup(function () {
                 let mail = $("#mail").val();
                 let regex5 = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
                 let answer5 = regex5.test(mail);
                 if (!answer5) {
                     $("#div7").html("메일 주소를 확인해 주세요.");
-                    $("#div7").css("color", "red")
+                    $("#div7").css("color", "red");
+                    mailResult = false;
                 } else {
-                    $("#div7").html("사용 가능한 메일 입니다.");
-                    $("#div7").css("color", "blue")
+                    $("#div7").html("");
+                    $("#div7").css("color", "blue");
+                    mailResult = true;
                 }
             })
 
+            let numberResult = true;
             $("#number").keyup(function () {
                 let number = $("#number").val();
                 let regex4 = /^01\d\d{3,4}\d{4}$/;
                 let answer4 = regex4.test(number);
                 if (!answer4) {
                     $("#div6").html("번호를 확인해 주세요.");
-                    $("#div6").css("color", "red")
+                    $("#div6").css("color", "red");
+                    numberResult = false;
                 } else {
-                    $("#div6").html("사용 가능한 번호 입니다.");
-                    $("#div6").css("color", "blue")
+                    $("#div6").html("");
+                    $("#div6").css("color", "blue");
+                    numberResult = true;
                 }
             })
 
             $(".modifybtn2").on("click",function (){
-                if(($("#member_name").html()=="사용 가능한 이름입니다."||$("#member_name").html()=="")&&($("#div6").html()=="사용 가능한 번호 입니다."||$("#div6").html()=="")&&($("#mail").html()=="사용 가능한 메일 입니다."||$("#mail").html()=="")&&($("#number").html()=="사용 가능한 번호 입니다."||$("#number").html()=="")){
+                if(nameResult==false){
+                    alert("잘못된 이름입니다.");
+                    $("#member_name").val("");
+                    $("#div_name").html("");
+                }
+                if (passwdResult == false) {
+                    alert("잘못된 비밀번호입니다.");
+                    $("#passwd").val("");
+                    $("#div3").html("");
+                }
+                if(mailResult==false){
+                    alert("잘못된 메일입니다.");
+                    $("#mail").val("");
+                    $("#div7").html("");
+                }
+                if(numberResult==false) {
+                    alert("잘못된 번호형식입니다.");
+                    $("#number").val("");
+                    $("#div6").html("");
+                }
+                if(nameResult==true & passwdResult==true & mailResult==true & numberResult==true){
                     $(".modifybtn2").attr("type", "submit");//변경버튼누르면 수정
-                }else{
-                    alert("확인해")
                 }
             })
 

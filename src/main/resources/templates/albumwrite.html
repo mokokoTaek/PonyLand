@@ -36,7 +36,8 @@
       </div>
 
       <div class="profile1">
-        <img style="width: 100%; height: 100%;" th:src="|/img/@{${list.getMember_sysname()}}|">
+        <img style="width: 100%; height: 100%;"  th:if="${list.getMember_sysname() != null}" th:src="|/img/@{${list.getMember_sysname()}}|" />
+        <img style="width: 100%; " height="100%;" th:if="${list.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
       </div>
 
       <div class="profile2">

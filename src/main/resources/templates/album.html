@@ -95,8 +95,8 @@
 
         </div>
         <form id="form">
-            <div class="albg3">
-                <div class="bg3in">
+            <div class="albg3" >
+                <div class="bg3in" >
                     <div style="margin-top: 15px" >
                         <input type="hidden" th:value="${dto1.getAlbum_host()}" id="host1"/>
 
@@ -106,6 +106,7 @@
 
                     </div>
                     <div th:each="list:${dto}" style="margin-bottom: 50px" th:if="${id==list.getAlbum_host()}" >
+
                         <!--                                                                                 원래 {list.getAlbum_writer()}               -->
                         <div style="margin-left:10px; font-size: 10px; color: lightgrey; margin-bottom: 5px"><th th:text="${#dates.format(list.getAlbum_write_date(), 'yyyy-MM-dd HH:mm')}">시간</th></div>
                         <div class="gbtitle">
@@ -129,7 +130,7 @@
                         <div class="alpic">
                             <!--                            <div style="text-align: center">-->
                             <!--                            <th th:src="@{${file.oriname()}}">-->
-                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|">
+                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|" >
                             <!--사진 불러오기.-->
                             <!--                            </th>-->
                             <!--                            </div>-->
@@ -181,6 +182,10 @@
                             <button class="gbbutton" type="button" name="comment" >확인</button>
                             <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>

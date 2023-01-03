@@ -124,7 +124,7 @@
             <div class="bgimg">
                 <div th:each="i : ${bglist}" style="max-width: 300px; height: auto">
                     <input type="hidden" th:value="${i.itemSeq}">
-                    <input type="radio" name="radioBtn" class="radioBtn">
+                    <input type="radio" name="radioBtn" class="radiobgBtn">
                     <img  th:src="|/static/img/@{${i.itemName}}|" class="itembgimg">
                 </div>
             </div>
@@ -296,6 +296,30 @@
         })
     })
 
+    $(document).on("click",".radiobgBtn",function(){
+        let imgseq = $(this).prev().val();
+        console.log(imgseq)
+        $.ajax({
+            url:"/stable/update",
+            data: {
+                "imgSeq":imgseq},
+            type:"post"
+        }).done(function(resp){
+            console.log("완료")
+            let realdto = JSON.parse(resp);
+            if(realdto.itemCategory == 'horse'){
+                $("#target").attr("src","/static/img/"+realdto.itemName+"")
+            }else if(realdto.itemCategory == 'background'){
+                $("#bg4").css({"background-image":"url(/static/img/"+realdto.itemName+")","background-repeat":"no-repeat",
+                    "background-size":"cover"})
+                // $("#bg4").attr("style","background-image : url(/static/img/"+realdto.itemName+")")
+            }
+
+        }).fail(function(resp){
+            console.log("실패")
+        })
+    })
+
     $(document).on("click","#modifyOff",function(){
 
         let really = confirm("수정하시겠습니까?");
@@ -339,6 +363,10 @@
         $($(".radioBtn")[i]).hide();
     }
 
+    for(let i =0; i<$(".radiobgBtn").length;i++){
+        $($(".radiobgBtn")[i]).hide();
+    }
+
     for(let i =0; i<$(".checkboxes").length;i++){
         $($(".checkboxes")[i]).hide();
     }
@@ -349,9 +377,24 @@
             $($(".radioBtn")[i]).show();
         }
 
+        for(let i=0; i<$(".itembgimg").length;i++){
+            $($(".radiobgBtn")[i]).show();
+        }
+
         for(let i =0; i<$(".checkboxes").length;i++){
             $($(".checkboxes")[i]).show();
+            // let alreadyCheck = [[${nowfurniturelist}]][i].itemSeq;
+            // console.log(alreadyCheck);
+            // if(alreadyCheck==$($(".checkboxes")[i]).prev().val()){
+            //     $(".checkboxes")[i].prop("checked", true);
+            // }
         }
+
+        // for(let j=0; j<$(".checkboxes").length;j++){
+        //     if(alreadyCheck==$(".checkboxes")[j].prev().val()){
+        //         $(".checkboxes")[j].prop("checked", true);
+        //     }
+        // }
 
         $(this).hide();
         $("#modifyOff").show();
@@ -364,6 +407,10 @@
     $("#modifyOff").click(function(){
         for(let i=0; i<$(".itemimg").length;i++){
             $($(".radioBtn")[i]).hide();
+        }
+
+        for(let i=0; i<$(".itembgimg").length;i++){
+            $($(".radiobgBtn")[i]).hide();
         }
         for(let i=0; i<$(".checkboxes").length;i++){
             $($(".checkboxes")[i]).hide();
@@ -404,7 +451,17 @@
             // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFy+"px");
             document.getElementsByClassName("usingfurnitureimg")[i].style.left = onloadFx + 'px';
             document.getElementsByClassName("usingfurnitureimg")[i].style.top = onloadFy + 'px';
+
+            let alreadyCheck = [[${nowfurniturelist}]][i].itemSeq;
+
+            for(let j=0; j<$(".checkboxes").length;j++){
+                if(alreadyCheck==$($(".checkboxes")[j]).prev().val()){
+                    $($(".checkboxes")[j]).prop("checked", true);
+                }
+            }
+
         }
+
 
     })
 

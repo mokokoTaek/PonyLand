@@ -65,4 +65,8 @@ public class FamilyDAO {
     public List<FamilyDTO> getFamilyListByProposedId(String id){
         return sdjr.findAllByFamilyStatusAndFamilyProposedId(1,id);
     }
+
+    public void save(FamilyDTO dto){
+        sdjr.save(dto);
+    }
 }

@@ -49,9 +49,9 @@ public class FamilyController {
 
     @RequestMapping("agreeFamily")
     public String agreeFamily(int familySeq,Model model){
-
-        service.agreeFamily(familySeq).setFamilyStatus(1);
-
+        FamilyDTO dto = service.agreeFamily(familySeq);
+        dto.setFamilyStatus(1);
+        service.save(dto);
         List<FamilyDTO> list = service.checkNewFamily((String)session.getAttribute("sessionID"),0);
         List<String> imagelist = service.getProposerImage(list);
 

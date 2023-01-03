@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+</head>
+
+<body>
+<div id="game"></div>
+
+<script>
+    var ap = new APlayer({
+        element: document.getElementById('game'),
+        narrow: true,
+        autoplay: true,
+        showlrc: false,
+        mutex: true,
+        fixed: false,
+        mini: true,
+        theme: '#ad7a86',
+        mode: 'random',
+        preload: 'auto',
+        listmaxheight: '51px',
+        music: [
+            {
+                title: '경마',
+                author: '1등기원',
+                url: 'undertail.mp3',
+                pic: 'PIC URL'
+            },
+        ]
+    });
+
+    window.onbeforeunload = function() {
+        // Save the current song and time position in localStorage
+        localStorage.setItem('currentSong', ap.audio.src);
+        localStorage.setItem('currentTime', ap.audio.currentTime);
+    };
+    // Retrieve the saved song and time position from localStorage
+    var savedSong = localStorage.getItem('currentSong');
+    var savedTime = localStorage.getItem('currentTime');
+
+    // If there is a saved song and time position, continue playing the song from where it left off
+    if (savedSong && savedTime) {
+        ap.audio.src = savedSong;
+        ap.audio.currentTime = savedTime;
+        ap.play();
+    }
+</script>
+</body>
+
+</html>

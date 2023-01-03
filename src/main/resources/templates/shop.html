@@ -438,7 +438,7 @@
                                 <input type="hidden" value="bg2.gif">
                             </div>
 
-                            <div class="shopname">
+                            <div class="shopname"">
                                 1200당근
                             </div>
                         </div>
@@ -593,6 +593,8 @@
 
 <script th:inline="javascript">
     $(".shopimage").click(function(){
+        console.log($(this).parent().parent())
+        $(this).parent().parent().css("border","5px solid").css("border-color","#5a3d2b")
 
         let product = $(this).next().val();
         let price  =$(this).prev().val();

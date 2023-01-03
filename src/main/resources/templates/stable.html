@@ -383,7 +383,18 @@
 
         for(let i =0; i<$(".checkboxes").length;i++){
             $($(".checkboxes")[i]).show();
+            // let alreadyCheck = [[${nowfurniturelist}]][i].itemSeq;
+            // console.log(alreadyCheck);
+            // if(alreadyCheck==$($(".checkboxes")[i]).prev().val()){
+            //     $(".checkboxes")[i].prop("checked", true);
+            // }
         }
+
+        // for(let j=0; j<$(".checkboxes").length;j++){
+        //     if(alreadyCheck==$(".checkboxes")[j].prev().val()){
+        //         $(".checkboxes")[j].prop("checked", true);
+        //     }
+        // }
 
         $(this).hide();
         $("#modifyOff").show();
@@ -440,7 +451,17 @@
             // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFy+"px");
             document.getElementsByClassName("usingfurnitureimg")[i].style.left = onloadFx + 'px';
             document.getElementsByClassName("usingfurnitureimg")[i].style.top = onloadFy + 'px';
+
+            let alreadyCheck = [[${nowfurniturelist}]][i].itemSeq;
+
+            for(let j=0; j<$(".checkboxes").length;j++){
+                if(alreadyCheck==$($(".checkboxes")[j]).prev().val()){
+                    $($(".checkboxes")[j]).prop("checked", true);
+                }
+            }
+
         }
+
 
     })
 

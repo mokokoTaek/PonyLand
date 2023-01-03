@@ -214,7 +214,7 @@
                     </span>
                 </div>
                 <div class="bg3-2-2">
-                    <span><a th:href="@{/stable/toStable(id = ${id})}">
+                    <span><a th:if="${id==sessionID}" th:href="@{/stable/toStable(id = ${id})}">
                         <i class="material-symbols-outlined" style="font-size:36px; margin-bottom: 0px;">door_open</i>
                         마구간
                     </a>

@@ -68,6 +68,10 @@ public class FamilyService {
 
     }
 
+    public void save(FamilyDTO dto){
+        dao.save(dto);
+
+    }
     public void deleteByFamilySeq(int familySeq){
         dao.deleteByFamilySeq(familySeq);
     }

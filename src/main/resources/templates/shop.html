@@ -417,6 +417,84 @@
                             </div>
                         </div>
 
+                        <div class="carrotbox2">
+                            <div class="carrotprice">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/bg1.gif"></button>
+                                <input type="hidden" value="bg1.gif">
+                            </div>
+
+                            <div class="shopname">
+                                1200당근
+                            </div>
+                        </div>
+
+                        <div class="carrotbox2">
+                            <div class="carrotprice">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/bg2.gif"></button>
+                                <input type="hidden" value="bg2.gif">
+                            </div>
+
+                            <div class="shopname"">
+                                1200당근
+                            </div>
+                        </div>
+
+                        <div class="carrotbox2">
+                            <div class="carrotprice">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/bg3.gif"></button>
+                                <input type="hidden" value="bg3.gif">
+                            </div>
+
+                            <div class="shopname">
+                                1200당근
+                            </div>
+                        </div>
+
+                        <div class="carrotbox2">
+                            <div class="carrotprice">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/bg4.gif"></button>
+                                <input type="hidden" value="bg4.gif">
+                            </div>
+
+                            <div class="shopname">
+                                1200당근
+                            </div>
+                        </div>
+
+                        <div class="carrotbox2">
+                            <div class="carrotprice">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/bg5.gif"></button>
+                                <input type="hidden" value="bg5.gif">
+                            </div>
+
+                            <div class="shopname">
+                                1200당근
+                            </div>
+                        </div>
+
+                        <div class="carrotbox2">
+                            <div class="carrotprice">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/bg6.gif"></button>
+                                <input type="hidden" value="bg6.gif">
+                            </div>
+
+                            <div class="shopname">
+                                1200당근
+                            </div>
+                        </div>
+
 
 
                     </div>
@@ -515,6 +593,8 @@
 
 <script th:inline="javascript">
     $(".shopimage").click(function(){
+        console.log($(this).parent().parent())
+        $(this).parent().parent().css("border","5px solid").css("border-color","#5a3d2b")
 
         let product = $(this).next().val();
         let price  =$(this).prev().val();

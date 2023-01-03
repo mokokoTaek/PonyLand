@@ -23,7 +23,7 @@
 
 <div th:if="${id} != null">
     <div class="mainsection">
-        <button class="ponyland">포니랜드</button>
+        <button class="ponyland0">포니랜드</button>
 <!--        <a th:href="@{/toMiniPage(id = ${id})}">-->
             <button class="ponyland" type="button" id="toMiniPage">
                 <span th:text="${id}"></span> 입장하기
@@ -41,7 +41,7 @@
 
 <div th:unless="${id} != null">
     <div class="mainsection">
-        <button class="ponyland">포니랜드</button>
+        <button class="ponyland0">포니랜드</button>
             <button class="ponyland" type="button" id="miniHome">미니홈피</button>
             <button class="ponyland" type="button" id="horseHome">마구간</button>
         <a th:href="@{/login}">
@@ -94,7 +94,7 @@
     }
 
     function logoutComplete(){
-        alert("로그아웃이 완료되었습니다.");
+        alert("로그아웃 되었습니다.");
     }
 </script>
 

@@ -2,7 +2,11 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.6'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'war'
 }
+
+
+//provideRuntime = 'org.springframework.boot:spring-boot-starter-tomcat'
 
 group = 'PonyLand'
 version = '0.0.1-SNAPSHOT'
@@ -35,10 +39,6 @@ dependencies {
 	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 	implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
-
-
-
-
 
 }
 

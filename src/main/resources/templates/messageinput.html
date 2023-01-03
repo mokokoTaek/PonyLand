@@ -95,8 +95,9 @@
         </div>
 
         <div th:if="${param.replyTo == null}" class="field half second">
-            받는이 : <input type="text" placeholder="받는 사람" name="recv_nick" id="recv"> 에게
+            받는이 : <input type="text" placeholder="받는 사람" name="recv_nick" id="member_id"> 에게
         </div>
+        <div id="result2"></div>
 
         <div th:if="${param.replyTo != null}" class="field half second">
             받는이 : <input type="text" placeholder="받는 사람" name="recv_nick" th:value="${param.replyTo}" th:if="${param.replyTo != null}"> 에게
@@ -126,7 +127,7 @@
 </div>
 <script>
 
-    let inputrecv = document.getElementById("recv")
+    let inputrecv = document.getElementById("member_id")
     let inputtitle= document.getElementById("title")
     let inputcontent = document.getElementById("content")
     let frm = document.getElementById("frm")
@@ -171,7 +172,7 @@
 
     const textarea = document.getElementById('content');
     const title = document.getElementById('title');
-    const recv = document.getElementById('recv');
+    const recv = document.getElementById('member_id');
     textarea.addEventListener('input', function() {
         textarea.value = textarea.value.replace(/<script>/g, '');
     });
@@ -183,6 +184,35 @@
     });
 
 
+
+    document.getElementById("member_id").onkeyup = function() {
+        let id = document.getElementById("member_id").value;
+        $.ajax({
+            url:"/member/duplCheck",
+            data:{"member_id":id}
+        }).done(function(resp){
+            console.log(resp);
+            if(resp === false){
+                $("#result2").html("존재하지 않는 아이디 입니다.");
+                $("#result2").css("color","red")
+            } else{
+                $("#result2").html("");
+            }
+        });
+    }
+
+
+    $('.sendbtn').click(function(e) {
+        if ($('#result2').css('color') == 'rgb(255, 0, 0)') {
+            e.preventDefault();
+            Swal.fire({
+                title: '확인',
+                text: '받는 사람을 확인해 주세요.',
+                icon: 'warning',
+                confirmButtonText: '확인'
+            })
+        }
+    });
 </script>
 
 </body>

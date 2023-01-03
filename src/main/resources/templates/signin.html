@@ -171,27 +171,6 @@
         }
     }
 
-    document.querySelector('button.signinbtn').addEventListener('click', function(event) {
-        event.preventDefault(); // prevent the form from being submitted
-
-        // select the div elements with the specified ids
-        let divElements = document.querySelectorAll('#div_name, #div7, #div6, #result2, #div3');
-
-        // check if any of the div elements contain red text
-        let hasError = [].slice.call(divElements).some(function(divElement) {
-            console.log(divElement.style.color)
-            return divElement.style.color === 'red';
-        });
-
-        if (hasError) {
-            // display the alert message if any of the div elements contain red text
-            alert('회원 정보를 확인해 주세요.');
-        } else {
-            // otherwise, submit the form
-            document.getElementById('frm').submit();
-        }
-    });
-
 
 
     let inputname = document.getElementById("member_name")
@@ -276,6 +255,18 @@
             return false;
         }
     }
+
+    $('.signinbtn').click(function(e) {
+        if ($('#div_name').css('color') == 'rgb(255, 0, 0)' || $('#div7').css('color') == 'rgb(255, 0, 0)' || $('#div6').css('color') == 'rgb(255, 0, 0)' || $('#result2').css('color') == 'rgb(255, 0, 0)' || $('#div3').css('color') == 'rgb(255, 0, 0)') {
+            e.preventDefault();
+            Swal.fire({
+                title: '확인!',
+                text: '가입 정보를 확인해 주세요.',
+                icon: 'warning',
+                confirmButtonText: '확인'
+            })
+        }
+    });
 
 
 </script>

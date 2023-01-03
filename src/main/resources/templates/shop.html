@@ -18,8 +18,13 @@
 <div class="container">
 
     <div class="top">
-        <div class="">Today : 245</div>
-        <div class="">뮤직플레이어 부분</div>
+        <!--        <div th:if="${id}!=null">-->
+        <!--            <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|" style="font-size: 20px">today</div>-->
+        <!--        </div>-->
+        <div class="topright">
+            <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+            <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+        </div>
     </div>
     <div class="shopbg">
         <div class="shopbg1">
@@ -31,7 +36,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/1.gif" class="horseimg"></button>
                                 <input type="hidden" value="1.gif">
                             </div>
@@ -44,7 +49,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=390>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/2.gif" class="horseimg"></button>
                                 <input type="hidden" value="2.gif">
                             </div>
@@ -57,7 +62,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=300>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/3.gif" class="horseimg"></button>
                                 <input type="hidden" value="3.gif">
                             </div>
@@ -69,7 +74,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/4.gif" class="horseimg"></button>
                                 <input type="hidden" value="4.gif">
                             </div>
@@ -81,7 +86,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=420>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/5.gif" class="horseimg"></button>
                                 <input type="hidden" value="5.gif">
                             </div>
@@ -93,7 +98,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/6.gif" class="horseimg"></button>
                                 <input type="hidden" value="6.gif">
                             </div>
@@ -105,7 +110,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/7.gif" class="horseimg"></button>
                                 <input type="hidden" value="7.gif">
                             </div>
@@ -117,7 +122,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/8.gif" class="horseimg"></button>
                                 <input type="hidden" value="8.gif">
                             </div>
@@ -129,7 +134,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/9.gif" class="horseimg"></button>
                                 <input type="hidden" value="9.gif">
                             </div>
@@ -141,7 +146,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=420>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/10.gif" class="horseimg"></button>
                                 <input type="hidden" value="10.gif">
                             </div>
@@ -153,7 +158,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=420>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/11.gif" class="horseimg"></button>
                                 <input type="hidden" value="11.gif">
                             </div>
@@ -165,7 +170,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/12.gif" class="horseimg"></button>
                                 <input type="hidden" value="12.gif">
                             </div>
@@ -177,7 +182,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=600>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/13.gif" class="horseimg"></button>
                                 <input type="hidden" value="13.gif">
                             </div>
@@ -189,7 +194,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/14.gif" class="horseimg"></button>
                                 <input type="hidden" value="14.gif">
                             </div>
@@ -201,7 +206,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/15.gif" class="horseimg"></button>
                                 <input type="hidden" value="15.gif">
                             </div>
@@ -213,7 +218,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=300>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/16.gif" class="horseimg"></button>
                                 <input type="hidden" value="16.gif">
                             </div>
@@ -225,7 +230,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/17.gif" class="horseimg"></button>
                                 <input type="hidden" value="17.gif">
                             </div>
@@ -237,7 +242,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/18.gif" class="horseimg"></button>
                                 <input type="hidden" value="18.gif">
                             </div>
@@ -249,7 +254,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=420>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/19.gif" class="horseimg"></button>
                                 <input type="hidden" value="19.gif">
                             </div>
@@ -261,7 +266,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/20.gif" class="horseimg"></button>
                                 <input type="hidden" value="20.gif">
                             </div>
@@ -273,7 +278,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=300>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/21.gif" class="horseimg"></button>
                                 <input type="hidden" value="21.gif">
                             </div>
@@ -285,7 +290,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=300>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/22.gif" class="horseimg"></button>
                                 <input type="hidden" value="22.gif">
                             </div>
@@ -297,7 +302,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/23.gif" class="horseimg"></button>
                                 <input type="hidden" value="23.gif">
                             </div>
@@ -309,7 +314,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/24.gif" class="horseimg"></button>
                                 <input type="hidden" value="24.gif">
                             </div>
@@ -321,7 +326,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/25.gif" class="horseimg"></button>
                                 <input type="hidden" value="25.gif">
                             </div>
@@ -333,7 +338,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/26.gif" class="horseimg"></button>
                                 <input type="hidden" value="26.gif">
                             </div>
@@ -345,7 +350,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=220>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/27.gif" class="horseimg"></button>
                                 <input type="hidden" value="27.gif">
                             </div>
@@ -357,7 +362,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=300>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/28.gif" class="horseimg"></button>
                                 <input type="hidden" value="28.gif">
                             </div>
@@ -369,7 +374,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="horse">
-                                <input type="hidden" value=600>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/29.gif" class="horseimg"></button>
                                 <input type="hidden" value="29.gif">
                             </div>
@@ -388,47 +393,32 @@
                     <div class="shopbox">
                         <div class="carrotbox2">
                             <div class="carrotprice">
-                                <input type="hidden" value="horse">
-                                <input type="hidden" value=80000>
-                                <button class="shopimage" type="button"><img src="/static/img/horse1.gif"></button>
-                                <input type="hidden" value="horse1.gif">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/game.gif"></button>
+                                <input type="hidden" value="game.gif">
                             </div>
 
                             <div class="shopname">
-                                80000당근
+                                1200당근
                             </div>
                         </div>
 
                         <div class="carrotbox2">
                             <div class="carrotprice">
-                                <input type="hidden" value="horse">
-                                <input type="hidden" value=200>
-                                <button class="shopimage" type="button">테스트이미지2</button>
-                                <input type="hidden" value="horse1.png">
+                                <input type="hidden" value="background">
+                                <input type="hidden" value=1>
+                                <button class="shopimage" type="button"><img src="/static/img/snow.gif"></button>
+                                <input type="hidden" value="snow.gif">
                             </div>
 
                             <div class="shopname">
-                                200당근
+                                1200당근
                             </div>
                         </div>
 
-                        <div class="carrotbox2">
-                            <div class="carrotprice">
-                                <button class="shopimage" type="button">이미지</button>
-                            </div>
-                            <div class="shopname">
-                                상품이름
-                            </div>
-                        </div>
 
-                        <div class="carrotbox2">
-                            <div class="carrotprice">
-                                <button class="shopimage" type="button">이미지</button>
-                            </div>
-                            <div class="shopname">
-                                상품이름
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="shopbg1-2-2">
@@ -439,7 +429,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="furniture">
-                                <input type="hidden" value=1500>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/wood.png"></button>
                                 <input type="hidden" value="wood.png">
                             </div>
@@ -451,7 +441,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="furniture">
-                                <input type="hidden" value=1500>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/straw.png"></button>
                                 <input type="hidden" value="straw.png">
                             </div>
@@ -463,7 +453,7 @@
                         <div class="carrotbox2">
                             <div class="carrotprice">
                                 <input type="hidden" value="furniture">
-                                <input type="hidden" value=1500>
+                                <input type="hidden" value=1>
                                 <button class="shopimage" type="button"><img src="/static/img/axe.png"></button>
                                 <input type="hidden" value="axe.png">
                             </div>
@@ -472,25 +462,9 @@
                             </div>
                         </div>
 
-                        <div class="carrotbox2">
-                            <div class="carrotprice">
-                                <button class="shopimage" type="button">이미지</button>
-                            </div>
-                            <div class="shopname">
-                                상품이름
-                            </div>
 
-                        </div>
 
-                        <div class="carrotbox2">
-                            <div class="carrotprice">
-                                <button class="shopimage" type="button">이미지</button>
-                            </div>
-                            <div class="shopname">
-                                상품이름
-                            </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
@@ -600,8 +574,31 @@
 
             })
         }
-
     })
+
+    //메인화면에서 검색기능
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
+
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
+    }
 </script>
 </body>
 

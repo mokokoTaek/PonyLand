@@ -20,4 +20,6 @@ public class GuestbookDTO {
     private Timestamp guestbook_write_date;
     private String guestbook_host;
 
+    private String guestbook_sysname;
+
 }

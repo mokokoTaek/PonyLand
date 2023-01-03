@@ -216,6 +216,7 @@ public class MemberController {
             model.addAttribute("list",dto);
             service.imgupdate(dto);
 
+
 //        }catch(Exception e){
 //            return "error";
 //        }

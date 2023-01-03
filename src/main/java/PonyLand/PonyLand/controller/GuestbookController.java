@@ -37,6 +37,10 @@ public class GuestbookController {
     @GetMapping("insert")
     public String insert(GuestbookDTO dto) throws Exception {
         String guestbook_writer = (String) session.getAttribute("sessionID");
+        System.out.println(dto.getGuestbook_sysname());
+        MemberDTO dto1 = memberService.findById((String)session.getAttribute("sessionID"));
+
+        dto.setGuestbook_sysname(dto1.getMember_sysname());
         dto.setGuestbook_writer(guestbook_writer);
         GuestbookService.insert(dto);
 
@@ -60,15 +64,18 @@ public class GuestbookController {
     //미니홈피에서 방명록으로 가는 코트
     @RequestMapping("goGuestbook")
     public String goGuestbook(String guestbook_host, Model model) {
+
         MemberDTO dto = memberService.findById(guestbook_host);
         List<GuestbookDTO> list = GuestbookService.select();
         List<GuestbookCommentDTO> list1 = GuestbookCommentService.select();
         System.out.println(list1);
+
         model.addAttribute("id", guestbook_host);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
         model.addAttribute("dto", list);
         model.addAttribute("list1", list1);
         model.addAttribute("list2",dto);
+
         return "guestbook";
     }
 

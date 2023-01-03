@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>mypage</title>
     <link rel="stylesheet" href="../static/mypage.css"/>
+    <!--    <link rel="stylesheet" href="../static/style.css"/>-->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -21,7 +22,16 @@
 
     <div class="top">
         <div class="" th:text="|Today : ${list.memberHomepageViewCount}|"></div>
-        <div class="">뮤직플레이어 부분 </div>
+        <div class="topright">
+            <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+            <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+            <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+            <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+            <!--                            Your browser does not support the audio element.-->
+            <!--                        </audio>-->
+            <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+        </div>
+        <!--        <div class="">뮤직플레이어 부분 </div>-->
     </div>
     <div class="bg1">
         <form action="/member/imgupdate" method="post" enctype="multipart/form-data">
@@ -30,7 +40,7 @@
                     <div class = "thumbnail">
                         <input type="hidden" name="memberId" th:value="${id}">
                         <!--null이 아니면 sysname을 불러오고 null값이면 img밑에있는 기본프로필사진을 불러온다.-->
-                        <img style="width: 100%; height: 100%;"  th:if="${list.getMember_sysname() != null}" th:src="|/img/@{${list.getMember_sysname()}}|" id="profile" />
+                        <img style="width: 100%; height: 100%;"  th:if="${list.getMember_sysname() != null}" th:src="|/img/@{${list.getMember_sysname()}}|" id="profile"  />
                         <img style="width: 100%; " height="100%;" th:if="${list.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
 
                     </div>
@@ -62,7 +72,7 @@
                     </div>
                     <div>
                         <div>이름</div>
-                        <input type="text" id="member_name" class="loginbg" placeholder="" th:value="${list.getMember_name()}" name="member_name" readonly>
+                        <input type="text" id="member_name" class="loginbg" placeholder="" th:maxlength="5" th:value="${list.getMember_name()}" name="member_name" readonly>
                         <div id="div_name"></div>
                     </div>
                     <div>
@@ -111,6 +121,7 @@
     $(document).ready(function() {
         $('.modifybtn2,.modifybtn1').hide(); //취소,변경이 숨어있다가
         $(".modifybtn").on("click", function () {
+            $(".modifybtn").hide();
             $('.modifybtn2,.modifybtn1').show(); // 수정하기 버튼을 누르면 취소 변경이 다시나타남.
             $("input").removeAttr("readonly"); //수정하기버튼누르면 readonly가 해체
 
@@ -225,6 +236,29 @@
         })
     })
 
+    //메인화면에서 검색기능
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
+
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
+    }
 
 
 

@@ -45,12 +45,18 @@
     }
 </style>
 <body>
-<div id="player"></div>
 <div class="container">
 
     <div class="top">
         <div th:if="${id}!=null">
             <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
+        </div>
+        <div class="">
+            <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+            <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+            <!--                            Your browser does not support the audio element.-->
+            <!--                        </audio>-->
+            <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
         </div>
     </div>
 
@@ -70,7 +76,7 @@
 
             <div class="profile2">
                 <form action="/member/message">
-                    <div style="margin-bottom: 10px">
+                    <div class="profilemsg">
                         <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" readonly ></textarea>
                     </div>
                     <div style="display: flex; justify-content: space-between">
@@ -148,13 +154,13 @@
                 <div class="updatednews2">
 
 
-                    <div class="searchbox1">  <!--검색-->
-                        <!--                        <div>-->
-                        <input type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
-                        <button type="button" class="searchbtn" onclick="selectById()">검색</button>
-                        <!--                        </div>-->
+<!--                    <div class="searchbox1">  &lt;!&ndash;검색&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <div>&ndash;&gt;-->
+<!--                        <input type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">-->
+<!--                        <button type="button" class="searchbtn" onclick="selectById()">검색</button>-->
+<!--                        &lt;!&ndash;                        </div>&ndash;&gt;-->
 
-                    </div>
+<!--                    </div>-->
 
                     <div class="updatednews2-1">
                         <div>
@@ -221,10 +227,11 @@
 </div>
 <div class="side">
     <button class="btnmain1">메인</button>
-    <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}" >
+    <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}">
         <button class="btnmain2">방명록</button>
     </a>
     <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
+
         <button class="btnmain2">사진첩</button>
     </a>
     <a  th:if="${id==sessionID}"  th:href="@{/member/goMypage?(memberId=${id})}">
@@ -236,6 +243,7 @@
         $('.modifybtn2,.cancel-button').hide();
 
         $(".modifybtn").on("click",function(){
+            $('textarea').css('background-color', 'floralwhite');
             $('.modifybtn2,.cancel-button').show();
             $('textarea').removeAttr("readonly");
             $(this).hide();
@@ -341,36 +349,17 @@
 
 
 </script>
-
-<script>
-    var ap = new APlayer({
-        element: document.getElementById('player'),
-        narrow: false,
-        autoplay: true,
-        showlrc: false,
-        mutex: false,
-        fixed: true,
-        loop: true,
-        theme: '#ad7a86',
-        mode: 'random',
-        preload: 'auto',
-        listmaxheight: '51px',
-        music: [
-            {   title: 'Witout You',
-                author: '원타임 Witout You',
-                url: '/static/music/원타임-05-Without You.mp3',
-                pic: 'PIC URL'
-            },
-            {   title: 'Cafe',
-                author: '빅뱅 Cafe',
-                url: '/static/music/cafe.mp3',
-                pic: 'PIC URL 2'
-            },
-        ]
-    });
-
-</script>
 </body>
+
+<!-- SCM Music Player https://www.scmplayer.net -->
+<!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
+<!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
+<!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
+<!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
+<!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}">-->
+
+<!--</script>-->
+<!-- SCM Music Player script end -->
 
 
 </html>

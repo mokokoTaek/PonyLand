@@ -92,12 +92,12 @@
                     <div style="margin-top: 15px" >
                         <input type="hidden" th:value="${dto1.getAlbum_host()}" id="host1"/>
 
-                        <button class="profilebtn2" type="button" style="float:right;" th:if="${sessionID==dto1.getAlbum_host()}">
+                        <button class="profilebtn2" type="button" style="float:right;" th:if="${sessionID==dto1.getAlbum_host()}" >
                             사진첩 작성하기
                         </button>
 
                     </div>
-                    <div th:each="list:${dto}" style="margin-bottom: 50px" th:if="${id==list.getAlbum_host()}">
+                    <div th:each="list:${dto}" style="margin-bottom: 50px" th:if="${id==list.getAlbum_host()}" >
                         <!--                                                                                 원래 {list.getAlbum_writer()}               -->
                         <div style="margin-left:10px; font-size: 10px; color: lightgrey; margin-bottom: 5px"><th th:text="${#dates.format(list.getAlbum_write_date(), 'yyyy-MM-dd HH:mm')}">시간</th></div>
                         <div class="gbtitle">
@@ -173,6 +173,8 @@
                             <button class="gbbutton" type="button" name="comment" >확인</button>
                             <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
+
+
                     </div>
                 </div>
             </div>

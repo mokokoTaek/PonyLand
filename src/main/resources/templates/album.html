@@ -95,7 +95,7 @@
 
         </div>
         <form id="form">
-            <div class="albg3">
+            <div class="albg3" >
                 <div class="bg3in">
                     <div style="margin-top: 15px" >
                         <input type="hidden" th:value="${dto1.getAlbum_host()}" id="host1"/>
@@ -129,7 +129,7 @@
                         <div class="alpic">
 <!--                            <div style="text-align: center">-->
                             <!--                            <th th:src="@{${file.oriname()}}">-->
-                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|">
+                            <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|" >
                             <!--사진 불러오기.-->
 <!--                            </th>-->
 <!--                            </div>-->
@@ -181,6 +181,8 @@
                             <button class="gbbutton" type="button" name="comment" >확인</button>
                             <input type="hidden" th:value="${list.Album_seq}" name="Album_Comment_parent_seq"/>
                         </div>
+
+
 
 
                     </div>

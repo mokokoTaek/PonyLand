@@ -14,44 +14,42 @@
         <form action="" method="post" id="frm">
             <div th:if="${list1}!=null">
                 <div th:each="list1:${list1}">
-                <div class="familybg">
-                <div class="familybg2">
-                    <tr>
-                        <img th:src="|/static/img/${imagelist1.get(list1Stat.index)}|" th:if="${imagelist1.get(list1Stat.index)!=null}" style="width: 100px; height: 100px;">
-                        <img style="width: 100px; " height="100px;" th:if="${imagelist1.get(listStat.index)==null}" src="/static/img/no_profile.jpg" >
-                        <th th:text="|${list1.familyMe} (${list1.familyProposedName})|"></th>
-<!--                        <th th:text="|${list1.familyProposedName} |"></th>-->
-                        <br>
-                        <button type="button" class="deleteBtn">삭제</button>
-                        <input type="hidden" class="hiddenSeq" th:value="${list1.familySeq}">
-                        <br><br>
+                    <div class="familybg">
+                        <div class="familybg2">
+                            <tr>
+                                <img th:src="|/static/img/${imagelist1.get(list1Stat.index)}|" th:if="${imagelist1.get(list1Stat.index)!=null}" style="width: 100px; height: 100px;">
+                                <img style="width: 100px; " height="100px;" th:if="${imagelist1.get(listStat.index)==null}" src="/static/img/no_profile.jpg" >
+                                <th th:text="|${list1.familyMe} (${list1.familyProposedName})|"></th>
+                                <!--                        <th th:text="|${list1.familyProposedName} |"></th>-->
+                                <br>
+                                <button type="button" class="deleteBtn">삭제</button>
+                                <input type="hidden" class="hiddenSeq" th:value="${list1.familySeq}">
+                                <br><br>
+                            </tr>
 
-
-                    </tr>
-
-                </div>
-            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div th:if="${list2}!=null">
                 <div th:each="list2:${list2}">
                     <div class="familybg">
                         <div class="familybg2">
-                    <tr>
-                        <img th:src="|/static/img/${imagelist2.get(list2Stat.index)}|" th:if="${imagelist2.get(list2Stat.index)!=null}" style="width: 100px; height: 100px;">
-                        <img style="width: 100px; " height="100px;" th:if="${imagelist2.get(list2Stat.index)==null}" src="/static/img/no_profile.jpg" >
-                        <th th:text="|${list2.familyOther} (${list2.familyProposerName})|"></th>
-<!--                        <th th:text="|${list2.familyProposerName} |"></th>-->
-                        <br>
-                        <button type="button" class="deleteBtn">삭제</button>
-                        <input type="hidden" class="hiddenSeq" th:value="${list2.familySeq}">
-                        <br><br>
+                            <tr>
+                                <img th:src="|/static/img/${imagelist2.get(list2Stat.index)}|" th:if="${imagelist2.get(list2Stat.index)!=null}" style="width: 100px; height: 100px;">
+                                <img style="width: 100px; " height="100px;" th:if="${imagelist2.get(list2Stat.index)==null}" src="/static/img/no_profile.jpg" >
+                                <th th:text="|${list2.familyOther} (${list2.familyProposerName})|"></th>
+                                <!--                        <th th:text="|${list2.familyProposerName} |"></th>-->
+                                <br>
+                                <button type="button" class="deleteBtn">삭제</button>
+                                <input type="hidden" class="hiddenSeq" th:value="${list2.familySeq}">
+                                <br><br>
 
-                    </tr>
+                            </tr>
 
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
             </div>
         </form>
 

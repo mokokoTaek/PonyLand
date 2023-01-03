@@ -287,7 +287,7 @@ body {
     width: 80%;
     height: 310px;
     background: rgba(255, 255, 255, 1);
-    border: 5px solid rgba(90, 61, 43, 1);
+    border: 3px solid rgba(90, 61, 43, 1);
     border-radius: 8px;
     align-items: center;
     justify-content: center;
@@ -303,6 +303,16 @@ body {
     width: 80%;
     color: rgba(244, 161, 39, 1);
     font-size: 20px;
+}
+
+.profilemsg{
+    margin-bottom: 10px;
+    border: 3px solid #5a3d2b;
+    border-radius: 8px;
+}
+
+.profilemsg:focus{
+
 }
 
 .modifybtn{
@@ -531,6 +541,21 @@ body {
 .top > div{
     display: flex;
     width: 200px;
+    height: 30px;
+    background: #5a3d2b;
+    margin-bottom: 10px;
+    border-left: 4px solid #F4A127;
+    border-bottom: 4px solid #F4A127;
+    border-radius: 8px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-weight: lighter;
+}
+
+.topright{
+    display: flex;
+    width: 200px;
     height: 25px;
     background: #5a3d2b;
     margin-bottom: 10px;
@@ -539,6 +564,22 @@ body {
     border-radius: 8px;
     color: white;
     justify-content: center;
+    align-items: center;
+}
+
+.topright>input{
+    background-color: transparent;
+    border: none;
+}
+
+.topright>input:focus{
+    outline: none;
+    color: white;
+}
+
+.topright>input::placeholder{
+    color: white;
+    font-weight: lighter;
 }
 
 .today {
@@ -619,11 +660,15 @@ button:hover {
 
 .textareabg{
     display: flex;
-    width: 310px;
-    height: 100px;
+    width: 304px;
+    height: 106px;
     background: white;
     border-radius: 8px;
     font-size: 25px;
+}
+
+.textareabg:focus{
+    outline: none;
 }
 
 

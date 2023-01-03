@@ -24,7 +24,15 @@
 <div class="container">
     <div class="top">
         <div class="" th:text="|Today : ${list.getMemberHomepageViewCount()}|"></div>  <!--Today 가져오기-->
-        <div class="">뮤직플레이어 부분</div>
+        <div class="topright">
+            <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+            <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+            <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+            <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+            <!--                            Your browser does not support the audio element.-->
+            <!--                        </audio>-->
+            <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+        </div>
     </div>
 
     <div class="bg1">
@@ -249,21 +257,8 @@
                     div.append(th2);
                     div.append(th3);
                     $(".comment").append(div);
-
-
-
-
-
-
-
-
                 }
-
-
-
             }).fail(function (data) {
-
-
             })
         });
 
@@ -281,7 +276,29 @@
 
 
 
+    //메인화면에서 검색기능
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
+        } else {
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
 
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
+        }
+    }
 
 
 

@@ -3,6 +3,7 @@ package PonyLand.PonyLand.controller;
 import PonyLand.PonyLand.dto.FamilyDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.service.FamilyService;
+import PonyLand.PonyLand.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ public class FamilyController {
     @Autowired
     private FamilyService service;
 
+    @Autowired
+    private MemberService memberService;
     @Autowired
     private HttpSession session;
 
@@ -49,9 +52,9 @@ public class FamilyController {
 
     @RequestMapping("agreeFamily")
     public String agreeFamily(int familySeq,Model model){
-
-        service.agreeFamily(familySeq).setFamilyStatus(1);
-
+        FamilyDTO dto = service.agreeFamily(familySeq);
+        dto.setFamilyStatus(1);
+        service.save(dto);
         List<FamilyDTO> list = service.checkNewFamily((String)session.getAttribute("sessionID"),0);
         List<String> imagelist = service.getProposerImage(list);
 
@@ -89,8 +92,13 @@ public class FamilyController {
         List<FamilyDTO> list1 = service.getFamilyListByProposerId(id);
         List<FamilyDTO> list2 = service.getFamilyListByProposedId(id);
 
+        List<String> imagelist1 = service.getProposedImage(list1);
+        List<String> imagelist2 = service.getProposerImage(list2);
+
         model.addAttribute("list1",list1);
         model.addAttribute("list2",list2);
+        model.addAttribute("imagelist1",imagelist1);
+        model.addAttribute("imagelist2",imagelist2);
         return "familyListOpen";
     }
 

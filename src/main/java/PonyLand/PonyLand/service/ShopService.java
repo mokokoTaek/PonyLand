@@ -33,8 +33,7 @@ public class ShopService {
                 return false;
             }else{
                 dto.setMember_coin(dto.getMember_coin()-intPrice);
-                memberService.insert(dto);
-
+                memberService.updateCoin(dto);
                 return true;
             }
 

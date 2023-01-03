@@ -56,6 +56,14 @@ public class MemberService {
     }
 
     public void insert(MemberDTO dto) {
+        dto.setMember_coin(500);
+        System.out.println("!!!!!");
+        System.out.println(dto.getMember_coin());
+
+        dao.insert(dto);
+    }
+
+    public void updateCoin(MemberDTO dto){
         dao.insert(dto);
     }
 

@@ -45,6 +45,7 @@
     }
 </style>
 <body>
+<iframe id="player-iframe" src="static/music/player.html" frameborder="0" allow="autoplay"></iframe>
 <div class="container">
 
     <div class="top">
@@ -154,14 +155,6 @@
                 <div class="updatednews2">
 
 
-<!--                    <div class="searchbox1">  &lt;!&ndash;검색&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        <div>&ndash;&gt;-->
-<!--                        <input type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">-->
-<!--                        <button type="button" class="searchbtn" onclick="selectById()">검색</button>-->
-<!--                        &lt;!&ndash;                        </div>&ndash;&gt;-->
-
-<!--                    </div>-->
-
                     <div class="updatednews2-1">
                         <div>
                             방명록   <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
@@ -207,11 +200,11 @@
                     <!--                    여기서부터 미니룸 div-->
                     <!--                    <div class="bg4"  >-->
 
-                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target" style="width:150px; height:150px;">
+                    <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target" style="width:200px; height:200px;">
 
                     <!--                    </div>-->
                     <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
-                        <img  th:src="|/static/img/@{${i.itemName}}|" >
+                        <img  th:src="|/static/img/@{${i.itemName}}|" style="width: 75px; height: 75px;">
                     </span>
                 </div>
                 <div class="bg3-2-2">
@@ -349,17 +342,10 @@
 
 
 </script>
+<script>
+
+</script>
 </body>
-
-<!-- SCM Music Player https://www.scmplayer.net -->
-<!--<script type="text/javascript" src="https://www.scmplayer.net/script.js"-->
-<!--        data-config="{'skin':'https://static.tumblr.com/su8juwr/BpLn0szvm/miniskin.css','volume':50,'autoplay':true,-->
-<!--        'shuffle':false,'repeat':1,'placement':'top','showplaylist':false,'playlist':[{'title':'Y','url':'https://drive.google.com/uc?export=download&id=1ylPXjljH5ReVyBUQ7b_59AkyWzqDJ2qV'}-->
-<!--        ,{'title':'Trip','url':'https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR'}-->
-<!--        ,{'title':'Vain','url':'https://drive.google.com/uc?export=download&id=16SG_jWEE9qyoONLoJPY2Mk5DR3NxIcQu'}]}">-->
-
-<!--</script>-->
-<!-- SCM Music Player script end -->
 
 
 </html>

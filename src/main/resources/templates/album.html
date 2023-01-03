@@ -96,7 +96,7 @@
         </div>
         <form id="form">
             <div class="albg3" >
-                <div class="bg3in">
+                <div class="bg3in" >
                     <div style="margin-top: 15px" >
                         <input type="hidden" th:value="${dto1.getAlbum_host()}" id="host1"/>
 
@@ -106,6 +106,7 @@
 
                     </div>
                     <div th:each="list:${dto}" style="margin-bottom: 50px" th:if="${id==list.getAlbum_host()}" >
+
                         <!--                                                                                 원래 {list.getAlbum_writer()}               -->
                         <div style="margin-left:10px; font-size: 10px; color: lightgrey; margin-bottom: 5px"><th th:text="${#dates.format(list.getAlbum_write_date(), 'yyyy-MM-dd HH:mm')}">시간</th></div>
                         <div class="gbtitle">
@@ -134,6 +135,7 @@
 <!--                            </th>-->
 <!--                            </div>-->
                         </div>
+                        <div th:if="${#lists.isEmpty(dto)}" th:text="글이 없습니다."></div>
 
                         <div class="alcontext">
                             <!--                        <input type="hidden" th:value="${list.Album_seq}"  name = "Album_seq"/>-->

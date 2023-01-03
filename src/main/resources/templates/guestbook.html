@@ -168,6 +168,7 @@
 
                         <!-- 방명록 댓글 -->
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
+
                             <div class="gbcmttitle">
                                 <div style="font-size: 13px">
                                     <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
@@ -250,12 +251,11 @@
         }).done(function (data) {
 
             let ddiv = $("<div >")
-            ddiv.attr("class", "gbcmttitle");
+            ddiv.attr("class", "gbcmt2");
 
             let thWriter = $("<th>");
             thWriter.append(data.guestbook_comment_writer);
             ddiv.append(thWriter);
-
 
             let thWritedate = $("<th>");
             thWritedate.append(data.guestbook_comment_write_date);
@@ -284,19 +284,7 @@
         })
     })
 
-
-    // Load the current song from local storage
     var currentSong = localStorage.getItem("currentSong");
-
-
-    // Update the audio element to play the current song
-    // document.getElementById("myAudio").src = currentSong;
-    // $(document).ready(function () {
-    //     if (sessionStorage.getItem('played') != "true") {
-    //         $('#music').get(0).play();
-    //         sessionStorage.setItem('played', "true");
-    //     }
-    // });
 
     function checkNewFamily(){
         let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");

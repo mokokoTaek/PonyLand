@@ -185,15 +185,6 @@
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
                         </div>
-<!--                            <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">-->
-<!--                                <div>-->
-<!--                                    &lt;!&ndash;<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>&ndash;&gt;-->
-<!--                                    <button type="button" class="guestbook_comment_deleteBtn">x</button>-->
-<!--                                    <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">-->
-<!--                                </div>-->
-<!--                            </th:block>-->
-
-
                         <div class="gbcmtinput">
                             <div class="gbcmt">
                                 <input class="gbcmt" type="text" maxlength="45" placeholder="댓글을 입력하세요(최대45자)">
@@ -257,9 +248,8 @@
             data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents},
             dataType: "json",
         }).done(function (data) {
-            let div = $("<div>");
 
-            let ddiv = $("<div>")
+            let ddiv = $("<div >")
             ddiv.attr("class", "gbcmttitle");
 
             let thWriter = $("<th>");
@@ -272,10 +262,11 @@
             ddiv.append(thWritedate);
 
             let divContents = $("<div>");
-            divContents.attr("style", "font-size: 18px");
+            divContents.attr("style", "font-size: 18px");``
             let thContents = $("<th>");
             thContents.append(data.guestbook_comment_contents);
             divContents.append(thContents);
+
 
             let button = $("<button>");
             button.attr("type", "button").attr("class", "guestbook_comment_deleteBtn");
@@ -284,13 +275,9 @@
 
             let input = $("<input>");
             input.attr("type", "hidden").attr("value", "data.guestbook_comment_seq");
+            ddiv.append(input);
 
-            div.append(ddiv);
-            div.append(divContents);
-            div.append(button);
-            div.append(input);
-
-            btn.parent().prev().prepend(div);
+            btn.prev("div").parent().prepend(ddiv,divContents);
             btn.prev().find('input').val("");
         }).fail(function (data) {
             console.log("ㅋㅋ 실패")

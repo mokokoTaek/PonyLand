@@ -20,8 +20,13 @@
 <div class="container">
 
     <div class="top">
-        <div class="">Today : 245</div>
-        <div class="">뮤직플레이어 부분</div>
+        <!--        <div th:if="${id}!=null">-->
+        <!--            <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|" style="font-size: 20px">today</div>-->
+        <!--        </div>-->
+        <div class="topright">
+            <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+            <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+        </div>
     </div>
     <div class="bg1">
         <div class="gameresultbg2">
@@ -91,13 +96,29 @@
         history.go(1);
     };
 
-   /* function onload(){
-        if ("${winner}".equals("${betNumber}")) {
-            $(".betting").text("배팅에 성공 하셨습니다.")
+    //메인화면에서 검색기능
+    function selectById(){
+        let idElement = document.getElementById("id");
+        if (idElement.value === "") {
+            alert("아이디를 입력하세요");
         } else {
-            $(".betting").text("배팅에 실패 하셨습니다.")
+            $.ajax({
+                url :"/toMiniPage",
+                data : {
+                    "id" : idElement.value
+                }
+            }).done(function(resp){
+                if(resp!==null) {
+                    let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+                }else {
+                    alert("아이디를 확인해주세요")
+                }
+
+            }).fail(function(error){
+                alert("아이디를 확인해주세요");
+            });
         }
-    }*/
+    }
 
 
 

@@ -43,7 +43,8 @@
       <div class="familybg">
         <div class="familybg2">
           <div class="familyprofle">
-            <img th:src="|/static/img/${imagelist.get(listStat.index)}|" style="width: 100px; height: 100px">
+            <img th:src="|/static/img/${imagelist.get(listStat.index)}|" th:if="${imagelist.get(listStat.index)!=null}" style="width: 100px; height: 100px">
+            <img style="width: 100px; " height="100px;" th:if="${imagelist.get(listStat.index)==null}" src="/static/img/no_profile.jpg" >
           </div>
           <div class="familycontent">
             <th th:text="|${list.familyProposerName} 님이|"></th>

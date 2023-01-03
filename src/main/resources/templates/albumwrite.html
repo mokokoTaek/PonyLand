@@ -18,7 +18,15 @@
 <div class="container">
   <div class="top">
     <div class="" th:text="|Today : ${list.getMemberHomepageViewCount()}|" ></div>
-    <div class="">뮤직플레이어 부분</div>
+    <div class="topright">
+      <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+      <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+      <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+      <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+      <!--                            Your browser does not support the audio element.-->
+      <!--                        </audio>-->
+      <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+    </div>
   </div>
 
   <div class="bg1">
@@ -69,7 +77,7 @@
           <div style="margin-top: 30px"></div>
 
           <div class="gbtitle">
-            <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title">
+            <input type="text" placeholder="글 제목을 입력하세요" id="Album_title" name="Album_title"  maxlength="45">
           </div>
 
           <div class="alpic">
@@ -82,11 +90,11 @@
               </div>
               <div id="text">
                 <div id="image-preview"></div>
-                <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents"  ></textarea>
+                <textarea id="altextarea" placeholder="글 내용을 입력하세요." name="Album_contents"   maxlength="80" ></textarea>
               </div>
               <div id="div1">
                 <tr>
-                  <input type="file" name="file" class="file" multiple accept=".jpg, .png, .gif" onchange="previewImage(event)">
+                  <input type="file" name="file" class="file"  accept=".jpg, .png, .gif" onchange="previewImage(event)">
                   <div>
                     <button type="button" class="alwrbtn" id="back">목록으로</button>
                     <button type="submit" class="alwrbtn" id="btn" >작성완료</button>
@@ -162,7 +170,7 @@
       document.getElementById('image-preview').innerHTML = '<img src="' + dataURL + '"style="max-width: 523px; max-height: 300px;">';
     };
   }
-//submit 클릭버튼 한번으로 막기.
+  //submit 클릭버튼 한번으로 막기.
   let buttonClicked = false;
 
   $("#btn").click(function(event) {
@@ -195,11 +203,31 @@
     }else {
       return;
     }
-
-
-
   });
 
+  //메인화면에서 검색기능
+  function selectById(){
+    let idElement = document.getElementById("id");
+    if (idElement.value === "") {
+      alert("아이디를 입력하세요");
+    } else {
+      $.ajax({
+        url :"/toMiniPage",
+        data : {
+          "id" : idElement.value
+        }
+      }).done(function(resp){
+        if(resp!==null) {
+          let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+        }else {
+          alert("아이디를 확인해주세요")
+        }
+
+      }).fail(function(error){
+        alert("아이디를 확인해주세요");
+      });
+    }
+  }
 
 </script>
 

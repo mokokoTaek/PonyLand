@@ -80,19 +80,33 @@ public class FamilyService {
         return dao.getFamilyListByProposerId(id);
     }
 
-    public List<FamilyDTO> getFamilyListByProposedId(String id){
-        return dao.getFamilyListByProposedId(id);
-    }
+        public List<FamilyDTO> getFamilyListByProposedId(String id){
+            return dao.getFamilyListByProposedId(id);
+        }
 
-    public List<String> getProposerImage(List<FamilyDTO> list){
+        public List<String> getProposerImage(List<FamilyDTO> list){
 
-        List<String> imagelist = new ArrayList<String>();
+            List<String> imagelist = new ArrayList<String>();
 
         for(int i=0;i<list.size();i++){
-            System.out.println(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
+            //System.out.println(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
             imagelist.add(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
 
         }
         return imagelist;
     }
+
+    public List<String> getProposedImage(List<FamilyDTO> list){
+
+        List<String> imagelist = new ArrayList<String>();
+
+        for(int i=0;i<list.size();i++){
+            //System.out.println(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
+            imagelist.add(mdao.findById(list.get(i).getFamilyProposedId()).getMember_oriname());
+
+        }
+        return imagelist;
+    }
+
+
 }

@@ -393,6 +393,11 @@ bgimg > img{
     width: 100px;
     height: 100px;
 }
+
+.shopimage>img{
+    width: 100px;
+    height: 100px;
+}
 /*carrot--------------------------------------------------------------------------------------*/
 .carrotbg3{
     display: flex;

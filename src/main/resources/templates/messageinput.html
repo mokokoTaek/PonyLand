@@ -197,6 +197,7 @@
                 $("#result2").css("color","red")
             } else{
                 $("#result2").html("");
+                $("#result2").css("color","green")
             }
         });
     }
@@ -211,6 +212,8 @@
                 icon: 'warning',
                 confirmButtonText: '확인'
             })
+        }else if ($('#result2').css('color') != 'rgb(0, 128, 0)'){
+
         }
     });
 </script>

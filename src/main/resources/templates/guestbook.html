@@ -142,7 +142,7 @@
                     <div class="gbtitle">
                         <div style="margin-left: 10px"><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
-                        <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
+                        <div><th th:text="${#dates.format(list.getGuestbook_write_date())}"></th></div>
                         <th:block th:if="${list.getGuestbook_writer().equals(sessionID)}">
                             <div style="margin-right: 10px">
                                 <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host()})}">삭제</a>

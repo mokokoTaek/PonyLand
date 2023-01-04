@@ -62,11 +62,11 @@
                     <button onclick="checkNewFamily();" class="profilebtn" type="button">일촌신청알림</button>
                 </div>
                 <div>
-                        <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
+                    <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
                 </div>
                 <div>
                     <a th:href="@{/member/wave}">
-                        <button class="profilebtn" type="button" id="wave">파도타기</button>
+                        <button class="profilebtn" type="button" id="wave">모험하기</button>
                     </a>
                 </div>
             </div>
@@ -164,10 +164,10 @@
                                 <th th:text="${list.getGuestbook_contents()}" th:readonly>방명록내용</th>
                             </div>
                         </div>
-
                         <!-- 방명록 댓글 -->
                         <div class="gbcmt2"></div>
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
+
                             <div class="gbcmttitle">
                                 <div style="font-size: 13px">
                                     <th class="commentArea1" th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
@@ -175,15 +175,19 @@
                                 <div style="font-size: 10px; color: darkgrey">
                                     <th class="commentArea2" th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
                                     <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">
-<!--                                        <div>-->
-                                            <!--<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>-->
-                                            <button type="button" class="guestbook_comment_deleteBtn">x</button>
-                                            <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
-<!--                                        </div>-->
+                                        <button type="button" class="guestbook_comment_deleteBtn">x</button>
+                                        <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
                                     </th:block>
                                 </div>
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
+<!--                            <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">-->
+<!--                                <div>-->
+<!--                                    &lt;!&ndash;<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>&ndash;&gt;-->
+<!--                                    <button type="button" class="guestbook_comment_deleteBtn">x</button>-->
+<!--                                    <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">-->
+<!--                                </div>-->
+<!--                            </th:block>-->
                         </div>
 
                         <div class="gbcmtinput">
@@ -193,28 +197,29 @@
                             <button class="gbbutton" type="button">확인</button>
                             <input type="hidden"  th:value="${list.getGuestbook_seq()}" >
                         </div>
-                        <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="side">
-    <a th:href="@{/toMiniPage(id = ${id})}">
-        <button class="btnmain2">메인</button>
-    </a>
-    <button class="btnmain1">방명록</button>
-    <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
-        <button class="btnmain2">사진첩</button>
-    </a>
-    <a  th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
-        <button class="btnmain2">내정보</button>
-    </a>
-    <div style="margin-top: 270px">
-        <iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
+
+    <div class="side">
+        <a th:href="@{/toMiniPage(id = ${id})}">
+            <button class="btnmain2">메인</button>
+        </a>
+        <button class="btnmain1">방명록</button>
+        <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
+            <button class="btnmain2">사진첩</button>
+        </a>
+        <a  th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
+            <button class="btnmain2">내정보</button>
+        </a>
+        <div style="margin-top: 270px">
+            <iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
+        </div>
     </div>
-</div>
+</body>
 
 <script>
     $("#guestbook_comment_write_btn").on("click",function(){
@@ -271,6 +276,7 @@
             let divWritedate = $("<div>")
             divWritedate.css("font-size","10px").css("color", "darkgrey");
 
+
             let button = $("<button>");
             button.addClass("guestbook_comment_deleteBtn");
             button.html("x");
@@ -292,19 +298,7 @@
         })
     })
 
-
-    // Load the current song from local storage
     var currentSong = localStorage.getItem("currentSong");
-
-
-    // Update the audio element to play the current song
-    // document.getElementById("myAudio").src = currentSong;
-    // $(document).ready(function () {
-    //     if (sessionStorage.getItem('played') != "true") {
-    //         $('#music').get(0).play();
-    //         sessionStorage.setItem('played', "true");
-    //     }
-    // });
 
     function checkNewFamily(){
         let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");

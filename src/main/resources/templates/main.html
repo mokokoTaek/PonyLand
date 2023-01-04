@@ -117,9 +117,9 @@
                     </div>
                 </div>
                 <div>
-                    <a th:href="@{/member/wave}">
-                        <button class="profilebtn" type="button" id="wave">파도타기</button>
-                    </a>
+<!--                    <a th:href="@{/member/wave}">-->
+                        <button class="profilebtn" type="button" id="wave" onclick="wave();">모험하기</button>
+<!--                    </a>-->
                 </div>
             </div>
 
@@ -315,6 +315,10 @@
                 alert("아이디를 확인해주세요");
             });
         }
+    }
+
+    function wave(){
+        window.open("/member/wave","모험하기","width=1200px,height=800px,scrollbars=yes");
     }
 
     $(function(){

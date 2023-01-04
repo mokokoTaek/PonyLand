@@ -53,7 +53,7 @@ public class MemberController {
         service.addView(id,request,response);
         MemberDTO dto = service.findById(id);
 
-        //History - 파도타기 누르면 history에 정보 넣기
+        //History - 모험하기 누르면 history에 정보 넣기
         MemberDTO MemberDto = MemberService.getInfo(id);
         historyService.historyInsert(host, id, MemberDto.getMember_name());
 
@@ -64,7 +64,7 @@ public class MemberController {
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
 
-        return "main";
+        return "mainForWave";
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){

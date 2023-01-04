@@ -20,7 +20,6 @@
 </style>
 
 <body>
-<iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
 <div class="container">
     <div class="top">
         <div class=""  th:text="|Today : ${list2.memberHomepageViewCount}|"></div>
@@ -143,14 +142,14 @@
                     <div class="gbtitle">
                         <div style="margin-left: 10px"><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
-                        <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
+                        <div><th th:text="${#dates.format(list.getGuestbook_write_date())}"></th></div>
                         <th:block th:if="${list.getGuestbook_writer().equals(sessionID)}">
                             <div style="margin-right: 10px">
                                 <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host()})}">삭제</a>
                             </div>
                         </th:block>
                     </div>
-
+                    <!-- 밤명록 뿌려지는 부분 -->
                     <div class="gbcontent">
                         <div th:each="dto: ${list2}"></div>
                         <div class="gbprofile">
@@ -167,13 +166,14 @@
                         </div>
 
                         <!-- 방명록 댓글 -->
+                        <div class="gbcmt2"></div>
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
                             <div class="gbcmttitle">
                                 <div style="font-size: 13px">
-                                    <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+                                    <th class="commentArea1" th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
                                 </div>
                                 <div style="font-size: 10px; color: darkgrey">
-                                    <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                                    <th class="commentArea2" th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
                                     <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">
 <!--                                        <div>-->
                                             <!--<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>-->
@@ -184,13 +184,6 @@
                                 </div>
                             </div>
                             <div style="font-size: 18px;"><th th:text="${list1.getGuestbook_comment_contents()}">작성내용</th></div>
-<!--                            <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">-->
-<!--                                <div>-->
-<!--                                    &lt;!&ndash;<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>&ndash;&gt;-->
-<!--                                    <button type="button" class="guestbook_comment_deleteBtn">x</button>-->
-<!--                                    <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">-->
-<!--                                </div>-->
-<!--                            </th:block>-->
                         </div>
 
                         <div class="gbcmtinput">
@@ -199,7 +192,6 @@
                             </div>
                             <button class="gbbutton" type="button">확인</button>
                             <input type="hidden"  th:value="${list.getGuestbook_seq()}" >
-
                         </div>
                         <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                     </div>
@@ -219,6 +211,9 @@
     <a  th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
+    <div style="margin-top: 270px">
+        <iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
+    </div>
 </div>
 
 <script>
@@ -231,10 +226,20 @@
     })
 
     // 방명록 댓들 삭제 기능
-    $(".guestbook_comment_deleteBtn").on("click", function () {
+    $(document).on("click",".guestbook_comment_deleteBtn", function () {
+        let userInfo = $(this).parent().parent();
+        let comments = $(this).parent().parent().next();
         let host = $("#host").val();
         let guestbook_comment_seq = $(this).next().val();
-        location.href = "/GuestbookComment/delete?guestbook_comment_seq=" + guestbook_comment_seq + "&host=" + host;
+
+        $.ajax({
+            url: "/GuestbookComment/delete",
+            type: "post",
+            data: {"host": host, "guestbook_comment_seq": guestbook_comment_seq}
+        }).done(function (data){
+            comments.remove();
+            userInfo.remove();
+        })
     })
 
     // 방명록 글 삭제하는 코드
@@ -256,45 +261,32 @@
             data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents},
             dataType: "json",
         }).done(function (data) {
+            let gbcmttitle = $("<div>");
+            gbcmttitle.attr("class", "gbcmttitle");
+
             let div = $("<div>");
+            div.css("font-size", "13px");
+            div.append(data.guestbook_comment_writer);
 
-            let ddiv = $("<div>")
-            ddiv.attr("class", "gbcmttitle");
-
-            let divWriter = $("<div>");
-            divWriter.attr("style", "font-size: 13px");
-            let thWriter = $("<th>");
-            thWriter.append(data.guestbook_comment_writer);
-            divWriter.append(thWriter);
-
-            let divWritedate = $("<div>");
-            divWritedate.attr("style", "font-size: 10px").attr("color", "darkgrey");
-            let thWritedate = $("<th>");
-            thWritedate.append(data.guestbook_comment_write_date);
-            divWritedate.append(thWritedate);
-
-            let divContents = $("<div>");
-            divContents.attr("style", "font-size: 18px");
-            let thContents = $("<th>");
-            thContents.append(data.guestbook_comment_contents);
-            divContents.append(thContents);
+            let divWritedate = $("<div>")
+            divWritedate.css("font-size","10px").css("color", "darkgrey");
 
             let button = $("<button>");
-            button.attr("type", "button").attr("class", "guestbook_comment_deleteBtn");
+            button.addClass("guestbook_comment_deleteBtn");
             button.html("x");
-
             let input = $("<input>");
-            input.attr("type", "hidden").attr("value", "data.guestbook_comment_seq");
 
-            div.append(ddiv);
-            div.append(divWriter);
-            div.append(divWritedate);
-            div.append(divContents);
-            div.append(button);
-            div.append(input);
+            input.attr("type", "hidden").attr("value", data.guestbook_comment_seq);
+            divWritedate.append(data.guestbook_comment_write_date);
+            divWritedate.append(button, input);
 
-            btn.parent().prev().prepend(div);
-            btn.prev().find('input').val("");
+            let divContents = $("<div>");
+            divContents.css("font-size", "18px");
+            divContents.append(data.guestbook_comment_contents);
+
+            gbcmttitle.append(div, divWritedate);
+            btn.closest(".gbcmtinput").prev(".gbcmt2").append(gbcmttitle,divContents);
+            btn.prev().find("input").val("");
         }).fail(function (data) {
             console.log("ㅋㅋ 실패")
         })

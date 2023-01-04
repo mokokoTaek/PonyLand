@@ -46,21 +46,16 @@ public class MemberController {
     @RequestMapping("wave")
     public String getWave(Model model,HttpServletRequest request, HttpServletResponse response){
         String host = (String)session.getAttribute("sessionID");
-        Long countMember = service.getWave();
-        int randomNumber = service.getRandom(countMember);
 
-        String id = service.toWave(randomNumber);
-        System.out.println("!!!!");
-        System.out.println(id);
+        Long countMember = service.getWave(); // 전체인원 수 가져오기
+        int randomNumber = service.getRandom(countMember); // 랜덤범위 정하고 돌리기
+        String id = service.toWave(randomNumber); // 랜덤 번호를 넣어서 아이디 뽑아오기
+        service.addView(id,request,response);
+        MemberDTO dto = service.findById(id);
 
         //History - 파도타기 누르면 history에 정보 넣기
         MemberDTO MemberDto = MemberService.getInfo(id);
-        System.out.println("history 확인 >>>> " + "host : " + host + "// MemberDto.getMemberId() : " + MemberDto.getMemberId() + "// MemberDto.getMember_name() : " + MemberDto.getMember_name() );
         historyService.historyInsert(host, id, MemberDto.getMember_name());
-
-        service.addView(id,request,response);
-
-        MemberDTO dto = service.findById(id);
 
         model.addAttribute("nowdto", itemService.findByItemStatus(id,"horse"));
         model.addAttribute("nowbgdto", itemService.findByItemStatus(id,"background"));

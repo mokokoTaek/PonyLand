@@ -18,7 +18,6 @@
     }
 </style>
 <body>
-<iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
 <div ></div>
 
 
@@ -129,12 +128,12 @@
                             </tr>
                         </div>
                         <div class="alpic">
-<!--                            <div style="text-align: center">-->
+                            <!--                            <div style="text-align: center">-->
                             <!--                            <th th:src="@{${file.oriname()}}">-->
                             <img class = image th:src="|/img/@{${list.getAlbum_sysname()}}|" >
                             <!--사진 불러오기.-->
-<!--                            </th>-->
-<!--                            </div>-->
+                            <!--                            </th>-->
+                            <!--                            </div>-->
                         </div>
 
                         <div class="alcontext">
@@ -208,6 +207,9 @@
     <a   th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
         <button class="btnmain2">내정보</button>
     </a>
+    <div style="margin-top: 270px">
+        <iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
+    </div>
 </div>
 </body>
 <script>

@@ -38,7 +38,7 @@
     <div class="bg1">
         <div class="bg2">
             <div th:if="${id} != null">
-                <div class="profile0" th:text="${id}">님의 마구간</div>
+                <div class="profile0" th:text="${list.member_name}">님의 마구간</div>
             </div>
 
             <div class="profile1">
@@ -63,7 +63,7 @@
                 </div>
                 <div>
                     <a th:href="@{/member/wave}">
-                        <button class="profilebtn" type="button" id="wave">파도타기</button>
+                        <button class="profilebtn" type="button" id="wave">모험하기</button>
                     </a>
                 </div>
             </div>
@@ -71,14 +71,8 @@
             <!-- History 뿌려지는 곳 -->
             <div class="profile4"  th:if="${id} == ${sessionID}">
                 <div class="profile4-1">
-                    History
                 </div>
                 <div class="profile4-2">
-                    <div th:each="historyDTOList : ${historyDTOList}">
-                        <a th:href="@{/toMiniPage?(id = ${historyDTOList.getHistory_id()})}">
-                            <span th:text="${historyDTOList.getHistory_name()}"></span>(<span th:text="${historyDTOList.getHistory_id()}"></span>)
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="profile4"  th:if="${id} != ${sessionID}">

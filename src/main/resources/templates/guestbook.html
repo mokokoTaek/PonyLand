@@ -44,7 +44,7 @@
     <div class="bg1">
         <div class="bg2">
             <div th:if="${id} != null">
-                <div class="profile0" th:text="${id}">님의 마구간</div>
+                <div class="profile0" th:text="${list2.member_name}">님의 마구간</div>
             </div>
 
             <div class="profile1" >
@@ -62,27 +62,20 @@
                     <button onclick="checkNewFamily();" class="profilebtn" type="button">일촌신청알림</button>
                 </div>
                 <div>
-                        <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
+                    <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
                 </div>
                 <div>
                     <a th:href="@{/member/wave}">
-                        <button class="profilebtn" type="button" id="wave">파도타기</button>
+                        <button class="profilebtn" type="button" id="wave">모험하기</button>
                     </a>
                 </div>
             </div>
 
-            <!-- History 뿌려지는 곳 -->
             <div id="abc"></div>
             <div class="profile4"  th:if="${id} == ${sessionID}">
                 <div class="profile4-1">
-                    History
                 </div>
                 <div class="profile4-2">
-                    <div th:each="historyDTOList : ${historyDTOList}">
-                        <a th:href="@{/toMiniPage?(id = ${historyDTOList.getHistory_id()})}">
-                            <span th:text="${historyDTOList.getHistory_name()}"></span>(<span th:text="${historyDTOList.getHistory_id()}"></span>)
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="profile4"  th:if="${id} != ${sessionID}">
@@ -125,7 +118,7 @@
                             </div>
                             <div class="gbtext">
                                 <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
-                                       placeholder="내용을 입력하세요">
+                                       placeholder="내용을 입력하세요" maxlength="80">
                             </div>
                         </div>
                         <div style="display: flex;justify-content: space-between">
@@ -142,14 +135,14 @@
                     <div class="gbtitle">
                         <div style="margin-left: 10px"><th th:text="NO.+${list.getGuestbook_seq()}"></th></div>
                         <div><th th:text="${list.getGuestbook_writer()}"></th></div>
-                        <div><th th:text="${#dates.format(list.getGuestbook_write_date(), 'yyyy-MM-dd HH:mm')}"></th></div>
+                        <div><th th:text="${#dates.format(list.getGuestbook_write_date())}"></th></div>
                         <th:block th:if="${list.getGuestbook_writer().equals(sessionID)}">
                             <div style="margin-right: 10px">
                                 <a class="anchor" th:href="@{/Guestbook/delete?(Guestbook_seq=${list.getGuestbook_seq},guestbook_host=${list.getGuestbook_host()})}">삭제</a>
                             </div>
                         </th:block>
                     </div>
-
+                    <!-- 밤명록 뿌려지는 부분 -->
                     <div class="gbcontent">
                         <div th:each="dto: ${list2}"></div>
                         <div class="gbprofile">
@@ -164,21 +157,19 @@
                                 <th th:text="${list.getGuestbook_contents()}" th:readonly>방명록내용</th>
                             </div>
                         </div>
-
                         <!-- 방명록 댓글 -->
+                        <div class="gbcmt2"></div>
                         <div class="gbcmt2" th:each="list1: ${list1}" th:if="${list.getGuestbook_seq() == list1.getParent_seq()}">
+
                             <div class="gbcmttitle">
                                 <div style="font-size: 13px">
-                                    <th th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
+                                    <th class="commentArea1" th:text="${list1.getGuestbook_comment_writer()}">작성자</th>
                                 </div>
                                 <div style="font-size: 10px; color: darkgrey">
-                                    <th th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
+                                    <th class="commentArea2" th:text="${#dates.format(list1.getGuestbook_comment_write_date(), 'MM-dd HH:mm')}">작성시간</th>
                                     <th:block th:if="${list1.getGuestbook_comment_writer()==sessionID}">
-<!--                                        <div>-->
-                                            <!--<a th:href="@{/GuestbookComment/delete?guestbook_comment_seq=${list1.getGuestbook_comment_seq()},host=${}">x</a>-->
-                                            <button type="button" class="guestbook_comment_deleteBtn">x</button>
-                                            <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
-<!--                                        </div>-->
+                                        <button type="button" class="guestbook_comment_deleteBtn">x</button>
+                                        <input type="hidden" th:value="${list1.getGuestbook_comment_seq}">
                                     </th:block>
                                 </div>
                             </div>
@@ -198,30 +189,30 @@
                             </div>
                             <button class="gbbutton" type="button">확인</button>
                             <input type="hidden"  th:value="${list.getGuestbook_seq()}" >
-
                         </div>
-                        <!--                    <hr style="width: 500px; border-color: whitesmoke; border-style:dashed; border-width: 1px;">-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="side">
-    <a th:href="@{/toMiniPage(id = ${id})}">
-        <button class="btnmain2">메인</button>
-    </a>
-    <button class="btnmain1">방명록</button>
-    <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
-        <button class="btnmain2">사진첩</button>
-    </a>
-    <a  th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
-        <button class="btnmain2">내정보</button>
-    </a>
-    <div style="margin-top: 270px">
-        <iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
+
+    <div class="side">
+        <a th:href="@{/toMiniPage(id = ${id})}">
+            <button class="btnmain2">메인</button>
+        </a>
+        <button class="btnmain1">방명록</button>
+        <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
+            <button class="btnmain2">사진첩</button>
+        </a>
+        <a  th:if="${id==sessionID}" th:href="@{/member/goMypage?(memberId=${id})}">
+            <button class="btnmain2">내정보</button>
+        </a>
+        <div style="margin-top: 270px">
+            <iframe id="player-iframe" src="/static/music/player.html" frameborder="0" allow="autoplay"></iframe>
+        </div>
     </div>
-</div>
+</body>
 
 <script>
     $("#guestbook_comment_write_btn").on("click",function(){
@@ -233,10 +224,20 @@
     })
 
     // 방명록 댓들 삭제 기능
-    $(".guestbook_comment_deleteBtn").on("click", function () {
+    $(document).on("click",".guestbook_comment_deleteBtn", function () {
+        let userInfo = $(this).parent().parent();
+        let comments = $(this).parent().parent().next();
         let host = $("#host").val();
         let guestbook_comment_seq = $(this).next().val();
-        location.href = "/GuestbookComment/delete?guestbook_comment_seq=" + guestbook_comment_seq + "&host=" + host;
+
+        $.ajax({
+            url: "/GuestbookComment/delete",
+            type: "post",
+            data: {"host": host, "guestbook_comment_seq": guestbook_comment_seq}
+        }).done(function (data){
+            comments.remove();
+            userInfo.remove();
+        })
     })
 
     // 방명록 글 삭제하는 코드
@@ -258,63 +259,39 @@
             data: {"parent_seq": guestbook_seq, "guestbook_comment_contents": guestbook_comment_contents},
             dataType: "json",
         }).done(function (data) {
+            let gbcmttitle = $("<div>");
+            gbcmttitle.attr("class", "gbcmttitle");
+
             let div = $("<div>");
+            div.css("font-size", "13px");
+            div.append(data.guestbook_comment_writer);
 
-            let ddiv = $("<div>")
-            ddiv.attr("class", "gbcmttitle");
+            let divWritedate = $("<div>")
+            divWritedate.css("font-size","10px").css("color", "darkgrey");
 
-            let divWriter = $("<div>");
-            divWriter.attr("style", "font-size: 13px");
-            let thWriter = $("<th>");
-            thWriter.append(data.guestbook_comment_writer);
-            divWriter.append(thWriter);
-
-            let divWritedate = $("<div>");
-            divWritedate.attr("style", "font-size: 10px").attr("color", "darkgrey");
-            let thWritedate = $("<th>");
-            thWritedate.append(data.guestbook_comment_write_date);
-            divWritedate.append(thWritedate);
-
-            let divContents = $("<div>");
-            divContents.attr("style", "font-size: 18px");
-            let thContents = $("<th>");
-            thContents.append(data.guestbook_comment_contents);
-            divContents.append(thContents);
 
             let button = $("<button>");
-            button.attr("type", "button").attr("class", "guestbook_comment_deleteBtn");
+            button.addClass("guestbook_comment_deleteBtn");
             button.html("x");
-
             let input = $("<input>");
-            input.attr("type", "hidden").attr("value", "data.guestbook_comment_seq");
 
-            div.append(ddiv);
-            div.append(divWriter);
-            div.append(divWritedate);
-            div.append(divContents);
-            div.append(button);
-            div.append(input);
+            input.attr("type", "hidden").attr("value", data.guestbook_comment_seq);
+            divWritedate.append(data.guestbook_comment_write_date);
+            divWritedate.append(button, input);
 
-            btn.parent().prev().prepend(div);
-            btn.prev().find('input').val("");
+            let divContents = $("<div>");
+            divContents.css("font-size", "18px");
+            divContents.append(data.guestbook_comment_contents);
+
+            gbcmttitle.append(div, divWritedate);
+            btn.closest(".gbcmtinput").prev(".gbcmt2").append(gbcmttitle,divContents);
+            btn.prev().find("input").val("");
         }).fail(function (data) {
             console.log("ㅋㅋ 실패")
         })
     })
 
-
-    // Load the current song from local storage
     var currentSong = localStorage.getItem("currentSong");
-
-
-    // Update the audio element to play the current song
-    // document.getElementById("myAudio").src = currentSong;
-    // $(document).ready(function () {
-    //     if (sessionStorage.getItem('played') != "true") {
-    //         $('#music').get(0).play();
-    //         sessionStorage.setItem('played', "true");
-    //     }
-    // });
 
     function checkNewFamily(){
         let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");

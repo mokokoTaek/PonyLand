@@ -18,7 +18,7 @@
     </insert>
 
     <select id="select" resultType="PonyLand.PonyLand.dto.GuestbookCommentDTO">
-        select * from guestbook_comment order by guestbook_comment_seq desc
+        select * from guestbook_comment order by guestbook_comment_seq
     </select>
 
     <delete id="delete">

@@ -17,7 +17,7 @@
                 <div th:each="list1:${list1}">
                     <div class="familybg11">
                         <div class="familybg2">
-                            <img th:src="|/static/img/${imagelist1.get(list1Stat.index)}|" th:if="${imagelist1.get(list1Stat.index)!=null}" style="width: 100px; height: 100px;">
+                            <img th:src="|/img/${imagelist1.get(list1Stat.index)}|" th:if="${imagelist1.get(list1Stat.index)!=null}" style="width: 100px; height: 100px;">
                             <img style="width: 100px; " height="100px;" th:if="${imagelist1.get(listStat.index)==null}" src="/static/img/no_profile.jpg" >
                             <th th:text="|${list1.familyMe} (${list1.familyProposedName})|"></th>
                             <!--                        <th th:text="|${list1.familyProposedName} |"></th>-->
@@ -32,7 +32,7 @@
                 <div th:each="list2:${list2}">
                     <div class="familybg11">
                         <div class="familybg2">
-                            <img th:src="|/static/img/${imagelist2.get(list2Stat.index)}|" th:if="${imagelist2.get(list2Stat.index)!=null}" style="width: 100px; height: 100px;">
+                            <img th:src="|/img/${imagelist2.get(list2Stat.index)}|" th:if="${imagelist2.get(list2Stat.index)!=null}" style="width: 100px; height: 100px;">
                             <img style="width: 100px; " height="100px;" th:if="${imagelist2.get(list2Stat.index)==null}" src="/static/img/no_profile.jpg" >
                             <th th:text="|${list2.familyOther} (${list2.familyProposerName})|"></th>
                             <!--                        <th th:text="|${list2.familyProposerName} |"></th>-->

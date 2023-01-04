@@ -1,11 +1,8 @@
 package PonyLand.PonyLand.service;
 
-import PonyLand.PonyLand.Mapper.MemberMapper;
 import PonyLand.PonyLand.dao.MemberDAO;
-import PonyLand.PonyLand.dto.AlbumDTO;
 import PonyLand.PonyLand.dto.MemberDTO;
 import PonyLand.PonyLand.dto.RacingDTO;
-import org.hibernate.dialect.lock.PessimisticReadUpdateLockingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +49,7 @@ public class MemberService {
 
     }
     public String toWave(int rn){
+
         return dao.getIdByRowNum(rn);
     }
 
@@ -227,12 +225,12 @@ public class MemberService {
         map.put("bettingCoin",bettingCoin);
 
         if (horseCount == 2) {
-            double sum = bettingCoin * 1.25;
+            double sum = bettingCoin * 1.5;
             map.put("racing_coin", sum);
             dao.updateCoin(map);
             return sum;
         } else if (horseCount == 3) {
-            double sum = bettingCoin * 1.5;
+            double sum = bettingCoin * 2;
             map.put("racing_coin", sum);
             dao.updateCoin(map);
             return sum;
@@ -249,11 +247,11 @@ public class MemberService {
     public double add(int bettingCoin, int horseCount) {
         double sum;
         if (horseCount == 2) {
-            sum = bettingCoin * 1.25;
+            sum = bettingCoin * 1.5;
             return sum;
 
         } else if (horseCount == 3) {
-            sum = bettingCoin * 1.5;
+            sum = bettingCoin * 2;
             return sum;
 
         } else {

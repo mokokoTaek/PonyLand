@@ -71,18 +71,11 @@
                 </div>
             </div>
 
-            <!-- History 뿌려지는 곳 -->
             <div id="abc"></div>
             <div class="profile4"  th:if="${id} == ${sessionID}">
                 <div class="profile4-1">
-                    History
                 </div>
                 <div class="profile4-2">
-                    <div th:each="historyDTOList : ${historyDTOList}">
-                        <a th:href="@{/toMiniPage?(id = ${historyDTOList.getHistory_id()})}">
-                            <span th:text="${historyDTOList.getHistory_name()}"></span>(<span th:text="${historyDTOList.getHistory_id()}"></span>)
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="profile4"  th:if="${id} != ${sessionID}">
@@ -125,7 +118,7 @@
                             </div>
                             <div class="gbtext">
                                 <input class="gbwtype" type="text" id="guestbook_contents" name="guestbook_contents"
-                                       placeholder="내용을 입력하세요">
+                                       placeholder="내용을 입력하세요" maxlength="80">
                             </div>
                         </div>
                         <div style="display: flex;justify-content: space-between">

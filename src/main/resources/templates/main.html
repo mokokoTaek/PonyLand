@@ -80,7 +80,7 @@
             <div class="profile2">
                 <form action="/member/message">
                     <div style="margin-bottom: 10px">
-                        <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" placeholder="상태 메시지를 작성하세요." readonly ></textarea>
+                        <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" placeholder="상태 메시지를 작성하세요." maxlength="45" readonly ></textarea>
                     </div>
                     <div style="display: flex; justify-content: space-between">
                         <input type="hidden" th:value="${id}">
@@ -93,7 +93,6 @@
                     </div>
                 </form>
             </div>
-
 
             <div class="profile3">
                 <div>

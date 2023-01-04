@@ -126,7 +126,7 @@ public class StableController {
             model.addAttribute("nowbgdto", service2.findByItemStatus(id,bg));
             model.addAttribute("nowfurniturelist", service2.findFurnitureByItemStatus(id,f));
             //model.addAttribute("nowbgdto", service2.findByItemStatus(id,f));
-            System.out.println("여긴 됩니다");
+            System.out.println("여긴 됩니다다다다다다다");
             return "stable";
         }
 

@@ -15,7 +15,7 @@
 </head>
 
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false" onkeydown="return false">
-<div id="hi" style="display:none">
+<div id="hi" style="display:none ">
 <iframe id="player-iframe" src="/static/music/gamesong.html" frameborder="0" allow="autoplay"></iframe>
 </div>
 
@@ -38,15 +38,15 @@
             </div>
             <div class="resultDiv" id="resultDiv" style="display: none">
                 <div style="font-size: 40px">
-                    <span th:text="${winner}" id="winner" th:name="winner"></span><span>번 말이 우승하였습니다 !</span> <br>
+                    "<span th:text="${winner}" id="winner" th:name="winner" style="color: coral; font-size: 40px"></span><span>번" 말이 우승하였습니다 !</span> <br>
                     <span th:text="${dto.getMember_name()}"></span><span>님은</span>
-                    <span th:text="${betNumber}" id="betNumber" th:name="betNumber"></span><span>번 말을 선택하여</span><br>
+                    "<span th:text="${betNumber}" id="betNumber" th:name="betNumber" style="color: coral; font-size: 40px"></span><span>번" 말을 선택하여</span><br>
                     <span class="betting"></span>
                 </div>
 
                 <div style="font-size: 40px; margin-top: 20px">
-                    <span th:text="${dto.getMember_name()}"></span><span>님의 보유 당근은 </span><span
-                        th:text="${dto.getMember_coin()}"></span><span>개 입니다.</span>
+                    <span th:text="${dto.getMember_name()}"></span><span>님의 보유 당근은 </span>
+                    "<span th:text="${dto.getMember_coin()}" style="color: coral; font-size: 40px"></span><span>개" 입니다.</span>
                 </div>
 
                 <div>

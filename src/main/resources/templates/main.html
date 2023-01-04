@@ -67,7 +67,7 @@
     <div class="bg1">
         <div class="bg2">
             <div th:if="${id} != null">
-                <div class="profile0" th:text="${id}">님의 마구간</div>
+                <div class="profile0" th:text="${list.member_name}">님의 마구간</div>
             </div>
 
             <div class="profile1">
@@ -80,7 +80,7 @@
             <div class="profile2">
                 <form action="/member/message">
                     <div style="margin-bottom: 10px">
-                        <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" placeholder="상태 메시지를 작성하세요." readonly ></textarea>
+                        <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" placeholder="상태 메시지를 작성하세요." maxlength="45" readonly ></textarea>
                     </div>
                     <div style="display: flex; justify-content: space-between">
                         <input type="hidden" th:value="${id}">
@@ -93,7 +93,6 @@
                     </div>
                 </form>
             </div>
-
 
             <div class="profile3">
                 <div>

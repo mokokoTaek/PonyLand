@@ -11,7 +11,7 @@
 <div id="hi" style="display:none">
 <iframe id="player-iframe" src="/static/music/gamesong.html" frameborder="0" allow="autoplay"></iframe>
 </div>
-<img src="/static/img/sky.png">
+<!--<img src="/static/img/sky.png">-->
     <input type="hidden" th:value="${racing_coin}" name="racing_coin" id="racing_coin">
     <input type="hidden" th:value="${racing_id}" name="racing_id" id="racing_id">
     <input type="hidden" th:value="${racing_horse_seq}" name="racing_horse_seq" id="racing_horse_seq">
@@ -146,7 +146,7 @@
         }
 
         hitCactusPlayer1() {
-            alert("1번말 우승 !");
+            //alert("1번말 우승 !");
             //let popup =window.open("/game/goGameResult?winner="+1+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=1100px,height=800px,scrollbars=yes")
             //popup.opener.close();
             location.href = "/game/goGameResult?winner=" + 1 + "&racing_coin=" + racing_coin + "&racing_id=" + racing_id + "&racing_horse_seq=" + racing_horse_seq + "&bettingCoin=" + bettingCoin + "";
@@ -155,7 +155,7 @@
 
 
         hitCactusPlayer2() {
-            alert("2번말 우승 !");
+            //alert("2번말 우승 !");
             //let popup = window.open("/game/goGameResult?winner="+2+"&racing_coin="+racing_coin+"&racing_id="+racing_id+"&racing_horse_seq="+racing_horse_seq+"&bettingCoin="+bettingCoin+"","new","width=1100px,height=800px,scrollbars=yes")
             //popup.opener.close();
             location.href = "/game/goGameResult?winner=" + 2 + "&racing_coin=" + racing_coin + "&racing_id=" + racing_id + "&racing_horse_seq=" + racing_horse_seq + "&bettingCoin=" + bettingCoin + "";

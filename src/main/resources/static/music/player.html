@@ -36,15 +36,47 @@
                 pic: 'PIC URL'
             },
             {
-                title: 'Cafe',
-                author: '빅뱅',
-                url: 'cafe.mp3',
+                title: 'AlwaysAwake',
+                author: '재지팩트',
+                url: 'AlwaysAwake.mp3',
+                pic: 'PIC URL 2'
+            },
+            {
+                title: 'Hot뜨거',
+                author: '원타임',
+                url: 'Hot뜨거.mp3',
+                pic: 'PIC URL 2'
+            },
+            {
+                title: 'StillD.R.E',
+                author: 'dr.DRE',
+                url: 'StillD.R.E.mp3',
+                pic: 'PIC URL 2'
+            },
+            {
+                title: 'TheNextEpisode',
+                author: 'dr.DRE',
+                url: 'TheNextEpisode.mp3',
+                pic: 'PIC URL 2'
+            },
+            {
+                title: '사랑의바보',
+                author: '더 넛츠',
+                url: '사랑의바보.mp3',
+                pic: 'PIC URL 2'
+            },
+            {
+                title: 'WithYou',
+                author: 'Chris Brown',
+                url: 'WithYou.mp3',
                 pic: 'PIC URL 2'
             },
         ]
     });
 
+
     window.onbeforeunload = function() {
+        // Save the current song and time position in localStorage
         // Save the current song and time position in localStorage
         localStorage.setItem('currentSong', ap.audio.src);
         localStorage.setItem('currentTime', ap.audio.currentTime);
@@ -59,6 +91,7 @@
         ap.audio.currentTime = savedTime;
         ap.play();
     }
+
 </script>
 </body>
 

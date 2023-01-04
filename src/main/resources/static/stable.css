@@ -126,7 +126,7 @@ button:hover {
 }
 
 .side{
-    margin-top: 35px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -392,6 +392,11 @@ bgimg > img{
 .horseimg{
     width: 100px;
     height: 100px;
+}
+
+.shopimage>img{
+    /*width: 100px;*/
+    height: 110px;
 }
 /*carrot--------------------------------------------------------------------------------------*/
 .carrotbg3{

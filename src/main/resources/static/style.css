@@ -69,6 +69,20 @@ body {
 }
 
 
+.ponyland0 {
+    width: 400px;
+    height: 100px;
+    background: rgba(90, 61, 43, 1);
+    color: rgba(244, 161, 39, 1);
+    border-radius: 8px;
+    border-top: 1px solid #5a3d2b;
+    border-right: 1px solid #5a3d2b;
+    border-left: 3px solid #F4A127;
+    border-bottom: 3px solid #F4A127;
+    font-size: 50px;
+    margin-top: 10px;
+}
+
 .ponyland {
     width: 400px;
     height: 100px;
@@ -81,6 +95,11 @@ body {
     border-bottom: 3px solid #F4A127;
     font-size: 50px;
     margin-top: 10px;
+}
+
+.ponyland0:hover{
+    color: #F4A127;
+    cursor: auto;
 }
 
 .login {
@@ -614,7 +633,7 @@ body {
 
 
 .side {
-    margin-top: 35px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

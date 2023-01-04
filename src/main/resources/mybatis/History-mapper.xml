@@ -6,7 +6,7 @@
 <mapper namespace="PonyLand.PonyLand.Mapper.HistoryMapper">
 
     <select id="selectId" resultType="PonyLand.PonyLand.dto.HistoryDTO">
-        select * from history where rownum <![CDATA[ <= ]]> 3 order by history_seq desc
+        select * from (select * from history order by history_seq desc) where rownum <![CDATA[ <= ]]> 3
     </select>
 
     <insert id="historyInsert">

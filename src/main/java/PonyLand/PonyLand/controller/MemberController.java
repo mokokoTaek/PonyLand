@@ -64,7 +64,7 @@ public class MemberController {
         model.addAttribute("id",id);
         model.addAttribute("sessionID",session.getAttribute("sessionID"));
 
-        return "main";
+        return "mainForWave";
     }
     @PostMapping("insert")
     public String insert(MemberDTO dto){

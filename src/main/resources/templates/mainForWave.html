@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Main</title>
+  <link rel="stylesheet" href="../static/style.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+  <style>
+    @keyframes blink-effect {
+      50% {
+        opacity: 0;
+      }
+    }
+    #target {
+      position:absolute;
+      z-index: 5;
+      display: flex;
+      width: 200px;
+      height: 200px;
+    }
+
+    .usingfurnitureimg{
+      position:absolute;
+      z-index: 5;
+      display: flex;
+      width: 100px;
+      height: 100px;
+    }
+
+    #bg4 {
+      position:relative;
+    }
+  </style>
+</head>
+
+<style>
+  textarea{
+    resize:none;
+    border: solid transparent;
+
+
+  }
+</style>
+<body>
+
+<div class="container">
+
+  <div class="top">
+    <div th:if="${id}!=null">
+      <div class="" th:text="|Today : ${dto.memberHomepageViewCount}|"></div>
+    </div>
+    <div class="topright">
+      <input style="color: white" type="text" class="searchbox2" placeholder="아이디를 입력하세요" name="id" id="id">
+      <button type="button" class="searchbtn" onclick="selectById()">검색</button>
+      <!--                        <audio id="music" controls class="hidden-xs" style=" position:fixed; right:0; bottom:0; z-index:99999999999">-->
+      <!--                            <source src="https://drive.google.com/uc?export=download&id=1ypuNRShKf7DcyMOTSx2Oyp-fJ0FHgUmR" type="audio/mpeg">-->
+      <!--                            Your browser does not support the audio element.-->
+      <!--                        </audio>-->
+      <!--                        <audio src="https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3" controls autoplay></audio>-->
+    </div>
+  </div>
+
+
+  <div class="bg1">
+    <div class="bg2">
+      <div th:if="${id} != null">
+        <div class="profile0" th:text="${id}">님의 마구간</div>
+      </div>
+
+      <div class="profile1">
+        <!--null이 아니면 sysname을 불러오고 null값이면 img밑에있는 기본프로필사진을 불러온다.-->
+        <img style="width: 100%; height: 100%;"  th:if="${dto.getMember_sysname() != null}" th:src="|/img/@{${dto.getMember_sysname()}}|" />
+        <img style="width: 100%; " height="100%;" th:if="${dto.getMember_sysname() == null}" src="/static/img/no_profile.jpg" >
+
+      </div>
+
+      <div class="profile2">
+        <form action="/member/message">
+          <div style="margin-bottom: 10px">
+            <textarea class="textareabg"  th:text="${dto.getMember_message()}"  name="member_message" placeholder="상태 메시지를 작성하세요." readonly ></textarea>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <input type="hidden" th:value="${id}">
+            <th:block th:if="${id.equals(sessionID)}">
+              <button class="modifybtn" type="button" >수정하기</button>
+              <input type="hidden" th:value="${dto.getMemberId()}" name="memberId" id="memberId">
+              <button class="cancel-button" id="cancel-button" type="button">취소</button>
+              <button class="modifybtn2" type="button" >변경</button>
+            </th:block>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="profile3">
+        <div>
+          <div th:if="${id}== ${sessionID}">
+            <button class="profilebtn" type="button" onclick="checkNewFamily();">일촌신청알림</button>
+          </div>
+        </div>
+        <!--                <div>-->
+        <div th:if="${id}!= ${sessionID}">
+          <input type="hidden" th:value="${sessionID}" id="hiddenProposer">
+          <input type="hidden" th:value="${id}" id="hiddenProposed">
+          <button class="profilebtn" type="button" onclick="openChild()">일촌신청</button>
+          </form>
+        </div>
+        <!--                </div>-->
+        <div>
+          <div th:if="${id}== ${sessionID}">
+
+            <button class="profilebtn" type="button" onclick="openFamilyList()">일촌목록</button>
+            <!--                        </form>-->
+          </div>
+        </div>
+        <div>
+          <!--                    <a th:href="@{/member/wave}">-->
+          <button class="profilebtn" type="button" id="wave" onclick="wave();">모험하기</button>
+          <!--                    </a>-->
+        </div>
+      </div>
+
+      <!-- History 뿌려지는 곳 -->
+      <div class="profile4"  th:if="${id} == ${sessionID}">
+        <div class="profile4-1">
+          History
+        </div>
+        <div class="profile4-2">
+          <div th:each="historyDTOList : ${historyDTOList}">
+            <a th:href="@{/toMiniPage?(id = ${historyDTOList.getHistory_id()})}">
+              <span th:text="${historyDTOList.getHistory_name()}"></span>(<span th:text="${historyDTOList.getHistory_id()}"></span>)
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="profile4"  th:if="${id} != ${sessionID}">
+        <div class="profile4-1">
+          <div>
+            <a th:href="@{/toMiniPage?(id = ${sessionID})}">
+              내 미니홈피로
+            </a>
+          </div>
+        </div>
+        <div class="profile4-2">
+        </div>
+      </div>
+    </div>
+    <div class="bg3">
+      <div class="bg3-1">
+        <div class="updatednews">
+          <div style="font-size: 30px; color: #F4A127;" >사진첩 최근글</div>
+          <div th:if="${list.getMemberId()==dto3.getAlbum_writer()}" th:each="dto3: ${list3}" th:text="${dto3.getAlbum_title()}"></div>
+        </div>
+        <div class="updatednews2">
+
+
+          <div class="updatednews2-1">
+            <div>
+              방명록   <!--list5:방명록오늘올린글 갯수-->  <!--list2:방명록전체글 갯수-->
+              <!--                        <i class="material-symbols-outlined" style="font-size:22px; margin-bottom: 10px; color: darkgreen">fiber_new</i>-->
+            </div>
+            <div>
+                            <span th:if="${list5}">
+                            <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
+                           <span th:if="${list5 == null}">0</span>
+                            <span th:if="${list5 != null}" th:text="${list5 < 10 ? '0' + list5 : list5}"></span>
+                            </span> <!--10보다 크면 0제거 작으면 0 붙임-->
+              /
+              <span th:if="${list2 == null}">0</span>
+              <span th:if="${list2 != null}" th:text="${list2 < 10 ? '0' + list2 : list2}"></span>
+            </div>
+
+          </div>
+          <div class="updatednews2-1">
+            <div>
+              사진첩        <!--list4:사진첩 오늘올린 갯수-->    <!--list1:사진첩 전체글 갯수-->
+            </div>
+            <div>
+                            <span th:if="${list4}">
+                            <span style="font-size: 15px; color: darkgreen; animation: blink-effect 1.5s step-end infinite; vertical-align: top; margin-right: 7px">NEW</span>
+                           <span th:if="${list4 == null}">0</span>
+                            <span th:if="${list4 != null}" th:text="${list4 < 10 ? '0' + list4 : list4}"></span>
+                            </span>
+              /
+              <span th:if="${list1 == null}">0</span>
+              <span th:if="${list1 != null}" th:text="${list1 < 10 ? '0' + list1 : list1}"></span>
+            </div>
+          </div>
+          <!--                    <div class="updatednews2-1">-->
+          <!--                        다이어리 0/64-->
+          <!--                    </div>-->
+        </div>
+      </div>
+      <div class="bg3-2">
+        <div class="bg3-2-1-title">
+          MiniRoom
+        </div>
+        <div class="bg3-2-1" id="bg4">
+          <!--                    여기서부터 미니룸 div-->
+          <!--                    <div class="bg4"  >-->
+
+          <img th:src="|/static/img/@{${nowdto.itemName}}|" id="target" style="width:200px; height:200px;">
+
+          <!--                    </div>-->
+          <span th:each="i : ${nowfurniturelist}" class="usingfurnitureimg">
+                        <img  th:src="|/static/img/@{${i.itemName}}|" style="width: 75px; height: 75px;">
+                    </span>
+        </div>
+        <div class="bg3-2-2">
+                    <span><a th:href="@{/stable/toStable(id = ${id})}">
+                        <i class="material-symbols-outlined" style="font-size:36px; margin-bottom: 0px;">door_open</i>
+                        마구간
+                    </a>
+                        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="side">
+  <button class="btnmain1">메인</button>
+  <a th:href="@{/Guestbook/goGuestbook?(guestbook_host=${id})}">
+    <button class="btnmain2">방명록</button>
+  </a>
+  <a th:href="@{/Album/toAlbumPage?(Album_host=${id})}">
+
+    <button class="btnmain2">사진첩</button>
+  </a>
+  <a  th:if="${id==sessionID}"  th:href="@{/member/goMypage?(memberId=${id})}">
+    <button class="btnmain2">내정보</button>
+  </a>
+<!--  <div style="margin-top: 270px">-->
+<!--    <iframe id="player-iframe" src="static/music/player.html" frameborder="0" allow="autoplay"></iframe>-->
+<!--  </div>-->
+</div>
+<script>
+  $(document).ready(function(){
+    $('.modifybtn2,.cancel-button').hide();
+    $(".modifybtn").on("click",function(){
+      $('textarea').css('background-color', 'floralwhite');
+      $('.modifybtn2,.cancel-button').show();
+      $('textarea').removeAttr("readonly");
+      $(this).hide();
+      $(".modifybtn2").attr("type","submit");  //변경버튼누르면 수정
+      $("#cancel-button").on("click",function(){
+        location.reload();
+      })
+    })
+  })
+</script>
+
+<script th:inline="javascript">
+  function getFamily() {
+    $.ajax({
+      url: "/family/getFamily",
+      data: {
+        "familyProposerId": [[${sessionID}]],
+        "familyProposedId": [[${id}]]
+      },
+      type: "post"
+    })
+            .done(function (resp) {
+              if (resp == "2") {
+                alert("일촌 신청이 완료되었습니다.")
+
+              } else if (resp == "1") {
+                alert("이미 일촌 관계입니다.");
+              } else {
+                alert("상대방이 아직 일촌 신청을 수락하지 않았습니다.")
+              }
+
+
+            })
+            .fail(function () {
+              console.log("error!");
+            });
+
+  }
+  function openChild(){
+    let popup = window.open("/toFamilyOpen","일촌명 설정","width=700px,height=400px,scrollbars=yes");
+
+  }
+
+  function checkNewFamily(){
+    let popup = window.open("/toCheckNewFamilyOpen","새로받은 일촌 신청 확인","width=700px,height=400px,scrollbars=yes");
+
+  }
+
+  function openFamilyList(){
+    let popup = window.open("/toFamilyListOpen","일촌목록","width=700px,height=800px,scrollbars=yes");
+  }
+
+  //메인화면에서 검색기능
+  function selectById(){
+    let idElement = document.getElementById("id");
+    if (idElement.value === "") {
+      alert("아이디를 입력하세요");
+    } else {
+      $.ajax({
+        url :"/toMiniPage",
+        data : {
+          "id" : idElement.value
+        }
+      }).done(function(resp){
+        if(resp!==null) {
+          let popup = window.open(`/toMiniPage?id=${idElement.value}`,"일촌목록","width=900px,height=1000px,scrollbars=yes");
+        }else {
+          alert("아이디를 확인해주세요")
+        }
+
+      }).fail(function(error){
+        alert("아이디를 확인해주세요");
+      });
+    }
+  }
+
+  function wave(){
+    window.open("/member/wave","모험하기","width=900px,height=1000px,scrollbars=yes");
+  }
+
+  $(function(){
+
+    let onloadx = [[${nowdto.itemX}]];
+    let onloady = [[${nowdto.itemY}]];
+
+    document.getElementById("target").style.left = onloadx + 'px';
+    document.getElementById("target").style.top = onloady + 'px';
+
+    $("#bg4").css({"background-image":"url(/static/img/"+[[${nowbgdto.getItemName()}]]+")","background-repeat":"no-repeat",
+      "background-size":"cover"})
+    // $("#bg4").attr("style","background-image : url(/static/img/"+[[${nowbgdto.itemName}]]+")")
+
+    for(let i=0; i<[[${nowfurniturelist}]].length;i++){
+      // console.log([[${nowfurniturelist}]][i]);
+
+      let onloadFx = [[${nowfurniturelist}]][i].itemX;
+      let onloadFy = [[${nowfurniturelist}]][i].itemY;
+      // console.log(document.getElementsByClassName("usingfurnitureimg")[i]);
+      console.log(onloadFx);
+      console.log(onloadFy);
+      // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFx+"px");
+      // $(document.getElementsByClassName("usingfurnitureimg")[i]).css("left",""+onloadFy+"px");
+      document.getElementsByClassName("usingfurnitureimg")[i].style.left = onloadFx + 'px';
+      document.getElementsByClassName("usingfurnitureimg")[i].style.top = onloadFy + 'px';
+    }
+  })
+
+
+</script>
+<script>
+
+</script>
+</body>
+
+
+</html>

@@ -90,7 +90,7 @@ public class FamilyService {
 
         for(int i=0;i<list.size();i++){
             //System.out.println(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
-            imagelist.add(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
+            imagelist.add(mdao.findById(list.get(i).getFamilyProposerId()).getMember_sysname());
 
         }
         return imagelist;
@@ -102,7 +102,7 @@ public class FamilyService {
 
         for(int i=0;i<list.size();i++){
             //System.out.println(mdao.findById(list.get(i).getFamilyProposerId()).getMember_oriname());
-            imagelist.add(mdao.findById(list.get(i).getFamilyProposedId()).getMember_oriname());
+            imagelist.add(mdao.findById(list.get(i).getFamilyProposedId()).getMember_sysname());
 
         }
         return imagelist;

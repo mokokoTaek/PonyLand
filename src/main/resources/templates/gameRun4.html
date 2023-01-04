@@ -104,22 +104,11 @@
       this.player4.body.setSize(2, 50);
       this.player4.play('run4');
 
-      this.delay = 4000; //장애물 나오는 시간 3000 = 3초마다 나오게 하겠다.
+      this.delay = 4000; //장애물 나오는 시간 4000 = 4초마다 나오게 하겠다.
       this.timer = this.time.addEvent({
         delay: this.delay,
         callback: this.onTimerEvent, callbackScope: this
       });
-
-      // //점프기능
-      // this.input.on('pointerdown', function (pointer) {
-      //     if(this.player.y < HEIGHT -100)return;
-      //     this.tweens.add({
-      //         targets:this.player,
-      //         y:this.player.y-50,
-      //         duration:500,
-      //         yoyo:true,
-      //     });
-      // }.bind(this));
     }
 
 

@@ -31,17 +31,17 @@ public class GuestbookCommentController {
     public String commentFrm(String parent_seq, String guestbook_comment_contents) {
         Gson g = new Gson();
         String Guestbook_comment_writer = (String) session.getAttribute("sessionID");
-        GuestbookCommentDTO GuestbookCommentDto = new GuestbookCommentDTO(0,Guestbook_comment_writer,guestbook_comment_contents,null,Integer.parseInt(parent_seq));
+        GuestbookCommentDTO GuestbookCommentDto = new GuestbookCommentDTO(0, Guestbook_comment_writer, guestbook_comment_contents,
+                                                                            null, Integer.parseInt(parent_seq));
         service.insert(GuestbookCommentDto);
-
-        System.out.println("0102일 questbook_comment_seq 값 : " +  GuestbookCommentDto.getGuestbook_comment_seq());
 
         return g.toJson(service.selectComment(GuestbookCommentDto.getGuestbook_comment_seq()));
     }
 
+    @ResponseBody
     @RequestMapping("delete")
-    public String guestbook_comment_delete(int guestbook_comment_seq, String host){
-        service.delete(guestbook_comment_seq);
-        return "redirect:/Guestbook/goGuestbook?&guestbook_host="+host;
+    public String guestbook_comment_delete(int guestbook_comment_seq, String host) {
+        Gson g = new Gson();
+        return g.toJson(service.delete(guestbook_comment_seq));
     }
 }

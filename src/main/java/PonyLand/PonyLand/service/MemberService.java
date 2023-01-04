@@ -49,6 +49,7 @@ public class MemberService {
 
     }
     public String toWave(int rn){
+
         return dao.getIdByRowNum(rn);
     }
 

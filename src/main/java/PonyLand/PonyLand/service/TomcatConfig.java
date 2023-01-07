@@ -13,6 +13,6 @@ public class TomcatConfig implements WebServerFactoryCustomizer<TomcatServletWeb
     public void customize(TomcatServletWebServerFactory factory) {
        // 톰캣의 docBase 를 변경함
      // factory.setDocumentRoot(new File("C:\\Users\\Administrator\\AppData\\Local\\Temp\\2\\tomcat-docbase.80.583775722719295962"));
-     // factory.setDocumentRoot(new File("C:\\Users\\이진혁\\AppData\\Local\\Temp\\tomcat-docbase.80.13049837589883602549"));
+      factory.setDocumentRoot(new File("C:\\Users\\이진혁\\AppData\\Local\\Temp\\tomcat-docbase.80.13049837589883602549"));
     }
 }
